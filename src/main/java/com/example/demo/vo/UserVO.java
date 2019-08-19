@@ -1,4 +1,4 @@
-package com.example.demo.domain;
+package com.example.demo.vo;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -16,6 +16,7 @@ public class UserVO {
 
 	@Id @GeneratedValue
 	private int user_id;
+	
 	private String user_email;
 	private String nickname;
 	private String password;
