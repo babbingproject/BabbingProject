@@ -6,7 +6,7 @@ import org.springframework.stereotype.Controller;
 import com.example.demo.service.MemberService;
 
 @Controller
-public class MemberController {
+public class LoginController {
 	@Autowired
 	MemberService memberService;
 }
