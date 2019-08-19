@@ -1,6 +1,6 @@
 package com.example.demo.service;
 
-import com.example.demo.domain.UserVO;
+import com.example.demo.vo.UserVO;
 
 public interface UserService {
 	
