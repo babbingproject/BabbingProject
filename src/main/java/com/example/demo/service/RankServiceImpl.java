@@ -1,12 +1,9 @@
 package com.example.demo.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import com.example.demo.persistence.RankRepository;
 
 @Service
 public class RankServiceImpl implements RankService {
-	@Autowired
-	RankRepository rankRepo;
+//	@Autowired
+//	RankRepository rankRepo;
 }

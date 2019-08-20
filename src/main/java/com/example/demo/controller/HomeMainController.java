@@ -6,9 +6,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class HomeMainController {
 
-	@RequestMapping("/")
+	@RequestMapping("/home")
 	public String goIndex() {
-		return "/main/homemain";
+		System.out.println("did it arrive goindex method?");
+		return "main/homemain";
 	}
 	
 	@RequestMapping("/board")

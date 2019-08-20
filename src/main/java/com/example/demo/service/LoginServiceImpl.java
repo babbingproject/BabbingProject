@@ -3,10 +3,10 @@ package com.example.demo.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.demo.persistence.MemberRepository;
+import com.example.demo.persistence.LoginRepository;
 
 @Service
-public class MemberServiceImpl implements MemberService {
+public class LoginServiceImpl implements LoginService  {
 	@Autowired
-	MemberRepository memberRepo;
+	LoginRepository memberRepo;
 }

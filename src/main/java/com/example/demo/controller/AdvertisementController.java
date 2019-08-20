@@ -7,6 +7,7 @@ import com.example.demo.service.AdvertisementService;
 
 @Controller
 public class AdvertisementController {
+	
 	@Autowired
-	AdvertisementService advService;
+	AdvertisementService advertisementService;
 }

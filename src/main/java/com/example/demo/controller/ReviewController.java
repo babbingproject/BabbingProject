@@ -6,7 +6,7 @@ import org.springframework.stereotype.Controller;
 import com.example.demo.service.ReviewService;
 
 @Controller
-public class ReviewRepository {
+public class ReviewController {
 	@Autowired
 	ReviewService reviewService;
 }

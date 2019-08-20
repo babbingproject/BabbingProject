@@ -7,6 +7,7 @@ import com.example.demo.service.CampaignService;
 
 @Controller
 public class CampaignController {
+	
 	@Autowired
 	CampaignService campaignService;
 }
