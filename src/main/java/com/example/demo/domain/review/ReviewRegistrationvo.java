@@ -5,6 +5,10 @@ import java.sql.Timestamp;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
+import com.example.demo.domain.mypage.Uservo;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -28,4 +32,7 @@ public class ReviewRegistrationvo {
 	private int business_field_id;
 	private int theme_id;
 	
+	@ManyToOne
+	@JoinColumn(name="user_id", nullable=false)
+	private Uservo uservo;
 }

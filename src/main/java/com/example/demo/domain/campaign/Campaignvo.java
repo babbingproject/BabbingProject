@@ -3,10 +3,15 @@ package com.example.demo.domain.campaign;
 import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
+import com.example.demo.domain.mypage.Advertisementvo;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -31,6 +36,10 @@ public class Campaignvo {
 	private Date write_date;
 	@Temporal(value= TemporalType.TIMESTAMP)
 	private Date modified_date;
+	
+	@ManyToOne
+	@JoinColumn(name="advertisement_id", nullable=false)
+	private Advertisementvo advertisementvo;
 	
 	
 }
