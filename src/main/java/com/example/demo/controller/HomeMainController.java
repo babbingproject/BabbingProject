@@ -8,8 +8,14 @@ public class HomeMainController {
 
 	@RequestMapping("/home")
 	public String goIndex() {
-		System.out.println("did it arrive goindex method?");
+		
 		return "main/homemain";
+	}
+	
+	@RequestMapping("/index")
+	public String goIndex1() {
+		
+		return "main/index";
 	}
 	
 	@RequestMapping("/board")
