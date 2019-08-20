@@ -12,7 +12,6 @@ import lombok.ToString;
 @Setter
 @ToString
 @Entity
-
 public class Campaignimgvo {
 
 	@Id @GeneratedValue
