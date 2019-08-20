@@ -16,5 +16,9 @@ public class UserServiceImpl implements UserService {
 		return null;
 	}
 	
+//	public List<Uservo> getUservoList(Uservo uservo){
+//		
+//	}
+	
 	
 }

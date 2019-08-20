@@ -27,7 +27,6 @@ public class ReviewRegistrationvo {
 	private String disadvantages;
 	private Timestamp write_date;
 	private Timestamp modified_date;
-	private int user_id;
 	private int reviewType_id;
 	private int business_field_id;
 	private int theme_id;
