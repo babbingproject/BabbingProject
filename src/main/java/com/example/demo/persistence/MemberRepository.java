@@ -1,5 +1,9 @@
 package com.example.demo.persistence;
 
-public interface MemberRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.example.demo.domain.UserVO;
+
+public interface MemberRepository extends JpaRepository<UserVO, Long> {
 
 }
