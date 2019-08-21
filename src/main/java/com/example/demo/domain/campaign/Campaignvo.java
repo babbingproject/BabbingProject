@@ -37,9 +37,9 @@ public class Campaignvo {
 	@Temporal(value= TemporalType.TIMESTAMP)
 	private Date modified_date;
 	
-	@ManyToOne
-	@JoinColumn(name="advertisement_id", nullable=false)
-	private Advertisementvo advertisementvo;
+//	@ManyToOne
+//	@JoinColumn(name="advertisement_id", nullable=false)
+//	private Advertisementvo advertisementvo;
 	
 	
 }

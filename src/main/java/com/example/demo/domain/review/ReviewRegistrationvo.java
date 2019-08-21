@@ -31,7 +31,7 @@ public class ReviewRegistrationvo {
 	private int business_field_id;
 	private int theme_id;
 	
-	@ManyToOne
-	@JoinColumn(name="user_id", nullable=false)
-	private Uservo uservo;
+//	@ManyToOne
+//	@JoinColumn(name="user_id", nullable=false)
+//	private Uservo uservo;
 }

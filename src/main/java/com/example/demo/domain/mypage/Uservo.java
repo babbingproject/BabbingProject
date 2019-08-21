@@ -44,6 +44,6 @@ public class Uservo {
 	private String u_rank_img4;
 	private String u_rank_img5;
 	
-	@OneToMany(mappedBy="uservo", fetch=FetchType.EAGER, cascade=CascadeType.ALL)
-	private List<ReviewRegistrationvo> reviewRegistrationList = new ArrayList<ReviewRegistrationvo>(); 
+//	@OneToMany(mappedBy="uservo", fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+//	private List<ReviewRegistrationvo> reviewRegistrationList = new ArrayList<ReviewRegistrationvo>(); 
 }
