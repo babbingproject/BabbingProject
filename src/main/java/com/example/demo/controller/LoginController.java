@@ -3,10 +3,10 @@ package com.example.demo.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
-import com.example.demo.service.MemberService;
+import com.example.demo.service.login.LoginService;
 
 @Controller
 public class LoginController {
 	@Autowired
-	MemberService memberService;
+	LoginService loginService;
 }
