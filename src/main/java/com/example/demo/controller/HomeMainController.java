@@ -7,7 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.example.demo.domain.mypage.Uservo;
+import com.example.demo.domain.mypage.UserVO;
 import com.example.demo.service.user.UserService;
 
 @Controller
@@ -44,8 +44,8 @@ public class HomeMainController {
 	
 	//태원의 제2의 메인홈 테스팅 메소드. 화면 정보 다 뿌려주자자자자자
 	@RequestMapping("/taewonhome")
-	public String getHomeMain(Uservo uservo, Model model) {
-		List<Uservo> uservoList = userService.getUservoListOrderByFollowingCountDes(uservo);
+	public String getHomeMain(UserVO uservo, Model model) {
+		List<UserVO> uservoList = userService.getUservoListOrderByFollowingCountDes(uservo);
 		model.addAttribute("uservo", uservoList);
 		System.out.println(uservoList);
 		return "main/homemain";

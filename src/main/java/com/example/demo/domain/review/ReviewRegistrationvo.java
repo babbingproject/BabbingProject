@@ -8,7 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
-import com.example.demo.domain.mypage.Uservo;
+import com.example.demo.domain.mypage.UserVO;
 
 import lombok.Getter;
 import lombok.Setter;

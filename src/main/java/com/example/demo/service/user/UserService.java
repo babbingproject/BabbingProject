@@ -2,16 +2,16 @@ package com.example.demo.service.user;
 
 import java.util.List;
 
-import com.example.demo.domain.mypage.Uservo;
+import com.example.demo.domain.mypage.UserVO;
 
 public interface UserService {
 
-	Uservo getUser(Uservo user);
+	UserVO getUser(UserVO user);
 
 	//유저를 리스트로 담아서 뿌려주는 임플 메소드
-	List<Uservo> getUservoList(Uservo uservo);
+	List<UserVO> getUservoList(UserVO uservo);
 
 	//유저 정보를 높은 펄로우 수 순서대로 리스트 형식에 6명 저장해주는 메소드
-	List<Uservo> getUservoListOrderByFollowingCountDes(Uservo uservo);
+	List<UserVO> getUservoListOrderByFollowingCountDes(UserVO uservo);
 
 }
