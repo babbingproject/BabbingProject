@@ -7,5 +7,5 @@ public interface ReviewImageService {
 	ReviewImagevo getImgById(ReviewImagevo reviewImagevo);
 
 	ReviewImagevo getReviewImagevo(ReviewImagevo reviewImagevo);
-
+	ReviewImagevo saveReviewImagevo(ReviewImagevo reviewImagevo);
 }

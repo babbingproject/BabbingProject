@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script>
+
+</script>
+</head>
+<body>
+	<div id="wrap" class="main">
+		<div class="header" th:fragment="header">
+			<div class="top">
+				<div class="logo">
+					<a href="index"><img src="images/Bobbing-logo.png" alt="밥빙 logo" /></a>
+				</div>
+				<div class="heaer-gnb">
+					<ul>
+						<li><a href="#">리뷰</a></li>
+						<li><a href="#">랭킹</a></li>
+						<li><a href="#">캠페인</a></li>
+					</ul>
+				</div>
+				<div class="heaer-search">
+					<form action="search" enctype="multipart/form-data">
+						<div class="fl MainSearch">
+							<label class="hidden" for="">검색어입력</label> <input name="searchKeyword" class="input_type1" id="" style="width: 180px;" type="text" maxlength="100">
+						</div>
+						<input type="image" value="submit" src="images/Bobbing-header-search.gif" class="fl"><!-- <img alt="" src="images/Bobbing-header-search.gif"> --> 
+					</form>
+				</div>
+				<div class="heaer-btnR">
+					<div class="selectbox">
+						<dl class="dropdown">
+							<dt>
+								<a href="#" style="padding-top: 4px;"><span><img src="images/Bobbing-main-Circle-member.gif" /> 고유지니</span></a>
+							</dt>
+							<dd>
+								<ul class="dropdown2">
+									<li><a href="#"><img src="images/Bobbing-main-Circle-member.gif" />로그아웃</a></li>
+									<li><a href="#"><img src="images/Bobbing-main-Circle-shop.gif" /> 마이페이지</a></li>
+								
+								</ul>
+							</dd>
+						</dl>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

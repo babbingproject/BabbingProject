@@ -20,4 +20,8 @@ public class ReviewImageServiceImpl implements ReviewImageService  {
 	public ReviewImagevo getReviewImagevo(ReviewImagevo reviewImagevo) {
 		return reviewImageRepo.findById(reviewImagevo.getImg_id()).get();
 	}
+	
+	public ReviewImagevo saveReviewImagevo(ReviewImagevo reviewImagevo) {
+		return reviewImageRepo.save(reviewImagevo);
+	}
 }

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,6 +9,7 @@
 <script src="common/js/jquery.slides.js"></script>
 	<script>
 		$(function() {
+		//배너 슬라이드 부분
 			$('#slides').slidesjs({
 				width : 1134,
 				height : 470,
@@ -19,49 +20,162 @@
 					swap : true
 				}
 			});
+		//화면 처음 시작시 업종별 분류된 리스트를 가려주는 jquery
+			$(document).ready(function(){
+				$('#list2').hide()
+				$('#list3').hide()
+				$('#list4').hide()
+				$('#list5').hide()
+				$('#list6').hide()
+				$('#list7').hide()
+				$('#list8').hide()
+			});
 			
+		//업종별 클릭스 가려주고 보여주기
+		//전체
+			$('#buttonall').click(function(){
+				$('#list1').show(1000);
+				$('#list2').hide();
+				$('#list3').hide();
+				$('#list4').hide();
+				$('#list5').hide();
+				$('#list6').hide();
+				$('#list7').hide();
+				$('#list8').hide();
+			});
+		//한식
+			$('#button2').click(function(){
+				$('#list1').hide();
+				$('#list2').show(1000);
+				$('#list3').hide();
+				$('#list4').hide();
+				$('#list5').hide();
+				$('#list6').hide();
+				$('#list7').hide();
+				$('#list8').hide();
+			});
+		//양식
+			$('#button3').click(function(){
+				$('#list1').hide();
+				$('#list2').hide();
+				$('#list3').show(1000);
+				$('#list4').hide();
+				$('#list5').hide();
+				$('#list6').hide();
+				$('#list7').hide();
+				$('#list8').hide();
+			});
+		//일식
+			$('#button4').click(function(){
+				$('#list1').hide();
+				$('#list2').hide();
+				$('#list3').hide();
+				$('#list4').show(1000);
+				$('#list5').hide();
+				$('#list6').hide();
+				$('#list7').hide();
+				$('#list8').hide();
+			});
+		//중식
+			$('#button5').click(function(){
+				$('#list1').hide();
+				$('#list2').hide();
+				$('#list3').hide();
+				$('#list4').hide();
+				$('#list5').show(1000);
+				$('#list6').hide();
+				$('#list7').hide();
+				$('#list8').hide();
+			});
+		//분식
+			$('#button6').click(function(){
+				$('#list1').hide();
+				$('#list2').hide();
+				$('#list3').hide();
+				$('#list4').hide();
+				$('#list5').hide();
+				$('#list6').show(1000);
+				$('#list7').hide();
+				$('#list8').hide();
+			});
+		//패스트푸드
+			$('#button7').click(function(){
+				$('#list1').hide();
+				$('#list2').hide();
+				$('#list3').hide();
+				$('#list4').hide();
+				$('#list5').hide();
+				$('#list6').hide();
+				$('#list7').show(1000);
+				$('#list8').hide();
+			});
+		//카페
+			$('#button8').click(function(){
+				$('#list1').hide();
+				$('#list2').hide();
+				$('#list3').hide();
+				$('#list4').hide();
+				$('#list5').hide();
+				$('#list6').hide();
+				$('#list7').hide();
+				$('#list8').show(1000);
+			});
+		//윗부분 코드들은 시간날때 더 간략하게 만들기....
+		
+		//유저 아이디 스크롤
+		$(function(){
+			// <ul id="banner">를 list 변수에 참조
+			var list = $(".list-style04-user");
+	        // 프레임의 사진 노출 개수
+	        var showNum = 0;
+	        // 이전, 다음 버튼을 클릭할 때마다 증감되는 값
+	        var num = 0;
+	        // 총 <li>의 개수 5가 저장된다.
+	        var total = $(">li", list).size();
+	        // <li>의 너빗값 80이 저장된다.
+	        var liWidth = $("li:first", list).width();
+	        
+	        /* 
+	            <li> 태그 중 인덱스 값이 3보다 작은 <li> 태그만 복제한다.
+	            그러므로 0,1,2 인덱스에 해당하는 <li> 태그가 복제되어
+	            <ul id="banner">에 추가한다.
+	        */
+	        var copyObj = $(">li:lt("+showNum+")", list).clone();
+	        list.append(copyObj);
+	        
+	        // 다음 버튼을 클릭할 때마다 이벤트 핸들러를 실행한다.
+	        $(".arr-btn-right").on("click", function(){
+	            if(num == total){ // num값이 5일 경우 조건문을 실행
+	                num = 0; // num값 초기화
+	                list.css("margin-left",num); // 배너가 첫 부분으로 이동
+	            }
+	            num++;
+	            
+	            list.stop().animate({marginLeft:-liWidth*num+"px"},500);
+	            return false;
+	        });
+	        
+	        // 이전 버튼을 클릭할 때마다 이벤트 핸들러를 실행한다.
+	        $(".arr-btn-left on").on("click", function(){
+	            if(num == 0){    // num값이 0일 경우 조건문을 수행
+	                num = total; // num값이 5가 된다.
+	                // 배너가 400px만큼 이동
+	                list.css("margin-left", -num*liWidth+"px");
+	            }
+	            
+	            num--;
+	            list.stop().animate({marginLeft:-liWidth*num+"px"},500);
+	            return false;
+	        });
+		})
+			
+
 		});
 	</script>
 </head>
 <body>
 	<div id="wrap" class="main">
-		<div class="header">
-			<div class="top">
-				<div class="logo">
-					<a href="index.html"><img src="images/Bobbing-logo.png" alt="밥빙 logo" /></a>
-				</div>
-				<div class="heaer-gnb">
-					<ul>
-						<li><a href="#">리뷰</a></li>
-						<li><a href="#">랭킹</a></li>
-						<li><a href="#">캠페인</a></li>
-					</ul>
-				</div>
-				<div class="heaer-search">
-					<div class="fl MainSearch">
-						<label class="hidden" for="">검색어입력</label> <input name="" class="input_type1" id="" style="width: 180px;" type="text" maxlength="100">
-					</div>
-					<a href="#" class="fl"><img alt="" src="images/Bobbing-header-search.gif"></a> 
-					<a href="#" class="fl btn-area-style01">글쓰기</a>
-				</div>
-				<div class="heaer-btnR">
-					<div class="selectbox">
-						<dl class="dropdown">
-							<dt>
-								<a href="#" style="padding-top: 4px;"><span><img src="images/Bobbing-main-Circle-member.gif" /> 고유지니</span></a>
-							</dt>
-							<dd>
-								<ul class="dropdown2">
-									<li><a href="#"><img src="images/Bobbing-main-Circle-member.gif" />로그아웃</a></li>
-									<li><a href="#"><img src="images/Bobbing-main-Circle-shop.gif" /> 마이페이지</a></li>
-								
-								</ul>
-							</dd>
-						</dl>
-					</div>
-				</div>
-			</div>
-		</div>
+		<div th:replace="/include/header.html :: header"></div>
 		
 		<div class="contact">
 			<div class="cont-area content" data-role="content" >
@@ -79,167 +193,290 @@
 			<div class="cont-area">
 			<div class="cont-txtB">NEW 리뷰 <a href="#" class="more-btn">더보기</a></div>
 				<ul class="list-style01">
-					<li>
+					<li th:each=" newestreview:${newestreview}">
 						<div class="cont-txt">
 							<p class="photo">
-								<img src="images/Bobbing-shop-thumbnail01.jpg" />
+								<img th:src="${newestreview[3]}" />
 							</p>
 							<a href="#" class="best01">베스트</a>
 							<ul class="info">
-								<li>강남 | 강남불백</li>
-								<li>강남불백 다녀왔어요~!</li>
+								<li><span th:text="${newestreview[1]}"></span> | 강남불백</li>
+								<li><span th:text="${newestreview[2]}"></span></li>
 								<li><img src="images/Bobbing-main-Circle-member.gif" /> 고유지니</li>
 							</ul>
 						</div>
 					</li>
-					<li>
-						<div class="cont-txt">
-							<p class="photo">
-								<img src="images/Bobbing-shop-thumbnail02.jpg" />
-							</p>
-							<a href="#" class="best01">베스트</a>
-							<ul class="info">
-								<li>강남 | 성성식당</li>
-								<li>이제야 먹어본 성성 닭칼국수</li>
-								<li><img src="images/Bobbing-main-Circle-member.gif" /> 고유지니</li>
-							</ul>
-						</div>
-					</li>
-					<li>
-						<div class="cont-txt">
-							<p class="photo">
-								<img src="images/Bobbing-shop-thumbnail03.jpg" />
-							</p>
-							<a href="#" class="best02">베스트</a>
-							<ul class="info">
-								<li>강남 | 고베큐카츠</li>
-								<li>제발 드세요. 맛보장</li>
-								<li><img src="images/Bobbing-main-Circle-member.gif" /> 식사를 합시당</li>
-							</ul>
-						</div>
-					</li>
-					<li>
-						<div class="cont-txt">
-							<p class="photo">
-								<img src="images/Bobbing-shop-thumbnail04.jpg" />
-							</p>
-							<a href="#" class="best02">베스트</a>
-							<ul class="info">
-								<li>강남 | 도치피자</li>
-								<li>피자맛집 도치피자</li>
-								<li><img src="images/Bobbing-main-Circle-member.gif" /> 리엄냠냠</li>
-							</ul>
-						</div>
-					</li>
+<!-- 					<li> -->
+<!-- 						<div class="cont-txt"> -->
+<!-- 							<p class="photo"> -->
+<!-- 								<img src="images/Bobbing-shop-thumbnail02.jpg" /> -->
+<!-- 							</p> -->
+<!-- 							<a href="#" class="best01">베스트</a> -->
+<!-- 							<ul class="info"> -->
+<!-- 								<li>강남 | 성성식당</li> -->
+<!-- 								<li>이제야 먹어본 성성 닭칼국수</li> -->
+<!-- 								<li><img src="images/Bobbing-main-Circle-member.gif" /> 고유지니</li> -->
+<!-- 							</ul> -->
+<!-- 						</div> -->
+<!-- 					</li> -->
+<!-- 					<li> -->
+<!-- 						<div class="cont-txt"> -->
+<!-- 							<p class="photo"> -->
+<!-- 								<img src="images/Bobbing-shop-thumbnail03.jpg" /> -->
+<!-- 							</p> -->
+<!-- 							<a href="#" class="best02">베스트</a> -->
+<!-- 							<ul class="info"> -->
+<!-- 								<li>강남 | 고베큐카츠</li> -->
+<!-- 								<li>제발 드세요. 맛보장</li> -->
+<!-- 								<li><img src="images/Bobbing-main-Circle-member.gif" /> 식사를 합시당</li> -->
+<!-- 							</ul> -->
+<!-- 						</div> -->
+<!-- 					</li> -->
+<!-- 					<li> -->
+<!-- 						<div class="cont-txt"> -->
+<!-- 							<p class="photo"> -->
+<!-- 								<img src="images/Bobbing-shop-thumbnail04.jpg" /> -->
+<!-- 							</p> -->
+<!-- 							<a href="#" class="best02">베스트</a> -->
+<!-- 							<ul class="info"> -->
+<!-- 								<li>강남 | 도치피자</li> -->
+<!-- 								<li>피자맛집 도치피자</li> -->
+<!-- 								<li><img src="images/Bobbing-main-Circle-member.gif" /> 리엄냠냠</li> -->
+<!-- 							</ul> -->
+<!-- 						</div> -->
+<!-- 					</li> -->
 				</ul>
 			</div>
-			<div class="cont-area">
+			<div class="cont-area" name="thispart">
 				<div class="cont-txtB">
 					BEST 리뷰 <a href="#" class="more-btn">더보기</a>
 				</div>
 				<ul class="list-style02">
-					<li><a href="#" class="on">전체</a></li>
-					<li><a href="#" >한식</a></li>
-					<li><a href="#" >양식</a></li>
-					<li><a href="#" >일식</a></li>
-					<li><a href="#" >중식</a></li>
-					<li><a href="#" >분식</a></li>
-					<li><a href="#" >패스트푸드</a></li>
-					<li><a href="#" >카페</a></li>
+					<li ><span id="buttonall">전체</span></li>
+					<li ><span id="button2">한식</span></li>
+					<li ><span id="button3">양식</span></li>
+					<li ><span id="button4">일식</span></li>
+					<li ><span id="button5">중식</span></li>
+					<li ><span id="button6">분식</span></li>
+					<li ><span id="button7">패스트푸드</span></li>
+					<li ><span id="button8">카페</span></li>
 				</ul>
 			</div>
-			<div class="cont-area">
+			<div class="cont-area" id="list1">
 				<ul class="list-style03">
-					<li>
-						<div class="cont-txt">
+					<li  th:each="everything:${everything}">
+						<div  class="cont-txt">
 							<p class="photo">
-								<img src="images/Bobbing-shop-thumbnail05.jpg" />
+								<img th:src="${everything[4]}" />
 							</p>
 							<a href="#" class="best01">베스트</a>
 							<ul class="info">
-								<li>강남 | 강남불백</li>
-								<li>강남불백 다녀왔어요~!</li>
+								<li><span th:text="${everything[1]}"></span>| 강남불백</li>
+								<li><span th:text="${everything[2]}"></span></li>
 								<li><img src="images/Bobbing-main-Circle-member.gif" /> 고유지니</li>
-							</ul>
-						</div>
-					</li>
-					<li>
-						<div class="cont-txt">
-							<p class="photo">
-								<img src="images/Bobbing-shop-thumbnail06.jpg" />
-							</p>
-							<a href="#" class="best01">베스트</a>
-							<ul class="info">
-								<li>강남 | 성성식당</li>
-								<li>이제야 먹어본 성성 닭칼국수</li>
-								<li><img src="images/Bobbing-main-Circle-member.gif" /> 고유지니</li>
-							</ul>
-						</div>
-					</li>
-					<li>
-						<div class="cont-txt">
-							<p class="photo">
-								<img src="images/Bobbing-shop-thumbnail07.jpg" />
-							</p>
-							<a href="#" class="best02">베스트</a>
-							<ul class="info">
-								<li>강남 | 고베큐카츠</li>
-								<li>제발 드세요. 맛보장</li>
-								<li><img src="images/Bobbing-main-Circle-member.gif" /> 식사를 합시당</li>
-							</ul>
-						</div>
-					</li>
-					<li>
-						<div class="cont-txt">
-							<p class="photo">
-								<img src="images/Bobbing-shop-thumbnail08.jpg" />
-							</p>
-							<a href="#" class="best02">베스트</a>
-							<ul class="info">
-								<li>강남 | 도치피자</li>
-								<li>피자맛집 도치피자</li>
-								<li><img src="images/Bobbing-main-Circle-member.gif" /> 리엄냠냠</li>
-							</ul>
-						</div>
-					</li>
-					<li>
-						<div class="cont-txt">
-							<p class="photo"><img src="images/Bobbing-shop-thumbnail09.jpg" /></p>
-							<a href="#" class="best02">베스트</a>
-							<ul class="info">
-								<li>강남 | 도치피자</li>
-								<li>피자맛집 도치피자</li>
-								<li><img src="images/Bobbing-main-Circle-member.gif" /> 리엄냠냠</li>
-							</ul>
-						</div>
-					</li>
-					<li>
-						<div class="cont-txt">
-							<p class="photo"> <img src="images/Bobbing-shop-thumbnail10.jpg" /></p>
-							<a href="#" class="best02">베스트</a>
-							<ul class="info">
-								<li>강남 | 도치피자</li>
-								<li>피자맛집 도치피자</li>
-								<li><img src="images/Bobbing-main-Circle-member.gif" /> 리엄냠냠</li>
 							</ul>
 						</div>
 					</li>
 				</ul>
 			</div>
+			<div class="cont-area" id="list2">
+				<ul class="list-style03">
+					<li  th:each="businessone:${businessone}">
+						<div  class="cont-txt">
+							<p class="photo">
+								<img th:src="${businessone[4]}" />
+							</p>
+							<a href="#" class="best01">베스트</a>
+							<ul class="info">
+								<li><span th:text="${businessone[1]}"></span>| 강남불백</li>
+								<li><span th:text="${businessone[2]}"></span></li>
+								<li><img src="images/Bobbing-main-Circle-member.gif" /> 고유지니</li>
+							</ul>
+						</div>
+					</li>
+				</ul>
+			</div>	
+			<div class="cont-area" id="list3">
+				<ul class="list-style03">
+					<li  th:each="businesstwo:${businesstwo}">
+						<div  class="cont-txt">
+							<p class="photo">
+								<img th:src="${businesstwo[4]}" />
+							</p>
+							<a href="#" class="best01">베스트</a>
+							<ul class="info">
+								<li><span th:text="${businesstwo[1]}"></span>| 강남불백</li>
+								<li><span th:text="${businesstwo[2]}"></span></li>
+								<li><img src="images/Bobbing-main-Circle-member.gif" /> 고유지니</li>
+							</ul>
+						</div>
+					</li>
+				</ul>
+			</div>
+			<div class="cont-area" id="list4">
+				<ul class="list-style03">
+					<li  th:each="businessthree:${businessthree}">
+						<div  class="cont-txt">
+							<p class="photo">
+								<img th:src="${businessthree[4]}" />
+							</p>
+							<a href="#" class="best01">베스트</a>
+							<ul class="info">
+								<li><span th:text="${businessthree[1]}"></span>| 강남불백</li>
+								<li><span th:text="${businessthree[2]}"></span></li>
+								<li><img src="images/Bobbing-main-Circle-member.gif" /> 고유지니</li>
+							</ul>
+						</div>
+					</li>
+				</ul>
+			</div>
+			<div class="cont-area" id="list5">
+				<ul class="list-style03">
+					<li  th:each="businessfour:${businessfour}">
+						<div  class="cont-txt">
+							<p class="photo">
+								<img th:src="${businessfour[4]}" />
+							</p>
+							<a href="#" class="best01">베스트</a>
+							<ul class="info">
+								<li><span th:text="${businessfour[1]}"></span>| 강남불백</li>
+								<li><span th:text="${businessfour[2]}"></span></li>
+								<li><img src="images/Bobbing-main-Circle-member.gif" /> 고유지니</li>
+							</ul>
+						</div>
+					</li>
+				</ul>
+			</div>
+			<div class="cont-area" id="list6">
+				<ul class="list-style03">
+					<li  th:each="businessfive:${businessfive}">
+						<div  class="cont-txt">
+							<p class="photo">
+								<img th:src="${businessfive[4]}" />
+							</p>
+							<a href="#" class="best01">베스트</a>
+							<ul class="info">
+								<li><span th:text="${businessfive[1]}"></span>| 강남불백</li>
+								<li><span th:text="${businessfive[2]}"></span></li>
+								<li><img src="images/Bobbing-main-Circle-member.gif" /> 고유지니</li>
+							</ul>
+						</div>
+					</li>
+				</ul>
+			</div>
+			<div class="cont-area" id="list7">
+				<ul class="list-style03">
+					<li  th:each="businesssix:${businesssix}">
+						<div  class="cont-txt">
+							<p class="photo">
+								<img th:src="${businesssix[4]}" />
+							</p>
+							<a href="#" class="best01">베스트</a>
+							<ul class="info">
+								<li><span th:text="${businesssix[1]}"></span>| 강남불백</li>
+								<li><span th:text="${businesssix[2]}"></span></li>
+								<li><img src="images/Bobbing-main-Circle-member.gif" /> 고유지니</li>
+							</ul>
+						</div>
+					</li>
+				</ul>
+			</div>
+			<div class="cont-area" id="list8">
+				<ul class="list-style03">
+					<li  th:each="businessseven:${businessseven}">
+						<div  class="cont-txt">
+							<p class="photo">
+								<img th:src="${businessseven[4]}" />
+							</p>
+							<a href="#" class="best01">베스트</a>
+							<ul class="info">
+								<li><span th:text="${businessseven[1]}"></span>| 강남불백</li>
+								<li><span th:text="${businessseven[2]}"></span></li>
+								<li><img src="images/Bobbing-main-Circle-member.gif" /> 고유지니</li>
+							</ul>
+						</div>
+					</li>
+					
+				</ul>
+			</div>
+<!-- 					<li> -->
+<!-- 						<div class="cont-txt"> -->
+<!-- 							<p class="photo"> -->
+<!-- 								<img src="images/Bobbing-shop-thumbnail06.jpg" /> -->
+<!-- 							</p> -->
+<!-- 							<a href="#" class="best01">베스트</a> -->
+<!-- 							<ul class="info"> -->
+<!-- 								<li>강남 | 성성식당</li> -->
+<!-- 								<li>이제야 먹어본 성성 닭칼국수</li> -->
+<!-- 								<li><img src="images/Bobbing-main-Circle-member.gif" /> 고유지니</li> -->
+<!-- 							</ul> -->
+<!-- 						</div> -->
+<!-- 					</li> -->
+<!-- 					<li> -->
+<!-- 						<div class="cont-txt"> -->
+<!-- 							<p class="photo"> -->
+<!-- 								<img src="images/Bobbing-shop-thumbnail07.jpg" /> -->
+<!-- 							</p> -->
+<!-- 							<a href="#" class="best02">베스트</a> -->
+<!-- 							<ul class="info"> -->
+<!-- 								<li>강남 | 고베큐카츠</li> -->
+<!-- 								<li>제발 드세요. 맛보장</li> -->
+<!-- 								<li><img src="images/Bobbing-main-Circle-member.gif" /> 식사를 합시당</li> -->
+<!-- 							</ul> -->
+<!-- 						</div> -->
+<!-- 					</li> -->
+<!-- 					<li> -->
+<!-- 						<div class="cont-txt"> -->
+<!-- 							<p class="photo"> -->
+<!-- 								<img src="images/Bobbing-shop-thumbnail08.jpg" /> -->
+<!-- 							</p> -->
+<!-- 							<a href="#" class="best02">베스트</a> -->
+<!-- 							<ul class="info"> -->
+<!-- 								<li>강남 | 도치피자</li> -->
+<!-- 								<li>피자맛집 도치피자</li> -->
+<!-- 								<li><img src="images/Bobbing-main-Circle-member.gif" /> 리엄냠냠</li> -->
+<!-- 							</ul> -->
+<!-- 						</div> -->
+<!-- 					</li> -->
+<!-- 					<li> -->
+<!-- 						<div class="cont-txt"> -->
+<!-- 							<p class="photo"><img src="images/Bobbing-shop-thumbnail09.jpg" /></p> -->
+<!-- 							<a href="#" class="best02">베스트</a> -->
+<!-- 							<ul class="info"> -->
+<!-- 								<li>강남 | 도치피자</li> -->
+<!-- 								<li>피자맛집 도치피자</li> -->
+<!-- 								<li><img src="images/Bobbing-main-Circle-member.gif" /> 리엄냠냠</li> -->
+<!-- 							</ul> -->
+<!-- 						</div> -->
+<!-- 					</li> -->
+<!-- 					<li> -->
+<!-- 						<div class="cont-txt"> -->
+<!-- 							<p class="photo"> <img src="images/Bobbing-shop-thumbnail10.jpg" /></p> -->
+<!-- 							<a href="#" class="best02">베스트</a> -->
+<!-- 							<ul class="info"> -->
+<!-- 								<li>강남 | 도치피자</li> -->
+<!-- 								<li>피자맛집 도치피자</li> -->
+<!-- 								<li><img src="images/Bobbing-main-Circle-member.gif" /> 리엄냠냠</li> -->
+<!-- 							</ul> -->
+<!-- 						</div> -->
+<!-- 					</li> -->
+				
+			
 			<div class="cont-area">
 				<div class="cont-txtB">
 					인기 유저 <a href="#" class="more-btn">더보기</a>
 				</div>
-				<ul class="list-style04">
-					<li><a href="#"><img src="images/Bobbing-main-Circle-member.gif" /><span class="name">리엄냠냠</span><span>팔로워 1,203  |  리뷰수 121</span><span class="btn01">팔로잉</span></a></li>
-					<li><a href="#"><img src="images/Bobbing-main-Circle-member.gif" /><span class="name">리엄냠냠</span><span>팔로워 1,203  |  리뷰수 121</span><span class="btn02">팔로우</span></a></li>
-					<li><a href="#"><img src="images/Bobbing-main-Circle-member.gif" /><span class="name">리엄냠냠</span><span>팔로워 1,203  |  리뷰수 121</span><span class="btn02">팔로우</span></a></li>
-					<li><a href="#"><img src="images/Bobbing-main-Circle-member.gif" /><span class="name">리엄냠냠</span><span>팔로워 1,203  |  리뷰수 121</span><span class="btn02">팔로우</span></a></li>
-					<li><a href="#"><img src="images/Bobbing-main-Circle-member.gif" /><span class="name">리엄냠냠</span><span>팔로워 1,203  |  리뷰수 121</span><span class="btn02">팔로우</span></a></li>
-					<li><a href="#"><img src="images/Bobbing-main-Circle-member.gif" /><span class="name">리엄냠냠</span><span>팔로워 1,203  |  리뷰수 121</span><span class="btn02">팔로우</span></a></li>
+				<ul class="list-style04-user">
+<!-- 					<li><a href="#"><img src="images/Bobbing-main-Circle-member.gif" /><span class="name">리엄냠냠</span><span>팔로워 1,203  |  리뷰수 121</span><span class="btn01">팔로잉</span></a></li> -->
+<!-- 					<li><a href="#"><img src="images/Bobbing-main-Circle-member.gif" /><span class="name">리엄냠냠</span><span>팔로워 1,203  |  리뷰수 121</span><span class="btn02">팔로우</span></a></li> -->
+<!-- 					<li><a href="#"><img src="images/Bobbing-main-Circle-member.gif" /><span class="name">리엄냠냠</span><span>팔로워 1,203  |  리뷰수 121</span><span class="btn02">팔로우</span></a></li> -->
+<!-- 					<li><a href="#"><img src="images/Bobbing-main-Circle-member.gif" /><span class="name">리엄냠냠</span><span>팔로워 1,203  |  리뷰수 121</span><span class="btn02">팔로우</span></a></li> -->
+<!-- 					<li><a href="#"><img src="images/Bobbing-main-Circle-member.gif" /><span class="name">리엄냠냠</span><span>팔로워 1,203  |  리뷰수 121</span><span class="btn02">팔로우</span></a></li> -->
+<!-- 					<li><a href="#"><img src="images/Bobbing-main-Circle-member.gif" /><span class="name">리엄냠냠</span><span>팔로워 1,203  |  리뷰수 121</span><span class="btn02">팔로우</span></a></li> -->
+					<li th:each="uservo:${uservo}"><a href="#"><img th:src="${uservo[2]}"><span class="name"><span th:text="${uservo[1]}"></span><span>팔로워</span>|<span th:text="${uservo[3]}"></span>리뷰수<span th:text="${uservo[4]}"></span></span><span class="btn02">팔로우</span></a></li>
 				</ul>
 				<div class="arr-area">
-					<a href="#" class="arr-btn-left"></a> 
+					<a href="#" class="arr-btn-left" onclick="click"></a> 
 					<a href="#" class="arr-btn-right on"></a>
 				</div>
 			</div>
@@ -247,23 +484,24 @@
 				<div class="cont-txtB">
 					인기 맛집 <a href="#" class="more-btn">더보기</a>
 				</div>
-				<ul class="list-style04">
-					<li><a href="#"><img src="images/Bobbing-main-Circle-shop.gif" /><span class="name">강남불백</span><span>평가 1,203  |  리뷰수 121</span><span class="btn01">빼기</span></a></li>
-					<li><a href="#"><img src="images/Bobbing-main-Circle-shop.gif" /><span class="name">강남불백</span><span>평가 1,203  |  리뷰수 121</span><span class="btn02">담아두기</span></a></li>
-					<li><a href="#"><img src="images/Bobbing-main-Circle-shop.gif" /><span class="name">강남불백</span><span>평가 1,203  |  리뷰수 121</span><span class="btn02">담아두기</span></a></li>
-					<li><a href="#"><img src="images/Bobbing-main-Circle-shop.gif" /><span class="name">강남불백</span><span>평가 1,203  |  리뷰수 121</span><span class="btn02">담아두기</span></a></li>
-					<li><a href="#"><img src="images/Bobbing-main-Circle-shop.gif" /><span class="name">강남불백</span><span>평가 1,203  |  리뷰수 121</span><span class="btn02">담아두기</span></a></li>
-					<li><a href="#"><img src="images/Bobbing-main-Circle-shop.gif" /><span class="name">강남불백</span><span>평가 1,203  |  리뷰수 121</span><span class="btn02">담아두기</span></a></li>
+				<ul class="list-style04-restaurant">
+<!-- 					<li><a href="#"><img src="images/Bobbing-main-Circle-shop.gif" /><span class="name">강남불백</span><span>평가 1,203  |  리뷰수 121</span><span class="btn01">빼기</span></a></li> -->
+<!-- 					<li><a href="#"><img src="images/Bobbing-main-Circle-shop.gif" /><span class="name">강남불백</span><span>평가 1,203  |  리뷰수 121</span><span class="btn02">담아두기</span></a></li> -->
+<!-- 					<li><a href="#"><img src="images/Bobbing-main-Circle-shop.gif" /><span class="name">강남불백</span><span>평가 1,203  |  리뷰수 121</span><span class="btn02">담아두기</span></a></li> -->
+<!-- 					<li><a href="#"><img src="images/Bobbing-main-Circle-shop.gif" /><span class="name">강남불백</span><span>평가 1,203  |  리뷰수 121</span><span class="btn02">담아두기</span></a></li> -->
+<!-- 					<li><a href="#"><img src="images/Bobbing-main-Circle-shop.gif" /><span class="name">강남불백</span><span>평가 1,203  |  리뷰수 121</span><span class="btn02">담아두기</span></a></li> -->
+<!-- 					<li><a href="#"><img src="images/Bobbing-main-Circle-shop.gif" /><span class="name">강남불백</span><span>평가 1,203  |  리뷰수 121</span><span class="btn02">담아두기</span></a></li> -->
+					<li th:each="advvo:${advvo}"><a href="#"><img th:src="${advvo[2]}"><span th:text="${advvo[1]}" class="name"></span>리뷰수<span th:text="${advvo[3]}"></span><span class="btn02">담아두기</span></a></li>
 				</ul>
 				<div class="arr-area">
-					<a href="#" class="arr-btn-left on"></a> 
+					<a href="#" class="arr-btn-left on" onclick="click"></a> 
 					<a href="#" class="arr-btn-right"></a>
 				</div>
 			</div>
 		</div>
 		<div class="footer-area">
 			<div class="footer">
-		<p class="top-btn"><a href="#">위로가기</a>
+		<a href="#wrap"><p class="top-btn"></p>위로가기</a>
 				
 			</div>
 		</div>
@@ -278,8 +516,9 @@
 				$(".dropdown dt a span").html(text);
 				$(".dropdown dd ul").hide();
 			});
-
+			
 		</script>
+		
 </body>
 
 </html>

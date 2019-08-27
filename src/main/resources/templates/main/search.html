@@ -1,10 +1,66 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="UTF-8">
+<meta charset="utf-8">
 <title>Insert title here</title>
+<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+<link rel="stylesheet" href="common/css/styles.css">
+
 </head>
 <body>
-
+	<div id="wrap" class="main">
+		<div th:replace="/include/header.html :: header"></div>
+		
+		
+		<div class="cont-area" id="list1">
+		<h3>리뷰</h3>
+			<ul class="list-style03">
+				<li th:each="reviewSearch:${reviewSearch}">
+					<div class="cont-txt">
+						<p class="photo">
+							<img th:src="${reviewSearch[4]}">
+						</p>
+						<a href="#" class="best01">베스트</a>
+						<ul class="info">
+							<li><span th:text="${reviewSearch[1]}"></span>| 강남불백</li>
+							<li><span th:text="${reviewSearch[2]}"></span></li>
+							<li><img src="images/Bobbing-main-Circle-member.gif" /> 고유지니</li>
+						</ul>
+					</div>
+				</li>
+			</ul>
+		</div>
+		<div class="cont-area">
+		<h3>유저</h3>
+			<div class="cont-txtB">
+				인기 유저 <a href="#" class="more-btn">더보기</a>
+			</div>
+			<ul class="list-style04-user">
+				<li th:each="userSearch:${userSearch}"><a href="#"><img th:src="${userSearch[2]}"><span class="name"><span th:text="${userSearch[1]}"></span><span>팔로워</span>|<span th:text="${userSearch[3]}"></span>리뷰수<span th:text="${userSearch[4]}"></span></span><span class="btn02">팔로우</span></a></li>
+			</ul>
+			<div class="arr-area">
+				<a href="#" class="arr-btn-left" onclick="click"></a> 
+				<a href="#" class="arr-btn-right on"></a>
+			</div>
+		</div>
+		
+		<h3>캠페인</h3>
+		<hr>
+		
+		<div class="cont-area">
+		<h3>맛집</h3>
+			<div class="cont-txtB">
+				인기 맛집 <a href="#" class="more-btn">더보기</a>
+			</div>
+			<ul class="list-style04-restaurant">
+				<li th:each="advvo:${advertisementSearch}"><a href="#"><img th:src="${advvo[2]}"><span th:text="${advvo[1]}" class="name"></span>리뷰수<span th:text="${advvo[3]}"></span><span class="btn02">담아두기</span></a></li>
+			</ul>
+			<div class="arr-area">
+				<a href="#" class="arr-btn-left on" onclick="click"></a> 
+				<a href="#" class="arr-btn-right"></a>
+			</div>
+		</div>
+		
+	</div>
 </body>
 </html>
