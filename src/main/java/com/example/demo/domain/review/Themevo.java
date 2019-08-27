@@ -15,19 +15,19 @@ import lombok.ToString;
 public class Themevo {
 
 	@Id @GeneratedValue
-	private int theme_id;
-	private String theme_dpt;
-	private String theme_bth;
-	private String theme_fmt;
-	private String theme_dte;
-	private String theme_inm;
-	private String theme_sgm;
-	private String theme_tvr;
-	private String theme_rnd;
-	private String theme_eff;
-	private String theme_spc;
-	private String theme_foc;
-	private String theme_bef;
-	private String theme_chm;
-	private String theme_etc;
+	private int themeId;
+	private String themeDpt;
+	private String themeDth;
+	private String themeFmt;
+	private String themeDte;
+	private String themeInm;
+	private String themeSgm;
+	private String themeTvr;
+	private String themeRnd;
+	private String themeEff;
+	private String themeSpc;
+	private String themeFoc;
+	private String themeBef;
+	private String themeChm;
+	private String themeEtc;
 }

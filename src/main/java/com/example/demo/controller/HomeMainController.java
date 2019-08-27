@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.demo.domain.mypage.Uservo;
+import com.example.demo.domain.review.ReviewImagevo;
+import com.example.demo.domain.review.ReviewRegistrationvo;
+import com.example.demo.service.review.ReviewService;
 import com.example.demo.service.user.UserService;
 
 @Controller
@@ -15,6 +19,9 @@ public class HomeMainController {
 
 	@Autowired
 	UserService userService;
+	
+	@Autowired
+	ReviewService reviewService;
 	
 	@RequestMapping("/home")
 	public String goIndex() {
@@ -49,5 +56,23 @@ public class HomeMainController {
 		model.addAttribute("uservo", uservoList);
 		System.out.println(uservoList);
 		return "main/homemain";
+	}
+	@RequestMapping("/doReviewList")
+	public String getReviewList(Model model) {
+		
+		List<Uservo> userInfo = new ArrayList<Uservo>();
+		List<ReviewRegistrationvo> reviewList = new ArrayList<ReviewRegistrationvo>();
+		reviewList = reviewService.selectReviewList();
+		userInfo = reviewService.selectUservoInfo();
+		
+		model.addAttribute("userInfo", userInfo);
+		for (Uservo userInfoList : userInfo) {
+			System.out.println(userInfoList);
+		}
+		model.addAttribute("reviewList", reviewList);
+		for (ReviewRegistrationvo reviewInfoList : reviewList) {
+			System.out.println(reviewInfoList.toString());
+		}
+		return "/review/reviewList";
 	}
 }

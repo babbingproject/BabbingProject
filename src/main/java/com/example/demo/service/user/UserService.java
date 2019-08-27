@@ -1,12 +1,15 @@
 package com.example.demo.service.user;
 
 import java.util.List;
+import java.util.Optional;
 
 import com.example.demo.domain.mypage.Uservo;
 
 public interface UserService {
 
 	Uservo getUser(Uservo user);
+	
+	Optional<Uservo> insertUserId(Uservo user);
 
 	//유저를 리스트로 담아서 뿌려주는 임플 메소드
 	List<Uservo> getUservoList(Uservo uservo);

@@ -16,9 +16,9 @@ import lombok.ToString;
 @Entity
 public class Scrapvo {
 	@Id @GeneratedValue
-	private int scrap_id;
-	private Timestamp scrap_time;
-	private int review_id;
-	private int user_id;
+	private int scrapId;
+	private Timestamp scrapTime;
+	private int reviewId;
+	private int userId;
 	
 }

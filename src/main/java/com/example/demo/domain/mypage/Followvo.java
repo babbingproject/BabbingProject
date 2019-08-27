@@ -18,9 +18,9 @@ import lombok.ToString;
 @Entity
 public class Followvo {
 	@Id @GeneratedValue
-	private int follow_id;
+	private int followId;
 	@Temporal(value= TemporalType.TIMESTAMP)
-	private Date following_time;
-	private int followingUser_id;
-	private int followerUser_id;
+	private Date followingTime;
+	private int followingUserId;
+	private int followerUserId;
 }
