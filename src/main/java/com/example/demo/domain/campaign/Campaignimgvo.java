@@ -15,8 +15,8 @@ import lombok.ToString;
 public class Campaignimgvo {
 
 	@Id @GeneratedValue
-	private int campaignImg_id;
-	private String campaign_Img;
-	private int campaign_id;
+	private int campaignImgId;
+	private String campaignImg;
+	private int campaignId;
 	
 }

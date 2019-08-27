@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.demo.domain.main.Search;
+import com.example.demo.domain.mypage.UserVO;
+import com.example.demo.domain.review.ReviewRegistrationvo;
 import com.example.demo.service.advertisement.AdvertisementService;
 import com.example.demo.service.review.ReviewService;
 import com.example.demo.service.review.image.ReviewImageService;
@@ -24,12 +27,12 @@ public class HomeMainController {
 	ReviewService reviewService;
 	@Autowired
 	ReviewImageService reviewImageService;
-	
+
 	
 	@RequestMapping("/home")
 	public String goIndex() {
 		
-		return "main/homemain";
+		return "th/main/homemain";
 	}
 	//메인 홈페이지! 계속 추가추가 수정수정하자!
 	@RequestMapping("/index")
@@ -47,7 +50,7 @@ public class HomeMainController {
 		model.addAttribute("businessseven", reviewService.getBusinessFieldSeven());
 		model.addAttribute("uservo", uservoList);
 		model.addAttribute("advvo", advvoList);
-		return "main/index";
+		return "th/main/index1";
 	}
 	
 	//태원의 제2의 메인홈 테스팅 메소드. 화면 정보 다 뿌려주자자자자자
@@ -58,10 +61,10 @@ public class HomeMainController {
 //		System.out.println(uservoList);
 //		return "main/homemain";
 //	}
-	@RequestMapping("/board")
-	public String goBoard() {
-		return "board";
-	}
+//	@RequestMapping("/board")
+//	public String goBoard() {
+//		return "board";
+//	}
 	
 	//태원의 메인홈 테스팅 메소드. 화면 정보 열로 다 뿌려주기
 //	@RequestMapping("/taewonhome")
@@ -119,10 +122,26 @@ public class HomeMainController {
 		model.addAttribute("advertisementSearch", advService.getSearchKeyword(searchKeyword.getSearchKeyword()));
 		
 		System.out.println(userService.getSearchKeyword(searchKeyword.getSearchKeyword()));
-		return "main/search";
+		return "th/main/search";
 		
 	}
 	
 	
 	
+
+	@RequestMapping("/doReviewList")
+	public String getReviewList(Model model) {
+		
+		List<UserVO> userInfo = new ArrayList<UserVO>();
+		List<ReviewRegistrationvo> reviewList = new ArrayList<ReviewRegistrationvo>();
+		reviewList = reviewService.selectReviewList();
+		userInfo = reviewService.selectUservoInfo();
+		
+		model.addAttribute("userInfo", userInfo);
+		
+		model.addAttribute("reviewList", reviewList);
+		
+		return "th/review/reviewList";
+	}
+
 }

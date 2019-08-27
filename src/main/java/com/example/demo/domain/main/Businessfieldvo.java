@@ -16,15 +16,15 @@ import lombok.ToString;
 public class Businessfieldvo {
 
 	@Id @GeneratedValue
-	private int business_field_id;
-	private String business_field_code;
-	private String business_field_wes;
-	private String business_field_jpn;
-	private String business_field_chn;
-	private String business_field_ind;
-	private String business_field_sea;
-	private String business_field_snk;
-	private String business_field_paz;
-	private String business_field_chk;
-	private String business_field_fst;
+	private int businessFieldId;
+	private String businessFieldCode;
+	private String businessFieldWes;
+	private String businessFieldJpn;
+	private String businessFieldChn;
+	private String businessFieldInd;
+	private String businessFieldSea;
+	private String businessFieldSnk;
+	private String businessFieldPaz;
+	private String businessFieldChk;
+	private String businessFieldFst;
 }

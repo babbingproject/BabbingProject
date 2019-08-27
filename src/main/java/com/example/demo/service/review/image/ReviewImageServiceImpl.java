@@ -13,12 +13,12 @@ public class ReviewImageServiceImpl implements ReviewImageService  {
 	
 	@Override
 	public ReviewImagevo getImgById(ReviewImagevo reviewImagevo) {
-		return reviewImageRepo.findById(reviewImagevo.getImg_id()).get(); 
+		return reviewImageRepo.findById(reviewImagevo.getImgId()).get(); 
 	}
 	
 	@Override
 	public ReviewImagevo getReviewImagevo(ReviewImagevo reviewImagevo) {
-		return reviewImageRepo.findById(reviewImagevo.getImg_id()).get();
+		return reviewImageRepo.findById(reviewImagevo.getImgId()).get();
 	}
 	
 	public ReviewImagevo saveReviewImagevo(ReviewImagevo reviewImagevo) {

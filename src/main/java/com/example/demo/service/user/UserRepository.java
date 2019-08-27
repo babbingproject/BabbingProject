@@ -24,5 +24,6 @@ public interface UserRepository extends CrudRepository<UserVO, Integer>{
 	@Query(nativeQuery = true, value = "SELECT * FROM Uservo ORDER BY following_count DESC LIMIT 6")
 	List<UserVO> findAllByIdOrderbyFollowingCountDESC(UserVO uservo);
 
+
 }
 

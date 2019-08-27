@@ -4,9 +4,14 @@ import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
+import com.example.demo.domain.mypage.UserVO;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -14,17 +19,38 @@ import lombok.ToString;
 
 @Getter
 @Setter
-@ToString
+@ToString(exclude = "userVO")
 @Entity
-
 public class Commentvo {
-	@Id @GeneratedValue
-	private int comment_id;
+	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int commentId;
 	private String contents;
 	@Temporal(value= TemporalType.TIMESTAMP)
-	private Date write_date;
+	private Date writeDate;
 	@Temporal(value= TemporalType.TIMESTAMP)
-	private Date modified_date;
-	private int user_id;
-	private int review_id;
+	private Date modifiedDate;
+//	@Column(nullable = true, insertable = false, updatable = false)
+//	@JoinColumn(referencedColumnName = )
+//	private int user_id;
+//	@Column(nullable = true, insertable = false, updatable = false)	//
+//	private int review_id;
+	
+	@ManyToOne
+	@JoinColumn(name = "reviewId", nullable = false )
+	private ReviewRegistrationvo reviewRegistrationvo;
+	
+	@ManyToOne
+	@JoinColumn(name = "userId", nullable = false)
+	private UserVO userVO;
+	
+	public void getReviewRegistrationvo(ReviewRegistrationvo reviewRegistrationvo) {
+		this.reviewRegistrationvo = reviewRegistrationvo;
+		reviewRegistrationvo.getCommentList().add(this);
+	}
+	
+	public void setUservo(UserVO userVO) {
+		this.userVO = userVO;
+		userVO.getCommentList().add(this);
+	}
+	
 }

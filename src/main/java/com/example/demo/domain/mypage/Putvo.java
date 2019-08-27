@@ -19,9 +19,9 @@ import lombok.ToString;
 public class Putvo {
 
 	@Id @GeneratedValue
-	private int put_id;
+	private int putId;
 	@Temporal(value= TemporalType.TIMESTAMP)
-	private Date put_time;
-	private int advertisement_id;
-	private int user_id;
+	private Date putTime;
+	private int advertisementId;
+	private int userId;
 }

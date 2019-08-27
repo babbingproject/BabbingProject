@@ -4,7 +4,13 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
+import com.example.demo.domain.mypage.UserVO;
+import com.example.demo.domain.review.ReviewRegistrationvo;
+import com.querydsl.core.Tuple;
+
 public interface ReviewService {
+
+	List<UserVO> selectUservoInfo();
 
 	List<Object[]> getKoreanTopSix();
 
@@ -26,6 +32,12 @@ public interface ReviewService {
 
 	List<Object[]> getBusinessFieldSeven();
 
-	List<Object[]> getSearchKeyword(@Param("searchKeyword") String searchKeyword);
+	List<Object[]> getSearchKeyword(String searchKeyword);
+
+	void insertReview(ReviewRegistrationvo reviewRegistrationvo, UserVO uservo);
+
+	List<ReviewRegistrationvo> selectReviewList();
+
+	Tuple selectReviewIdJoinUserId(UserVO uservo, ReviewRegistrationvo reviewRegistrationvo);
 
 }

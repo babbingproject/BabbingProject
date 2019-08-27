@@ -19,10 +19,10 @@ import lombok.ToString;
 
 public class Likevo {
 	@Id @GeneratedValue
-	private int like_id;
+	private int likeId;
 	@Temporal(value= TemporalType.TIMESTAMP)
-	private Date like_time;
-	private int review_id;
-	private int user_id;
+	private Date likeTime;
+	private int reviewId;
+	private int userId;
 	
 }

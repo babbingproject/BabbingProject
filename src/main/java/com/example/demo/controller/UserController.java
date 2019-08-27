@@ -35,7 +35,7 @@ public class UserController {
 	@RequestMapping("/emailCheck")
 	public Integer emailCheck(@RequestBody UserVO vo) {
 		int count = 0;
-		count = userMapper.emailCheck(vo.getUser_email());
+		count = userMapper.emailCheck(vo.getUserEmail());
 		// List<UserVO> list = userMapper.emailCheck2(vo.getUser_email());
 
 		return count;

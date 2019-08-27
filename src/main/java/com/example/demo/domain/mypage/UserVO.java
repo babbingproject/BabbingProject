@@ -1,15 +1,21 @@
 package com.example.demo.domain.mypage;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
+import com.example.demo.domain.review.Commentvo;
 import com.example.demo.domain.review.ReviewRegistrationvo;
 
 import lombok.Getter;
@@ -18,32 +24,61 @@ import lombok.ToString;
 
 @Getter
 @Setter
-@ToString
+@ToString(exclude = "reviewRegistrationList")
 @Entity
 public class UserVO {
 
-	@Id @GeneratedValue
-	private int user_id;
-	private String user_email;
+	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "user_id")
+	private int userId;
+	private String userEmail;
 	private String nickname;
 	private String password;
 	private String introduce;
-	private String profile_img;
-	private int put_count;
-	private int following_count;
-	private int sns_factor;
-	private int favor_factor;
-	private int scrap_factor;
-	private int post_count;
-	private int comment_count;
-	private int user_score;
-	private int total_count;
-	private String u_rank_img1;
-	private String u_rank_img2;
-	private String u_rank_img3;
-	private String u_rank_img4;
-	private String u_rank_img5;
+	@Column(nullable = true)
+	private String profileImg;
+	@Column(nullable = true)
+	private Integer putCount;
+	@Column(nullable = true)
+	private Integer followingCount;
+	@Column(nullable = true)
+	private Integer snsFactor;
+	@Column(nullable = true)
+	private Integer favorFactor;
+	@Column(nullable = true)
+	private Integer scrapFactor;
+	@Column(nullable = true)
+	private Integer postCount;
+	@Column(nullable = true)
+	private Integer commentCount;
+	@Column(nullable = true)
+	private Integer userScore;
+	@Column(nullable = true)
+	private Integer totalCount;
+	@Column(nullable = true)
+	private String uRankImg1;
+	private String uRankImg2;
+	private String uRankImg3;
+	private String uRankImg4;
+	private String uRankImg5;
+	@Column(insertable = false, updatable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP")
+	private Date regDate;
+	@Column(insertable = false, updatable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP")
+	private Date logDate;
+	private String approvalStatus;
+	private String approvalKey;	
+	private String userKey;
+	private String userPhone;
+	@Column(name = "user_time")
+	private Integer userTime;
 	
-//	@OneToMany(mappedBy="uservo", fetch=FetchType.EAGER, cascade=CascadeType.ALL)
-//	private List<ReviewRegistrationvo> reviewRegistrationList = new ArrayList<ReviewRegistrationvo>(); 
+	
+	
+	@OneToMany(mappedBy="userVO", fetch=FetchType.LAZY, cascade=CascadeType.ALL, orphanRemoval = true)
+	private List<ReviewRegistrationvo> reviewRegistrationList = new ArrayList<ReviewRegistrationvo>();
+	
+	@OneToMany(mappedBy = "userVO", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+	public List<Commentvo> CommentList = new ArrayList<Commentvo>();
+	
+	
 }

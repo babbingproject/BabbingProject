@@ -18,13 +18,13 @@ import lombok.ToString;
 @Entity
 public class Likealarmvo {
 	@Id @GeneratedValue
-	private int likeAlarm_id;
-	private String alarm_context;
+	private int likeAlarmId;
+	private String alarmContext;
 	@Temporal(value= TemporalType.TIMESTAMP)
-	private Date alarmSend_time;
+	private Date alarmSendTime;
 	@Temporal(value= TemporalType.TIMESTAMP)
-	private Date alarmReceive_time;
-	private int advertisement_id;
-	private int user_id;
-	private int like_id;
+	private Date alarmReceiveTime;
+	private int advertisementId;
+	private int userId;
+	private int likeId;
 }

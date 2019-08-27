@@ -17,11 +17,11 @@ import lombok.ToString;
 public class ReviewAlarmvo {
 
 	@Id @GeneratedValue
-	private int reviewAlarm_id;
-	private String alarm_context;
-	private Date alarmSend_time;
-	private Date alarmReceive_time;
-	private int advertisement_id;
-	private int user_id;
-	private int review_id;
+	private int reviewAlarmId;
+	private String alarmContext;
+	private Date alarmSendTime;
+	private Date alarmReceiveTime;
+	private int advertisementId;
+	private int userId;
+	private int reviewId;
 }
