@@ -7,7 +7,10 @@
 <title>Insert title here</title>
 </head>
 <body>
-HIfff
-<% response.sendRedirect("index.html"); %>
+임시 메인화면 입니다. 여기까지 오나요?
+<form action="/joinForm">
+<button>join</button>
+</form>
+
 </body>
 </html>

@@ -106,7 +106,7 @@ public class HomeMainController {
 		model.addAttribute("businessfive", reviewService.getBusinessFieldFive());
 		model.addAttribute("businesssix", reviewService.getBusinessFieldSix());
 		model.addAttribute("businessseven", reviewService.getBusinessFieldSeven());
-		return "main/homemain";
+		return "th/main/homemain";
 	}
 	
 	//서치페이지로 가기!

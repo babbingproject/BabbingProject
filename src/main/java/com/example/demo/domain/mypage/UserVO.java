@@ -20,7 +20,7 @@ import lombok.ToString;
 @Setter
 @ToString
 @Entity
-public class Uservo {
+public class UserVO {
 
 	@Id @GeneratedValue
 	private int user_id;

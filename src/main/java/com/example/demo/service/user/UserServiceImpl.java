@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.demo.domain.mypage.Uservo;
+import com.example.demo.domain.mypage.UserVO;
 
 @Service
 public class UserServiceImpl implements UserService   {
@@ -14,14 +14,14 @@ public class UserServiceImpl implements UserService   {
 	private UserRepository userRepo;
 
 	@Override
-	public Uservo getUser(Uservo user) {
+	public UserVO getUser(UserVO user) {
 		return null;
 	}
 	
 	//유저를 리스트로 담아서 뿌려주는 임플 메소드
 	@Override
-	public List<Uservo> getUservoList(Uservo uservo){
-		return (List<Uservo>) userRepo.findAll();
+	public List<UserVO> getUservoList(UserVO uservo){
+		return (List<UserVO>) userRepo.findAll();
 	}
 	
 	//유저 정보를 높은 펄로우 수 순서대로 리스트 형식에 6명 저장해주는 메소드
@@ -34,6 +34,11 @@ public class UserServiceImpl implements UserService   {
 	@Override
 	public List<Object[]> getSearchKeyword(String searchKeyword){
 		return userRepo.getSearchKeyword(searchKeyword);
+	}
+	@Override
+	public List<UserVO> getUservoListOrderByFollowingCountDes(UserVO uservo){
+		return userRepo.findAllByIdOrderbyFollowingCountDESC(uservo);
+
 	}
 	
 	
