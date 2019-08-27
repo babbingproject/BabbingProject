@@ -47,11 +47,7 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-
-
-		<!-- JSP -->
-<<<<<<< HEAD
-
+		
 		<!-- view , jsp -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -66,25 +62,12 @@
 			<artifactId>jstl</artifactId>
 		</dependency>
 
-=======
-		<!-- <dependency> -->
-		<!-- <groupId>javax.servlet</groupId> -->
-		<!-- <artifactId>javax.servlet-api</artifactId> -->
-		<!-- <scope>provided</scope> -->
-		<!-- </dependency> -->
-		<!-- <dependency> -->
-		<!-- <groupId>org.apache.tomcat.embed</groupId> -->
-		<!-- <artifactId>tomcat-embed-jasper</artifactId> -->
-		<!-- </dependency> -->
->>>>>>> 12b528f34e7788631a11c3dfe961f1885632121f
-
 		<!-- JDBC -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-jdbc</artifactId>
 		</dependency>
-
-
+		
 		<!-- MARIADB DEPENDENCY -->
 		<dependency>
 			<groupId>org.mariadb.jdbc</groupId>
@@ -122,7 +105,7 @@
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-databind</artifactId>
 		</dependency>
-<<<<<<< HEAD
+
 		<dependency>
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-email</artifactId>
@@ -147,11 +130,6 @@
 			<version>1</version>
 		</dependency>
 
-
-
-
-
-
 		<!-- querydsl -->
 		<dependency>
 			<groupId>com.querydsl</groupId>
@@ -172,8 +150,6 @@
 			<version>1.6.1</version>
 		</dependency>
 
-=======
-
 		<!-- QueryDSL Library -->
 		<dependency>
 			<groupId>com.mysema.querydsl</groupId>
@@ -187,8 +163,6 @@
 			<scope>provided</scope>
 		</dependency>
 
->>>>>>> 12b528f34e7788631a11c3dfe961f1885632121f
-
 	</dependencies>
 
 	<build>
@@ -197,10 +171,9 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
-<<<<<<< HEAD
-=======
+
+
 			<!-- QueryDSL Plugin -->
->>>>>>> 12b528f34e7788631a11c3dfe961f1885632121f
 			<plugin>
 				<groupId>com.mysema.maven</groupId>
 				<artifactId>apt-maven-plugin</artifactId>
@@ -212,11 +185,8 @@
 						</goals>
 						<configuration>
 							<outputDirectory>target/generated-sources/java</outputDirectory>
-<<<<<<< HEAD
 							<processor>com.querydsl.apt.jpa.JPAAnnotationProcessor</processor>
-=======
-							<processor>com.mysema.query.apt.jpa.JPAAnnotationProcessor</processor>
->>>>>>> 12b528f34e7788631a11c3dfe961f1885632121f
+							
 						</configuration>
 					</execution>
 				</executions>
