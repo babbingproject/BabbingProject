@@ -18,7 +18,7 @@
 		</tr>
 
 		<tr th:each=" userInfo : ${userInfo}">
-			<!-- 			<td><img th:src="${userInfo.profile_img}" width="100" height="100"></td> -->
+<!-- 						<td><img th:src="${userInfo.profile_img}" width="100" height="100"></td> -->
 			<td th:text="${userInfo.userId}"></td>
 			<td th:text="${userInfo.introduce}"></td>
 			<td th:text="${userInfo.nickname}"></td>
@@ -38,12 +38,12 @@
 			<th bgcolor="orange" width="100">로그아웃</th>
 		</tr>
 		<tr th:each="reviewList : ${reviewList}">
-			<!-- 			<td><img th:src="${userInfo.profile_img}" width="100" height="100"></td> -->
+<!-- 						<td><img th:src="${userInfo.profile_img}" width="100" height="100"></td> -->
 			<td th:text="${reviewList.reviewId}"></td>
 			<td><a
 				th:href="@{/doReviewView(reviewId=${reviewList.reviewId})}"
 				th:text="${reviewList.title}"></a></td>
-			<!-- 			<td th:text="${reviewList.title}"></td> -->
+						<td th:text="${reviewList.title}"></td>
 			<td th:text="${reviewList.userId}"></td>
 			<td th:text="${reviewList.writeDate}"></td>
 		</tr>

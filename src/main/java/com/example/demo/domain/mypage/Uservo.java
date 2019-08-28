@@ -26,10 +26,11 @@ import lombok.ToString;
 @Setter
 @ToString(exclude = "reviewRegistrationList")
 @Entity
-public class UserVO {
+public class Uservo {
 
-	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "user_id")
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "userId")
 	private int userId;
 	private String userEmail;
 	private String nickname;
@@ -66,19 +67,16 @@ public class UserVO {
 	@Column(insertable = false, updatable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP")
 	private Date logDate;
 	private String approvalStatus;
-	private String approvalKey;	
+	private String approvalKey;
 	private String userKey;
 	private String userPhone;
 	@Column(name = "user_time")
 	private Integer userTime;
-	
-	
-	
-	@OneToMany(mappedBy="userVO", fetch=FetchType.LAZY, cascade=CascadeType.ALL, orphanRemoval = true)
+
+	@OneToMany(mappedBy = "uservo", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<ReviewRegistrationvo> reviewRegistrationList = new ArrayList<ReviewRegistrationvo>();
-	
-	@OneToMany(mappedBy = "userVO", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+
+	@OneToMany(mappedBy = "uservo", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
 	public List<Commentvo> CommentList = new ArrayList<Commentvo>();
-	
-	
+
 }

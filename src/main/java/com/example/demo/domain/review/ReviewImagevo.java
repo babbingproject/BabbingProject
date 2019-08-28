@@ -24,26 +24,27 @@ import lombok.ToString;
 @Entity
 public class ReviewImagevo {
 
-	@Id 
+	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "img_id")
+	@Column(name = "imgId")
 	private int imgId;
 	private String img;
 	private String imgReview;
-	
+
 	@ManyToOne
-	@JoinColumn(name="reviewId", nullable=false, insertable=false, updatable=false)
-	private ReviewRegistrationvo reviewId;
+	@JoinColumn(name = "reviewId", nullable = false, insertable = false, updatable = false)
+	private ReviewRegistrationvo reviewRegistrationvo;
 
 //	@Column(nullable = true, insertable = false, updatable = false)	//
 //	private int review_id;
+
 	
-	@ManyToOne
-	@JoinColumn(name = "reviewId", nullable = false)
-	private ReviewRegistrationvo reviewRegistrationvo;
-	
+
+	/* @ManyToOne
+	 * @JoinColumn(name = "reviewId", nullable = false) private ReviewRegistrationvo
+	 * reviewRegistrationvo;
+	 */
 	@OneToMany(mappedBy = "reviewImagevo", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Tagvo> tagList = new ArrayList<Tagvo>();
 
-	
 }

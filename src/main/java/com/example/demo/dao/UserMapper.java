@@ -1,15 +1,13 @@
 package com.example.demo.dao;
 
-import java.util.List;
-
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
-import com.example.demo.domain.mypage.UserVO;
+import com.example.demo.domain.mypage.Uservo;
 
 @Mapper
 public interface UserMapper {
-	public int joinUser (UserVO userVO); // 회원가입 입니다.
+	public int joinUser (Uservo uservo); // 회원가입 입니다.
 
 	public int emailCheck(@Param("user_email") String user_email);// 이메일 중복 확인 입니다.
 	//@Param("user_email") 생략해도 돕니다.

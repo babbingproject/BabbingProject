@@ -9,7 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.demo.domain.main.Search;
-import com.example.demo.domain.mypage.UserVO;
+import com.example.demo.domain.mypage.Uservo;
 import com.example.demo.domain.review.ReviewRegistrationvo;
 import com.example.demo.service.advertisement.AdvertisementService;
 import com.example.demo.service.review.ReviewService;
@@ -132,7 +132,7 @@ public class HomeMainController {
 	@RequestMapping("/doReviewList")
 	public String getReviewList(Model model) {
 		
-		List<UserVO> userInfo = new ArrayList<UserVO>();
+		List<Uservo> userInfo = new ArrayList<Uservo>();
 		List<ReviewRegistrationvo> reviewList = new ArrayList<ReviewRegistrationvo>();
 		reviewList = reviewService.selectReviewList();
 		userInfo = reviewService.selectUservoInfo();

@@ -16,7 +16,7 @@ import lombok.ToString;
 @Setter
 @ToString
 @Entity
-public class Commentalarmvo {
+public class CommentAlarmvo {
 	@Id @GeneratedValue
 	private int commentAlarmId;
 	private String alarmContext;

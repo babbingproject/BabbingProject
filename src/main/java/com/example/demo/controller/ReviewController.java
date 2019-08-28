@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.example.demo.domain.mypage.UserVO;
+import com.example.demo.domain.mypage.Uservo;
 import com.example.demo.domain.review.ReviewImagevo;
 import com.example.demo.domain.review.ReviewRegistrationvo;
 import com.example.demo.service.review.ReviewService;
@@ -54,19 +54,19 @@ public class ReviewController {
 		return "th/review/reviewWrite";
 	}
 	@PostMapping("/insertReview")
-	public String insertReview(ReviewRegistrationvo reviewRegistrationvo, UserVO uservo) {
+	public String insertReview(ReviewRegistrationvo reviewRegistrationvo, Uservo uservo) {
 		userService.insertUserId(uservo);
 		reviewService.insertReview(reviewRegistrationvo, uservo);
 		return "redirect:doReviewList";
 	}
 	@GetMapping("/doReviewView")
-	public String reviewVIew(UserVO uservo, ReviewRegistrationvo reviewRegistrationvo, Model model) {
-		int userId =uservo.getUserId();
+	public String reviewVIew(Uservo uservo, ReviewRegistrationvo reviewRegistrationvo, Model model) {
+//		int userId =uservo.getUserId();
 		
-		reviewRegistrationvo.setUserId(userId);
-		Tuple result = reviewService.selectReviewIdJoinUserId(uservo,reviewRegistrationvo);
+//		reviewRegistrationvo.setUserId(userId);
+		ReviewRegistrationvo selectJoinResult = reviewService.selectReviewIdJoinUserId(uservo,reviewRegistrationvo);
 		
-		model.addAttribute("joinReviewList", result);
+		model.addAttribute("joinReviewList", selectJoinResult);
 		
 			
 		return "th/review/reviewView";

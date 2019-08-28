@@ -13,7 +13,7 @@ import lombok.ToString;
 @ToString
 @Entity
 
-public class Businessfieldvo {
+public class BusinessFieldvo {
 
 	@Id @GeneratedValue
 	private int businessFieldId;

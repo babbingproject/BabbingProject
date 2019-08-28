@@ -9,12 +9,11 @@ import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.demo.domain.mypage.QUserVO;
-import com.example.demo.domain.mypage.UserVO;
+import com.example.demo.domain.mypage.QUservo;
+import com.example.demo.domain.mypage.Uservo;
 import com.example.demo.domain.review.QReviewRegistrationvo;
 import com.example.demo.domain.review.ReviewRegistrationvo;
 import com.example.demo.service.user.UserRepository;
-import com.querydsl.core.Tuple;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 
 @Service
@@ -31,11 +30,11 @@ public class ReviewServiceImpl implements ReviewService  {
 
 
 	@Override
-	public List<UserVO> selectUservoInfo() {
+	public List<Uservo> selectUservoInfo() {
 
 		JPAQueryFactory query = new JPAQueryFactory(em);
 
-		QUserVO user = QUserVO.userVO;
+		QUservo user = QUservo.uservo;
 
 		return query.selectFrom(user).orderBy(user.userId.desc()).fetch();
 	}
@@ -96,7 +95,7 @@ public class ReviewServiceImpl implements ReviewService  {
 	}
 	
 	@Override
-	public void insertReview(ReviewRegistrationvo reviewRegistrationvo, UserVO uservo) {
+	public void insertReview(ReviewRegistrationvo reviewRegistrationvo, Uservo uservo) {
 		userRepo.save(uservo);
 		reviewRepo.save(reviewRegistrationvo);
 	}
@@ -112,14 +111,14 @@ public class ReviewServiceImpl implements ReviewService  {
 		
 	}
 	@Override
-	public Tuple selectReviewIdJoinUserId(UserVO uservo, ReviewRegistrationvo reviewRegistrationvo) {
+	public ReviewRegistrationvo selectReviewIdJoinUserId(Uservo uservo, ReviewRegistrationvo reviewRegistrationvo) {
 		JPAQueryFactory query = new JPAQueryFactory(em);
 		
-		QUserVO qUservo = QUserVO.userVO;
+		QUservo qUservo = QUservo.uservo;
 		QReviewRegistrationvo qreviewRegistrationvo = QReviewRegistrationvo.reviewRegistrationvo;
 		
-		return query.select(qreviewRegistrationvo,qUservo.nickname).from(qreviewRegistrationvo)
-				.innerJoin(qUservo).on(qUservo.userId.eq(qreviewRegistrationvo.userId)).fetchOne();
+		return query.selectFrom(qreviewRegistrationvo)
+				.innerJoin(qreviewRegistrationvo.uservo, qUservo).fetchOne();
 		
 	}
 
