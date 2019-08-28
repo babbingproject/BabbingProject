@@ -16,7 +16,7 @@ import lombok.ToString;
 @Setter
 @ToString
 @Entity
-public class Followalarmvo {
+public class FollowAlarmvo {
 	@Id @GeneratedValue
 	private int followAlarmId;
 	private String alarmContext;

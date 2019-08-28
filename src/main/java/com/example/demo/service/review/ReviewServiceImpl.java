@@ -5,12 +5,11 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.demo.domain.mypage.QUserVO;
-import com.example.demo.domain.mypage.UserVO;
+import com.example.demo.domain.mypage.QUservo;
+import com.example.demo.domain.mypage.Uservo;
 import com.example.demo.domain.review.QReviewRegistrationvo;
 import com.example.demo.domain.review.ReviewRegistrationvo;
 import com.example.demo.service.user.UserRepository;
@@ -31,11 +30,11 @@ public class ReviewServiceImpl implements ReviewService  {
 
 
 	@Override
-	public List<UserVO> selectUservoInfo() {
+	public List<Uservo> selectUservoInfo() {
 
 		JPAQueryFactory query = new JPAQueryFactory(em);
 
-		QUserVO user = QUserVO.userVO;
+		QUservo user = QUservo.uservo;
 
 		return query.selectFrom(user).orderBy(user.userId.desc()).fetch();
 	}
@@ -91,13 +90,13 @@ public class ReviewServiceImpl implements ReviewService  {
 	}
 	
 	@Override
-	public List<Object[]> getSearchKeyword(@Param("searchKeyword") String searchKeyword) {
+	public List<Object[]> getSearchKeyword(String searchKeyword) {
 		return reviewRepo.getSearchKeyword(searchKeyword);
 	}
 	
 	@Override
-	public void insertReview(ReviewRegistrationvo reviewRegistrationvo, UserVO uservo) {
-		userRepo.save(uservo);
+	public void insertReview(ReviewRegistrationvo reviewRegistrationvo, Uservo Uservo) {
+		userRepo.save(Uservo);
 		reviewRepo.save(reviewRegistrationvo);
 	}
 
@@ -112,10 +111,10 @@ public class ReviewServiceImpl implements ReviewService  {
 		
 	}
 	@Override
-	public Tuple selectReviewIdJoinUserId(UserVO uservo, ReviewRegistrationvo reviewRegistrationvo) {
+	public Tuple selectReviewIdJoinUserId(Uservo Uservo, ReviewRegistrationvo reviewRegistrationvo) {
 		JPAQueryFactory query = new JPAQueryFactory(em);
 		
-		QUserVO qUservo = QUserVO.userVO;
+		QUservo qUservo = QUservo.uservo;
 		QReviewRegistrationvo qreviewRegistrationvo = QReviewRegistrationvo.reviewRegistrationvo;
 		
 		return query.select(qreviewRegistrationvo,qUservo.nickname).from(qreviewRegistrationvo)

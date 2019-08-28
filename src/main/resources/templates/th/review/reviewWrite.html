@@ -1,10 +1,38 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
+<title>리뷰 목록</title>
+<meta http-equiv="Content-type" content="text/html; charset=UTF-8">
 
+</head>
+<body th:align="center">
+	<h1>새 리뷰 등록</h1>
+	<form action="insertReview" method="post">
+		<table th:align="center" border="1" th:cellpqdding="0"
+			th:cellspacing="0">
+			<tr>
+				<th bgcolor="orange" th:text="유저아이디" width="80"></th>
+				<td><input name="userId" type="text" size="50" value="1"></td>
+			</tr>
+			<tr>
+				<th bgcolor="orange" th:text="제목" width="80"></th>
+				<td><input name="title" type="text" size="50"></td>
+			</tr>
+			<tr>
+				<th bgcolor="orange" th:text="장점"></th>
+				<td><textarea name="advantages" cols="50" rows="10"></textarea></td>
+			</tr>
+			<tr>
+				<th bgcolor="orange" th:text="단점"></th>
+				<td><textarea name="disadvantages" cols="50" rows="10"></textarea></td>
+			</tr>
+			<tr>
+				<th colspan="2" align="center"></th>
+				<td><input type="submit" value="리뷰 등록"></td>
+			</tr>
+
+		</table>
+		<br>
+	</form>
 </body>
 </html>

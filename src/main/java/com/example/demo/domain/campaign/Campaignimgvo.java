@@ -12,7 +12,7 @@ import lombok.ToString;
 @Setter
 @ToString
 @Entity
-public class Campaignimgvo {
+public class CampaignImgvo {
 
 	@Id @GeneratedValue
 	private int campaignImgId;

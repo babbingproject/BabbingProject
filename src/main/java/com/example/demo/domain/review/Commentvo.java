@@ -11,7 +11,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-import com.example.demo.domain.mypage.UserVO;
+import com.example.demo.domain.mypage.Uservo;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -19,7 +19,7 @@ import lombok.ToString;
 
 @Getter
 @Setter
-@ToString(exclude = "userVO")
+@ToString(exclude = "uservo")
 @Entity
 public class Commentvo {
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -41,16 +41,16 @@ public class Commentvo {
 	
 	@ManyToOne
 	@JoinColumn(name = "userId", nullable = false)
-	private UserVO userVO;
+	private Uservo uservo;
 	
 	public void getReviewRegistrationvo(ReviewRegistrationvo reviewRegistrationvo) {
 		this.reviewRegistrationvo = reviewRegistrationvo;
 		reviewRegistrationvo.getCommentList().add(this);
 	}
 	
-	public void setUservo(UserVO userVO) {
-		this.userVO = userVO;
-		userVO.getCommentList().add(this);
+	public void setUservo(Uservo uservo) {
+		this.uservo = uservo;
+		uservo.getCommentList().add(this);
 	}
 	
 }

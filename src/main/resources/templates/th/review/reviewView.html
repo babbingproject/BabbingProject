@@ -1,10 +1,40 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+<title>리뷰 상세보기</title>
+<meta http-equiv="Content-type" content="text/html; charset=UTF-8">
+
 </head>
 <body>
-
+	<h1>리뷰 글 상세</h1>
+	<table th:align="center" border="1" th:cellpadding="0" th:cellspacing="0">
+		<tr>
+			<td bgcolor="oange" th:text="유저아이디" width="80"></td>
+			<td th:value="${joinReviewList.userId}"></td>
+		</tr>
+		<tr>
+			<td bgcolor="oange" th:text="제목" width="80"></td>
+			<td th:value="${joinReviewList.title}"></td>
+		</tr>
+		<!-- <tr>
+			<td bgcolor="orange" th:text="작성자"></td>
+			<td th:text="${joinReviewList.nickname}"></td>
+		</tr>		 -->
+		<tr>
+			<td bgcolor="orange" th:text="장점"></td>
+			<td><textarea name="content" th:text="${joinReviewList.advantages}" rows="10" cols="40"></textarea></td>
+		</tr>
+		<tr>
+			<td bgcolor="orange" th:text="단점"></td>
+			<td><textarea name="content" th:text="${joinReviewList.disadvantages}" rows="10" cols="40"></textarea></td>
+		</tr>
+		<tr>
+			<td bgcolor="orange" th:text="등록일"></td>
+			<td th:text="${joinReviewList.writeDate}"></td>
+		</tr>
+	</table>
+<!-- 	<a th:href="@{/insertReview}">리뷰등록</a>&nbsp;&nbsp;&nbsp;&nbsp; -->
+<!-- 	<a th:href="/doReviewList">리뷰 목록</a> -->
+	
 </body>
 </html>

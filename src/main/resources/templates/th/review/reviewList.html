@@ -1,10 +1,54 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
+<title>리뷰 목록</title>
+<meta http-equiv="Content-type" content="text/html; charset=UTF-8">
 
+</head>
+<body th:align="center">
+	<h1>리뷰 목록</h1>
+	<table th:align="center" border="1" th:cellpqdding="0"
+		th:cellspacing="0" th:width="70">
+		<tr>
+			<th bgcolor="orange" width="100">번호</th>
+			<th bgcolor="orange" width="200">소개</th>
+			<th bgcolor="orange" width="150">작성자</th>
+			<th bgcolor="orange" width="150">로그인시간</th>
+			<th bgcolor="orange" width="100">로그아웃</th>
+		</tr>
+
+		<tr th:each=" userInfo : ${userInfo}">
+			<!-- 			<td><img th:src="${userInfo.profile_img}" width="100" height="100"></td> -->
+			<td th:text="${userInfo.userId}"></td>
+			<td th:text="${userInfo.introduce}"></td>
+			<td th:text="${userInfo.nickname}"></td>
+			<td th:text="${userInfo.regDate}"></td>
+			<td th:text="${userInfo.logDate}"></td>
+		</tr>
+	</table>
+	<br>
+	<br>
+	<table th:align="center" border="1" th:cellpqdding="0"
+		th:cellspacing="0" th:width="70">
+		<tr>
+			<th bgcolor="orange" width="100">번호</th>
+			<th bgcolor="orange" width="200">제목</th>
+			<th bgcolor="orange" width="150">작성자</th>
+			<th bgcolor="orange" width="150">로그인시간</th>
+			<th bgcolor="orange" width="100">로그아웃</th>
+		</tr>
+		<tr th:each="reviewList : ${reviewList}">
+			<!-- 			<td><img th:src="${userInfo.profile_img}" width="100" height="100"></td> -->
+			<td th:text="${reviewList.reviewId}"></td>
+			<td><a
+				th:href="@{/doReviewView(reviewId=${reviewList.reviewId})}"
+				th:text="${reviewList.title}"></a></td>
+			<!-- 			<td th:text="${reviewList.title}"></td> -->
+			<td th:text="${reviewList.userId}"></td>
+			<td th:text="${reviewList.writeDate}"></td>
+		</tr>
+	</table>
+	<br>
+	<a th:href="insertReview">리뷰 등록</a>
 </body>
 </html>

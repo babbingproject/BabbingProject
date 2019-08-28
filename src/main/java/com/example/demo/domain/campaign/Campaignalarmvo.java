@@ -16,7 +16,7 @@ import lombok.ToString;
 @Setter
 @ToString
 @Entity
-public class Campaignalarmvo {
+public class CampaignAlarmvo {
 
 	@Id @GeneratedValue
 	private int campaignAlarmId;

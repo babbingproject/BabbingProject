@@ -15,7 +15,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
-import com.example.demo.domain.mypage.UserVO;
+import com.example.demo.domain.mypage.Uservo;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -23,7 +23,7 @@ import lombok.ToString;
 
 @Getter
 @Setter
-@ToString(exclude = "userVO")
+@ToString(exclude = "uservo")
 @Entity
 public class ReviewRegistrationvo {
 	@Id
@@ -57,7 +57,7 @@ public class ReviewRegistrationvo {
 
 	@ManyToOne
 	@JoinColumn(name = "userId", nullable = false)
-	private UserVO userVO;
+	private Uservo uservo;
 
 	@OneToMany(mappedBy = "reviewRegistrationvo", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Commentvo> commentList = new ArrayList<Commentvo>();
@@ -65,8 +65,8 @@ public class ReviewRegistrationvo {
 	@OneToMany(mappedBy = "reviewRegistrationvo", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<ReviewImagevo> reviewImgList = new ArrayList<ReviewImagevo>();
 
-	public void setUservo(UserVO userVO) {
-		this.userVO = userVO;
-		userVO.getReviewRegistrationList().add(this);
+	public void setUservo(Uservo uservo) {
+		this.uservo = uservo;
+		uservo.getReviewRegistrationList().add(this);
 	};
 }
