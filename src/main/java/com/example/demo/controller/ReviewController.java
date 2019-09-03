@@ -26,7 +26,7 @@ public class ReviewController {
 	@RequestMapping("/testhome")
 	public String getReviewImagevo(ReviewImagevo reviewImagevo, Model model) {
 		System.out.println(reviewImagevo.toString());
-		reviewImagevo.setImg_id(1);
+		reviewImagevo.setImgId(1);
 		model.addAttribute("review", reviewImageService.getReviewImagevo(reviewImagevo));
 		System.out.println(reviewImagevo.toString());
 		return "/main/homemain";

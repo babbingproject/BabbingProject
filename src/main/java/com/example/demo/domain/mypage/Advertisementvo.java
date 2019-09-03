@@ -23,18 +23,18 @@ import lombok.ToString;
 public class Advertisementvo {
 
 	@Id @GeneratedValue
-	private int advertisement_id;
-	private String advertisement_email;
-	private String advertisement_name;
+	private int advertisementId;
+	private String advertisementEmail;
+	private String advertisementName;
 	private String password;
 	private String introduce;
-	private String advertisement_num;
+	private String advertisementNum;
 	private String address;
-	private String profile_img;
-	private String non_members_com;
-	private String non_members_address;
-	private int puted_count;
+	private String profileImg;
+	private String nonMembersCom;
+	private String nonMembersAddress;
+	private int putedCount;
 	
-//	@OneToMany(mappedBy = "advertisementvo", fetch=FetchType.EAGER, cascade=CascadeType.ALL)
-//	private List<Campaignvo> campaignList = new ArrayList<Campaignvo>();
+	@OneToMany(mappedBy = "advertisementvo", fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+	private List<Campaignvo> campaignList = new ArrayList<Campaignvo>();
 }

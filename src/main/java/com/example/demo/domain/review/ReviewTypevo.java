@@ -14,8 +14,8 @@ import lombok.ToString;
 @Entity
 public class ReviewTypevo {
 	@Id @GeneratedValue
-	private int reviewType_id;
-	private int review_type1;
-	private int review_type2;
+	private int reviewTypeId;
+	private int reviewType1;
+	private int reviewType2;
 	
 }

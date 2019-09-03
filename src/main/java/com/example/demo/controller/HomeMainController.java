@@ -7,7 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.example.demo.domain.mypage.UserVO;
+import com.example.demo.domain.mypage.Uservo;
 import com.example.demo.service.user.UserService;
 
 @Controller
@@ -35,19 +35,19 @@ public class HomeMainController {
 	
 	//태원의 메인홈 테스팅 메소드. 화면 정보 열로 다 뿌려주기
 //	@RequestMapping("/taewonhome")
-//	public String getHomeMain(Uservo uservo, Model model) {
-//		List<Uservo> uservoList = userService.getUservoList(uservo);
-//		model.addAttribute("uservo", uservoList);
-//		System.out.println(uservoList);
+//	public String getHomeMain(Uservo Uservo, Model model) {
+//		List<Uservo> UservoList = userService.getUservoList(Uservo);
+//		model.addAttribute("Uservo", UservoList);
+//		System.out.println(UservoList);
 //		return "main/homemain";
 //	}
 	
 	//태원의 제2의 메인홈 테스팅 메소드. 화면 정보 다 뿌려주자자자자자
 	@RequestMapping("/taewonhome")
-	public String getHomeMain(UserVO uservo, Model model) {
-		List<UserVO> uservoList = userService.getUservoListOrderByFollowingCountDes(uservo);
-		model.addAttribute("uservo", uservoList);
-		System.out.println(uservoList);
+	public String getHomeMain(Uservo Uservo, Model model) {
+		List<Uservo> UservoList = userService.getUservoListOrderByFollowingCountDes(Uservo);
+		model.addAttribute("Uservo", UservoList);
+		System.out.println(UservoList);
 		return "main/homemain";
 	}
 }

@@ -12,19 +12,19 @@ import lombok.ToString;
 @Setter
 @ToString
 @Entity
-public class Advertisementevaluationvo {
+public class AdvertisementEvaluationvo {
 
 	@Id @GeneratedValue
-	private int evaluation_id;
+	private int evaluationId;
 	private float flavor;
 	private float price;
 	private float service;
 	private float convenience;
-	private float envaluation_avg;
-	private String evaluation_comment;
+	private float envaluationAvg;
+	private String evaluationComment;
 	private String merit;
 	private String demerit;
-	private int advertisement_id;
+	private int advertisementId;
 	
 	
 }

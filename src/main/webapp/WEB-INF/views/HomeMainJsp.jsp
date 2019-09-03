@@ -1,16 +1,26 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
-<title>Insert title here</title>
+<meta charset="utf-8">
+<title>Welcome</title>
 </head>
 <body>
-юс╫ц ╦чюнх╜╦И ют╢о╢ы. ©╘╠Б╠НаЖ ©юЁ╙©Д?
-<form action="/joinForm">
-<button>join</button>
-</form>
+	Л·└Л▀° К╘■Л²╦М≥■К╘╢ Л·┘К▀┬К▀╓. Л≈╛Й╦╟Й╧▄Л╖─ Л≤╓К┌≤Л ■? К║°Й╥╦Л²╦ Л└╠ЙЁ╣
+	<h3>Л∙┬К┘∙М∙≤Л└╦Л ■, ${sessionScope.loginId } К▀≤</h3>
 
+	<form action="/">
+		<button>home</button>
+	</form>
+	<h1><%=session.getAttribute("signedUser")%>К▀≤ <small>К╟≤Й╟▒Л┼╣К▀┬К▀╓.</small>
+	</h1>
+	<a href="logout">К║°Й╥╦Л∙└Л⌡┐</a>
+	
+	 ${sessionScope.loginId }
 </body>
 </html>

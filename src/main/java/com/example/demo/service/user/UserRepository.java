@@ -5,10 +5,10 @@ import java.util.List;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
-import com.example.demo.domain.mypage.UserVO;
+import com.example.demo.domain.mypage.Uservo;
 
-public interface UserRepository extends CrudRepository<UserVO, Integer>{
+public interface UserRepository extends CrudRepository<Uservo, Integer>{
 	
 	@Query(nativeQuery = true, value = "SELECT * FROM Uservo ORDER BY following_count DESC LIMIT 6")
-	List<UserVO> findAllByIdOrderbyFollowingCountDESC(UserVO uservo);
+	List<Uservo> findAllByIdOrderbyFollowingCountDESC(Uservo uservo);
 }

@@ -16,15 +16,15 @@ import lombok.ToString;
 @Setter
 @ToString
 @Entity
-public class Followalarmvo {
+public class FollowAlarmvo {
 	@Id @GeneratedValue
-	private int followAlarm_id;
-	private String alarm_context;
+	private int followAlarmId;
+	private String alarmContext;
 	@Temporal(value= TemporalType.TIMESTAMP)
-	private Date alarmSend_time;
+	private Date alarmSendTime;
 	@Temporal(value= TemporalType.TIMESTAMP)
-	private Date alarmReceive_time;
-	private int advertisement_id;
-	private int user_id;
-	private int follow_id;
+	private Date alarmReceiveTime;
+	private int advertisementId;
+	private int userId;
+	private int followId;
 }

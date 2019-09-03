@@ -1,7 +1,9 @@
 package com.example.demo.domain.campaign;
 
+import java.sql.Timestamp;
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -23,23 +25,23 @@ import lombok.ToString;
 @Entity
 public class Campaignvo {
 	@Id @GeneratedValue
-	private int campaign_id;
+	private int campaignId;
 	private String title;
 	private String introduction;
 	private int recruitment;
 	private int participants;
-	private Date start_date;
-	private Date end_date;
-	private String offer_history;
+	private Date startDate;
+	private Date endDate;
+	private String offerHistory;
 	private String remarks;
 	@Temporal(value= TemporalType.TIMESTAMP)
-	private Date write_date;
-	@Temporal(value= TemporalType.TIMESTAMP)
-	private Date modified_date;
+	private Date writeDate;
+	@Column(insertable = false, updatable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP")
+	private Date modifiedDate;
 	
-//	@ManyToOne
-//	@JoinColumn(name="advertisement_id", nullable=false)
-//	private Advertisementvo advertisementvo;
+	@ManyToOne
+	@JoinColumn(name="advertisement_id", nullable=false)
+	private Advertisementvo advertisementvo;
 	
 	
 }
