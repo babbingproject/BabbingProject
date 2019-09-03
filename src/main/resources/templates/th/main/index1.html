@@ -21,7 +21,7 @@
 				}
 			});
 		//화면 처음 시작시 업종별 분류된 리스트를 가려주는 jquery
-			$(document).ready(function(){
+			/* $(document).ready(function(){
 				$('#list2').hide()
 				$('#list3').hide()
 				$('#list4').hide()
@@ -29,11 +29,27 @@
 				$('#list6').hide()
 				$('#list7').hide()
 				$('#list8').hide()
-			});
+			}); */
 			
 		//업종별 클릭스 가려주고 보여주기
 		//전체
-			$('#buttonall').click(function(){
+		
+		 
+		    $(".tab > li").click(function(){
+		        var now_tab = $(this).index();
+		        $(this).parent().find("li").removeClass("on");
+		        $(this).parent().parent().siblings(".info").addClass("hidden");
+		        $(this).parent().find("li").eq(now_tab).addClass("on");
+		        $(this).parent().parent().siblings(".info").eq(now_tab).removeClass("hidden");
+		    });
+		
+		
+
+			/* $('#buttonall').click(function(){
+				if($('#buttonall').css('background-color') !== '#FF69B4'){
+					$('#buttonall').css('background-color', '#FF69B4');
+					$('#buttonall').css('color', 'white');
+				}
 				$('#list1').show(1000);
 				$('#list2').hide();
 				$('#list3').hide();
@@ -119,7 +135,7 @@
 				$('#list6').hide();
 				$('#list7').hide();
 				$('#list8').show(1000);
-			});
+			}); */
 		//윗부분 코드들은 시간날때 더 간략하게 만들기....
 		
 		//유저 아이디 스크롤
@@ -169,50 +185,56 @@
 	        });
 		})
 			
-
+// 		$(function(){
+// 			$("#button2").on("click",function(){
+// 				$.get("/getkoreanfood", function(data){
+// 					$("#changeup").html;
+// 				})
+// 			})
+// 		})
 		});
 	</script>
 </head>
 <body>
 	<div id="wrap" class="main">
 		<div th:replace="/include/header.html :: header"></div>
-		<div class="header">
-			<div class="top">
-				<div class="logo">
-					<a href="index.html"><img src="images/Bobbing-logo.png" alt="밥빙 logo" /></a>
-				</div>
-				<div class="heaer-gnb">
-					<ul>
-						<li><a href="#">리뷰</a></li>
-						<li><a href="#">랭킹</a></li>
-						<li><a href="#">캠페인</a></li>
-					</ul>
-				</div>
-				<div class="heaer-search">
-					<div class="fl MainSearch">
-						<label class="hidden" for="">검색어입력</label> <input name="" class="input_type1" id="" style="width: 180px;" type="text" maxlength="100">
-					</div>
-					<a href="#" class="fl"><img alt="" src="images/Bobbing-header-search.gif"></a> 
-					<a href="joinForm" class="fl btn-area-style01">회원가입</a>
-				</div>
-				<div class="heaer-btnR">
-					<div class="selectbox">
-						<dl class="dropdown">
-							<dt>
-								<a href="#" style="padding-top: 4px;"><span><img src="images/Bobbing-main-Circle-member.gif" /> 고유지니</span></a>
-							</dt>
-							<dd>
-								<ul class="dropdown2">
-									<li><a href="#"><img src="images/Bobbing-main-Circle-member.gif" />로그아웃</a></li>
-									<li><a href="#"><img src="images/Bobbing-main-Circle-shop.gif" /> 마이페이지</a></li>
+<!-- 		<div class="header"> -->
+<!-- 			<div class="top"> -->
+<!-- 				<div class="logo"> -->
+<!-- 					<a href="index.html"><img src="images/Bobbing-logo.png" alt="밥빙 logo" /></a> -->
+<!-- 				</div> -->
+<!-- 				<div class="heaer-gnb"> -->
+<!-- 					<ul> -->
+<!-- 						<li><a href="#">리뷰</a></li> -->
+<!-- 						<li><a href="#">랭킹</a></li> -->
+<!-- 						<li><a href="#">캠페인</a></li> -->
+<!-- 					</ul> -->
+<!-- 				</div> -->
+<!-- 				<div class="heaer-search"> -->
+<!-- 					<div class="fl MainSearch"> -->
+<!-- 						<label class="hidden" for="">검색어입력</label> <input name="" class="input_type1" id="" style="width: 180px;" type="text" maxlength="100"> -->
+<!-- 					</div> -->
+<!-- 					<a href="#" class="fl"><img alt="" src="images/Bobbing-header-search.gif"></a>  -->
+<!-- 					<a href="joinForm" class="fl btn-area-style01">회원가입</a> -->
+<!-- 				</div> -->
+<!-- 				<div class="heaer-btnR"> -->
+<!-- 					<div class="selectbox"> -->
+<!-- 						<dl class="dropdown"> -->
+<!-- 							<dt> -->
+<!-- 								<a href="#" style="padding-top: 4px;"><span><img src="images/Bobbing-main-Circle-member.gif" /> 고유지니</span></a> -->
+<!-- 							</dt> -->
+<!-- 							<dd> -->
+<!-- 								<ul class="dropdown2"> -->
+<!-- 									<li><a href="#"><img src="images/Bobbing-main-Circle-member.gif" />로그아웃</a></li> -->
+<!-- 									<li><a href="#"><img src="images/Bobbing-main-Circle-shop.gif" /> 마이페이지</a></li> -->
 								
-								</ul>
-							</dd>
-						</dl>
-					</div>
-				</div>
-			</div>
-		</div>
+<!-- 								</ul> -->
+<!-- 							</dd> -->
+<!-- 						</dl> -->
+<!-- 					</div> -->
+<!-- 				</div> -->
+<!-- 			</div> -->
+<!-- 		</div> -->
 		
 		<div class="contact">
 			<div class="cont-area content" data-role="content" >
@@ -284,12 +306,12 @@
 <!-- 					</li> -->
 				</ul>
 			</div>
-			<div class="cont-area" name="thispart">
+			<div class="cont-area">
 				<div class="cont-txtB">
 					BEST 리뷰 <a href="#" class="more-btn">더보기</a>
 				</div>
-				<ul class="list-style02">
-					<li ><span id="buttonall">전체</span></li>
+				<ul class="list-style02 tab">
+					<li class="on"><span id="buttonall">전체</span></li>
 					<li ><span id="button2">한식</span></li>
 					<li ><span id="button3">양식</span></li>
 					<li ><span id="button4">일식</span></li>
@@ -299,7 +321,7 @@
 					<li ><span id="button8">카페</span></li>
 				</ul>
 			</div>
-			<div class="cont-area" id="list1">
+			<div class="cont-area info" id="list1">
 				<ul class="list-style03">
 					<li  th:each="everything:${everything}">
 						<div  class="cont-txt">
@@ -316,7 +338,7 @@
 					</li>
 				</ul>
 			</div>
-			<div class="cont-area" id="list2">
+			<div class="cont-area info hidden" id="list2">
 				<ul class="list-style03">
 					<li  th:each="businessone:${businessone}">
 						<div  class="cont-txt">
@@ -333,7 +355,7 @@
 					</li>
 				</ul>
 			</div>	
-			<div class="cont-area" id="list3">
+			<div class="cont-area info hidden" id="list3">
 				<ul class="list-style03">
 					<li  th:each="businesstwo:${businesstwo}">
 						<div  class="cont-txt">
@@ -350,7 +372,7 @@
 					</li>
 				</ul>
 			</div>
-			<div class="cont-area" id="list4">
+			<div class="cont-area info hidden" id="list4">
 				<ul class="list-style03">
 					<li  th:each="businessthree:${businessthree}">
 						<div  class="cont-txt">
@@ -367,7 +389,7 @@
 					</li>
 				</ul>
 			</div>
-			<div class="cont-area" id="list5">
+			<div class="cont-area info hidden" id="list5">
 				<ul class="list-style03">
 					<li  th:each="businessfour:${businessfour}">
 						<div  class="cont-txt">
@@ -384,7 +406,7 @@
 					</li>
 				</ul>
 			</div>
-			<div class="cont-area" id="list6">
+			<div class="cont-area info hidden" id="list6">
 				<ul class="list-style03">
 					<li  th:each="businessfive:${businessfive}">
 						<div  class="cont-txt">
@@ -401,7 +423,7 @@
 					</li>
 				</ul>
 			</div>
-			<div class="cont-area" id="list7">
+			<div class="cont-area info hidden" id="list7">
 				<ul class="list-style03">
 					<li  th:each="businesssix:${businesssix}">
 						<div  class="cont-txt">
@@ -418,7 +440,7 @@
 					</li>
 				</ul>
 			</div>
-			<div class="cont-area" id="list8">
+			<div class="cont-area info hidden" id="list8">
 				<ul class="list-style03">
 					<li  th:each="businessseven:${businessseven}">
 						<div  class="cont-txt">

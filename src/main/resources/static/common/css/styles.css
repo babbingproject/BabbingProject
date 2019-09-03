@@ -145,5 +145,6 @@ a:hover {}
 .mgtM{margin-top:20px}
 
 
-
+.tab li.on span {background-color: rgb(255, 105, 180);color: white;}
+.info.hidden{display:none;}
 

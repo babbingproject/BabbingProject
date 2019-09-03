@@ -34,12 +34,12 @@ public class ReviewRegistrationvo {
 	private String title;
 	private String advantages;
 	private String disadvantages;
-	
+
 //	@ManyToOne
 //	@JoinColumn(name="user_id", nullable=false)
 //	private Uservo uservo;
-	
-	@OneToMany(mappedBy="reviewId", fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+
+	@OneToMany(mappedBy = "reviewId", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private List<ReviewImagevo> reviewImagevoList = new ArrayList<ReviewImagevo>();
 //	@Temporal(value = TemporalType.TIMESTAMP)
 	@Column(insertable = false, updatable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP")
@@ -52,8 +52,10 @@ public class ReviewRegistrationvo {
 	private Integer businessFieldId;
 	@Column(nullable = true) // 임시
 	private Integer themeId;
-	@Column(nullable = true, insertable = false, updatable = false) // private
-	Integer userId;
+	
+	
+	private String writer; // 게시판 테스트용 임시 칼럼
+	private Long cnt;	// 게시판 테스트용 임시 칼럼
 
 	@ManyToOne
 	@JoinColumn(name = "userId", nullable = false)
@@ -68,5 +70,6 @@ public class ReviewRegistrationvo {
 	public void setUservo(Uservo uservo) {
 		this.uservo = uservo;
 		uservo.getReviewRegistrationList().add(this);
-	};
+	}
+
 }

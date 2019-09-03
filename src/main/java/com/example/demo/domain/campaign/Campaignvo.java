@@ -1,7 +1,9 @@
 package com.example.demo.domain.campaign;
 
+import java.sql.Timestamp;
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -28,18 +30,18 @@ public class Campaignvo {
 	private String introduction;
 	private int recruitment;
 	private int participants;
-	private Date startDate;
-	private Date endDate;
+	private Timestamp startDate;
+	private Timestamp endDate;
 	private String offerHistory;
 	private String remarks;
 	@Temporal(value= TemporalType.TIMESTAMP)
-	private Date writeDate;
-	@Temporal(value= TemporalType.TIMESTAMP)
-	private Date modifiedDate;
+	private Timestamp writeDate;
+	@Column(insertable = false, updatable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP")
+	private Timestamp modifiedDate;
 	
-//	@ManyToOne
-//	@JoinColumn(name="advertisement_id", nullable=false)
-//	private Advertisementvo advertisementvo;
+	@ManyToOne
+	@JoinColumn(name="advertisement_id", nullable=false)
+	private Advertisementvo advertisementvo;
 	
 	
 }

@@ -17,24 +17,25 @@ import lombok.ToString;
 @ToString(exclude = "reviewImagevo")
 @Entity
 public class Tagvo {
-	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "tag_id")
 	private int tagId;
 	private String tagName;
 	private String tagContent;
 	private int tagX;
 	private int tagY;
-	@Column(nullable = true, insertable = false, updatable = false)	//
+	@Column(nullable = true, insertable = false, updatable = false) //
 	private int imgId;
-	
+
 	@ManyToOne
-	@JoinColumn(name= "imgId", nullable = false)
+	@JoinColumn(name = "imgId", nullable = false)
 	private ReviewImagevo reviewImagevo;
-	
-	
-	public void setReviewImagevo (ReviewImagevo reviewImagevo) {
+
+	public void setReviewImagevo(ReviewImagevo reviewImagevo) {
 		this.reviewImagevo = reviewImagevo;
 		reviewImagevo.getTagList().add(this);
-		
+
 	}
+
 }

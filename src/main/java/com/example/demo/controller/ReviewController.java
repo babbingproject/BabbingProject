@@ -63,7 +63,7 @@ public class ReviewController {
 	public String reviewVIew(Uservo Uservo, ReviewRegistrationvo reviewRegistrationvo, Model model) {
 		int userId =Uservo.getUserId();
 		
-		reviewRegistrationvo.setUserId(userId);
+		reviewRegistrationvo.getUservo().setUserId(userId);
 		Tuple result = reviewService.selectReviewIdJoinUserId(Uservo,reviewRegistrationvo);
 		
 		model.addAttribute("joinReviewList", result);

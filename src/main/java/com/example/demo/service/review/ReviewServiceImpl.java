@@ -118,7 +118,7 @@ public class ReviewServiceImpl implements ReviewService  {
 		QReviewRegistrationvo qreviewRegistrationvo = QReviewRegistrationvo.reviewRegistrationvo;
 		
 		return query.select(qreviewRegistrationvo,qUservo.nickname).from(qreviewRegistrationvo)
-				.innerJoin(qUservo).on(qUservo.userId.eq(qreviewRegistrationvo.userId)).fetchOne();
+				.innerJoin(qUservo).on(qUservo.userId.eq(qreviewRegistrationvo.userid)).fetchOne();
 		
 	}
 
