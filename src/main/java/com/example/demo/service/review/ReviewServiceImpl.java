@@ -5,7 +5,6 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,8 +13,6 @@ import com.example.demo.domain.mypage.Uservo;
 import com.example.demo.domain.review.QReviewRegistrationvo;
 import com.example.demo.domain.review.ReviewRegistrationvo;
 import com.example.demo.service.user.UserRepository;
-import com.querydsl.core.Tuple;
-import com.querydsl.jpa.impl.JPAQuery;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 
 @Service
@@ -41,7 +38,9 @@ public class ReviewServiceImpl implements ReviewService {
 	 */
 
 	@Override
+
 	public List<Object[]> getKoreanTopSix() {
+
 		return reviewRepo.getKoreanFoodTopSix();
 	}
 
@@ -91,12 +90,14 @@ public class ReviewServiceImpl implements ReviewService {
 	}
 
 	@Override
-	public List<Object[]> getSearchKeyword(@Param("searchKeyword") String searchKeyword) {
+	public List<Object[]> getSearchKeyword(String searchKeyword) {
 		return reviewRepo.getSearchKeyword(searchKeyword);
 	}
 
 	@Override
+
 	public void insertReview(ReviewRegistrationvo reviewRegistrationvo) {
+
 
 		reviewRepo.save(reviewRegistrationvo);
 	}
@@ -113,9 +114,11 @@ public class ReviewServiceImpl implements ReviewService {
 	}
 
 	@Override
+
 	public Object selectReviewJoinUserNickName(Uservo uservo, ReviewRegistrationvo reviewRegistrationvo) { 
 		JPAQueryFactory query = new JPAQueryFactory(em);
 //		JPAQuery<Object> query = new JPAQuery<Object>(em);
+
 		QUservo qUservo = QUservo.uservo;
 		QReviewRegistrationvo qreviewRegistrationvo = QReviewRegistrationvo.reviewRegistrationvo;
 

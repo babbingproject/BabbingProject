@@ -44,6 +44,7 @@ public class Commentvo {
 		reviewRegistrationvo.getCommentList().add(this);
 	}
 
+
 	public void setUservo(Uservo uservo) {
 		this.uservo = uservo;
 		uservo.getCommentList().add(this);

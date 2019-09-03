@@ -72,11 +72,18 @@ public class Uservo {
 	private String userPhone;
 	@Column(name = "user_time")
 	private Integer userTime;
+
 	// 세션 테스트용 임시컬럼
 	private String role;
 
 	@OneToMany(mappedBy = "uservo", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<ReviewRegistrationvo> reviewRegistrationList = new ArrayList<ReviewRegistrationvo>();
+
+
+	
+	
+	
+
 
 	@OneToMany(mappedBy = "uservo", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
 	public List<Commentvo> CommentList = new ArrayList<Commentvo>();

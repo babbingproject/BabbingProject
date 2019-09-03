@@ -78,6 +78,7 @@ public class ReviewController {
 		return "th/review/reviewWrite";
 	}
 	@PostMapping("/insertReview")
+
 	public String insertReview(@ModelAttribute("uservo") Uservo uservo, ReviewRegistrationvo reviewRegistrationvo, Model model) {
 		if (uservo.getNickname() == null) {
 //			model.addAttribute("userId", uservo);
@@ -129,6 +130,7 @@ public class ReviewController {
 		}
 
 		List<ReviewRegistrationvo> reviewList = reviewService.selectReviewList(reviewRegistrationvo);
+
 		
 //		model.addAttribute("reviewAndNickName", reviewService.selectReviewJoinUserNickName(uservo, reviewRegistrationvo));		
 		model.addAttribute("reviewList", reviewList);

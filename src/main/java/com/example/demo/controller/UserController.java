@@ -28,6 +28,7 @@ public class UserController {
 	@RequestMapping("/join")
 	public String userJoin(Uservo userVO) {
 		userMapper.joinUser(userVO);
+
 		return "th/main/homemain";
 	}
 
@@ -36,7 +37,7 @@ public class UserController {
 	public Integer emailCheck(@RequestBody Uservo vo) {
 		int count = 0;
 		count = userMapper.emailCheck(vo.getUserEmail());
-		// List<UserVO> list = userMapper.emailCheck2(vo.getUser_email());
+		// List<Uservo> list = userMapper.emailCheck2(vo.getUser_email());
 
 		return count;
 	}
@@ -48,7 +49,7 @@ public class UserController {
 	public Integer nickCheck(@RequestBody Uservo vo) {
 		int count = 0;
 		count = userMapper.nickCheck(vo.getNickname());
-		// List<UserVO> list = userMapper.emailCheck2(vo.getUser_email());
+		// List<Uservo> list = userMapper.emailCheck2(vo.getUser_email());
 
 		return count;
 	}

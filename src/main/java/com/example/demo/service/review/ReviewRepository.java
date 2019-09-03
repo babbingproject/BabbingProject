@@ -79,8 +79,8 @@ public interface ReviewRepository extends JpaRepository<ReviewRegistrationvo, In
 	@Query(nativeQuery=true, value=""
 			+ "SELECT r.review_id, r.review_place, r.title, r.business_field_id, ri.img "
 			+ "FROM review_registrationvo AS r, review_imagevo AS ri "
-			+ "WHERE r.review_id = ri.review_id AND r.title LIKE %?1% "
+			+ "WHERE r.review_id = ri.review_id AND r.title LIKE %:searchKeyword% "
 			+ "ORDER BY r.write_date DESC LIMIT 8")
-	List<Object[]> getSearchKeyword(@Param("searchKeyword")String searchKeyword);
+	List<Object[]> getSearchKeyword(String searchKeyword);
 	
 }

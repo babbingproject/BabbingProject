@@ -3,18 +3,12 @@ package com.example.demo.service.user;
 import java.util.List;
 import java.util.Optional;
 
-import javax.persistence.EntityManager;
-import javax.persistence.Persistence;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.demo.controller.LoginTestReviewController;
-import com.example.demo.domain.mypage.QUservo;
 import com.example.demo.domain.mypage.Uservo;
-import com.querydsl.jpa.impl.JPAQueryFactory;
 
 @Service
 public class UserServiceImpl implements UserService   {
@@ -29,6 +23,7 @@ public class UserServiceImpl implements UserService   {
 	 */
 	// 세션 테스트용 로그인 메소드
 	@Override
+
 	public Uservo getUser(Uservo uservo) {
 		
 		/*
@@ -47,9 +42,12 @@ public class UserServiceImpl implements UserService   {
 		else return null;
 			
 	}
+	
 	//유저를 리스트로 담아서 뿌려주는 임플 메소드
 	@Override
+
 	public List<Uservo> getUservoList(Uservo uservo){
+
 		return (List<Uservo>) userRepo.findAll();
 	}
 	
@@ -65,8 +63,10 @@ public class UserServiceImpl implements UserService   {
 		return userRepo.getSearchKeyword(searchKeyword);
 	}
 	@Override
+
 	public List<Uservo> getUservoListOrderByFollowingCountDes(Uservo uservo){
 		return userRepo.findAllByIdOrderbyFollowingCountDESC(uservo);
+
 
 	}
 	// test용 메서드

@@ -70,6 +70,7 @@ public class ReviewRegistrationvo {
 	public void setUservo(Uservo uservo) {
 		this.uservo = uservo;
 		uservo.getReviewRegistrationList().add(this);
+
 	}
 
 }

@@ -7,7 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.example.demo.domain.main.Search;
+import com.example.demo.domain.main.Searchvo;
 import com.example.demo.service.advertisement.AdvertisementService;
 import com.example.demo.service.review.ReviewService;
 import com.example.demo.service.review.image.ReviewImageService;
@@ -34,7 +34,7 @@ public class HomeMainController {
 	//메인 홈페이지! 계속 추가추가 수정수정하자!
 	@RequestMapping("/index")
 	public String goIndex1(Model model) {
-		List<Object[]> uservoList = userService.getUservoListOrderByFollowingCountDes();
+		List<Object[]> UservoList = userService.getUservoListOrderByFollowingCountDes();
 		List<Object[]> advvoList = advService.getAdvertisementvoOrderByWeightAvg();
 		model.addAttribute("newestreview", reviewService.getNewestReview());
 		model.addAttribute("everything", reviewService.getEverythingTopSix());
@@ -45,17 +45,17 @@ public class HomeMainController {
 		model.addAttribute("businessfive", reviewService.getBusinessFieldFive());
 		model.addAttribute("businesssix", reviewService.getBusinessFieldSix());
 		model.addAttribute("businessseven", reviewService.getBusinessFieldSeven());
-		model.addAttribute("uservo", uservoList);
+		model.addAttribute("Uservo", UservoList);
 		model.addAttribute("advvo", advvoList);
 		return "th/main/index1";
 	}
 	
 	//태원의 제2의 메인홈 테스팅 메소드. 화면 정보 다 뿌려주자자자자자
 //	@RequestMapping("/taewonhome")
-//	public String getHomeMain(Uservo uservo, Model model) {
-//		List<Object[]> uservoList = userService.getUservoListOrderByFollowingCountDes();
-//		model.addAttribute("uservo", uservoList);
-//		System.out.println(uservoList);
+//	public String getHomeMain(Uservo Uservo, Model model) {
+//		List<Object[]> UservoList = userService.getUservoListOrderByFollowingCountDes();
+//		model.addAttribute("Uservo", UservoList);
+//		System.out.println(UservoList);
 //		return "main/homemain";
 //	}
 //	@RequestMapping("/board")
@@ -65,10 +65,10 @@ public class HomeMainController {
 	
 	//태원의 메인홈 테스팅 메소드. 화면 정보 열로 다 뿌려주기
 //	@RequestMapping("/taewonhome")
-//	public String getHomeMain(Uservo uservo, Model model) {
-//		List<Uservo> uservoList = userService.getUservoList(uservo);
-//		model.addAttribute("uservo", uservoList);
-//		System.out.println(uservoList);
+//	public String getHomeMain(Uservo Uservo, Model model) {
+//		List<Uservo> UservoList = userService.getUservoList(Uservo);
+//		model.addAttribute("Uservo", UservoList);
+//		System.out.println(UservoList);
 //		return "main/homemain";
 //	}
 	
@@ -111,21 +111,48 @@ public class HomeMainController {
 	
 	//서치페이지로 가기!
 	@RequestMapping("/search")
-	public String goToSearch(Search searchKeyword, Model model) {
-		model.addAttribute("reviewSearch", reviewService.getSearchKeyword(searchKeyword.getSearchKeyword()));
+	public String goToSearch(Searchvo searchKeyword, Model model) {
+//		model.addAttribute("reviewSearch", reviewService.getSearchKeyword(searchKeyword.getSearchKeyword()));
+//		System.out.println(searchKeyword.getSearchKeyword());
+//		System.out.println(reviewService.getSearchKeyword(searchKeyword.getSearchKeyword()));
+//		model.addAttribute("userSearch", userService.getSearchKeyword(searchKeyword.getSearchKeyword()));
+//		model.addAttribute("advertisementSearch", advService.getSearchKeyword(searchKeyword.getSearchKeyword()));
+//		
+//		System.out.println(userService.getSearchKeyword(searchKeyword.getSearchKeyword()));
+		System.out.println(searchKeyword.getTypes());
 		System.out.println(searchKeyword.getSearchKeyword());
-		System.out.println(reviewService.getSearchKeyword(searchKeyword.getSearchKeyword()));
-		model.addAttribute("userSearch", userService.getSearchKeyword(searchKeyword.getSearchKeyword()));
-		model.addAttribute("advertisementSearch", advService.getSearchKeyword(searchKeyword.getSearchKeyword()));
+		String v = "review";
+//		if (searchKeyword.getTypes() == v) {
+//			System.out.println("did it come in here?");
+//			model.addAttribute("reviewSearch", reviewService.getSearchKeyword(searchKeyword.getSearchKeyword()));
+//		} else if (searchKeyword.getTypes() == "user") {
+//			System.out.println("did it come in here?");
+//			model.addAttribute("userSearch", userService.getSearchKeyword(searchKeyword.getSearchKeyword()));
+//
+//		};
 		
-		System.out.println(userService.getSearchKeyword(searchKeyword.getSearchKeyword()));
+		switch (searchKeyword.getTypes()) {
+			case "review" :
+				System.out.println("리뷰리뷰리뷰리뷰did it come in here?");
+				model.addAttribute("reviewSearch", reviewService.getSearchKeyword(searchKeyword.getSearchKeyword()));
+				break;
+			case "user" :
+				System.out.println("유저유저유저유저 왔나오?");
+				model.addAttribute("userSearch", userService.getSearchKeyword(searchKeyword.getSearchKeyword()));
+				break;
+			case "campaign" :
+				
+				break;
+			case "advertisement" :
+				System.out.println("광광광고고고고고고곡 여기에 왔나요?");
+				model.addAttribute("advertisementSearch", advService.getSearchKeyword(searchKeyword.getSearchKeyword()));
+				break;
+		}
+		System.out.println("reviewREVIEWREIVRWREIVEW " + reviewService.getSearchKeyword(searchKeyword.getSearchKeyword()));
+		System.out.println("USERUSERUSERUSERUSER " + userService.getSearchKeyword(searchKeyword.getSearchKeyword()));
+		System.out.println("ADVADVADVADVADVasdvadv " + advService.getSearchKeyword(searchKeyword.getSearchKeyword()));
 		return "th/main/search";
 		
 	}
-	
-	
-	
-
-	
 
 }
