@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.demo.dao.UserMapper;
-import com.example.demo.domain.mypage.UserVO;
+import com.example.demo.domain.mypage.Uservo;
 
 @Controller
 public class UserController {
@@ -26,14 +26,14 @@ public class UserController {
 	}
 
 	@RequestMapping("/join")
-	public String userJoin(UserVO userVO) {
+	public String userJoin(Uservo userVO) {
 		userMapper.joinUser(userVO);
 		return "th/main/homemain";
 	}
 
 	@ResponseBody
 	@RequestMapping("/emailCheck")
-	public Integer emailCheck(@RequestBody UserVO vo) {
+	public Integer emailCheck(@RequestBody Uservo vo) {
 		int count = 0;
 		count = userMapper.emailCheck(vo.getUserEmail());
 		// List<UserVO> list = userMapper.emailCheck2(vo.getUser_email());
@@ -45,7 +45,7 @@ public class UserController {
 	// 해줄때 JSON.stringify({})를 추가해준다.
 	@ResponseBody
 	@RequestMapping("/nickCheck")
-	public Integer nickCheck(@RequestBody UserVO vo) {
+	public Integer nickCheck(@RequestBody Uservo vo) {
 		int count = 0;
 		count = userMapper.nickCheck(vo.getNickname());
 		// List<UserVO> list = userMapper.emailCheck2(vo.getUser_email());

@@ -12,7 +12,7 @@ SELECT COUNT(*)
 </select>
 
 <!-- 회원가입 -->
-<insert id="joinUser" parameterType="com.example.demo.domain.mypage.UserVO">
+<insert id="joinUser" parameterType="com.example.demo.domain.mypage.Uservo">
 INSERT INTO uservo
 			(
 			user_email

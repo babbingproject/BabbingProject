@@ -1,7 +1,9 @@
 package com.example.demo.domain.campaign;
 
+import java.sql.Timestamp;
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -34,12 +36,12 @@ public class Campaignvo {
 	private String remarks;
 	@Temporal(value= TemporalType.TIMESTAMP)
 	private Date writeDate;
-	@Temporal(value= TemporalType.TIMESTAMP)
+	@Column(insertable = false, updatable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP")
 	private Date modifiedDate;
 	
-//	@ManyToOne
-//	@JoinColumn(name="advertisement_id", nullable=false)
-//	private Advertisementvo advertisementvo;
+	@ManyToOne
+	@JoinColumn(name="advertisement_id", nullable=false)
+	private Advertisementvo advertisementvo;
 	
 	
 }

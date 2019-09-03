@@ -5,36 +5,123 @@
 <meta http-equiv="Content-type" content="text/html; charset=UTF-8">
 
 </head>
-<body>
+<body th:align="center">
 	<h1>리뷰 글 상세</h1>
-	<table th:align="center" border="1" th:cellpadding="0" th:cellspacing="0">
-		<tr>
-			<td bgcolor="oange" th:text="유저아이디" width="80"></td>
-			<td th:value="${joinReviewList.userId}"></td>
-		</tr>
-		<tr>
-			<td bgcolor="oange" th:text="제목" width="80"></td>
-			<td th:value="${joinReviewList.title}"></td>
-		</tr>
-		<!-- <tr>
-			<td bgcolor="orange" th:text="작성자"></td>
-			<td th:text="${joinReviewList.nickname}"></td>
-		</tr>		 -->
-		<tr>
-			<td bgcolor="orange" th:text="장점"></td>
-			<td><textarea name="content" th:text="${joinReviewList.advantages}" rows="10" cols="40"></textarea></td>
-		</tr>
-		<tr>
-			<td bgcolor="orange" th:text="단점"></td>
-			<td><textarea name="content" th:text="${joinReviewList.disadvantages}" rows="10" cols="40"></textarea></td>
-		</tr>
-		<tr>
-			<td bgcolor="orange" th:text="등록일"></td>
-			<td th:text="${joinReviewList.writeDate}"></td>
-		</tr>
-	</table>
-<!-- 	<a th:href="@{/insertReview}">리뷰등록</a>&nbsp;&nbsp;&nbsp;&nbsp; -->
-<!-- 	<a th:href="/doReviewList">리뷰 목록</a> -->
-	
+	<form th:action="@{updateReviewView}" method="post">
+		<input name="reviewId" type="hidden" th:value="${reviewView.reviewId}">
+		<table th:align="center" border="1" th:cellpadding="0"
+			th:cellspacing="0">
+			<tr>
+				<td bgcolor="oange" th:text="제목" width="80"></td>
+				<!-- <td th:value="${joinReviewList.reviewRegistration.title}"></td> -->
+				<td><input name="title" type="text"
+					th:value="${reviewView.title}"></td>
+			</tr>
+			<tr>
+				<td bgcolor="orange" th:text="작성자"></td>
+				<!-- <td th:text="${joinReviewList.reviewRegistration.uservo.nickname}"></td> -->
+				<td th:text="${reviewView.writer}"></td>
+			</tr>
+			<tr>
+				<td bgcolor="orange" th:text="장점"></td>
+				<!-- <td><textarea name="content" th:text="${joinReviewList.advantages}" rows="10" cols="40"></textarea></td> -->
+				<td><textarea name="advantages"
+						th:text="${reviewView.advantages}" rows="10" cols="40"></textarea></td>
+			</tr>
+			<tr>
+				<td bgcolor="orange" th:text="단점"></td>
+				<td><textarea name="disadvantages"
+						th:text="${reviewView.disadvantages}" rows="10" cols="40"></textarea></td>
+			</tr>
+			<tr>
+				<td bgcolor="orange" th:text="등록일"></td>
+				<!-- <td th:text="${reviewView.writeDate}"></td> -->
+				<td th:text="${#dates.format(reviewView.writeDate,'yyyy-MM-dd')}"></td>
+			</tr>
+			<tr>
+				<td colspan="2" align="center">
+				<input type="submit"
+					value="리뷰 수정"></td>
+			</tr>
+			<tfoot>
+				<tr>				
+					<td th:text="${reviewView.writer}"></td>
+					<td><textarea name="contents"
+						th:text="${commentvo.contents}" rows="2" cols="40"></textarea></td>	
+					<td align="left"><input type="submit" value="댓글  등록"></td>
+					<td align="left"><input type="submit" value="댓글  수정"></td>
+					<td align="left"><input type="submit" value="댓글  삭제"></td>
+							
+					
+						
+			</tr>						
+		</table>
+
+
+		<!-- <section class = "content container-fluid">
+		
+			<div class="col-lg-12">
+				<div class="box box-primaty">
+					<div class="box-header with-border">
+						<h3>댓글  작성</h3>						
+					</div>
+					<div class="box-body">
+						<div class="form-group">
+							<label for="newReplyText">댓글 내용</label>
+							<input class="form-control" id="newReplyText" name="replyText" placeholder="댓글 내용을 입력해주세요">							
+						</div>
+						<div class="form-group">
+							<label for="newReplyWriter">댓글 작성자</label>
+							<input class="form-control" id="newReplyWriter" name="replyWriter" placeholder="댓글 작성자를 입력해주세요">							
+						</div>						
+					</div>
+				</div>
+				<div class="box-footer">
+					<ul id="replies">
+						
+					</ul>
+				</div>
+				
+				<div class="box-footer">
+					<div class="text-conter">
+						<ul class="pagination pagination-sm no-margin">
+						
+						</ul>
+					</div>
+				</div>
+			</div>
+			
+			<div class="modal fade" id="modifyModal" role="dialog">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal">&time;</button>
+							<h4 class="modal-title">댓글 수정창</h4>							
+						</div>
+						<div class="form-group">
+							<label for="replyText">댓글 내용</label>
+							<input class="form-control" id="replyText" name="replyText" placeholder="댓글 내용을 입력하세요">						
+						</div>
+						
+						<div class="form-group">
+							<label for="replyWriter">댓글 내용</label>
+							<input class="form-control" id="replyWriter" name="replyWriter" placeholder="댓글 내용을 입력하세요">						
+						</div>						
+					</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default pull-left" data-dismiss="modal">닫기</button>
+					<button type="button" class="btn btn-success modalModBtn">닫기</button>
+					<button type="button" class="btn btn-danger modalDelBtn">삭제</button>					
+				</div>
+			</div>
+		</div>		
+	</section> -->
+
+	</form>
+	<a th:href="@{/insertReview}">리뷰등록</a>&nbsp;&nbsp;&nbsp;&nbsp;
+	<a th:if="${session['uservo'].role == 'ROLE_ADMIN'}"
+		th:href="@{/deleteReviewView(reviewId=${reviewView.reviewId})}">글삭제</a>&nbsp;&nbsp;&nbsp;&nbsp;
+	<a th:href="@{/doReviewList}">리뷰 목록</a>
+
 </body>
 </html>

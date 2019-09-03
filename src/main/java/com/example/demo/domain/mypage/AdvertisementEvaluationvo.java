@@ -12,7 +12,7 @@ import lombok.ToString;
 @Setter
 @ToString
 @Entity
-public class Advertisementevaluationvo {
+public class AdvertisementEvaluationvo {
 
 	@Id @GeneratedValue
 	private int evaluationId;

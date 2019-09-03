@@ -35,6 +35,6 @@ public class Advertisementvo {
 	private String nonMembersAddress;
 	private int putedCount;
 	
-//	@OneToMany(mappedBy = "advertisementvo", fetch=FetchType.EAGER, cascade=CascadeType.ALL)
-//	private List<Campaignvo> campaignList = new ArrayList<Campaignvo>();
+	@OneToMany(mappedBy = "advertisementvo", fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+	private List<Campaignvo> campaignList = new ArrayList<Campaignvo>();
 }

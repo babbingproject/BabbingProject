@@ -3,28 +3,69 @@
 <head>
 <title>리뷰 목록</title>
 <meta http-equiv="Content-type" content="text/html; charset=UTF-8">
+<style type="text/css">
+/* iframe {
+	width: 600px;
+	height: 100px;
+	border: 1px;
+	border-style: solid;
+}
+ */
+.fileDrop {
+	width: 100%;
+	height: 200px;
+	border: 2px dotted #0b58a2;
+}
 
+small {
+	margin-left: 3px;
+	font-weight: bold;
+	color: gray;
+}
+</style>
+<link rel="stylesheet"
+	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
-<body th:align="center">
+<body th:align="left">
 	<h1>새 리뷰 등록</h1>
 	<form action="insertReview" method="post">
 		<table th:align="center" border="1" th:cellpqdding="0"
 			th:cellspacing="0">
-			<tr>
+			<!-- <tr>
 				<th bgcolor="orange" th:text="유저아이디" width="80"></th>
 				<td><input name="userId" type="text" size="50" value="1"></td>
+			</tr> -->
+			<tr>
+				<th bgcolor="orange" width="70">제목</th>
+				<td align="left"><input name="title" type="text"></td>
 			</tr>
 			<tr>
-				<th bgcolor="orange" th:text="제목" width="80"></th>
-				<td><input name="title" type="text" size="50"></td>
+				<th bgcolor="orange">작성자</th>
+				<td align="left"><input name="writer" size="20" type="text" th:value="${uservo.nickname}"></input></td>
+				
+			</tr>
+			<!-- <tr>
+				<td th:text="이미지"></td>
+				<td>
+					파일을 업로드할 영역
+					<div class="fileDrop">하아...</div> 
+					업로드된 파일 목록
+					<div class="uploadedList"></div>
+				</td>
+			</tr> -->
+			<tr>
+				<th bgcolor="orange" th:text="단점"></th>
+				<td align="left"><textarea name="disadvantages" cols="50"
+						rows="10"></textarea></td>
 			</tr>
 			<tr>
 				<th bgcolor="orange" th:text="장점"></th>
-				<td><textarea name="advantages" cols="50" rows="10"></textarea></td>
-			</tr>
-			<tr>
-				<th bgcolor="orange" th:text="단점"></th>
-				<td><textarea name="disadvantages" cols="50" rows="10"></textarea></td>
+				<td align="left"><textarea name="advantages" cols="50"
+						rows="10"></textarea></td>
 			</tr>
 			<tr>
 				<th colspan="2" align="center"></th>
@@ -34,5 +75,129 @@
 		</table>
 		<br>
 	</form>
+	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+	<script type="text/javascript"
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>
+	<script>
+		
+		$(document).ready(
+				function() {
+					$(".fileDrop").on("dragenter dragover", function(event) {
+						event.preventDefault(); //기본 효과를 막음
+					});
+					//event :JQeury의 이벤트
+					//originalEvent :javascript의 이벤트
+					$(".fileDrop").on("drop", function(event) {
+						event.preventDefault(); //기본효과를 막음
+// 						alert("jj");
+						//드래그된 파일의 정보
+						var files = event.originalEvent.dataTransfer.files;
+						//첫번째 파일
+						var file = files[0];
+						//콘솔에서 파일 정보 확인
+						console.log(file);
+
+						//ajax로 전달할 폼 객체
+						var formData = new FormData();
+						//폼 객체에 파일 추가, append("변수명", 값)
+						formData.append("file", file);
+// 						alert("안유진");
+					
+
+					$.ajax({
+						type : "post",
+						url : "/uploadAjax", // 매핑주소?
+						data : formData,
+						//prosessData: true=>get방식, false=> post방식
+						dataType : "text",
+						// contentType : true => application/x-www-form-urlencoded,
+						//		false => multipart/form-data
+						processData : false,
+						contentType : false,
+						success : function(data) {
+							var srt = "";
+							//이미지 파일이면 썸네일 이미지 출력
+							if (checkImageType(data)) {
+								str = "<div><a href='/displayFile?fileName="
+										+ getImageLink(data) + "'>";
+								str += "<img src='/displayFile?fileName="
+										+ data + "'></a>";
+								//일반 파일이면 다운로드 링크					
+							} else {
+								str = "<div><a href='/displayFile?FileName="
+										+ data + "'>" + getOriginalName(data)
+										+ "</a>";
+
+							}
+							//삭제버튼
+							str += "<span data-src="+data+">[삭제]</span></div>";
+							$(".uploadedList").append(str);
+						}
+					});
+
+				});
+
+		$(".uploadedList").on("click", "span", function(event) {
+			alert("이미지 삭제")
+			var that = $(this); // 여시거 this는 클릭한 span태그
+			$.ajax({
+				url : "deleteFile",
+				type : "post",
+				//data:"fileName="+$(this).attr("data-src") = {fileName:$(this).attr("data-src")}
+				//태그 .attr("속성")
+				data : {
+					fileName : $(this).attr("data-src")
+				}, //json방식
+				dataType : "text",
+				success : function(result) {
+					if (result == "deleted") {
+						//클릭한 span태그가 속한 div제거
+						that.parent("div").remove();
+					}
+				}
+
+			});
+
+		});
+
+		function getOriginalName(fileName) {
+			//이미지 파일이면
+			if (checkImageType(fileName)) {
+				return; //함수 종료			
+			}
+			//uuid를 제외한 원래 파일 이름을 리턴
+			var idx = fileName.insexOf("_") + 1;
+			return fileName.substr(idx);
+		}
+
+		function getImageLink(fileName) {
+			//이미지 파일이 아니면
+			if (!checkImageType(fileName)) {
+				return; //함수 종료
+			}
+			//이미지 파일이면 (썸네일이 아닌 원본 이미지를 가져오기 위해)
+			//썸네일 이미지 파일명 - 파일경로+파일명
+			var front = fileName.substr(0, 12); //년 원 일 경로 추출
+			var end = fileName.substr(14); // 년 월 일 뎡로와 s_를 제거한 원본 파일명을 추출
+			console.log(front); // 2019/09/01
+			console.log(end);
+			//원본 파일명
+			return front + end; //디렉토리를 포함한 원본 파일명을 리턴
+
+		}
+
+		function checkImageType(fileName) {
+			// i: ignore case(대소문자 무관)
+			var pattern = /jpg|gif|png|jpeg/i; //정규식 표현
+			return fileName.match(pattern); //규칙이 맞으면  true		
+		}
+				});
+	</script>
 </body>
+<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+
 </html>

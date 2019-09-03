@@ -1,4 +1,4 @@
-package com.example.demo.domain.mypage;
+package com.example.demo.domain.campaign;
 
 import java.util.Date;
 
@@ -16,9 +16,10 @@ import lombok.ToString;
 @Setter
 @ToString
 @Entity
-public class Followalarmvo {
+public class CampaignAlarmvo {
+
 	@Id @GeneratedValue
-	private int followAlarmId;
+	private int campaignAlarmId;
 	private String alarmContext;
 	@Temporal(value= TemporalType.TIMESTAMP)
 	private Date alarmSendTime;
@@ -26,5 +27,7 @@ public class Followalarmvo {
 	private Date alarmReceiveTime;
 	private int advertisementId;
 	private int userId;
-	private int followId;
+	private int campaignId;
+	
+	
 }

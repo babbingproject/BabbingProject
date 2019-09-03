@@ -15,7 +15,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
-import com.example.demo.domain.mypage.UserVO;
+import com.example.demo.domain.mypage.Uservo;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -23,7 +23,7 @@ import lombok.ToString;
 
 @Getter
 @Setter
-@ToString(exclude = "userVO")
+@ToString(exclude = "uservo")
 @Entity
 public class ReviewRegistrationvo {
 	@Id
@@ -34,12 +34,12 @@ public class ReviewRegistrationvo {
 	private String title;
 	private String advantages;
 	private String disadvantages;
-	
+
 //	@ManyToOne
 //	@JoinColumn(name="user_id", nullable=false)
 //	private Uservo uservo;
-	
-	@OneToMany(mappedBy="reviewId", fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+
+	@OneToMany(mappedBy = "reviewId", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private List<ReviewImagevo> reviewImagevoList = new ArrayList<ReviewImagevo>();
 //	@Temporal(value = TemporalType.TIMESTAMP)
 	@Column(insertable = false, updatable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP")
@@ -52,12 +52,14 @@ public class ReviewRegistrationvo {
 	private Integer businessFieldId;
 	@Column(nullable = true) // 임시
 	private Integer themeId;
-	@Column(nullable = true, insertable = false, updatable = false) // private
-	Integer userId;
+	
+	
+	private String writer; // 게시판 테스트용 임시 칼럼
+	private Long cnt;	// 게시판 테스트용 임시 칼럼
 
 	@ManyToOne
 	@JoinColumn(name = "userId", nullable = false)
-	private UserVO userVO;
+	private Uservo uservo;
 
 	@OneToMany(mappedBy = "reviewRegistrationvo", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Commentvo> commentList = new ArrayList<Commentvo>();
@@ -65,8 +67,9 @@ public class ReviewRegistrationvo {
 	@OneToMany(mappedBy = "reviewRegistrationvo", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<ReviewImagevo> reviewImgList = new ArrayList<ReviewImagevo>();
 
-	public void setUservo(UserVO userVO) {
-		this.userVO = userVO;
-		userVO.getReviewRegistrationList().add(this);
-	};
+	public void setUservo(Uservo uservo) {
+		this.uservo = uservo;
+		uservo.getReviewRegistrationList().add(this);
+	}
+
 }

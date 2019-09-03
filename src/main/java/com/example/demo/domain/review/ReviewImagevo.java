@@ -34,9 +34,6 @@ public class ReviewImagevo {
 	@ManyToOne
 	@JoinColumn(name="reviewId", nullable=false, insertable=false, updatable=false)
 	private ReviewRegistrationvo reviewId;
-
-//	@Column(nullable = true, insertable = false, updatable = false)	//
-//	private int review_id;
 	
 	@ManyToOne
 	@JoinColumn(name = "reviewId", nullable = false)
