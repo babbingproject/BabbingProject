@@ -7,10 +7,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-<<<<<<< HEAD
-=======
 import com.example.demo.dao.UserMapper;
->>>>>>> 진광
 import com.example.demo.domain.mypage.Uservo;
 
 @Service
@@ -36,17 +33,6 @@ public class UserServiceImpl implements UserService {
 
 	// 유저 정보를 높은 펄로우 수 순서대로 리스트 형식에 6명 저장해주는 메소드
 	@Override
-<<<<<<< HEAD
-	public List<Uservo> getUservoList(Uservo Uservo){
-		return (List<Uservo>) userRepo.findAll();
-=======
-	public List<Uservo> getUservoListOrderByFollowingCountDes(Uservo Uservo) {
-		return userRepo.findAllByIdOrderbyFollowingCountDESC(Uservo);
->>>>>>> 진광
-	}
-
-	@Override
-<<<<<<< HEAD
 	public List<Object[]> getUservoListOrderByFollowingCountDes(){
 		return userRepo.getFindAllByIdOrderbyFollowingCountDESC();
 	}
@@ -66,11 +52,10 @@ public class UserServiceImpl implements UserService {
 	public Optional<Uservo> insertUserId(Uservo user) {
 		
 		return userRepo.findById(new Uservo().getUserId());
-=======
+	}
 	public int joinUser(Uservo Uservo) {
 		// TODO Auto-generated method stub
 		return userMapper.joinUser(Uservo);
->>>>>>> 진광
 	}
 
 	@Override

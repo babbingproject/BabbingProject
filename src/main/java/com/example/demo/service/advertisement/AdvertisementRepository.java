@@ -18,7 +18,7 @@ public interface AdvertisementRepository extends JpaRepository<Advertisementvo, 
 	@Query(nativeQuery=true, value = ""
 			+ "SELECT advertisement_id, advertisement_name, profile_img, puted_count "
 			+ "FROM advertisementvo WHERE advertisement_name LIKE %:searchKeyword% "
-			+ "ORDER BY weighted_avg DESC "
+			+ ""
 			+ "LIMIT 6")
 	List<Object[]> getSearchKeyword(String searchKeyword);
 }

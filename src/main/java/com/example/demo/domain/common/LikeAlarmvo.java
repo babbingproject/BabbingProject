@@ -22,9 +22,9 @@ public class LikeAlarmvo {
 	private int likeAlarmId;
 	private String alarmContext;
 	@Temporal(value= TemporalType.TIMESTAMP)
-	private Timestamp alarmSendTime;
+	private Date alarmSendTime;
 	@Temporal(value= TemporalType.TIMESTAMP)
-	private Timestamp alarmReceiveTime;
+	private Date alarmReceiveTime;
 	private int advertisementId;
 	private int userId;
 	private int likeId;

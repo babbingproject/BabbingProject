@@ -9,32 +9,10 @@ SELECT COUNT(*)
 		FROM uservo 
 		WHERE userEmail = #{userEmail}
 ]]>
-<<<<<<< HEAD
+
 </select>
 
-<!-- 회원가입 -->
-<insert id="joinUser" parameterType="com.example.demo.domain.mypage.Uservo">
-INSERT INTO uservo
-			(
-			user_email
-			,nickname
-			,password
-			)
-			VALUES
-			(
-			#{user_email}
-			,#{nickname}
-			,#{password}
-			)
 
-</insert>
-
-<select id="nickCheck" parameterType="String" resultType="int">
-
-SELECT COUNT(*) 
-		FROM uservo 
-=======
-	</select>
 
 	<!-- 회원가입 -->
 	<insert id="joinUser"
@@ -59,7 +37,6 @@ SELECT COUNT(*)
 		SELECT
 		COUNT(*)
 		FROM uservo
->>>>>>> 진광
 		WHERE nickname=#{nickname}
 
 	</select>
@@ -105,8 +82,3 @@ SELECT COUNT(*)
 
 
 
-
-
-
-<!-- <select id="emailCheck2" parameterType="String" resultType="com.example.demo.domain.mypage.Uservo"> 
-	SELECT * FROM Uservo WHERE userEmail=#{userEmail} </select> -->

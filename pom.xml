@@ -134,7 +134,7 @@
 			<version>1</version>
 		</dependency>
 
-<<<<<<< HEAD
+
 
 
 
@@ -161,7 +161,7 @@
 		</dependency>
 
 
-=======
+
 		<!-- https://mvnrepository.com/artifact/commons-codec/commons-codec 비번 
 			암호화 -->
 		<dependency>
@@ -190,7 +190,7 @@
 			<artifactId>jstl</artifactId>
 		</dependency>
 		
->>>>>>> 진광
+
 	</dependencies>
 
 	<build>

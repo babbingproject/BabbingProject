@@ -11,15 +11,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-<<<<<<< HEAD
-import com.example.demo.dao.UserMapper;
-import com.example.demo.domain.mypage.Uservo;
-=======
 import com.example.demo.domain.mypage.Uservo;
 import com.example.demo.service.user.UserMailSendService;
 import com.example.demo.service.user.UserService;
 import com.example.demo.service.user.UserSha256;
->>>>>>> 진광
+
 
 @Controller
 public class UserController {
@@ -40,10 +36,8 @@ public class UserController {
 	}
 
 	@RequestMapping("/join")
-<<<<<<< HEAD
-	public String userJoin(Uservo Uservo) {
-		userMapper.joinUser(Uservo);
-=======
+//	public String userJoin(Uservo Uservo) {
+//		userMapper.joinUser(Uservo);
 	public String userJoin(Uservo Uservo, Model model, HttpServletRequest request) {
 		// 받아온 비밀번호를 암호화 합니다.
 		String encryPassword = UserSha256.encrypt(Uservo.getPassword());
@@ -53,39 +47,23 @@ public class UserController {
 		userService.joinUser(Uservo);
 		// 메일 보내기
 		mailsender.mailSendWithUserKey(Uservo.getUserEmail(), Uservo.getNickname(), request);
->>>>>>> 진광
 		return "th/main/homemain";
 	}
 
 	@ResponseBody
 	@RequestMapping("/emailCheck")
-<<<<<<< HEAD
-	public Integer emailCheck(@RequestBody Uservo vo) {
-		int count = 0;
-		count = userMapper.emailCheck(vo.getUserEmail());
-		// List<Uservo> list = userMapper.emailCheck2(vo.getUser_email());
 
-		return count;
-=======
 	public int emailCheck(@RequestBody Uservo vo) {
 		return userService.emailCheck(vo, vo.getUserEmail());
->>>>>>> 진광
 	}
 
 	// 입력 받을때 vo 통째로 파라메터로 받고 get 메소드를 이용해서 값을 가져다가 넣어주고 ajax에서 data type 를 json으로
 	// 해줄때 JSON.stringify({})를 추가해준다.
 	@ResponseBody
 	@RequestMapping("/nickCheck")
-<<<<<<< HEAD
-	public Integer nickCheck(@RequestBody Uservo vo) {
-		int count = 0;
-		count = userMapper.nickCheck(vo.getNickname());
-		// List<Uservo> list = userMapper.emailCheck2(vo.getUser_email());
-=======
 	public int nickCheck(@RequestBody Uservo vo) {
 		return userService.nickCheck(vo, vo.getNickname());
 	}
->>>>>>> 진광
 
 	// e-mail 인증 컨트롤러
 	@RequestMapping(value = "/user/key_alter", method = RequestMethod.GET)

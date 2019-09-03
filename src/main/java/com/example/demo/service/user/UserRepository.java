@@ -22,12 +22,7 @@ public interface UserRepository extends CrudRepository<Uservo, Integer>{
 	List<Object[]> getSearchKeyword(String searchKeyword);
 
 	@Query(nativeQuery = true, value = "SELECT * FROM Uservo ORDER BY following_count DESC LIMIT 6")
-<<<<<<< HEAD
 	List<Uservo> findAllByIdOrderbyFollowingCountDESC(Uservo Uservo);
 
-
-=======
-	List<Uservo> findAllByIdOrderbyFollowingCountDESC(Uservo uservo);
->>>>>>> 진광
 }
 

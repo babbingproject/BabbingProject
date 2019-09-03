@@ -1,6 +1,5 @@
 package com.example.demo.domain.campaign;
 
-import java.sql.Timestamp;
 import java.util.Date;
 
 import javax.persistence.Entity;
@@ -23,15 +22,9 @@ public class CampaignAlarmvo {
 	private int campaignAlarmId;
 	private String alarmContext;
 	@Temporal(value= TemporalType.TIMESTAMP)
-<<<<<<< HEAD:src/main/java/com/example/demo/domain/campaign/CampaignAlarmvo.java
-	private Timestamp alarmSendTime;
-	@Temporal(value= TemporalType.TIMESTAMP)
-	private Timestamp alarmReceiveTime;
-=======
 	private Date alarmSendTime;
 	@Temporal(value= TemporalType.TIMESTAMP)
 	private Date alarmReceiveTime;
->>>>>>> 진광:src/main/java/com/example/demo/domain/campaign/Campaignalarmvo.java
 	private int advertisementId;
 	private int userId;
 	private int campaignId;

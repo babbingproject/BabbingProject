@@ -37,7 +37,9 @@ public interface ReviewService {
 	void insertReview(ReviewRegistrationvo reviewRegistrationvo, Uservo Uservo);
 
 	List<ReviewRegistrationvo> selectReviewList();
+	
+	List<ReviewRegistrationvo> selectReviewList(ReviewRegistrationvo reviewRegistrationvo);
 
-	Tuple selectReviewIdJoinUserId(Uservo Uservo, ReviewRegistrationvo reviewRegistrationvo);
+//	Tuple selectReviewIdJoinUserId(Uservo Uservo, ReviewRegistrationvo reviewRegistrationvo);
 
 }
