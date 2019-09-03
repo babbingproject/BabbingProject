@@ -37,7 +37,11 @@ public class ReviewController {
 	
 	@RequestMapping("/testhome")
 	public String getReviewImagevo(ReviewImagevo reviewImagevo, Model model) {
+<<<<<<< HEAD
 //		System.out.println(reviewImagevo.toString());
+=======
+		System.out.println(reviewImagevo.toString());
+>>>>>>> 진광
 		reviewImagevo.setImgId(1);
 		model.addAttribute("review", reviewImageService.getReviewImagevo(reviewImagevo));
 //		System.out.println(reviewImagevo.toString());

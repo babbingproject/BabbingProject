@@ -19,9 +19,12 @@ public class ReviewImageServiceImpl implements ReviewImageService  {
 	@Override
 	public ReviewImagevo getReviewImagevo(ReviewImagevo reviewImagevo) {
 		return reviewImageRepo.findById(reviewImagevo.getImgId()).get();
+<<<<<<< HEAD
 	}
 	
 	public ReviewImagevo saveReviewImagevo(ReviewImagevo reviewImagevo) {
 		return reviewImageRepo.save(reviewImagevo);
+=======
+>>>>>>> 진광
 	}
 }

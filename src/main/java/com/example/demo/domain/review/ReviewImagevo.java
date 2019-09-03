@@ -31,9 +31,12 @@ public class ReviewImagevo {
 	private String img;
 	private String imgReview;
 	
+<<<<<<< HEAD
 	@ManyToOne
 	@JoinColumn(name="reviewId", nullable=false, insertable=false, updatable=false)
 	private ReviewRegistrationvo reviewId;
+=======
+>>>>>>> 진광
 	
 	@ManyToOne
 	@JoinColumn(name = "reviewId", nullable = false)

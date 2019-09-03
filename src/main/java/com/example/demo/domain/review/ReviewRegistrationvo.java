@@ -28,7 +28,11 @@ import lombok.ToString;
 public class ReviewRegistrationvo {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+<<<<<<< HEAD
 	@Column(name = "review_id")
+=======
+	@Column(name = "reviewId")
+>>>>>>> 진광
 	private int reviewId;
 	private String reviewPlace;
 	private String title;
@@ -39,8 +43,12 @@ public class ReviewRegistrationvo {
 //	@JoinColumn(name="user_id", nullable=false)
 //	private Uservo uservo;
 
+<<<<<<< HEAD
 	@OneToMany(mappedBy = "reviewId", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private List<ReviewImagevo> reviewImagevoList = new ArrayList<ReviewImagevo>();
+=======
+	
+>>>>>>> 진광
 //	@Temporal(value = TemporalType.TIMESTAMP)
 	@Column(insertable = false, updatable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP")
 	private Date writeDate;
@@ -57,11 +65,22 @@ public class ReviewRegistrationvo {
 	private String writer; // 게시판 테스트용 임시 칼럼
 	private Long cnt;	// 게시판 테스트용 임시 칼럼
 
+<<<<<<< HEAD
+=======
+	
+	@OneToMany(mappedBy = "imgId", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	private List<ReviewImagevo> reviewImagevoList = new ArrayList<ReviewImagevo>();
+	
+>>>>>>> 진광
 	@ManyToOne
 	@JoinColumn(name = "userId", nullable = false)
 	private Uservo uservo;
 
+<<<<<<< HEAD
 	@OneToMany(mappedBy = "reviewRegistrationvo", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+=======
+	@OneToMany(mappedBy = "reviewRegistrationvo", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
+>>>>>>> 진광
 	private List<Commentvo> commentList = new ArrayList<Commentvo>();
 
 	@OneToMany(mappedBy = "reviewRegistrationvo", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)

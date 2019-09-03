@@ -8,12 +8,16 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+<<<<<<< HEAD
 import com.example.demo.domain.main.Searchvo;
 import com.example.demo.domain.mypage.Uservo;
 import com.example.demo.domain.review.ReviewRegistrationvo;
 import com.example.demo.service.advertisement.AdvertisementService;
 import com.example.demo.service.review.ReviewService;
 import com.example.demo.service.review.image.ReviewImageService;
+=======
+import com.example.demo.domain.mypage.Uservo;
+>>>>>>> 진광
 import com.example.demo.service.user.UserService;
 
 @Controller
@@ -99,6 +103,7 @@ public class HomeMainController {
 	
 	//카테고리 전체 부분, 리뷰 비즈니스첫번째항목
 	@RequestMapping("/taewonhome")
+<<<<<<< HEAD
 	public String getEverything(Model model) {
 		System.out.println(reviewService.getEverythingTopSix());
 		model.addAttribute("everything", reviewService.getEverythingTopSix());
@@ -173,6 +178,13 @@ public class HomeMainController {
 		System.out.println("ADVADVADVADVADVasdvadv " + advService.getSearchKeyword(searchKeyword.getSearchKeyword()));
 		return "th/main/search";
 		
+=======
+	public String getHomeMain(Uservo Uservo, Model model) {
+		List<Uservo> UservoList = userService.getUservoListOrderByFollowingCountDes(Uservo);
+		model.addAttribute("Uservo", UservoList);
+		System.out.println(UservoList);
+		return "main/homemain";
+>>>>>>> 진광
 	}
 	
 	
