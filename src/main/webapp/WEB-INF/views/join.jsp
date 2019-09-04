@@ -13,27 +13,30 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script type="text/javascript">
 	$(function() {
-		$("#joinForm").submit(
-				function() {
-					if ($("#pw").val() !== $("#pw2").val()) {
-						alert("비밀번호가 다릅니다.");
-						$("#pw").val("").focus();
-						$("#pw2").val("");
-						return false;
-					} else if ($("#pw").val().length < 8) {
-						alert("비밀번호는 8자 이상으로 설정해야 합니다.");
-						$("#pw").val("").focus();
-						return false;
-					} else if ($.trim($("#pw").val()) !== $("#pw").val()
-							|| $.trim($("#nickname").val()) !== $("#nickname")
+		$("#joinForm")
+				.submit(
+						function() {
+							if ($("#pw").val() !== $("#pw2").val()) {
+								alert("비밀번호가 다릅니다.");
+								$("#pw").val("").focus();
+								$("#pw2").val("");
+								return false;
+							} else if ($("#pw").val().length < 8) {
+								alert("비밀번호는 8자 이상으로 설정해야 합니다.");
+								$("#pw").val("").focus();
+								$("#pw2").val("");
+								return false;
+							} else if ($.trim($("#pw").val()) !== $("#pw")
 									.val()
-							|| $.trim($("#userEmail").val()) !== $(
-									"#userEmail").val()) {
-						alert("공백은 입력이 불가능합니다.");
-						return false;
-					}
-					alert("인증 메일을 발송 하였습니다. 메일 인증을 진행해주세요!");
-				})
+									|| $.trim($("#nickname").val()) !== $(
+											"#nickname").val()
+									|| $.trim($("#userEmail").val()) !== $(
+											"#userEmail").val()) {
+								alert("공백은 입력이 불가능합니다.");
+								return false;
+							}
+							alert("인증 메일을 발송 하였습니다. 메일 인증을 진행해주세요!");
+						})
 
 		/* 이메일 체크 */
 
@@ -120,13 +123,13 @@
 						$("#nickchktext").html("");
 						$("#joinBtn").removeAttr("disabled");
 					} else {
-						$("nickchktext").css("color", "red");
+						$("#nickchktext").css("color", "red");
 						$("#nickchktext").text("이미 사용중인 닉네임 입니다.");
 						$("#nickchktext2").html("");
 						$("#joinBtn").attr("disabled", "disabled");
 
 					}
-					
+
 				},
 				//에러 발생 시 실행되는 메소드
 				error : function(error) {
@@ -144,6 +147,9 @@
 	<div class="w3-content w3-container w3-margin-top">
 		<div class="w3-container w3-card-4">
 			<div class="w3-center w3-large w3-margin-top">
+				<a><img
+					src="${pageContext.request.contextPath}/images/Bobbing-logo.png"
+					style="height: 80px; margin-left: 10px;" /></a> <br> <br>
 				<h3>밥빙 회원가입 테스트</h3>
 			</div>
 			<div>
@@ -179,10 +185,10 @@
 					</p>
 					<p>
 						<button type="submit" id="joinBtn"
-							class="w3-button w3-block w3-black w3-ripple w3-margin-top w3-round">JOIN</button>
+							class="w3-button w3-block w3-pink w3-ripple w3-margin-top w3-round">JOIN</button>
 						<br>
 						<button type="button" onclick="history.go(-1);"
-							class="w3-button w3-block w3-black w3-ripple w3-margin-top w3-margin-bottom w3-round">CANCLE</button>
+							class="w3-button w3-block w3-pink w3-ripple w3-margin-top w3-margin-bottom w3-round">CANCLE</button>
 					</p>
 				</form>
 			</div>

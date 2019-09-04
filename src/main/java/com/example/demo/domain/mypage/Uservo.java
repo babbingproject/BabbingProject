@@ -71,6 +71,4 @@ public class Uservo {
 	@OneToMany(mappedBy = "uservo", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
 	public List<Commentvo> CommentList = new ArrayList<Commentvo>();
 
-//	@OneToMany(mappedBy="Uservo", fetch=FetchType.EAGER, cascade=CascadeType.ALL)
-//	private List<ReviewRegistrationvo> reviewRegistrationList = new ArrayList<ReviewRegistrationvo>(); 
 }

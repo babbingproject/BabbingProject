@@ -57,9 +57,11 @@ public class ReviewRegistrationvo {
 	private Long cnt;	// 게시판 테스트용 임시 칼럼
 
 	
-	@OneToMany(mappedBy = "imgId", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	private List<ReviewImagevo> reviewImagevoList = new ArrayList<ReviewImagevo>();
-	
+	/*
+	 * @OneToMany(mappedBy = "imgId", fetch = FetchType.LAZY, cascade =
+	 * CascadeType.ALL) private List<ReviewImagevo> reviewImagevoList = new
+	 * ArrayList<ReviewImagevo>();
+	 */
 	@ManyToOne
 	@JoinColumn(name = "userId", nullable = false)
 	private Uservo uservo;
