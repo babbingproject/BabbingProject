@@ -36,6 +36,7 @@ public class UserController {
 	}
 
 	@RequestMapping("/join")
+
 //	public String userJoin(Uservo Uservo) {
 //		userMapper.joinUser(Uservo);
 	public String userJoin(Uservo Uservo, Model model, HttpServletRequest request) {
@@ -47,6 +48,7 @@ public class UserController {
 		userService.joinUser(Uservo);
 		// 메일 보내기
 		mailsender.mailSendWithUserKey(Uservo.getUserEmail(), Uservo.getNickname(), request);
+
 		return "th/main/homemain";
 	}
 

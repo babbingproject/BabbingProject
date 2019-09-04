@@ -1,5 +1,6 @@
 package com.example.demo.domain.campaign;
 
+import java.sql.Timestamp;
 import java.util.Date;
 
 import javax.persistence.Column;

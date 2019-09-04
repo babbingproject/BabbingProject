@@ -13,7 +13,6 @@ import com.example.demo.domain.mypage.Uservo;
 import com.example.demo.domain.review.QReviewRegistrationvo;
 import com.example.demo.domain.review.ReviewRegistrationvo;
 import com.example.demo.service.user.UserRepository;
-import com.querydsl.core.Tuple;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 
 @Service
@@ -28,15 +27,7 @@ public class ReviewServiceImpl implements ReviewService {
 	@PersistenceContext
 	EntityManager em;
 
-	@Override
-	public List<Uservo> selectUservoInfo() {
 
-		JPAQueryFactory query = new JPAQueryFactory(em);
-
-		QUservo user = QUservo.uservo;
-
-		return query.selectFrom(user).orderBy(user.userId.desc()).fetch();
-	}
 
 	@Override
 	public List<Object[]> getKoreanTopSix() {
@@ -94,21 +85,14 @@ public class ReviewServiceImpl implements ReviewService {
 	}
 
 	@Override
-	public void insertReview(ReviewRegistrationvo reviewRegistrationvo, Uservo Uservo) {
-		userRepo.save(Uservo);
+
+	public void insertReview(ReviewRegistrationvo reviewRegistrationvo) {
+
+
 		reviewRepo.save(reviewRegistrationvo);
 	}
 
-	@Override
-	public List<ReviewRegistrationvo> selectReviewList() {
 
-		JPAQueryFactory query = new JPAQueryFactory(em);
-
-		QReviewRegistrationvo reviewRegistrationvo = QReviewRegistrationvo.reviewRegistrationvo;
-
-		return query.selectFrom(reviewRegistrationvo).orderBy(reviewRegistrationvo.reviewId.desc()).fetch();
-
-	}
 
 	@Override
 	public List<ReviewRegistrationvo> selectReviewList(ReviewRegistrationvo reviewRegistrationvo) {
@@ -118,6 +102,45 @@ public class ReviewServiceImpl implements ReviewService {
 		QReviewRegistrationvo qReviewRegistrationvo = QReviewRegistrationvo.reviewRegistrationvo;
 
 		return query.selectFrom(qReviewRegistrationvo).orderBy(qReviewRegistrationvo.reviewId.desc()).fetch();
+
+	}
+
+	@Override
+	public Object selectReviewJoinUserNickName(Uservo uservo, ReviewRegistrationvo reviewRegistrationvo) { 
+		JPAQueryFactory query = new JPAQueryFactory(em);
+//		JPAQuery<Object> query = new JPAQuery<Object>(em);
+
+		QUservo qUservo = QUservo.uservo;
+		QReviewRegistrationvo qreviewRegistrationvo = QReviewRegistrationvo.reviewRegistrationvo;
+
+		Object joinResult = query.from(qreviewRegistrationvo)
+				.leftJoin(qreviewRegistrationvo.uservo, qUservo).fetchFirst();
+
+		return joinResult;
+
+	}
+
+	@Override
+	public ReviewRegistrationvo getReviewView(ReviewRegistrationvo reviewRegistrationvo) {
+		return reviewRepo.findById(reviewRegistrationvo.getReviewId()).get();
+
+	}
+
+	@Override
+	public void updateReview(ReviewRegistrationvo reviewRegistrationvo) {
+		ReviewRegistrationvo findReview = reviewRepo.findById(reviewRegistrationvo.getReviewId()).get();
+
+		findReview.setTitle(reviewRegistrationvo.getTitle());
+		findReview.setAdvantages(reviewRegistrationvo.getAdvantages());
+		findReview.setDisadvantages(reviewRegistrationvo.getDisadvantages());
+		reviewRepo.save(findReview);
+
+	}
+
+	@Override
+	public void deleteReview(ReviewRegistrationvo reviewRegistrationvo) {
+		reviewRepo.deleteById(reviewRegistrationvo.getReviewId());
+
 
 	}
 //	@Override
@@ -131,5 +154,11 @@ public class ReviewServiceImpl implements ReviewService {
 //				.innerJoin(qUservo).on(qUservo.userId.eq(qreviewRegistrationvo.uservo)).fetchOne();
 //		
 //	}
+
+	@Override
+	public List<ReviewRegistrationvo> selectReviewList() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 }

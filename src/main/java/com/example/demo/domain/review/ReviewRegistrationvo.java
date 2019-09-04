@@ -39,7 +39,6 @@ public class ReviewRegistrationvo {
 //	@JoinColumn(name="user_id", nullable=false)
 //	private Uservo uservo;
 
-
 //	@Temporal(value = TemporalType.TIMESTAMP)
 	@Column(insertable = false, updatable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP")
 	private Date writeDate;
@@ -56,9 +55,6 @@ public class ReviewRegistrationvo {
 	private String writer; // 게시판 테스트용 임시 칼럼
 	private Long cnt;	// 게시판 테스트용 임시 칼럼
 
-
-
-
 	@ManyToOne
 	@JoinColumn(name = "userId", nullable = false)
 	private Uservo uservo;
@@ -73,6 +69,7 @@ public class ReviewRegistrationvo {
 	public void setUservo(Uservo uservo) {
 		this.uservo = uservo;
 		uservo.getReviewRegistrationList().add(this);
+
 	}
 
 }

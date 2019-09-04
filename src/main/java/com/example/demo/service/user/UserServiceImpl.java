@@ -21,8 +21,22 @@ public class UserServiceImpl implements UserService {
 	private UserMapper userMapper;
 
 	@Override
-	public Uservo getUser(Uservo user) {
-		return null;
+	public Uservo getUser(Uservo uservo) {
+		
+		/*
+		 * JPAQueryFactory query = new JPAQueryFactory(em);
+		 * 
+		 * QUservo qUservo = QUservo.uservo;
+		 * 
+		 * String findByNickName = userRepo.findById(uservo.getNickname()).get();
+		 * qUservo = query.selectFrom(qUservo)
+		 * .where(qUservo.nickname.eq(uservo)).fetchOne();
+		 */
+		Optional<Uservo> findNickName = userRepo.findByNickName(uservo.getNickname());
+		if (findNickName.isPresent()) 
+			return findNickName.get();
+		else return null;
+			
 	}
 
 	// 유저를 리스트로 담아서 뿌려주는 임플 메소드
@@ -43,16 +57,19 @@ public class UserServiceImpl implements UserService {
 		return userRepo.getSearchKeyword(searchKeyword);
 	}
 	@Override
-	public List<Uservo> getUservoListOrderByFollowingCountDes(Uservo Uservo){
-		return userRepo.findAllByIdOrderbyFollowingCountDESC(Uservo);
+
+	public List<Uservo> getUservoListOrderByFollowingCountDes(Uservo uservo){
+		return userRepo.findAllByIdOrderbyFollowingCountDESC(uservo);
+
 
 	}
-
+	// test용 메서드
 	@Override
 	public Optional<Uservo> insertUserId(Uservo user) {
 		
 		return userRepo.findById(new Uservo().getUserId());
 	}
+
 	public int joinUser(Uservo Uservo) {
 		// TODO Auto-generated method stub
 		return userMapper.joinUser(Uservo);

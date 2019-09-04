@@ -1,13 +1,19 @@
 package com.example.demo;
 
+import java.util.List;
+import java.util.Optional;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import com.example.demo.domain.mypage.Uservo;
+import com.example.demo.domain.review.ReviewRegistrationvo;
 import com.example.demo.service.review.ReviewRepository;
 import com.example.demo.service.review.ReviewService;
 import com.example.demo.service.user.UserRepository;
@@ -89,6 +95,18 @@ public class BabbingApplicationTests {
 	 * 
 	 * }
 	 */
-	
+	/*
+	 * @Test public void aaa () { List<Uservo> uservo = null;
+	 * List<ReviewRegistrationvo> reviewRegistrationvo = null;
+	 * 
+	 * reviewRegistrationvo = reviewRepo.findAll(); uservo =(List<Uservo>)
+	 * userRepo.findAll(); em.persist(uservo); em.persist(reviewRegistrationvo);
+	 * reviewRegistrationvo.setUserId(uservo.UserId());
+	 * uservo.setUserId(uservo.getUserId());
+	 * System.out.println(reviewRegistrationvo.toString());
+	 * System.out.println(uservo.toString());
+	 * 
+	 * }
+	 */
 	
 }

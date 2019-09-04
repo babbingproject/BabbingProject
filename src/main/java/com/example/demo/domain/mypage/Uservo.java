@@ -72,6 +72,7 @@ public class Uservo {
 	private Date logDate;
 	private String approvalStatus;
 	private String approvalKey;
+
 	@Column(name = "user_time")
 	private Integer userTime;
 
@@ -81,11 +82,10 @@ public class Uservo {
 	@OneToMany(mappedBy = "uservo", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<ReviewRegistrationvo> reviewRegistrationList = new ArrayList<ReviewRegistrationvo>();
 
+
+
 	@OneToMany(mappedBy = "uservo", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
 	public List<Commentvo> CommentList = new ArrayList<Commentvo>();
 
-
-//	@OneToMany(mappedBy="Uservo", fetch=FetchType.EAGER, cascade=CascadeType.ALL)
-//	private List<ReviewRegistrationvo> reviewRegistrationList = new ArrayList<ReviewRegistrationvo>(); 
 
 }

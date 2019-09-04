@@ -10,7 +10,9 @@ import com.querydsl.core.Tuple;
 
 public interface ReviewService {
 
-	List<Uservo> selectUservoInfo();
+
+//	List<Uservo> selectUservoInfo();
+
 
 	List<Object[]> getKoreanTopSix();
 
@@ -34,7 +36,7 @@ public interface ReviewService {
 
 	List<Object[]> getSearchKeyword(String searchKeyword);
 
-	void insertReview(ReviewRegistrationvo reviewRegistrationvo, Uservo Uservo);
+
 
 	List<ReviewRegistrationvo> selectReviewList();
 	
@@ -42,4 +44,16 @@ public interface ReviewService {
 
 //	Tuple selectReviewIdJoinUserId(Uservo Uservo, ReviewRegistrationvo reviewRegistrationvo);
 
+	void insertReview(ReviewRegistrationvo reviewRegistrationvo);
+
+
+
+	public ReviewRegistrationvo getReviewView(ReviewRegistrationvo reviewRegistrationvo); 
+	
+	Object selectReviewJoinUserNickName(Uservo uservo, ReviewRegistrationvo reviewRegistrationvo);
+	
+	void updateReview(ReviewRegistrationvo reviewRegistrationvo);
+	
+	void deleteReview(ReviewRegistrationvo reviewRegistrationvo);
+	
 }
