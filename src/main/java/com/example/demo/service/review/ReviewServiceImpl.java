@@ -10,6 +10,8 @@ import org.springframework.stereotype.Service;
 
 import com.example.demo.domain.mypage.QUservo;
 import com.example.demo.domain.mypage.Uservo;
+import com.example.demo.domain.review.Commentvo;
+import com.example.demo.domain.review.QCommentvo;
 import com.example.demo.domain.review.QReviewRegistrationvo;
 import com.example.demo.domain.review.ReviewRegistrationvo;
 import com.example.demo.service.user.UserRepository;
@@ -98,7 +100,6 @@ public class ReviewServiceImpl implements ReviewService {
 
 	public void insertReview(ReviewRegistrationvo reviewRegistrationvo) {
 
-
 		reviewRepo.save(reviewRegistrationvo);
 	}
 
@@ -114,23 +115,31 @@ public class ReviewServiceImpl implements ReviewService {
 	}
 
 	@Override
-
-	public Object selectReviewJoinUserNickName(Uservo uservo, ReviewRegistrationvo reviewRegistrationvo) { 
+	public List<Object> selectReviewJoinReviewAndComment(Uservo uservo, 
+			ReviewRegistrationvo reviewRegistrationvo, Commentvo commentvo) {
 		JPAQueryFactory query = new JPAQueryFactory(em);
 //		JPAQuery<Object> query = new JPAQuery<Object>(em);
 
 		QUservo qUservo = QUservo.uservo;
-		QReviewRegistrationvo qreviewRegistrationvo = QReviewRegistrationvo.reviewRegistrationvo;
+		QReviewRegistrationvo qReviewRegistrationvo = QReviewRegistrationvo.reviewRegistrationvo;
+		QCommentvo qCommentvo = QCommentvo.commentvo;
+		
+		
 
-		Object joinResult = query.from(qreviewRegistrationvo)
-				.leftJoin(qreviewRegistrationvo.uservo, qUservo).fetchFirst();
-
-		return joinResult;
+		/*
+		 * return query.from(qReviewRegistrationvo)
+		 * .innerJoin(qReviewRegistrationvo.commentList, qCommentvo)
+		 * .on(qReviewRegistrationvo.uservo.userId.eq(qCommentvo.uservo.userId))
+		 * .orderBy(qReviewRegistrationvo.reviewId.desc()).fetch();
+		 */
+		return null;
 
 	}
 
 	@Override
-	public ReviewRegistrationvo getReviewView(ReviewRegistrationvo reviewRegistrationvo) {
+	public ReviewRegistrationvo selectReviewView(ReviewRegistrationvo reviewRegistrationvo) {
+		
+		
 		return reviewRepo.findById(reviewRegistrationvo.getReviewId()).get();
 
 	}

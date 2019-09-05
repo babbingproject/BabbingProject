@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 import com.example.demo.domain.mypage.Uservo;
+import com.example.demo.domain.review.Commentvo;
 import com.example.demo.domain.review.ReviewRegistrationvo;
 import com.querydsl.core.Tuple;
 
@@ -42,9 +43,9 @@ public interface ReviewService {
 	List<ReviewRegistrationvo> selectReviewList(ReviewRegistrationvo reviewRegistrationvo);
 
 
-	public ReviewRegistrationvo getReviewView(ReviewRegistrationvo reviewRegistrationvo); 
+	public ReviewRegistrationvo selectReviewView(ReviewRegistrationvo registrationvo); 
 	
-	Object selectReviewJoinUserNickName(Uservo uservo, ReviewRegistrationvo reviewRegistrationvo);
+	List<Object> selectReviewJoinReviewAndComment(Uservo uservo, ReviewRegistrationvo reviewRegistrationvo, Commentvo commentvo);
 	
 	void updateReview(ReviewRegistrationvo reviewRegistrationvo);
 	

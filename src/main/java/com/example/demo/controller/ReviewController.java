@@ -19,6 +19,7 @@ import com.example.demo.domain.mypage.Uservo;
 import com.example.demo.domain.review.Commentvo;
 import com.example.demo.domain.review.ReviewImagevo;
 import com.example.demo.domain.review.ReviewRegistrationvo;
+import com.example.demo.service.review.CommentService;
 import com.example.demo.service.review.ReviewRepository;
 import com.example.demo.service.review.ReviewService;
 import com.example.demo.service.review.image.ReviewImageService;
@@ -36,6 +37,9 @@ public class ReviewController {
 	
 	@Autowired
 	UserService userService;
+	
+	@Autowired
+	CommentService commentService;
 	
 	@Autowired
 	ReviewImageService reviewImageService;
@@ -92,13 +96,19 @@ public class ReviewController {
 		return "redirect:doReviewList";
 	}
 	@GetMapping("/doReviewView")
-	public String reviewVIew(@ModelAttribute("uservo") Uservo uservo, ReviewRegistrationvo reviewRegistrationvo, Commentvo commentvo , Model model) {
+	public String getReviewVIew(@ModelAttribute("uservo") Uservo uservo, ReviewRegistrationvo reviewRegistrationvo, Commentvo commentvo , Model model) {
 		if (uservo.getNickname() == null) {
 			return "redirect:login";
 		}
 		
-		model.addAttribute("comment", commentvo);
-		model.addAttribute("reviewView", reviewService.getReviewView(reviewRegistrationvo));
+//		int userId = uservo.getUserId();
+		
+		
+		model.addAttribute("commentList", commentService.selectCommentListAllById(reviewRegistrationvo.getReviewId()));
+//		logger.info(model.toString());
+		model.addAttribute("reviewView", reviewService.selectReviewView(reviewRegistrationvo));
+		
+		
 		return "th/review/reviewView"; 
 	}
 	
@@ -107,8 +117,9 @@ public class ReviewController {
 		if (uservo.getNickname() == null) {
 			return "redirect:login";
 		}
-		logger.info(uservo.toString());
-		logger.info(reviewRegistrationvo.toString());
+		
+//		logger.info(uservo.toString());
+//		logger.info(reviewRegistrationvo.toString());
 		reviewService.updateReview(reviewRegistrationvo);		
 		return "forward:doReviewList";
 	}
@@ -118,24 +129,27 @@ public class ReviewController {
 			return "redirect:login";
 		}
 				
+		
 		reviewService.deleteReview(reviewRegistrationvo);
 		return "forward:doReviewList";
 	}
 	
 	@RequestMapping("/doReviewList")
 	public String getReviewList(@ModelAttribute("uservo") Uservo uservo,
-			Model model, ReviewRegistrationvo reviewRegistrationvo) {
+			Model model, ReviewRegistrationvo reviewRegistrationvo, Commentvo commentvo) {
 		if (uservo.getNickname()== null) {
 			return "redirect:login";
 		}
 
 		List<ReviewRegistrationvo> reviewList = reviewService.selectReviewList(reviewRegistrationvo);
 
-		
-//		model.addAttribute("reviewAndNickName", reviewService.selectReviewJoinUserNickName(uservo, reviewRegistrationvo));		
+		commentvo.setReviewRegistrationvo(reviewRegistrationvo);
+//		model.addAttribute("reviewAndNickName", reviewService.selectReviewJoinUserNickName(uservo, reviewRegistrationvo, commentvo));		
 		model.addAttribute("reviewList", reviewList);
 		
-		logger.info(model.toString());
+//		logger.info(model.toString());
 		return "th/review/reviewList";
 	}
+	
+	
 }

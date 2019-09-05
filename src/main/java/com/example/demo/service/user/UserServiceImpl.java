@@ -35,7 +35,7 @@ public class UserServiceImpl implements UserService   {
 		 * qUservo = query.selectFrom(qUservo)
 		 * .where(qUservo.nickname.eq(uservo)).fetchOne();
 		 */
-		logger.info(uservo.toString());
+//		logger.info(uservo.toString());
 		Optional<Uservo> findNickName = userRepo.findByNickName(uservo.getNickname());
 		if (findNickName.isPresent()) 
 			return findNickName.get();

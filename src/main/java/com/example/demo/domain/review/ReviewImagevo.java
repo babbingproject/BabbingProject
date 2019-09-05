@@ -26,20 +26,22 @@ public class ReviewImagevo {
 
 	@Id 
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "img_id")
+	@Column
 	private int imgId;
 	private String img;
 	private String imgReview;
 	
-	@ManyToOne
-	@JoinColumn(name="reviewId", nullable=false, insertable=false, updatable=false)
-	private ReviewRegistrationvo reviewId;
-	
+	/*
+	 * @ManyToOne
+	 * 
+	 * @JoinColumn(name="reviewId", nullable=false, insertable=false,
+	 * updatable=false) private ReviewRegistrationvo reviewId;
+	 */	
 	@ManyToOne
 	@JoinColumn(name = "reviewId", nullable = false)
 	private ReviewRegistrationvo reviewRegistrationvo;
 	
-	@OneToMany(mappedBy = "reviewImagevo", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(mappedBy = "reviewImagevo",  cascade = CascadeType.ALL)
 	private List<Tagvo> tagList = new ArrayList<Tagvo>();
 
 	

@@ -36,13 +36,13 @@ public class LoginTestReviewController {
 	}
 	@PostMapping("/login")
 	public String login(Uservo uservo, Model model) {
-		logger.info(uservo.toString());
+//		logger.info(uservo.toString());
 		Uservo findUservo = userService.getUser(uservo);
 		
 		if (findUservo !=null
 				&& findUservo.getPassword().equals(uservo.getPassword())) {
 			model.addAttribute("uservo", findUservo);
-			System.out.println(model.toString());
+//			System.out.println(model.toString());
 			return "forward:doReviewList";
 		}else {
 			return "redirect:login";

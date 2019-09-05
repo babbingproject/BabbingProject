@@ -19,18 +19,18 @@
 			<th bgcolor="orange" width="150">등록일</th>
 			<th bgcolor="orange" width="100">조회수</th>
 		</tr>
-		<tr th:each="reviewList, state : ${reviewAndNickName}">
+		<tr th:each="reviewList, state : ${reviewList}">
 			
 <!-- 			<td><img th:src="${userInfo.profile_img}" width="100" height="100"></td> -->
 <!-- 			<td th:text="${reviewList.reviewId}"></td> -->
-			<td th:text="${state.count}"></td>			
-			<td><a th:href="@{/doReviewView(reviewId=${reviewAndNickName.reviewId})}"
+			<td th:text="${reviewList.reviewId}"></td>			
+			<td><a th:href="@{/doReviewView(reviewId=${reviewList.reviewId})}"
 				th:text="${reviewList.title}"></a></td>
 						
-			<td th:text="${reviewAndNickName.writer}"></td>
+			<td th:text="${reviewList.writer}"></td>
 <!-- 			<td th:text="${reviewList.writeDate}"></td> -->
 			<td th:text="${#dates.format(reviewList.writeDate,'yyyy-MM-dd')}"></td>
-			<td th:text="${reviewAndNickName.cnt}"></td>		
+			<td th:text="${reviewList.cnt}"></td>		
 		</tr>
 	</table>
 	<br>

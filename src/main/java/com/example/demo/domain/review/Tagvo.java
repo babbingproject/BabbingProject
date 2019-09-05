@@ -32,10 +32,11 @@ public class Tagvo {
 	@JoinColumn(name = "imgId", nullable = false)
 	private ReviewImagevo reviewImagevo;
 
-	public void setReviewImagevo(ReviewImagevo reviewImagevo) {
-		this.reviewImagevo = reviewImagevo;
-		reviewImagevo.getTagList().add(this);
-
-	}
+	/*
+	 * public void setReviewImagevo(ReviewImagevo reviewImagevo) {
+	 * this.reviewImagevo = reviewImagevo; reviewImagevo.getTagList().add(this);
+	 * 
+	 * }
+	 */
 
 }

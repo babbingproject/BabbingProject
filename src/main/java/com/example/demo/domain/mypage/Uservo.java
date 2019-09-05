@@ -24,13 +24,12 @@ import lombok.ToString;
 
 @Getter
 @Setter
-@ToString(exclude = "reviewRegistrationList")
+@ToString(exclude = {"reviewRegistrationList", "commentList"})
 @Entity
 public class Uservo {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "user_id")
 	private int userId;
 	private String userEmail;
 	private String nickname;
@@ -76,16 +75,10 @@ public class Uservo {
 	// 세션 테스트용 임시컬럼
 	private String role;
 
-	@OneToMany(mappedBy = "uservo", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(mappedBy = "uservo", cascade = CascadeType.ALL)
 	private List<ReviewRegistrationvo> reviewRegistrationList = new ArrayList<ReviewRegistrationvo>();
 
-
-	
-	
-	
-
-
-	@OneToMany(mappedBy = "uservo", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
-	public List<Commentvo> CommentList = new ArrayList<Commentvo>();
+	@OneToMany(mappedBy = "uservo", fetch = FetchType.EAGER)
+	public List<Commentvo> commentList = new ArrayList<Commentvo>();
 
 }
