@@ -9,11 +9,9 @@ import com.example.demo.domain.mypage.Uservo;
 @Mapper
 public interface UserMapper {
 	public int joinUser (Uservo userVO); // 회원가입 입니다.
-
 	public int emailCheck(@Param("userEmail") String userEmail);// 이메일 중복 확인 입니다.
 	//@Param("userEmail") 생략해도 돕니다.
 	public int nickCheck(String nickname);// 닉네임 중복 확인 입니다.
-	
 	
 	
 	public int GetKey(String userEmail, String userKey); // 유저 인증키 생성 메서드
