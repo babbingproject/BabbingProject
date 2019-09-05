@@ -43,7 +43,7 @@ h3 {
 					src="${pageContext.request.contextPath}/images/Bobbing-logo.png"
 					style="height: 80px; margin-left: 10px;" /></a> <br> <br>
 				<div
-					style="background-color: #FF007F; width: 100%; height: 50px; text-align: center; color: white;">
+					style="background-color: #FF4D80; width: 100%; height: 50px; text-align: center; color: white;">
 					<h3>네이버 로그인으로 밥빙 메인으로 갑니다~~</h3>
 				</div>
 				<br>

@@ -26,7 +26,7 @@ public class UserController {
 
 	@RequestMapping("/")
 	public String userMain() {
-		return "th/main/homemain";
+		return "th/main/index1";
 	}
 
 	@RequestMapping("/joinForm")

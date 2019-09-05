@@ -1,13 +1,13 @@
 package com.example.demo.controller;
 
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.stereotype.Component;
 import java.io.IOException;
 import java.util.UUID;
 
 import javax.servlet.http.HttpSession;
 
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 
 import com.github.scribejava.core.builder.ServiceBuilder;
@@ -19,7 +19,6 @@ import com.github.scribejava.core.oauth.OAuth20Service;
 
 @Configuration
 @ComponentScan("com.example.demo.controller.NaverLoginBO")
-
 @Component
 public class NaverLoginBO {
 	/* 인증 요청문을 구성하는 파라미터 */
