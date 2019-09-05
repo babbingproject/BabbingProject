@@ -14,11 +14,9 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.dao.UserMapper;
-import com.example.demo.domain.mypage.Uservo;
 
 @Service
-public class UserMailSendServiceImpl implements UserMailSendService {
-
+public class PwSearchServiceImpl implements PwSearchService {
 	@Autowired
 	private JavaMailSender mailSender;
 	@Autowired
@@ -26,9 +24,9 @@ public class UserMailSendServiceImpl implements UserMailSendService {
 	@Autowired
 	private UserMapper userMapper;
 
-	// 이메일 난수 만드는 메서드
 	private String init() {
 		Random ran = new Random();
+		
 		StringBuffer sb = new StringBuffer();
 		int num = 0;
 
@@ -57,21 +55,23 @@ public class UserMailSendServiceImpl implements UserMailSendService {
 		return init();
 	}
 
-	// 회원가입 발송 이메일(인증키 발송)
-
+	//임시 비밀번호 이메일 발송
 	@Override
-	public void mailSendWithUserKey(String userEmail, String nickname, HttpServletRequest request) {
+	public void mailSendWithPassword(String userEmail, String nickname, HttpServletRequest request) {
 		// TODO Auto-generated method stub
-		String key = getKey(false, 20);
+		// 비밀번호는 8자리로 보내고 데이터베이스 비밀번호를 바꿔준다
+		String password = getKey(false, 10);
 		userMapper = sqlSession.getMapper(UserMapper.class);
-		userMapper.GetKey(userEmail, key);
+		userMapper.searchPassword(userEmail, password);
 		MimeMessage mail = mailSender.createMimeMessage();
-		String htmlStr = "<h2>안녕하세요 밥빙 입니다!</h2><br><br>" + "<h3>" + userEmail + "님</h3>"
-				+ "<p>인증하기 버튼을 누르시면 로그인을 하실 수 있습니다 : " + "<a href='http://localhost:80" + request.getContextPath()
-				+ "/user/key_alter?userEmail=" + userEmail + "&userKey=" + key + "'>인증하기</a></p>"
-				+ "(혹시 본인이 요청하시지 않은 인증메일 이라면 개인정보 유출 여부를 확인하세요!)";
+		String htmlStr = "<h2>안녕하세요 '" + userEmail + "' 님</h2><br><br>" + "<p>비밀번호 찾기를 신청해주셔서 임시 비밀번호를 발급해드렸습니다.</p>"
+				+ "<p>임시로 발급 드린 비밀번호는 <h2 style='color : blue'>'" + password
+				+ "'</h2>이며 로그인 후 마이페이지에서 비밀번호를 변경해주시거나 하단의</p><br>"
+				+"<p>비밀번호 변경하기 버튼을 누르시면 바로 변경 페이지로 이동합니다! : " + "<h3><a href=http://localhost:80"+request.getContextPath()
+				+ "/userpw/key_alter?userEmail=" + userEmail + "&password=" + password + "'> 즉시 비밀번호 변경하기</a></p>"
+				+ "(혹시 잘못 전달된 메일이라면 이 이메일을 무시하셔도 됩니다)";
 		try {
-			mail.setSubject("[본인인증]안녕하세요! 밥빙 인증메일입니다", "utf-8");
+			mail.setSubject("[비밀번호 재발급] 임시 비밀번호가 발급되었습니다", "utf-8");
 			mail.setText(htmlStr, "utf-8", "html");
 			mail.addRecipient(RecipientType.TO, new InternetAddress(userEmail));
 			mailSender.send(mail);
@@ -79,19 +79,24 @@ public class UserMailSendServiceImpl implements UserMailSendService {
 			e.printStackTrace();
 		}
 
+		// 비밀번호 암호화해주는 메서드
+		password = UserSha256.encrypt(password);
+		// 데이터 베이스 값은 암호한 값으로 저장시킨다.
+		userMapper.searchPassword(userEmail, password);
+		System.out.println("메일전송 완료 비번");
+
 	}
 
 	@Override
-	public int alter_userKey_service(String userEmail, String key) {
+	public int searchPassword(String userEmail, String password) {
+		// TODO Auto-generated method stub
 		int resultCnt = 0;
 
 		userMapper = sqlSession.getMapper(UserMapper.class);
-		resultCnt = userMapper.alter_userKey(userEmail, key);
+		resultCnt = userMapper.searchPassword(userEmail, password);
 
 		return resultCnt;
-
 	}
 
-	
 
 }

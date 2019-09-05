@@ -56,7 +56,7 @@ public class Uservo {
 	@Column(nullable = true)
 	private Integer commentCount;
 	@Column(nullable = true)
-	private Integer userScore;
+	private Double userScore;
 	@Column(nullable = true)
 	private Integer totalCount;
 	@Column(nullable = true)

@@ -6,7 +6,10 @@ public interface UserMailSendService {
 
 	public void mailSendWithUserKey(String userEmail, String nickname, HttpServletRequest request);
 
-	public int alter_userKey_service(String user_id, String key);
+	public int alter_userKey_service(String userEmail, String key);
+
+	
+	
 
 
 

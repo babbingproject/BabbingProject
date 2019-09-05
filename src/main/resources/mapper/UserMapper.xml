@@ -54,7 +54,7 @@ SELECT COUNT(*)
 		SET userKey = 'Y'
 		WHERE userEmail = #{param1} and userKey = #{param2}
 	</update>
-
+	<!--로그인  -->
 	<select id="loginUser"
 		resultType="com.example.demo.domain.mypage.Uservo">
 		SELECT *
@@ -62,6 +62,12 @@ SELECT COUNT(*)
 		WHERE userEmail =#{param1} and password= #{param2}
 	</select>
 
+	<!-- 회원 임시 비밀번호-->
+	<update id="searchPassword" parameterType="Map">
+		UPDATE uservo 
+		SET password = #{param2} 
+		WHERE userEmail = #{param1} 
+	</update>
 
 </mapper>
 

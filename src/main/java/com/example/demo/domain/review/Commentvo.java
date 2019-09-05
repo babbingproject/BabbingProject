@@ -19,7 +19,7 @@ import lombok.ToString;
 
 @Getter
 @Setter
-@ToString(exclude = "uservo")
+@ToString(exclude = {"uservo","reviewRegistrationvo"})
 @Entity
 public class Commentvo {
 	@Id

@@ -11,16 +11,20 @@
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <!-- ajax를 위한 CDN 방식 라이브러리 -->
-<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script type="text/javascript"
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script type="text/javascript">
 	$(function() {
 
-		$('#loginBtn').click(function() {
+		$('#loginBtn')
+				.click(
+						function() {
 							var userEmail = $('#userEmail').val();
 							var pw = $('#inputPassword').val();
 							var remember_us = $('#remember_us').is(':checked');
-							 $.ajax({
-								 
+							$
+									.ajax({
+
 										async : true,
 										type : 'POST',
 										url : "/logincon",
@@ -31,8 +35,9 @@
 										},
 										success : function(result) {
 											if (result == 0) { //로그인 실패시
-												$("#spanLoginCheck").text("로그인 정보를 정확히 입력해주세요.");
-												
+												$("#spanLoginCheck").text(
+														"로그인 정보를 정확히 입력해주세요.");
+
 											} else if (result == -2) { //인증하지 않았다면?
 												console.log(result);
 												$('#spanLoginCheck').text(
@@ -48,10 +53,10 @@
 												location.href = '${pageContext.request.contextPath}/loginss'; //컨트롤러를 호출해서 화면전환
 											}
 										}
-									}); 
+									});
 						});
 	});
-</script>	
+</script>
 </head>
 <body>
 	<!-- Cookie가 비어있지 않을 때 checked 속성을 줌 -->
@@ -61,11 +66,14 @@
 	<div class="w3-content w3-container w3-margin-top">
 		<div class="w3-container w3-card-4">
 			<div class="w3-center w3-large w3-margin-top">
+				<a><img
+					src="${pageContext.request.contextPath}/images/Bobbing-logo.png"
+					style="height: 80px; margin-left: 10px;" /></a> <br> <br>
 				<h3>밥빙 로그인 테스트</h3>
 			</div>
 			<div>
-				 <form  id="login" method="post">
-				<!-- <form id="login" method="post"> -->
+				<form id="login" method="post">
+					<!-- <form id="login" method="post"> -->
 
 					<!-- 세션에 저장한 카카오 아이디를 가져옴 -->
 					<input type="hidden" name="kakao_id" value="${kakao_id}" />
@@ -74,8 +82,7 @@
 							name="userEmail" id="userEmail" placeholder="Email"
 							value="${cookie.user_check.value}" required="required">
 						<!-- 쿠기에 저장된 벨류(아이디값)을 꺼내옵니다. 서비스에서 쿠키지정 ->컨르롤러로 벨류 전달 -->
-						<span id="spanLoginCheck"
-							class="w3-text-red"></span> 
+						<span id="spanLoginCheck" class="w3-text-red"></span>
 					</p>
 					<p>
 						<label>Password</label><br> <input type="password"
@@ -85,25 +92,36 @@
 					</p>
 					<p>
 						<label class="font-weight-bold text-white"> <input
-							type="checkbox"  id="remember_us" name="remember_userId"
+							type="checkbox" id="remember_us" name="remember_userId"
 							${checked}> 이메일 기억하기 <!-- 위에 벨류값에 따라 checked가 실행되거나 안되게 합니다. -->
 						</label>
 					</p>
 					<p>
-						 <input type="button" id="loginBtn"
-							class="w3-button w3-block w3-black w3-ripple w3-margin-top w3-margin-bottom w3-round"
-							  value="LOGIN"> 
-						<a
-							class="w3-button w3-block w3-black w3-ripple w3-margin-top w3-round"
-							href="${pageContext.request.contextPath}/joinForm">JOIN</a>
-							<a
-							class="w3-button w3-block w3-black w3-ripple w3-margin-top w3-round"
-							href="${pageContext.request.contextPath}/">HOME</a>
+						<input type="button" id="loginBtn"
+							class="w3-button w3-block w3-pink w3-ripple w3-margin-top w3-margin-bottom w3-round"
+							value="LOGIN"> <a
+							class="w3-button w3-block w3-pink w3-ripple w3-margin-top w3-round"
+							href="${pageContext.request.contextPath}/joinForm">JOIN</a> <a
+							class="w3-button w3-block w3-pink w3-ripple w3-margin-top w3-round"
+							href="${pageContext.request.contextPath}/">HOME</a> <a href="">
+							<img
+							src="${pageContext.request.contextPath}/images/facebook_big.png"
+							width="30%" height="50"
+							class=" w3-ripple w3-margin-top w3-margin-bottom " /> <img
+							id="socialimage"
+							src="${pageContext.request.contextPath}/images/kakao_account_login_btn_medium_narrow (1).png"
+							height="50" align="middle" width="33%"  /> <img
+							src="${pageContext.request.contextPath}/images/네이버 아이디로 로그인_완성형_Green.PNG"
+						 align="middle" height="50" width="35%"/>
+
+
+						</a>
 					</p>
 					<a href="${pageContext.request.contextPath}/userSearch">&nbsp;
 						비밀번호 찾기</a>
+
 				</form>
-				<!-- 소셜 로그인 시작  -->
+				<%-- <!-- 소셜 로그인 시작  -->
 				<div class="form-group socialimage" id="facebookBtn">
 					<a href=""> <img
 						src="${pageContext.request.contextPath}/images/facebook_big.png"
@@ -122,7 +140,7 @@
 					<a href=""> <img
 						src="${pageContext.request.contextPath}/images/네이버 아이디로 로그인_완성형_Green.PNG"
 						width="25%" align="middle" height="100%" />
-					</a>
+					</a> --%>
 				</div>
 			</div>
 		</div>
