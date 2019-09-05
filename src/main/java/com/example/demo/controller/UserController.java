@@ -83,6 +83,6 @@ public class UserController {
 	}
 	@RequestMapping("/loginss")
 	public String loginss() {
-		return "HomeMainJsp";
+		return "redirect:/index";
 	}
 }

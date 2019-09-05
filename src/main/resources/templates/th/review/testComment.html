@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>댓글 테스트</title>
+<meta http-equiv="Content-type" content="text/html; charset=UTF-8">
+<link rel="stylesheet"
+	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
+</head>
+<body>
+	<body th:align="center">
+	<h1>리뷰 글 상세</h1>
+	<form th:action="@{updateReviewView}" method="post">
+	<!-- 	<input id="reviewId" name="reviewId" type="hidden"
+			th:value="${reviewView.reviewId}"> <input id="userId"
+			name="userId" type="hidden" th:value="${session['uservo'].userId}">
+		<table th:align="center" border="1" th:cellpadding="0"
+			th:cellspacing="0"> -->
+			<!-- <tr>
+				<td bgcolor="oange" th:text="제목" width="80"></td>
+				<td th:value="${joinReviewList.reviewRegistration.title}"></td>
+				<td><input name="title" type="text"
+					th:value="${reviewView.title}"></td>
+			</tr>
+			<tr>
+				<td bgcolor="orange" th:text="작성자"></td>
+				<td th:text="${joinReviewList.reviewRegistration.uservo.nickname}"></td>
+				<td th:text="${reviewView.writer}"></td>
+			</tr>
+			<tr>
+				<td bgcolor="orange" th:text="장점"></td>
+				<td><textarea name="content" th:text="${joinReviewList.advantages}" rows="10" cols="40"></textarea></td>
+				<td><textarea name="advantages"
+						th:text="${reviewView.advantages}" rows="10" cols="40"></textarea></td>
+			</tr>
+			<tr>
+				<td bgcolor="orange" th:text="단점"></td>
+				<td><textarea name="disadvantages"
+						th:text="${reviewView.disadvantages}" rows="10" cols="40"></textarea></td>
+			</tr>
+			<tr>
+				<td bgcolor="orange" th:text="등록일"></td>
+				<td th:text="${reviewView.writeDate}"></td>
+				<td th:text="${#dates.format(reviewView.writeDate,'yyyy-MM-dd')}"></td>
+			</tr>
+			<tr>
+				<td colspan="2" align="center"><input type="submit"
+					value="리뷰 수정"></td>
+			</tr> -->
+		</table>
+		
+		<div>		
+			<div>
+				<ul>
+				<!-- <li th:value="${commentList.contents}"> -->
+				</ul>	  
+<!-- 				<input type="text" name="nickName" id="newReplyWriter"> -->
+			</div>
+			<div>
+				REPLY TEXT <input type="text" name="contents" id="newReplyText">
+			</div>
+			<button id="replyAddBtn">ADD REPLY</button>
+	</div>
+	</form>
+
+<script id="template" type="text/x-handlebars-template">
+	{{#each .}}
+	<li class="replyLi" data-rno{{rno}}>
+	<i class="fa da-comments bg-blue"></i>
+		<div class="timeline-item">
+		<span class="time">
+			<i class="fa fa-clock-o"></i>{{prettifyDate regdate}}
+		</span>
+	<h3 class="timeline-handler"><strong>{{rno}}</strong> -{{replyer}}</h3>
+	<div class="timeline-body">{{replytext}}>
+		<div class="timeline-footer">
+			<a class="btn btn-primary btn-xs"
+				data-toggle="modal" data-target="#modifyModel">Modify</a>
+		</div>
+	</div>
+	</li>
+	{{/each}}
+</script>
+
+	<script>
+		Handlebars.registerHelper("prettifyDate", function(timeValue) {
+			var dateObj = new Date(timeValue);
+			var year = dateObj.getFullYear();
+			var month = dateObj.getMonth() + 1;
+			var date = dateObj.getDate();
+			return year + " / " + month + " / " + date;
+		});
+
+		var printDate = function(replyArr, target, temmpateObject) {
+
+			var template = Handlebars.compile(templateObject.html());
+
+			var html = template(replyArr);
+			$(".replyLi").remove();
+			target.after(html);
+		}
+
+		var printPaging = function(pageMaker, target) {
+
+			var str = "";
+
+			if (pageMaker.prev) {
+				str += "<li><a href = '" + (pageMaker.startPage.startPage - 1)
+						+ "'><< </a></li>";
+			}
+
+			for (var i = pageMaker.startPage, len = pageMaker.endPage; i <= len; i++) {
+				var strClass = pageMaker.cri.page == i ? 'class= active' : '';
+			}
+
+			if (pageMaker.next) {
+				str += "<li><a href='" + (pageMaker.endPage + 1)
+						+ "'> >> </a></li>";
+			}
+			target.html(str);
+		};
+	</script>
+
+
+	<script>
+		$("#repliesDiv").on("click", function() {
+
+			if ($(".timeline li").size() > 1) {
+				return;
+
+			}
+			getPage("/replies" + reivewId + "/1");
+		});
+
+		$(".pagingnation").on("click", "li a", function(event) {
+
+			event.preventDefault();
+
+			replyPage = $(this).attr("href");
+
+			getPage("/replies/" + reviewId + "/" + replyPage);
+
+		});
+
+		$(function() {
+			$("#replyAddBtn").on("click", function() {
+
+				var contents = $("#newReplyText").val();
+				var reviewId = $("#reviewId").val();
+				var userId = $("#userId").val();
+				alert(reviewId);
+				alert(userId);
+
+				$.ajax({
+					type : 'post',
+					url : '/addComment',
+					data : {
+						contents : contents,
+						reviewId : reviewId,
+						userId : userId
+					},
+					success : function(result) {
+						if (result) {
+							alert("등록 되었습니다");
+						} else {
+							alert("오류가 발생했습니다.");
+						}
+					}
+				});
+
+			});
+		});
+	</script>
+</body>
+
+
+</html>

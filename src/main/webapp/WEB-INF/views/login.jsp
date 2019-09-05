@@ -103,7 +103,7 @@
 							class="w3-button w3-block w3-pink w3-ripple w3-margin-top w3-round"
 							href="${pageContext.request.contextPath}/joinForm">JOIN</a> <a
 							class="w3-button w3-block w3-pink w3-ripple w3-margin-top w3-round"
-							href="${pageContext.request.contextPath}/">HOME</a> <a href="">
+							href="${pageContext.request.contextPath}/index">HOME</a> <a href="">
 							<img
 							src="${pageContext.request.contextPath}/images/facebook_big.png"
 							width="30%" height="50"
