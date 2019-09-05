@@ -3,7 +3,5 @@ diff a/pom.xml b/pom.xml	(rejected hunks)
  			<version>1.6.1</version>
  		</dependency>
  
-+<<<<<<< HEAD
- 
- <<<<<<< HEAD
+
  		<!-- https://mvnrepository.com/artifact/commons-codec/commons-codec 비번 
