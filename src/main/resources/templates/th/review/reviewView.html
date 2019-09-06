@@ -3,25 +3,23 @@
 <head>
 <title>리뷰 상세보기</title>
 <meta http-equiv="Content-type" content="text/html; charset=UTF-8">
-<link rel="stylesheet"
-	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<!-- <link rel="stylesheet" -->
+<!-- 	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"> -->
+<!-- <script src="https://code.jquery.com/jquery-1.12.4.js"></script> -->
+
+<!-- <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script> -->
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 </head>
 <body th:align="center">
 	<h1>리뷰 글 상세</h1>
 	<form th:action="@{updateReviewView}" method="post">
 		<input id="reviewId" name="reviewId" type="hidden" th:value="${reviewView.reviewId}">
 		<input id="userId" name="userId" type="hidden" th:value="${session['uservo'].userId}">
-		<table th:align="center" border="1" th:cellpadding="0"
-			th:cellspacing="0">
+		<table th:align="center" border="1" th:cellpadding="0" th:cellspacing="0">
 			<tr>
 				<td bgcolor="oange" th:text="제목" width="80"></td>
 				<!-- <td th:value="${joinReviewList.reviewRegistration.title}"></td> -->
-				<td><input name="title" type="text"
-					th:value="${reviewView.title}"></td>
+				<td><input name="title" type="text"	th:value="${reviewView.title}"></td>
 			</tr>
 			<tr>
 				<td bgcolor="orange" th:text="작성자"></td>
@@ -31,13 +29,11 @@
 			<tr>
 				<td bgcolor="orange" th:text="장점"></td>
 				<!-- <td><textarea name="content" th:text="${joinReviewList.advantages}" rows="10" cols="40"></textarea></td> -->
-				<td><textarea name="advantages"
-						th:text="${reviewView.advantages}" rows="10" cols="40"></textarea></td>
+				<td><textarea name="advantages"	th:text="${reviewView.advantages}" rows="10" cols="40"></textarea></td>
 			</tr>
 			<tr>
 				<td bgcolor="orange" th:text="단점"></td>
-				<td><textarea name="disadvantages"
-						th:text="${reviewView.disadvantages}" rows="10" cols="40"></textarea></td>
+				<td><textarea name="disadvantages" th:text="${reviewView.disadvantages}" rows="10" cols="40"></textarea></td>
 			</tr>
 			<tr>
 				<td bgcolor="orange" th:text="등록일"></td>
@@ -45,52 +41,77 @@
 				<td th:text="${#dates.format(reviewView.writeDate,'yyyy-MM-dd')}"></td>
 			</tr>
 			<tr>
-				<td colspan="2" align="center"><input type="submit"
-					value="리뷰 수정"></td>
+				<td colspan="2" align="center"><input type="submit"	value="리뷰 수정"></td>
 			</tr>
 		</table>
+	</form>
 		
 		<div>		
 			<div>
 				REPLY TEXT <input type="text" name="contents" id="newReplyText">
 			</div>
 			<button id="replyAddBtn">ADD REPLY</button>
-	</div>
-	<div id="abcdef"></div>
-	</form>
+		</div>
+		<table th:align="center" border="1" th:cellpadding="0" th:cellspacing="0">
+			<tr>
+				<td>내용</td>
+				<td>수정</td>
+				<td>삭제</td>
+			</tr>
+			
+			<tr id="commentArea" th:each="comment:${commentList}">
+				<td><span th:text="${comment.contents}"></span></td>
+				<td><a href="#">삭제</a></td>
+				<td><a href="#">수정</a></td>
+			</tr>
+			
+		</table>
 	<script>
+// 	var comment = "[[${comment}]]"
 		$(function() {
 			$("#replyAddBtn").on("click", function() {
-
+				alert("111");
 				var contents = $("#newReplyText").val();
 				var reviewId = $("#reviewId").val();
 				var userId = $("#userId").val();
-				alert("체크1");
-				
-
+				console.log(userId);
 				$.ajax({
-					type : 'post',
-					url : '/addComment',
+					url : '/addComment2',
 					data : {
 						contents : contents,
 						reviewId : reviewId,
 						userId : userId
 					},
-					success : function(commentList) {
+					datatype:'json',
+					contentType: "application/json",
+					success:function(rr) {
+						
+						
+						alert(rr);
+						
 						alert("체크2");
-						var a ="";
-						for(var i in commentList){
-							commentList[i].<div>
-							a+="<p>"+commentList[i].contents+"</p>";
-						}
-						$("#abcdef").append(a);
+						var a = "";
+						a +="<tr>";
+						a +="<td><span>내용</spen></td>";
+						a +="<td>"+rr.contents+"</td>";
+						a +="<td><span>닉네임</spen></td>";
+						a +="<td>"+rr.contents+"</td>";
+						a +="<td><a href='#'>수정</a></td>";
+						a +="<td><a href='/deleteComment?commentId'>삭제</a></td>";
+						a +="</tr>";
+						
+// 						a +="<td><a href='/deleteComment?commentId="+commentList[0].commnetId+"'>삭제</a></td>";
+						$("#commentArea").append(a); 
+					},
+					error:function(ee){
+						alert("fff");
+					},fail:function(ee){
+						alert("hhh");
 					}
 				});
-
 			});
 		});
 	</script>
 		
 </body>
-
 </html>

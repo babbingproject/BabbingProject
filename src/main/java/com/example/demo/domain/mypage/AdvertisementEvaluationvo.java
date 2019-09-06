@@ -3,6 +3,7 @@ package com.example.demo.domain.mypage;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
@@ -17,7 +18,7 @@ import lombok.ToString;
 @Entity
 public class AdvertisementEvaluationvo {
 
-	@Id @GeneratedValue
+	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int evaluationId;
 	private float flavor;
 	private float price;

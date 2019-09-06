@@ -2,6 +2,7 @@ package com.example.demo.domain.review;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 import lombok.Getter;
@@ -13,6 +14,7 @@ import lombok.ToString;
 @ToString
 @Entity
 public class Themevo {
+
 
 	@Id
 	private String themeId;

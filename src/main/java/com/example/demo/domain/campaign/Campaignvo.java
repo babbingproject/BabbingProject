@@ -5,6 +5,7 @@ import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -24,7 +25,8 @@ import lombok.ToString;
 @ToString
 @Entity
 public class Campaignvo {
-	@Id @GeneratedValue
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int campaignId;
 	
 	private String title;
@@ -44,6 +46,7 @@ public class Campaignvo {
 	
 	private String offerHistory;
 	private String remarks;
+
 	
 	@Column(insertable=false, updatable=false, columnDefinition="datetime default now()")
 	private Date writeDate;
@@ -51,10 +54,9 @@ public class Campaignvo {
 	@Temporal(TemporalType.TIMESTAMP)
 	@DateTimeFormat(pattern="yyyy-MM-dd hh:mm")
 	private Date modifiedDate;
-	
+
 	@ManyToOne
-	@JoinColumn(name="advertisement_id", nullable=false)
+	@JoinColumn(name = "advertisement_id", nullable = false)
 	private Advertisementvo advertisementvo;
-	
-	
+
 }

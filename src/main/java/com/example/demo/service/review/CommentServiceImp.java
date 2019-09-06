@@ -28,33 +28,31 @@ public class CommentServiceImp implements CommentService {
 	@PersistenceContext
 	EntityManager em;
 	
-	@Override
-	public Optional<Commentvo> selectCommentListAllById(int reviewId) {
-		
-		
-		/*
-		 * JPAQueryFactory query = new JPAQueryFactory(em);
-		 * 
-		 * QReviewRegistrationvo qReviewRegistrationvo =
-		 * QReviewRegistrationvo.reviewRegistrationvo; QCommentvo qCommentvo =
-		 * QCommentvo.commentvo;
-		 * 
-		 * return query.selectFrom(qCommentvo)
-		 * .where(qCommentvo.reviewRegistrationvo.reviewId.eq(qReviewRegistrationvo.
-		 * reviewId)) .orderBy(qCommentvo.commentId.desc()).distinct().fetch();
-		 */
-		
-		
-		
-		return commentRepo.findById(reviewId);
-		
-	}
+//	@Override
+//	public Optional<Commentvo> selectCommentListAllById(int reviewId) {
+//		
+//		
+//		/*
+//		 * JPAQueryFactory query = new JPAQueryFactory(em);
+//		 * 
+//		 * QReviewRegistrationvo qReviewRegistrationvo =
+//		 * QReviewRegistrationvo.reviewRegistrationvo; QCommentvo qCommentvo =
+//		 * QCommentvo.commentvo;
+//		 * 
+//		 * return query.selectFrom(qCommentvo)
+//		 * .where(qCommentvo.reviewRegistrationvo.reviewId.eq(qReviewRegistrationvo.
+//		 * reviewId)) .orderBy(qCommentvo.commentId.desc()).distinct().fetch();
+//		 */
+//		
+//		
+//		
+//		return commentRepo.findById(reviewId);
+//		
+//	}
 
 	@Override
 	public void insertComment(Commentvo commentvo) {
-				
 		commentRepo.save(commentvo);
-		
 	}
 
 	@Override

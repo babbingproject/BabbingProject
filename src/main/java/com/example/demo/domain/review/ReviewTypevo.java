@@ -2,6 +2,7 @@ package com.example.demo.domain.review;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 import lombok.Getter;
@@ -13,7 +14,7 @@ import lombok.ToString;
 @ToString
 @Entity
 public class ReviewTypevo {
-	@Id @GeneratedValue
+	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int reviewTypeId;
 	private String reviewType;
 
