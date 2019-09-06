@@ -10,11 +10,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.example.demo.domain.mypage.Uservo;
 import com.example.demo.service.login.LoginServiceImpl;
 import com.example.demo.service.user.UserSha256;
-
+@SessionAttributes("uservo")
 @Controller
 public class LoginController {
 
@@ -36,7 +37,7 @@ public class LoginController {
 		int result = loginService.userLogin_service(Uservo, user_check, httpSession);
 		// 로그인 결과값
 		if (result == 1) {
-			Cookie cookie = new Cookie("user_check", Uservo.getUserEmail());
+			Cookie cookie = new Cookie("user_check", Uservo.getUser_email());
 			if (user_check.equals("true")) {
 				response.addCookie(cookie);
 
@@ -49,7 +50,7 @@ public class LoginController {
 			// 세션에 vo 객체 저장
 			httpSession.setAttribute("userSession", Uservo);
 			// 접속자 아이디를 세션에 담는다.
-			httpSession.setAttribute("signedUser", Uservo.getUserEmail());
+			httpSession.setAttribute("signedUser", Uservo.getUser_email());
 		}
 		return result;
 	}

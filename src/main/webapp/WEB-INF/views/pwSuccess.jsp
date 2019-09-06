@@ -46,7 +46,7 @@
 
 							<p>
 								<input type="hidden" value="${sessionScope.signedUser }"
-									name="userEmail"> <input type="password"
+									name="user_email"> <input type="password"
 									class="w3-input" name="password" id="pw" placeholder="새 비밀번호"
 									required="required">
 							</p>

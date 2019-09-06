@@ -38,7 +38,7 @@
 			<form action="user/searchPassword" id="searchBtn2" method="post">
 
 				<p>
-					<input type="text" class="w3-input" name="userEmail"
+					<input type="text" class="w3-input" name="user_email"
 						id="inputEmail_2" placeholder="example@naver.com"
 						required="required">
 					<!-- 쿠기에 저장된 벨류(아이디값)을 꺼내옵니다. 서비스에서 쿠키지정 ->컨르롤러로 벨류 전달 -->

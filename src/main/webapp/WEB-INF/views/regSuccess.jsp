@@ -13,7 +13,7 @@
 		<a><img
 			src="${pageContext.request.contextPath}/images/Bobbing-logo.png"
 			style="height: 80px; margin-left: 10px;" /></a> <br> <br>
-		<h3>안녕하세요, ${param.userEmail} 님</h3>
+		<h3>안녕하세요, ${param.user_email} 님</h3>
 		<br>
 		<p>환영합니다! 밥빙에서 다양한 체험의 기회를 얻으세요!</p>
 		<br>

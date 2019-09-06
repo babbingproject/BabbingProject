@@ -30,8 +30,8 @@
 									.val()
 									|| $.trim($("#nickname").val()) !== $(
 											"#nickname").val()
-									|| $.trim($("#userEmail").val()) !== $(
-											"#userEmail").val()) {
+									|| $.trim($("#user_email").val()) !== $(
+											"#user_email").val()) {
 								alert("공백은 입력이 불가능합니다.");
 								return false;
 							}
@@ -41,8 +41,8 @@
 		/* 이메일 체크 */
 
 		//input에 입력된 값이 변화가 있을때 alert 을 띄운다.
-		$("input[name='userEmail']").on("change", function() {
-			var userEmail = $('#userEmail').val();
+		$("input[name='user_email']").on("change", function() {
+			var user_email = $('#user_email').val();
 
 			//ajax 호출
 
@@ -52,7 +52,7 @@
 				type : 'POST',
 				data : JSON.stringify({
 					// 좌항 - 변수 , 우항 - 입력된 데이터 의미
-					'userEmail' : userEmail
+					'user_email' : user_email
 				}),
 				//요청 url
 				url : "/emailCheck",
@@ -60,7 +60,7 @@
 				dataType : "json",
 				contentType : "application/json; charset=UTF-8",
 				success : function(cnt) {
-					if (userEmail == "") {
+					if (user_email == "") {
 						$("#chktext").css("color", "gray");
 						$("#chktext").text("이메일을 입력해주세요.");
 
@@ -160,7 +160,7 @@
 
 					<p>
 						<label>Email</label><br> <input type="text" class="w3-input"
-							name="userEmail" id="userEmail" placeholder="Email"
+							name="user_email" id="user_email" placeholder="Email"
 							required="required"> <span id="chktext"
 							class="w3-text-red"></span> <span id="chktext2"
 							class="w3-text-blue"></span>

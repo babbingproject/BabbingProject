@@ -34,8 +34,10 @@ public class Uservo {
 	private String password;
 	private String introduce;
 	private String userPhone;
-	private String userKey;// 인증번호
-	private String userEmail;
+	@Column(name = "user_key")
+	private String user_key;// 인증번호
+	@Column(name = "user_email")
+	private String user_email;
 
 	@Column(nullable = true)
 	private String profileImg;

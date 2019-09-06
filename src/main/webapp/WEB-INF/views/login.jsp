@@ -19,7 +19,7 @@
 		$('#loginBtn')
 				.click(
 						function() {
-							var userEmail = $('#userEmail').val();
+							var user_email = $('#user_email').val();
 							var pw = $('#inputPassword').val();
 							var remember_us = $('#remember_us').is(':checked');
 							$
@@ -29,7 +29,7 @@
 										type : 'POST',
 										url : "/logincon",
 										data : {
-											userEmail : userEmail,
+											user_email : user_email,
 											password : pw,
 											remember_userId : remember_us
 										},
@@ -43,8 +43,8 @@
 												$('#spanLoginCheck').text(
 														'이메일 인증을 해주셔야 합니다!');
 											} else if (result == -3) { // 아이디가 사용중이라면?
-												location.href = '${pageContext.request.contextPath}/user/redundant?userEmail='
-														+ userEmail
+												location.href = '${pageContext.request.contextPath}/user/redundant?user_email='
+														+ user_email
 														+ '&password='
 														+ password
 														+ '&remember_userId='
@@ -79,7 +79,7 @@
 					<input type="hidden" name="kakao_id" value="${kakao_id}" />
 					<p>
 						<label>Email</label><br> <input type="text" class="w3-input"
-							name="userEmail" id="userEmail" placeholder="Email"
+							name="user_email" id="user_email" placeholder="Email"
 							value="${cookie.user_check.value}" required="required">
 						<!-- 쿠기에 저장된 벨류(아이디값)을 꺼내옵니다. 서비스에서 쿠키지정 ->컨르롤러로 벨류 전달 -->
 						<span id="spanLoginCheck" class="w3-text-red"></span>

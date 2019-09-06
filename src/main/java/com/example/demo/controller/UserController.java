@@ -27,7 +27,7 @@ public class UserController {
 
 	@RequestMapping("/")
 	public String userMain() {
-		return "th/main/homemain";
+		return "th/main/index1";
 	}
 
 	@RequestMapping("/joinForm")
@@ -47,16 +47,16 @@ public class UserController {
 		// 회원가입 메서드
 		userService.joinUser(Uservo);
 		// 메일 보내기
-		mailsender.mailSendWithUserKey(Uservo.getUserEmail(), Uservo.getNickname(), request);
+		mailsender.mailSendWithUserKey(Uservo.getUser_email(), Uservo.getNickname(), request);
 
-		return "th/main/homemain";
+		return "th/main/index1";
 	}
 
 	@ResponseBody
 	@RequestMapping("/emailCheck")
 
 	public int emailCheck(@RequestBody Uservo vo) {
-		return userService.emailCheck(vo, vo.getUserEmail());
+		return userService.emailCheck(vo, vo.getUser_email());
 	}
 
 	// 입력 받을때 vo 통째로 파라메터로 받고 get 메소드를 이용해서 값을 가져다가 넣어주고 ajax에서 data type 를 json으로
@@ -69,10 +69,10 @@ public class UserController {
 
 	// e-mail 인증 컨트롤러
 	@RequestMapping(value = "/user/key_alter", method = RequestMethod.GET)
-	public String key_alterConfirm(@RequestParam("userEmail") String userEmail,
+	public String key_alterConfirm(@RequestParam("user_email") String user_email,
 			@RequestParam("userKey") String key) {
 
-		mailsender.alter_userKey_service(userEmail, key);
+		mailsender.alter_userKey_service(user_email, key);
 
 		return "regSuccess";
 	}
@@ -83,6 +83,6 @@ public class UserController {
 	}
 	@RequestMapping("/loginss")
 	public String loginss() {
-		return "redirect:/index";
+		return "th/main/index1";
 	}
 }
