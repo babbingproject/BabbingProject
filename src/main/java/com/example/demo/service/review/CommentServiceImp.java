@@ -11,12 +11,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.demo.domain.mypage.Uservo;
 import com.example.demo.domain.review.Commentvo;
-import com.example.demo.domain.review.QCommentvo;
-import com.example.demo.domain.review.QReviewRegistrationvo;
 import com.example.demo.domain.review.ReviewRegistrationvo;
-import com.querydsl.jpa.impl.JPAQueryFactory;
 
 @Service
 public class CommentServiceImp implements CommentService {
@@ -32,16 +28,24 @@ public class CommentServiceImp implements CommentService {
 	EntityManager em;
 	
 	@Override
-	public List<Commentvo> selectCommentListAllById(int reviewId) {
+	public Optional<Commentvo> selectCommentListAllById(int reviewId) {
 		
-		JPAQueryFactory query = new JPAQueryFactory(em);
 		
-		QReviewRegistrationvo qReviewRegistrationvo = QReviewRegistrationvo.reviewRegistrationvo;
-		QCommentvo qCommentvo = QCommentvo.commentvo;
+		/*
+		 * JPAQueryFactory query = new JPAQueryFactory(em);
+		 * 
+		 * QReviewRegistrationvo qReviewRegistrationvo =
+		 * QReviewRegistrationvo.reviewRegistrationvo; QCommentvo qCommentvo =
+		 * QCommentvo.commentvo;
+		 * 
+		 * return query.selectFrom(qCommentvo)
+		 * .where(qCommentvo.reviewRegistrationvo.reviewId.eq(qReviewRegistrationvo.
+		 * reviewId)) .orderBy(qCommentvo.commentId.desc()).distinct().fetch();
+		 */
 		
-		return query.selectFrom(qCommentvo)
-				.where(qCommentvo.reviewRegistrationvo.reviewId.eq(qReviewRegistrationvo.reviewId))
-				.orderBy(qCommentvo.commentId.desc()).fetch();
+		
+		
+		return commentRepo.findById(reviewId);
 		
 	}
 
@@ -50,6 +54,11 @@ public class CommentServiceImp implements CommentService {
 				
 		commentRepo.save(commentvo);
 		
+	}
+
+	@Override
+	public List<Commentvo> selectCommentList(ReviewRegistrationvo reviewRegistrationvo) {
+		return commentRepo.findByReviewRegistrationvo(reviewRegistrationvo);
 	}
 
 	

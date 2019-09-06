@@ -52,156 +52,45 @@
 		
 		<div>		
 			<div>
-				<ul>
-				<!-- <li th:value="${commentList.contents}"> -->
-				</ul>	  
-<!-- 				<input type="text" name="nickName" id="newReplyWriter"> -->
-			</div>
-			<div>
 				REPLY TEXT <input type="text" name="contents" id="newReplyText">
 			</div>
 			<button id="replyAddBtn">ADD REPLY</button>
 	</div>
+	<div id="abcdef"></div>
 	</form>
 	<script>
-	function getAllList(){
-		
-		$.getJSON("/commentAll"+reviewId, function(data){
-			console.log(data.length);
-			
-			$(data).each(
-				function(){
-				str +="<li data-rno='"+this.commentId+"' class='replyLi'>"
-				+this.commentId + " : " +this.replytest
-				+"</li>";
-			});
-			
-		$("#replies").html(str);
-		console.log(str)
-		});
-	}
+		$(function() {
+			$("#replyAddBtn").on("click", function() {
 
-	$(function(){
-			$("#replyAddBtn").on("click", function(){ 
-		
-		var contents = $("#newReplyText").val();
-		var reviewId = $("#reviewId").val();
-		var userId = $("#userId").val();
-		alert(reviewId);
-		alert(userId);
-		
-		$.ajax({
-			type: 'post',
-			url: '/addComment',
-			data: {
-				contents: contents,
-				reviewId: reviewId,
-				userId: userId
-			},
-			success: function(result){
-				if (result) {
-					alert("등록 되었습니다");
-				}else{
-					alert("오류가 발생했습니다.");
-				}
-			}
-		});
-		
-	});
-	});
+				var contents = $("#newReplyText").val();
+				var reviewId = $("#reviewId").val();
+				var userId = $("#userId").val();
+				alert("체크1");
+				
 
-	</script>
-	
-	<!-- <div>
-		<form class="comment-write" action="/answer/register/{{q_id}}"
-			method="post">
-			답글쓰기:
-			<textarea name="content"></textarea>
-			<br> <br>
-			<input type="hidden" value="{{q_id}}">
-			<input type="submit" value="확인">
-		</form>
-	</div>
-	<script>
-		$.(".comment-write input[type=submit]").click(addComment);
-		
-		function addComment(e){
-			console.log("click me");
-			e.preventDefault();
-			
-			var queryString =$(".comment-write").serialize();
-			console.log("query: "+queryString);
-			
-			var url = $("comment-write").attr("action");
-			console.log("url: "+url);
-			
-			$.ajax({
-				type: 'post',
-				url: url,
-				data: queryString,
-				dataType: 'json',
-				error: onError,
-				success: onSuccess
-			});			
-		}
-		
-		
-		function onError(){
-			
-			
-		}
-		
-		function onSuccess(data, status){
-			console.log(data);
-			var commentTemplate = $("#commentTemplate").html();
-			var template = commentTemplate.format(data.writer.userId, data.content, data.id, data.id);
-			$.("commentList").append(template);
-			$("textarea[name=content]").val("");			
-		}
-		
-		String.prototype.format= function (){
-			var args = arguments;
-			return this.replace(/{(\d+)}/g, function(match, number){
-				return typeof args[number] !='undefined'
-				? args[number]
-				: match
-				;
-				
+				$.ajax({
+					type : 'post',
+					url : '/addComment',
+					data : {
+						contents : contents,
+						reviewId : reviewId,
+						userId : userId
+					},
+					success : function(commentList) {
+						alert("체크2");
+						var a ="";
+						for(var i in commentList){
+							commentList[i].<div>
+							a+="<p>"+commentList[i].contents+"</p>";
+						}
+						$("#abcdef").append(a);
+					}
+				});
+
 			});
-			
-		};
-		
-		
-		
+		});
 	</script>
-	<div class="commentList">
-		{{#comments}}
-		<article>
-			<div>
-				<div>
-					<div>답변자 : {{uservo.nickname}}</div>
-					<div>내용 : {{contents}}</div>
-				</div>
-			</div>
-			<div>
-				<ul>
-					<li>
-						<a href="@{/commentModify}">수정</a>
-					</li>
-					<li>
-						<form action="@{/commentDelete}" method="POST">
-							<input type="hidden" name="_name" value="DELETE">
-							<button type="submit">삭제</button>
-						</form>
-					</li>
-				</ul>
-			</div>		
-		</article>
-		{{/answers}}
-	</div> -->
-	
-	
-				
+		
 </body>
 
 </html>

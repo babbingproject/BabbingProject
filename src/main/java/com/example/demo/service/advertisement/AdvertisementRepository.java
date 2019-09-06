@@ -11,14 +11,14 @@ import com.example.demo.domain.mypage.Advertisementvo;
 public interface AdvertisementRepository extends JpaRepository<Advertisementvo, Integer>{
 	
 	//기업 정보 가지고와서 리스트에 저장하기
-	@Query(nativeQuery=true, value = "SELECT advertisement_id, advertisement_name, profile_img, puted_count FROM advertisementvo ORDER BY weighted_avg DESC limit 6")
+	@Query(nativeQuery=true, value = "SELECT advertisement_id, advertisement_name, profile_img, puted_count FROM advertisementvo limit 6")
 	List<Object[]> findAllbyAdvertisementidOrderByWeightedAvg();
 	
 	//기업 정보 서치
 	@Query(nativeQuery=true, value = ""
 			+ "SELECT advertisement_id, advertisement_name, profile_img, puted_count "
 			+ "FROM advertisementvo WHERE advertisement_name LIKE %:searchKeyword% "
-			+ "ORDER BY weighted_avg DESC "
+			
 			+ "LIMIT 6")
 	List<Object[]> getSearchKeyword(String searchKeyword);
 }

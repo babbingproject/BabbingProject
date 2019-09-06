@@ -51,6 +51,6 @@ public class LoginTestReviewController {
 	@GetMapping("/logout")
 	public String logout(SessionStatus status) {
 		status.setComplete();
-		return "redirect:reviewIndex";
+		return "redirect:/index";
 	}
 }
