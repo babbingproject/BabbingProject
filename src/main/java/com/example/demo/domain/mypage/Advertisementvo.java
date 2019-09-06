@@ -25,15 +25,16 @@ public class Advertisementvo {
 
 	@Id @GeneratedValue
 	private int advertisementId;
-	private String advertisementEmail;
-	private String advertisementName;
+	private String advertisement_email;
+	private String advertisement_name;
 	private String password;
 	private String introduce;
-	private String advertisementNum;
+	private String advertisement_num;
 	private String address;
 	private String profileImg;
 	private String nonMembersCom;
 	private String nonMembersAddress;
+	private String ad_key;// 인증번호
 	
 	@Column(nullable = false, columnDefinition="int default 0")
 	private int putedCount;

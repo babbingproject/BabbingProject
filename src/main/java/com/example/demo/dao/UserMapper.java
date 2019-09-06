@@ -21,6 +21,8 @@ public interface UserMapper {
 //우선만듬
 	public Uservo userInfo(String user_email);
 
+	
+
 
 	
 	

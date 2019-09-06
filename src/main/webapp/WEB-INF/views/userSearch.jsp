@@ -1,65 +1,65 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
-<title>ºñ¹Ğ¹øÈ£ Ã£±â</title>
+<meta charset="UTF-8">
+<title>ë¹„ë°€ë²ˆí˜¸ ì°¾ê¸°</title>
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<!-- ajax¸¦ À§ÇÑ CDN ¹æ½Ä ¶óÀÌºê·¯¸® -->
+<!-- ajaxë¥¼ ìœ„í•œ CDN ë°©ì‹ ë¼ì´ë¸ŒëŸ¬ë¦¬ -->
 <script type="text/javascript"
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script type="text/javascript">
 	$(function() {
 		$("#searchBtn2").submit(function() {
 			if ($.trim($("#user_email").val()) !== $("#user_email").val()) {
-				alert("¾ÆÀÌµğ¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä");
+				alert("ì•„ì´ë””ë¥¼ ì…ë ¥í•´ì£¼ì„¸ìš”");
 				return false;
 			}
 
 		})
-		//input¿¡ ÀÔ·ÂµÈ °ªÀÌ º¯È­°¡ ÀÖÀ»¶§ alert À» ¶ç¿î´Ù.
+		//inputì— ì…ë ¥ëœ ê°’ì´ ë³€í™”ê°€ ìˆì„ë•Œ alert ì„ ë„ìš´ë‹¤.
 		$("input[name='user_email']").on("change", function() {
 			var user_email = $('#user_email').val();
 
-			//ajax È£Ãâ
+			//ajax í˜¸ì¶œ
 
 			$.ajax({
 				//Default datatype : JS ON
 				async : true,
 				type : 'POST',
 				data : JSON.stringify({
-					// ÁÂÇ× - º¯¼ö , ¿ìÇ× - ÀÔ·ÂµÈ µ¥ÀÌÅÍ ÀÇ¹Ì
+					// ì¢Œí•­ - ë³€ìˆ˜ , ìš°í•­ - ì…ë ¥ëœ ë°ì´í„° ì˜ë¯¸
 					'user_email' : user_email
 				}),
-				//¿äÃ» url
+				//ìš”ì²­ url
 				url : "/emailCheck",
-				//controller¿¡¼­ ¼º°øÀûÀ¸·Î return ¹ŞÀ»½Ã ½ÇÇàµÇ´Â ¸Ş¼Òµå¸¦ ÀÔ·ÂÇÕ´Ï´Ù.
+				//controllerì—ì„œ ì„±ê³µì ìœ¼ë¡œ return ë°›ì„ì‹œ ì‹¤í–‰ë˜ëŠ” ë©”ì†Œë“œë¥¼ ì…ë ¥í•©ë‹ˆë‹¤.
 				dataType : "json",
 				contentType : "application/json; charset=UTF-8",
 				success : function(cnt) {
 					if (user_email == "") {
 						$("#chktext").css("color", "gray");
-						$("#chktext").text("ÀÌ¸ŞÀÏÀ» ÀÔ·ÂÇØÁÖ¼¼¿ä.");
+						$("#chktext").text("ì´ë©”ì¼ì„ ì…ë ¥í•´ì£¼ì„¸ìš”.");
 
 						$("#chktext2").html("");
 					} else if (cnt == 0) {
 						$("chktext").css("color", "red");
-						$("#chktext").text("È¸¿ø°¡ÀÔÀ» ¸ÕÀú ÁøÇàÇØÁÖ¼¼¿ä!");
+						$("#chktext").text("íšŒì›ê°€ì…ì„ ë¨¼ì € ì§„í–‰í•´ì£¼ì„¸ìš”!");
 						$("#chktext2").html("");
 						$("#joinBtn").attr("disabled", "disabled");
 					} else {
 						$("#chktext2").css("color", "blue");
-						$("#chktext2").text("»ç¿ë°¡´ÉÇÕ´Ï´Ù!!");
+						$("#chktext2").text("ì‚¬ìš©ê°€ëŠ¥í•©ë‹ˆë‹¤!!");
 						$("#chktext").html("");
 						$("#joinBtn").removeAttr("disabled");
 
 					}
 
 				},
-				//¿¡·¯ ¹ß»ı ½Ã ½ÇÇàµÇ´Â ¸Ş¼Òµå
+				//ì—ëŸ¬ ë°œìƒ ì‹œ ì‹¤í–‰ë˜ëŠ” ë©”ì†Œë“œ
 				error : function(error) {
 
 					alert("error :" + error);
@@ -78,9 +78,9 @@
 				<a><img
 					src="${pageContext.request.contextPath}/images/Bobbing-logo.png"
 					style="height: 80px; margin-left: 10px;" /></a> <br> <br>
-				<h3>ºñ¹Ğ¹øÈ£ Ã£±â</h3>
-				<p>È¸¿ø °¡ÀÔ½Ã »ç¿ëÇÑ ÀÌ¸ŞÀÏ ÁÖ¼Ò¸¦ ÀÔ·ÂÇÏ½Ã¸é</p>
-				<p>ºñ¹Ğ¹øÈ£ Àç¼³Á¤ ¾È³» ¸ŞÀÏÀ» º¸³»µå¸³´Ï´Ù.</p>
+				<h3>ë¹„ë°€ë²ˆí˜¸ ì°¾ê¸°</h3>
+				<p>íšŒì› ê°€ì…ì‹œ ì‚¬ìš©í•œ ì´ë©”ì¼ ì£¼ì†Œë¥¼ ì…ë ¥í•˜ì‹œë©´</p>
+				<p>ë¹„ë°€ë²ˆí˜¸ ì¬ì„¤ì • ì•ˆë‚´ ë©”ì¼ì„ ë³´ë‚´ë“œë¦½ë‹ˆë‹¤.</p>
 			</div>
 			<form action="user/searchPassword" id="searchBtn2" method="post">
 
@@ -88,15 +88,15 @@
 					<input type="text" class="w3-input" name="user_email"
 						id="user_email" placeholder="example@naver.com"
 						required="required">
-					<!-- Äí±â¿¡ ÀúÀåµÈ º§·ù(¾ÆÀÌµğ°ª)À» ²¨³»¿É´Ï´Ù. ¼­ºñ½º¿¡¼­ ÄíÅ°ÁöÁ¤ ->ÄÁ¸£·Ñ·¯·Î º§·ù Àü´Ş -->
+					<!-- ì¿ ê¸°ì— ì €ì¥ëœ ë²¨ë¥˜(ì•„ì´ë””ê°’)ì„ êº¼ë‚´ì˜µë‹ˆë‹¤. ì„œë¹„ìŠ¤ì—ì„œ ì¿ í‚¤ì§€ì • ->ì»¨ë¥´ë¡¤ëŸ¬ë¡œ ë²¨ë¥˜ ì „ë‹¬ -->
 					<span id="chktext" class="w3-text-red"></span> <span id="chktext2"
 						class="w3-text-blue"></span>
 
 				</p>
 				<button type="submit" id="joinBtn"
-					class="w3-button w3-block w3-pink w3-ripple w3-margin-top w3-round">Àü¼Û</button>
+					class="w3-button w3-block w3-pink w3-ripple w3-margin-top w3-round">ì „ì†¡</button>
 				<button type="button" onclick="history.go(-1);"
-					class="w3-button w3-block w3-pink w3-ripple w3-margin-top w3-margin-bottom w3-round">Ãë¼Ò</button>
+					class="w3-button w3-block w3-pink w3-ripple w3-margin-top w3-margin-bottom w3-round">ì·¨ì†Œ</button>
 				
 			</form>
 		</div>
