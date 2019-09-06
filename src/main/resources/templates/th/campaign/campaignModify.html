@@ -1,10 +1,58 @@
-<!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+<title>캠페인 수정</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="/common/css/styles.css" th:href="@{/common/css/styles.css}" type="text/css">
+
 </head>
 <body>
-
+	<div id="wrap" class="main">
+		<div th:replace="/include/header.html :: header"></div>
+	<form th:action="@{updateCampaign}" method="post">
+		<input name="campaignId" type="hidden"
+			th:value="${campaign.campaignId}"> <input name="modifiedDate"
+			type="hidden">
+		<table>
+			<tr>
+				<td colspan="6"><input type="text" name="title"
+					th:value="${campaign.title}" size="95"></td>
+			</tr>
+			<tr>
+				<td colspan="6">소개</td>
+			</tr>
+			<tr>
+				<td colspan="6"><textarea name="introduction" cols="85"
+						rows="5" th:text="${campaign.introduction}"></textarea></td>
+			</tr>
+			<tr>
+				<td>모집인원</td>
+				<td><input name="recruitment" type="number"
+					th:value="${campaign.recruitment}"></td>
+				<td>시작일</td>
+				<td><input name="startDate" type="date"
+					th:value="${#dates.format(campaign.startDate,'yyyy-MM-dd')}"></td>
+				<td>종료일</td>
+				<td><input name="endDate" type="date"
+					th:value="${#dates.format(campaign.endDate,'yyyy-MM-dd')}"></td>
+			</tr>
+			<tr>
+				<td colspan="6">제공 내역</td>
+			</tr>
+			<tr>
+				<td colspan="6"><textarea name="offerHistory" cols="85"
+						rows="2" th:text="${campaign.offerHistory}"></textarea></td>
+			</tr>
+			<tr>
+				<td colspan="6">비고</td>
+			</tr>
+			<tr>
+				<td colspan="6"><textarea name="remarks" cols="85" rows="2"
+						th:text="${campaign.remarks}"></textarea></td>
+			</tr>
+		</table>
+		<input type="submit" value="수정하기"><input type="button"
+			value="취소하기" onclick="location.href='getCampaignList'">
+	</form>
+</div>
 </body>
 </html>

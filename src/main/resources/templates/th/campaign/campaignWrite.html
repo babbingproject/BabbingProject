@@ -1,10 +1,55 @@
-<!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+<title>캠페인 등록</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="/common/css/styles.css"
+	th:href="@{/common/css/styles.css}" type="text/css">
+
 </head>
 <body>
+	<div id="wrap" class="main">
+		<div th:replace="/include/header.html :: header"></div>
+		<form th:action="@{insertCampaign}" method="post">
+			<input type="hidden" name="advertisementId"
+				th:value="${session['member'].advertisementId}">
+			<table>
+				<tr>
+					<td colspan="6"><input type="text" name="title"
+						placeholder="제목을 입력 해주세요" size="95"></td>
+				</tr>
 
+				<tr>
+					<td colspan="6">소개</td>
+				</tr>
+				<tr>
+					<td colspan="6"><textarea name="introduction" cols="85"
+							rows="5" th:text="${session['member'].introduce}"></textarea></td>
+				</tr>
+				<tr>
+					<td>모집인원</td>
+					<td><input name="recruitment" type="number"></td>
+					<td>시작일</td>
+					<td><input name="startDate" type="date"></td>
+					<td>종료일</td>
+					<td><input name="endDate" type="date"></td>
+				</tr>
+				<tr>
+					<td colspan="6">제공 내역</td>
+				</tr>
+				<tr>
+					<td colspan="6"><textarea name="offerHistory" cols="85"
+							rows="2"></textarea></td>
+				</tr>
+				<tr>
+					<td colspan="6">비고</td>
+				</tr>
+				<tr>
+					<td colspan="6"><textarea name="remarks" cols="85" rows="2"></textarea></td>
+				</tr>
+			</table>
+			<input type="submit" value="등록하기"><input type="button"
+				value="취소하기" onclick="location.href='getCampaignList'">
+		</form>
+	</div>
 </body>
 </html>

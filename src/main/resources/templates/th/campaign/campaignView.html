@@ -1,10 +1,119 @@
-<!DOCTYPE html>
-<html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+<title>캠페인 조회</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="/common/css/styles.css"
+	th:href="@{/common/css/styles.css}" type="text/css">
+
+<!-- 부트 스트랩 -->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+<!-- Alertyfy.js -->
+<script
+	src="//cdn.jsdelivr.net/npm/alertifyjs@1.11.4/build/alertify.min.js"></script>
+<link rel="stylesheet"
+	href="//cdn.jsdelivr.net/npm/alertifyjs@1.11.4/build/css/alertify.min.css" />
+<link rel="stylesheet"
+	href="//cdn.jsdelivr.net/npm/alertifyjs@1.11.4/build/css/themes/default.min.css" />
+
+<!-- 레이어 팝업 -->
+<script>
+	function applyFunction() {
+		alertify.set('notifier', 'delay', 1);
+		alertify.set('notifier', 'position', 'bottom-center');
+		alertify.success('응모가 완료되었습니다.');
+	}
+</script>
+
 </head>
 <body>
+	<div id="wrap" class="main">
+		<div th:replace="/include/header.html :: header"></div>
+		<!-- 본문 영역 Start -->
+		<div style="float: left; width: 70%">
+			<h4 th:text="${campaign.title}"></h4>
+			<textarea cols="60" rows="5" readonly="readonly"
+				th:text="${campaign.introduction}"></textarea>
+			<h4>제공 내역</h4>
+			<textarea cols="60" rows="2" readonly="readonly"
+				th:text="${campaign.offerHistory}"></textarea>
+			<h4>비고</h4>
+			<textarea cols="60" rows="2" readonly="readonly"
+				th:text="${campaign.remarks}"></textarea>
+			<br> <a th:href=@{getCampaignList}>목록으로</a>
+		</div>
+		<!-- 본문 영역 End -->
 
+		<!-- 프로필 영역 Start -->
+		<div style="float: left; width: 25%">
+
+			<p th:text="${campaign.advertisementvo.advertisementName}" />
+			<br> 신청 기간<br>
+			<p
+				th:text="|${#dates.format(campaign.startDate, 'yyyy-MM-dd')} ~ ${#dates.format(campaign.endDate, 'yyyy-MM-dd')}|">
+			</p>
+			모집 인원<br>
+			<p th:text="|${campaign.participants} / ${campaign.recruitment}|">
+			</p>
+
+			<!-- 주석 영역 세션 해결시 진행 -->
+			<!--  
+		<input th:if="${session['member'].advertisement_id} == ${campaign.advertisementvo.advertisement_id}" type="button" name="viewapply" data-toggle="modal" data-target="#campaignModal" value="응모자 보기">
+		
+		<th:block th:if="${session['member'].advertisement_num == null}">
+		<form th:if="${session['member'].advertisement_id != 0} and ${participant} == null" th:action="@{participants}" method="post">		
+		<input type="hidden" name="advertisement_id" th:value="${session['member'].advertisement_id}">
+		<input type="hidden" name="campaign_id" th:value="${campaign.campaign_id}">
+		<input type="submit" onclick="applyFunction()" value="응모하기">	
+		</form>
+		
+		<form th:if="${participant} != null" th:action="@{deleteParticipants}" method="post">
+		<input type="hidden" name="advertisement_id" th:value="${session['member'].advertisement_id}">
+		<input type="hidden" name="campaign_id" th:value="${campaign.campaign_id}">
+		<input type="submit" onclick="applyFunction()" value="취소하기">
+		</form>		
+		</th:block>
+		-->
+		</div>
+		<!-- 프로필 영역 End -->
+
+		<!-- 모달 영역 -->
+
+		<div class="modal" id="campaignModal">
+			<div class="modal-dialog modal-lg">
+				<div class="modal-content">
+					<!-- Modal body -->
+					<div class="modal-body">
+						<!--  
+                    	<table class="table table-borderless">
+                    		<tr class="row" th:each="participants:${participantsList} ">
+                        	<td class="col-8" th:text="${participants.advertisementvo.advertisement_name}" >
+                        	<td class="col-4">
+							<form th:if ="${participants.participation} == 0 " th:action="@{selectParticipants}">
+                        	<input type="hidden" name="participants_id" th:value="${participants.participants_id}">
+                        	<input type="submit" style="float: right" onclick="applyFunction()" value="선정하기">
+                    		</form>
+                    	  
+                    		<form th:if ="${participants.participation} == 1" th:action="@{cancleParticipants}">
+                        	<input type="hidden" name="participants_id" th:value="${participants.participants_id}">
+                        	<input type="submit" style="float: right" onclick="applyFunction()" value="취소하기">
+                    		</form>
+                    		</td>
+	                        </tr>                        
+                    	</table>
+                    	-->
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </body>
 </html>
