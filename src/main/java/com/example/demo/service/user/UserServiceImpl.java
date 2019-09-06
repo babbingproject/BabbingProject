@@ -77,11 +77,11 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public int emailCheck(Uservo vo, String userEmail) {
+	public int emailCheck(Uservo vo, String user_email) {
 		// TODO Auto-generated method stub
 		userMapper = userSqlSessin.getMapper(UserMapper.class);// 아직 왜 인지 모름
 
-		return userMapper.emailCheck(vo.getUserEmail());
+		return userMapper.emailCheck(vo.getUser_email());
 	}
 
 	@Override

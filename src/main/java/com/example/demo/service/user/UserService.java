@@ -29,8 +29,8 @@ public interface UserService {
 
 	public int joinUser(Uservo Uservo); // 회원가입 입니다.
 
-	public int emailCheck(Uservo vo, String userEmail);// 이메일 중복 확인 입니다.
-	// @Param("userEmail") 생략해도 돕니다.
+	public int emailCheck(Uservo vo, String user_email);// 이메일 중복 확인 입니다.
+	// @Param("user_email") 생략해도 돕니다.
 
 	public int nickCheck(Uservo vo, String nickname);// 닉네임 중복 확인 입니다.
 

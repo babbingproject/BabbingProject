@@ -129,6 +129,14 @@
 			<version>1</version>
 		</dependency>
 
+
+		<!-- naver -->
+		<dependency>
+			<groupId>com.github.scribejava</groupId>
+			<artifactId>scribejava-core</artifactId>
+			<version>2.8.1</version>
+		</dependency>
+
 		<!-- imgUpload -->
 		<dependency>
 			<groupId>commons-fileupload</groupId>
@@ -148,27 +156,23 @@
 		</dependency>
 
 
-		
+
 
 
 		<!-- querydsl -->
 		<dependency>
 			<groupId>com.querydsl</groupId>
 			<artifactId>querydsl-apt</artifactId>
-			<version>${querydsl.version}</version>
-			<scope>provided</scope>
 		</dependency>
 
 		<dependency>
 			<groupId>com.querydsl</groupId>
 			<artifactId>querydsl-jpa</artifactId>
-			<version>${querydsl.version}</version>
 		</dependency>
 
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-log4j12</artifactId>
-			<version>1.6.1</version>
 		</dependency>
 
 
@@ -200,7 +204,7 @@
 			<groupId>javax.servlet</groupId>
 			<artifactId>jstl</artifactId>
 		</dependency>
-		
+
 
 
 		<dependency>
@@ -209,8 +213,8 @@
 			<scope>runtime</scope>
 
 		</dependency>
-		
-		
+
+
 	</dependencies>
 
 	<build>

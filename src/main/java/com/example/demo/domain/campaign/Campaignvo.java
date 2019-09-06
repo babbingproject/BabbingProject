@@ -1,6 +1,5 @@
 package com.example.demo.domain.campaign;
 
-import java.sql.Timestamp;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -11,6 +10,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 import com.example.demo.domain.mypage.Advertisementvo;
 
@@ -25,19 +26,31 @@ import lombok.ToString;
 public class Campaignvo {
 	@Id @GeneratedValue
 	private int campaignId;
+	
 	private String title;
 	private String introduction;
+	
+	@Column(nullable = false, columnDefinition="int default 0")
 	private int recruitment;
+	
+	@Column(columnDefinition="int default 0")
 	private int participants;
+	
+	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date startDate;
+	
+	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date endDate;
+	
 	private String offerHistory;
 	private String remarks;
-	@Temporal(value= TemporalType.TIMESTAMP)
+	
+	@Column(insertable=false, updatable=false, columnDefinition="datetime default now()")
 	private Date writeDate;
-	@Column(insertable = false, updatable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP")
+	
+	@Temporal(TemporalType.TIMESTAMP)
+	@DateTimeFormat(pattern="yyyy-MM-dd hh:mm")
 	private Date modifiedDate;
-
 	
 	@ManyToOne
 	@JoinColumn(name="advertisement_id", nullable=false)

@@ -8,108 +8,9 @@
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script>
-	$(document).ready(function(){
-		$("#all").click(function(){
-			$(".list-style01").show(1000);
-			$(".list-style02").hide(1000);
-		});
-		$("#korean").click(function(){
-			$(".list-style01").hide(1000);
-			$(".list-style02").show(1000);
-		});	
-	});
-</script>
+
 </head>
 <body>
-<!-- 	<img -->
-<!-- 		src="https://www.dropbox.com/s/kox326ah3lfunn6/%EB%A7%8C%EB%82%98%EB%B6%84%EC%8B%9D_%EB%8C%80%EC%B9%98%EC%97%AD1.png?dl=1" -->
-<!-- 		width="1000" height="400"> -->
-<!-- 	<!-- <img th:src="${review.img}" width="1000" height="400"> --> -->
-<!-- 	<div class="123"> -->
-<!-- 		<ol th:each=" uservo : ${uservo}"> -->
-<!-- 			<li><img th:src="${uservo[2]}" width="100" height="100"></li> -->
-<!-- 			<li th:text="${uservo[1]}"></li> -->
-<!-- 			<li th:text="${uservo[3]}"></li> -->
-<!-- 			<li th:text="${uservo[4]}"></li> -->
-<!-- 		</ol> -->
-<!-- 	</div> -->
-<!-- 	<ul> -->
-<!-- 		<li th:each="advvoList : ${advvoList}"><img -->
-<!-- 			th:src="${advvoList[2]}"> <span th:text="${advvoList[1]}"></span> -->
-<!-- 			리뷰수<span th:text="${advvoList[3]}"></span></li> -->
-<!-- 	</ul> -->
-<!-- 	<ul th:each="koreanreviewlist:${koreanReviewList}"class="list-style03"> -->
-<!-- 		<li> -->
-<!-- 			<div class="cont-txt"> -->
-<!-- 				<p class="photo"> -->
-<!-- 					<img th:src="${koreanreviewlist.}" /> -->
-<!-- 				</p> -->
-<!-- 				<a href="#" class="best01">베스트</a> -->
-<!-- 				<ul class="info"> -->
-<!-- 					<li>강남 | 강남불백</li> -->
-<!-- 					<li>강남불백 다녀왔어요~!</li> -->
-<!-- 					<li><img src="images/Bobbing-main-Circle-member.gif" /> 고유지니</li> -->
-<!-- 				</ul> -->
-<!-- 			</div> -->
-<!-- 		</li> -->
-<!-- 	</ul> -->
-	<ul class="list-style02">
-		<li id="all">전체</li>
-		<li><a href="#" id="korean">한식</a></li>
-		<li><a href="#" >양식</a></li>
-		<li><a href="#" >일식</a></li>
-		<li><a href="#" >중식</a></li>
-		<li><a href="#" >분식</a></li>
-		<li><a href="#" >패스트푸드</a></li>
-		<li><a href="#" >카페</a></li>
-	</ul>
-	<ul th:each="everything:${everything}"class="list-style01" >
-		<li>
-			<div class="cont-txt">
-				<p class="photo">
-					<img th:src="${everything[4]}" th:width="200" th:height="100"/>
-				</p>
-				<a href="#" class="best01">베스트</a>
-				<ul class="info">
-					<li><span th:text="${everything[1]}"></span> | <span>유저아이디</span></li>
-					<li><span th:text="${everything[2]}"></span></li>
-					<li><img src="images/Bobbing-main-Circle-member.gif" /> 고유지니</li>
-				</ul>
-			</div>
-		</li>
-	</ul>
-	<hr>
-	<ul th:each="businessone:${businessone}"class="list-style02" hidden>
-		<li>
-			<div class="cont-txt">
-				<p class="photo">
-					<img th:src="${businessone[4]}" th:width="200" th:height="100"/>
-				</p>
-				<a href="#" class="best01">베스트</a>
-				<ul class="info">
-					<li><span th:text="${businessone[1]}"></span> | <span>유저아이디</span></li>
-					<li><span th:text="${businessone[2]}"></span></li>
-					<li><img src="images/Bobbing-main-Circle-member.gif" /> 고유지니</li>
-				</ul>
-			</div>
-		</li>
-	</ul>
- 
-<img src="https://www.dropbox.com/s/kox326ah3lfunn6/%EB%A7%8C%EB%82%98%EB%B6%84%EC%8B%9D_%EB%8C%80%EC%B9%98%EC%97%AD1.png?dl=1" width="1000" height="400">
-<!-- <img th:src="${review.img}" width="1000" height="400"> -->
-<div class="123">
-	<ol th:each=" uservo : ${uservo}" >
-		<li><img th:src="${uservo.profile_img}" width="100" height="100"></li>
-		<li th:text="${uservo.nickname}"></li>
-		<li th:text="${uservo.following_count}"></li>
-		<li th:text="${uservo.following_count}"></li>
-		
-	</ol>
-</div>
-<form action="/joinForm">
-<button>join</button>
-</form>
 	<div class="w3-content w3-container w3-margin-top">
 		<div class="w3-container w3-card-4">
 			<div class="w3-center w3-large w3-margin-top">
@@ -119,11 +20,11 @@
 					style="height: 80px; margin-left: 10px;" /></a> 
 					<br><br><br><br>
 					<h3>환영합니다 여러분들의 밥빙입니다!</h3>
-					<p>밥빙에서 새로운 체험의 기회와 경험을 나누세요!</p>
+					<p>밥빙에서 새로운 체험의 기회와 경험을 나누세요! 기업테스트입니다!</p>
 				<br>
 				<br>
 			</div>
-			<form action="/joinForm">
+			<form action="/adjoinForm">
 				<button type="submit"
 					class="w3-button w3-block w3-pink w3-ripple w3-margin-top w3-margin-bottom w3-round">JOIN</button>
 			</form>
@@ -131,7 +32,7 @@
 			<div class="form-group">
 				<a
 					class="w3-button w3-block w3-pink w3-ripple w3-margin-top w3-round"
-					href="/login">LOGIN</a>
+					href="/adLogin">LOGIN</a>
 			</div>
 		</div>
 	</div>

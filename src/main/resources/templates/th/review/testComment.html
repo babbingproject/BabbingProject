@@ -14,15 +14,15 @@
 	src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
 </head>
 <body>
-	<body th:align="center">
-	<h1>리뷰 글 상세</h1>
+<body th:align="center">
+	<h1>댓글 테스트화면</h1>
 	<form th:action="@{updateReviewView}" method="post">
-	<!-- 	<input id="reviewId" name="reviewId" type="hidden"
+			<input id="reviewId" name="reviewId" type="hidden"
 			th:value="${reviewView.reviewId}"> <input id="userId"
 			name="userId" type="hidden" th:value="${session['uservo'].userId}">
-		<table th:align="center" border="1" th:cellpadding="0"
+		<!-- <table th:align="center" border="1" th:cellpadding="0"
 			th:cellspacing="0"> -->
-			<!-- <tr>
+		<!-- <tr>
 				<td bgcolor="oange" th:text="제목" width="80"></td>
 				<td th:value="${joinReviewList.reviewRegistration.title}"></td>
 				<td><input name="title" type="text"
@@ -53,101 +53,51 @@
 				<td colspan="2" align="center"><input type="submit"
 					value="리뷰 수정"></td>
 			</tr> -->
-		</table>
-		
-		<div>		
+		<!-- 		</table> -->
+
+		<div>
 			<div>
 				<ul>
-				<!-- <li th:value="${commentList.contents}"> -->
-				</ul>	  
-<!-- 				<input type="text" name="nickName" id="newReplyWriter"> -->
+					<!-- <li th:value="${commentList.contents}"> -->
+				</ul>
+				<!-- 				<input type="text" name="nickName" id="newReplyWriter"> -->
 			</div>
 			<div>
 				REPLY TEXT <input type="text" name="contents" id="newReplyText">
 			</div>
 			<button id="replyAddBtn">ADD REPLY</button>
-	</div>
-	</form>
-
-<script id="template" type="text/x-handlebars-template">
-	{{#each .}}
-	<li class="replyLi" data-rno{{rno}}>
-	<i class="fa da-comments bg-blue"></i>
-		<div class="timeline-item">
-		<span class="time">
-			<i class="fa fa-clock-o"></i>{{prettifyDate regdate}}
-		</span>
-	<h3 class="timeline-handler"><strong>{{rno}}</strong> -{{replyer}}</h3>
-	<div class="timeline-body">{{replytext}}>
-		<div class="timeline-footer">
-			<a class="btn btn-primary btn-xs"
-				data-toggle="modal" data-target="#modifyModel">Modify</a>
 		</div>
-	</div>
-	</li>
-	{{/each}}
-</script>
-
+	</form>
+	
 	<script>
-		Handlebars.registerHelper("prettifyDate", function(timeValue) {
-			var dateObj = new Date(timeValue);
-			var year = dateObj.getFullYear();
-			var month = dateObj.getMonth() + 1;
-			var date = dateObj.getDate();
-			return year + " / " + month + " / " + date;
-		});
+// 	var commentList = "[[${commentList.reviewRegistrationvo.reviewId}]]"; 
+// 	console.log(commentList);
+	//댓글 목록 
+	function commentList(){
+// 	   console.log(commentList);
+	    $.ajax({
+	        url : '/commentList',
+	        type : 'post',
+// 	        data : {commentList:commentList},
+	        data : {},
+	        success : function(commentList){
+	            var a =''; 
+	            
+	            $.each(data, function(key, value){ 
+	                a += '<div class="commentArea" style="border-bottom:1px solid darkgray; margin-bottom: 15px;">';
+	                a += '<div class="commentInfo'+value.commentId+'">'+'댓글번호 : '+value.commentId+' / 작성자 : '+value.uservo.nickName;
+	                a += '<a onclick="commentUpdate('+value.commentId+',\''+value.cmentContents+'\');"> 수정 </a>';
+	                a += '<a onclick="commentDelete('+value.commentId+');"> 삭제 </a> </div>';
+	                a += '<div class="commentContent'+value.commentId+'"> <p> 내용 : '+value.cmentContents +'</p>';
+	                a += '</div></div>';
+	            });
 
-		var printDate = function(replyArr, target, temmpateObject) {
-
-			var template = Handlebars.compile(templateObject.html());
-
-			var html = template(replyArr);
-			$(".replyLi").remove();
-			target.after(html);
-		}
-
-		var printPaging = function(pageMaker, target) {
-
-			var str = "";
-
-			if (pageMaker.prev) {
-				str += "<li><a href = '" + (pageMaker.startPage.startPage - 1)
-						+ "'><< </a></li>";
-			}
-
-			for (var i = pageMaker.startPage, len = pageMaker.endPage; i <= len; i++) {
-				var strClass = pageMaker.cri.page == i ? 'class= active' : '';
-			}
-
-			if (pageMaker.next) {
-				str += "<li><a href='" + (pageMaker.endPage + 1)
-						+ "'> >> </a></li>";
-			}
-			target.html(str);
-		};
-	</script>
-
-
-	<script>
-		$("#repliesDiv").on("click", function() {
-
-			if ($(".timeline li").size() > 1) {
-				return;
-
-			}
-			getPage("/replies" + reivewId + "/1");
-		});
-
-		$(".pagingnation").on("click", "li a", function(event) {
-
-			event.preventDefault();
-
-			replyPage = $(this).attr("href");
-
-			getPage("/replies/" + reviewId + "/" + replyPage);
-
-		});
-
+	            $(".commentList").html(a);
+	        }
+	    });
+	}
+	
+	
 		$(function() {
 			$("#replyAddBtn").on("click", function() {
 

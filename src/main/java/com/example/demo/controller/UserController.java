@@ -16,7 +16,6 @@ import com.example.demo.service.user.UserMailSendService;
 import com.example.demo.service.user.UserService;
 import com.example.demo.service.user.UserSha256;
 
-
 @Controller
 public class UserController {
 
@@ -27,7 +26,7 @@ public class UserController {
 
 	@RequestMapping("/")
 	public String userMain() {
-		return "th/main/homemain";
+		return "th/main/index1";
 	}
 
 	@RequestMapping("/joinForm")
@@ -36,9 +35,6 @@ public class UserController {
 	}
 
 	@RequestMapping("/join")
-
-//	public String userJoin(Uservo Uservo) {
-//		userMapper.joinUser(Uservo);
 	public String userJoin(Uservo Uservo, Model model, HttpServletRequest request) {
 		// 받아온 비밀번호를 암호화 합니다.
 		String encryPassword = UserSha256.encrypt(Uservo.getPassword());
@@ -47,16 +43,14 @@ public class UserController {
 		// 회원가입 메서드
 		userService.joinUser(Uservo);
 		// 메일 보내기
-		mailsender.mailSendWithUserKey(Uservo.getUserEmail(), Uservo.getNickname(), request);
-
-		return "th/main/homemain";
+		mailsender.mailSendWithUserKey(Uservo.getUser_email(), Uservo.getNickname(), request);
+		return "joinMail";
 	}
 
 	@ResponseBody
 	@RequestMapping("/emailCheck")
-
 	public int emailCheck(@RequestBody Uservo vo) {
-		return userService.emailCheck(vo, vo.getUserEmail());
+		return userService.emailCheck(vo, vo.getUser_email());
 	}
 
 	// 입력 받을때 vo 통째로 파라메터로 받고 get 메소드를 이용해서 값을 가져다가 넣어주고 ajax에서 data type 를 json으로
@@ -69,20 +63,13 @@ public class UserController {
 
 	// e-mail 인증 컨트롤러
 	@RequestMapping(value = "/user/key_alter", method = RequestMethod.GET)
-	public String key_alterConfirm(@RequestParam("userEmail") String userEmail,
+	public String key_alterConfirm(@RequestParam("user_email") String user_email,
 			@RequestParam("userKey") String key) {
 
-		mailsender.alter_userKey_service(userEmail, key);
+		mailsender.alter_userKey_service(user_email, key);
 
 		return "regSuccess";
 	}
 
-	@RequestMapping("/login")
-	public String login() {
-		return "login";
-	}
-	@RequestMapping("/loginss")
-	public String loginss() {
-		return "redirect:/index";
-	}
+
 }

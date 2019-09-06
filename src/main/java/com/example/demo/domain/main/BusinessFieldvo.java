@@ -14,6 +14,7 @@ import lombok.ToString;
 @Entity
 public class BusinessFieldvo {
 
+
 	@Id 
 	private String businessFieldId;
 	private String businessFieldName;

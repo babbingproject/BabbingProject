@@ -1,5 +1,8 @@
 package com.example.demo.controller;
 
+import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,14 +26,21 @@ public class CommentController {
 	
 	
 	
-	@RequestMapping("/commentList") 
-	public String
-	  commentList(@ModelAttribute("uservo") Uservo uservo, ReviewRegistrationvo
-	  reviewRegistrationvo, Commentvo commentvo, Model model) { if
-	  (uservo.getNickname() == null) { // nickname대신 userId로 조건을 줘야하나? 
-		  return "redirect:login"; }
-	  
-	  return "th/review/testComment"; 
+	@RequestMapping("/commentList")
+	@ResponseBody
+	public Optional<Commentvo> commentList(@ModelAttribute("uservo") Uservo uservo, ReviewRegistrationvo
+		reviewRegistrationvo, Commentvo commentvo, Model model) { 
+		/*
+		 * if (uservo.getNickname() == null) { // nickname대신 userId로 조건을 줘야하나? return
+		 * "redirect:login"; }
+		 */
+//		commentService.selectCommentListAllById(reviewRegistrationvo.getReviewId());
+		System.out.println(reviewRegistrationvo.toString());
+		Optional<Commentvo> commentList = commentService.selectCommentListAllById(reviewRegistrationvo.getReviewId());
+//		model.addAttribute("commentList", commentList);
+		System.out.println(commentList.toString());
+//	  return "th/review/testComment"; 
+	  return commentList;
 	  }
 
 	/*
@@ -40,24 +50,20 @@ public class CommentController {
 	 */
 	@RequestMapping(value="/addComment", method = RequestMethod.POST)
 	@ResponseBody
-	public String addComment(@ModelAttribute("uservo") Uservo uservo, String contents, ReviewRegistrationvo reviewRegistrationvo) { 
+	public List<Commentvo> addComment(@ModelAttribute("uservo") Uservo uservo, Commentvo commentvo, ReviewRegistrationvo reviewRegistrationvo) { 
 		System.out.println(" 권 선생님 ");
 		System.out.println(uservo.toString());
-		if
-		  (uservo.getNickname() == null) { // nickname대신 userId로 조건을 줘야하나? 
-			  return "redirect:login"; }
-		  
-		
-		Commentvo commentvo = new Commentvo();
 		
 		commentvo.setUservo(uservo);
-		reviewRegistrationvo.setReviewId(reviewRegistrationvo.getReviewId());
 		System.out.println(uservo.toString());
-		commentvo.setContents(contents);
+		System.out.println(reviewRegistrationvo.toString());
 		commentvo.setReviewRegistrationvo(reviewRegistrationvo);
 		commentService.insertComment(commentvo);
 		
-		return "th/review/testComment"; 
+		List<Commentvo> commentList =  commentService.selectCommentList(reviewRegistrationvo);
+		
+		System.out.println(commentList);
+		return commentList; 
 	}
 	@RequestMapping("test")
 	public String testPage() {
