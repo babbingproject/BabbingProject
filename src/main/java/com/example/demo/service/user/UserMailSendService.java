@@ -4,9 +4,9 @@ import javax.servlet.http.HttpServletRequest;
 
 public interface UserMailSendService {
 
-	public void mailSendWithUserKey(String userEmail, String nickname, HttpServletRequest request);
+	public void mailSendWithUserKey(String user_email, String nickname, HttpServletRequest request);
 
-	public int alter_userKey_service(String userEmail, String key);
+	public int alter_userKey_service(String user_email, String key);
 
 	
 	

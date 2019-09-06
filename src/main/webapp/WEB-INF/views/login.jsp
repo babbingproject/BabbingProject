@@ -19,7 +19,7 @@
 		$('#loginBtn')
 				.click(
 						function() {
-							var userEmail = $('#userEmail').val();
+							var user_email = $('#user_email').val();
 							var pw = $('#inputPassword').val();
 							var remember_us = $('#remember_us').is(':checked');
 							$
@@ -29,7 +29,7 @@
 										type : 'POST',
 										url : "/logincon",
 										data : {
-											userEmail : userEmail,
+											user_email : user_email,
 											password : pw,
 											remember_userId : remember_us
 										},
@@ -43,8 +43,8 @@
 												$('#spanLoginCheck').text(
 														'이메일 인증을 해주셔야 합니다!');
 											} else if (result == -3) { // 아이디가 사용중이라면?
-												location.href = '${pageContext.request.contextPath}/user/redundant?userEmail='
-														+ userEmail
+												location.href = '${pageContext.request.contextPath}/user/redundant?user_email='
+														+ user_email
 														+ '&password='
 														+ password
 														+ '&remember_userId='
@@ -79,7 +79,7 @@
 					<input type="hidden" name="kakao_id" value="${kakao_id}" />
 					<p>
 						<label>Email</label><br> <input type="text" class="w3-input"
-							name="userEmail" id="userEmail" placeholder="Email"
+							name="user_email" id="user_email" placeholder="Email"
 							value="${cookie.user_check.value}" required="required">
 						<!-- 쿠기에 저장된 벨류(아이디값)을 꺼내옵니다. 서비스에서 쿠키지정 ->컨르롤러로 벨류 전달 -->
 						<span id="spanLoginCheck" class="w3-text-red"></span>
@@ -103,18 +103,14 @@
 							class="w3-button w3-block w3-pink w3-ripple w3-margin-top w3-round"
 							href="${pageContext.request.contextPath}/joinForm">JOIN</a> <a
 							class="w3-button w3-block w3-pink w3-ripple w3-margin-top w3-round"
-							href="${pageContext.request.contextPath}/index">HOME</a> <a href="">
+							href="${pageContext.request.contextPath}/">HOME</a> <%-- <a href="">
 							<img
 							src="${pageContext.request.contextPath}/images/facebook_big.png"
-							width="30%" height="50"
-							class=" w3-ripple w3-margin-top w3-margin-bottom " /> <img
-							id="socialimage"
-							src="${pageContext.request.contextPath}/images/kakao_account_login_btn_medium_narrow (1).png"
-							height="50" align="middle" width="33%"  /> <img
-							src="${pageContext.request.contextPath}/images/네이버 아이디로 로그인_완성형_Green.PNG"
-						 align="middle" height="50" width="35%"/>
-
-
+							width="100%" height="50"
+							class=" w3-ripple w3-block w3-margin-top w3-margin-bottom " /> --%><br> <a
+							href="${url}"> <img
+								src="${pageContext.request.contextPath}/images/네이버 아이디로 로그인_완성형_Green.PNG"
+								align="middle" height="50" width="100%"/ >
 						</a>
 					</p>
 					<a href="${pageContext.request.contextPath}/userSearch">&nbsp;
@@ -141,9 +137,17 @@
 						src="${pageContext.request.contextPath}/images/네이버 아이디로 로그인_완성형_Green.PNG"
 						width="25%" align="middle" height="100%" />
 					</a> --%>
-				</div>
+
+				<%-- 네아로 버튼
+					<div id="naver_id_login" style="text-align: center">
+								<a href="${url}"> <img width="223"
+									src="https://developers.naver.com/doc/review_201802/CK_bEFnWMeEBjXpQ5o8N_20180202_7aot50.png" /></a>
+							</div>
+						</a> --%>
+
 			</div>
 		</div>
+	</div>
 	</div>
 
 </body>

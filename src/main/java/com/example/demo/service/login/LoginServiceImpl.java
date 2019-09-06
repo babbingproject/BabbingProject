@@ -21,7 +21,7 @@ public class LoginServiceImpl implements LoginService {
 	@Override
 	public int userLogin_service(Uservo Uservo, String user_check, HttpSession session) {
 		// TODO Auto-generated method stub
-		String user_eamil = Uservo.getUserEmail();
+		String user_eamil = Uservo.getUser_email();
 		String user_pw = Uservo.getPassword();
 
 		userMapper = userSqlSession.getMapper(UserMapper.class);
@@ -38,7 +38,7 @@ public class LoginServiceImpl implements LoginService {
 		}
 
 		// 인증 안 했을 경우 인증하란 메세지 발생
-		return (vo.getUserKey().equalsIgnoreCase("y")) ? 1 : -2;
+		return (vo.getUser_key().equalsIgnoreCase("y")) ? 1 : -2;
 
 	}
 
