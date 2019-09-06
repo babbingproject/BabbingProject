@@ -6,43 +6,32 @@
 
 </head>
 <body>
-<div id="wrap" class="main">
+	<div id="wrap" class="main">
 		<div th:replace="/include/header.html :: header"></div>
-	정렬
-	<input type="radio" name="sort" value="recent" onclick="#"> 최신순
-	<input type="radio" name="sort" value="end_date" onclick="#">
-	마감 임박 순
-	<hr>
+		정렬
+		<input type="radio" name="sort" value="recent" onclick="#"> 최신순
+		<input type="radio" name="sort" value="end_date" onclick="#">
+		마감 임박 순
+		<hr>
 
 	<!-- 세션 적용시 수정되어야 할 부분
-<th:block th:if="${session['member'].advertisementEmail != null}">
-<div align="right" >
-<a th:if="${session['member'].advertisement_num != null}" th:href="insertCampaign">캠페인 등록</a>
-<a th:if="${session['member'].advertisement_num == null}" th:href="@{#}">캠페인 리뷰 쓰기</a>
-<a th:href="logout">로그아웃</a>
-</div>
-</th:block>
--->
-
-	<table>
-		<tr>
-			<td>제목</td>
-			<td>시작일</td>
-			<td>종료일</td>
-			<td>참여인원</td>
-			<td>모집인원</td>
-		</tr>
-		<tr th:each="campaign:${campaignList}">
-			<td><a
-				th:href="@{getCampaign(campaignId=${campaign.campaignId})}"
-				th:text="${campaign.title}"></a></td>
-			<td th:text="${#dates.format(campaign.startDate, 'yyyy-MM-dd')}"></td>
-			<td th:text="${#dates.format(campaign.endDate, 'yyyy-MM-dd')}"></td>
-			<td th:text="${campaign.participants}"></td>
-			<td th:text="${campaign.recruitment}"></td>
-		</tr>
-
-	</table>
-</div>
+	<th:block th:if="${session['member'].advertisementEmail != null}">
+	<div align="right" >
+	<a th:if="${session['member'].advertisement_num != null}" th:href="insertCampaign">캠페인 등록</a>
+	<a th:if="${session['member'].advertisement_num == null}" th:href="@{#}">캠페인 리뷰 쓰기</a>
+	<a th:href="logout">로그아웃</a>
+	</div>
+	</th:block>
+	-->
+		<table>
+			<tr th:each="campaign:${campaignList}">
+				<td><a th:href="@{getCampaign(campaignId=${campaign.campaignId})}" th:text="${campaign.title}"></a></td>
+				<td th:text="${#dates.format(campaign.startDate, 'yyyy-MM-dd')}"></td>
+				<td th:text="${#dates.format(campaign.endDate, 'yyyy-MM-dd')}"></td>
+				<td th:text="${campaign.participants}"></td>
+				<td th:text="${campaign.recruitment}"></td>
+			</tr>
+		</table>
+	</div>
 </body>
 </html>
