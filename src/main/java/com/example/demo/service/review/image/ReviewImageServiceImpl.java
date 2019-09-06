@@ -23,5 +23,6 @@ public class ReviewImageServiceImpl implements ReviewImageService  {
 	
 	public ReviewImagevo saveReviewImagevo(ReviewImagevo reviewImagevo) {
 		return reviewImageRepo.save(reviewImagevo);
+
 	}
 }

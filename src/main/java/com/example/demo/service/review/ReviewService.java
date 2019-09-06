@@ -38,9 +38,15 @@ public interface ReviewService {
 	List<Object[]> getSearchKeyword(String searchKeyword);
 
 
+
+	List<ReviewRegistrationvo> selectReviewList();
+	
+	List<ReviewRegistrationvo> selectReviewList(ReviewRegistrationvo reviewRegistrationvo);
+
+//	Tuple selectReviewIdJoinUserId(Uservo Uservo, ReviewRegistrationvo reviewRegistrationvo);
+
 	void insertReview(ReviewRegistrationvo reviewRegistrationvo);
 
-	List<ReviewRegistrationvo> selectReviewList(ReviewRegistrationvo reviewRegistrationvo);
 
 
 	public ReviewRegistrationvo selectReviewView(ReviewRegistrationvo registrationvo); 

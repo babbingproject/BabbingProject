@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import com.example.demo.domain.review.Commentvo;
 import com.example.demo.domain.review.ReviewRegistrationvo;
 
+
 @Service
 public class CommentServiceImp implements CommentService {
 	private static final Logger logger = LoggerFactory.getLogger(CommentServiceImp.class);

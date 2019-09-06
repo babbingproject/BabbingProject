@@ -29,20 +29,10 @@ public class ReviewServiceImpl implements ReviewService {
 	@PersistenceContext
 	EntityManager em;
 
-	/*
-	 * @Override public List<Uservo> selectUservoInfo() {
-	 * 
-	 * JPAQueryFactory query = new JPAQueryFactory(em);
-	 * 
-	 * QUservo user = QUservo.uservo;
-	 * 
-	 * return query.selectFrom(user).orderBy(user.userId.desc()).fetch(); }
-	 */
+
 
 	@Override
-
 	public List<Object[]> getKoreanTopSix() {
-
 		return reviewRepo.getKoreanFoodTopSix();
 	}
 
@@ -103,6 +93,8 @@ public class ReviewServiceImpl implements ReviewService {
 		reviewRepo.save(reviewRegistrationvo);
 	}
 
+
+
 	@Override
 	public List<ReviewRegistrationvo> selectReviewList(ReviewRegistrationvo reviewRegistrationvo) {
 
@@ -159,6 +151,24 @@ public class ReviewServiceImpl implements ReviewService {
 	public void deleteReview(ReviewRegistrationvo reviewRegistrationvo) {
 		reviewRepo.deleteById(reviewRegistrationvo.getReviewId());
 
+
+	}
+//	@Override
+//	public Tuple selectReviewIdJoinUserId(Uservo Uservo, ReviewRegistrationvo reviewRegistrationvo) {
+//		JPAQueryFactory query = new JPAQueryFactory(em);
+//		
+//		QUservo qUservo = QUservo.uservo;
+//		QReviewRegistrationvo qreviewRegistrationvo = QReviewRegistrationvo.reviewRegistrationvo;
+//		
+//		return query.select(qreviewRegistrationvo,qUservo.nickname).from(qreviewRegistrationvo)
+//				.innerJoin(qUservo).on(qUservo.userId.eq(qreviewRegistrationvo.uservo)).fetchOne();
+//		
+//	}
+
+	@Override
+	public List<ReviewRegistrationvo> selectReviewList() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

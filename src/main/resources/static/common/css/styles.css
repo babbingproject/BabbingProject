@@ -12,7 +12,7 @@ body, table, div, p {font-family: 'NanumBarunGothic';}
 html {font: normal 14px sans-serif;color: #000;background-color:#fff;}
 ul, nav {list-style: none;}
 a {text-decoration: none;color: inherit;cursor: pointer;}
-a:hover {}
+
 
 /*-------------	main    -------------*/
 #wrap .header{width:100%;border-bottom: 1px #ff4d80 solid;}
@@ -145,5 +145,6 @@ a:hover {}
 .mgtM{margin-top:20px}
 
 
-
+.tab li.on span {background-color: rgb(255, 105, 180);color: white;}
+.info.hidden{display:none;}
 

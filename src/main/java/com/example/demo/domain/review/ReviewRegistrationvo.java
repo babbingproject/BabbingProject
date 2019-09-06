@@ -55,6 +55,7 @@ public class ReviewRegistrationvo {
 	private String writer; // 게시판 테스트용 임시 칼럼
 	private Long cnt;	// 게시판 테스트용 임시 칼럼
 
+
 	/*
 	 * @OneToMany(mappedBy = "reviewId", fetch = FetchType.EAGER, cascade =
 	 * CascadeType.ALL) private List<ReviewImagevo> reviewImagevoList = new

@@ -1,5 +1,6 @@
 package com.example.demo.domain.mypage;
 
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -12,8 +13,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 import com.example.demo.domain.review.Commentvo;
 import com.example.demo.domain.review.ReviewRegistrationvo;
@@ -31,10 +30,13 @@ public class Uservo {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int userId;
-	private String userEmail;
 	private String nickname;
 	private String password;
 	private String introduce;
+	private String userPhone;
+	private String userKey;// 인증번호
+	private String userEmail;
+
 	@Column(nullable = true)
 	private String profileImg;
 	@Column(nullable = true)
@@ -52,7 +54,7 @@ public class Uservo {
 	@Column(nullable = true)
 	private Integer commentCount;
 	@Column(nullable = true)
-	private Integer userScore;
+	private Double userScore;
 	@Column(nullable = true)
 	private Integer totalCount;
 	@Column(nullable = true)
@@ -61,14 +63,14 @@ public class Uservo {
 	private String uRankImg3;
 	private String uRankImg4;
 	private String uRankImg5;
+
 	@Column(insertable = false, updatable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP")
 	private Date regDate;
 	@Column(insertable = false, updatable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP")
 	private Date logDate;
 	private String approvalStatus;
 	private String approvalKey;
-	private String userKey;
-	private String userPhone;
+
 	@Column(name = "user_time")
 	private Integer userTime;
 
@@ -78,7 +80,9 @@ public class Uservo {
 	@OneToMany(mappedBy = "uservo", cascade = CascadeType.ALL)
 	private List<ReviewRegistrationvo> reviewRegistrationList = new ArrayList<ReviewRegistrationvo>();
 
+
 	@OneToMany(mappedBy = "uservo", fetch = FetchType.EAGER)
 	public List<Commentvo> commentList = new ArrayList<Commentvo>();
+
 
 }

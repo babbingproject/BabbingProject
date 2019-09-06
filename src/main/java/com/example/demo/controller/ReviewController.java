@@ -34,10 +34,10 @@ public class ReviewController {
 	
 	@Autowired
 	ReviewService reviewService;
-	
+
 	@Autowired
 	UserService userService;
-	
+
 	@Autowired
 	CommentService commentService;
 	
@@ -45,29 +45,26 @@ public class ReviewController {
 	ReviewImageService reviewImageService;
 	@Autowired
 	UserRepository userRepo;
+
 	ReviewRepository reviewRepo;
 	
 	
 	EntityManager em;	
-//	@RequestMapping("/testhome")
-//	public String getById(ReviewImagevo reviewImagevo, Model model) {
-//		model.addAttribute("review",reviewImageService.getImgById(reviewImagevo));
-//		return "/main/homemain";
-//	}
-	
+
 	@ModelAttribute("uservo")
 	public Uservo setUservo() {
 		return new Uservo();
 	}
 	
+
 	@RequestMapping("/testhome")
 	public String getReviewImagevo(ReviewImagevo reviewImagevo, Model model) {
-//		System.out.println(reviewImagevo.toString());
 		reviewImagevo.setImgId(1);
 		model.addAttribute("review", reviewImageService.getReviewImagevo(reviewImagevo));
 //		System.out.println(reviewImagevo.toString());
 		return "th/main/homemain";
 	}
+
 	/*
 	 * @RequestMapping("") public String getReviewUserInfo() {
 	 * 
@@ -81,6 +78,7 @@ public class ReviewController {
 		}
 		return "th/review/reviewWrite";
 	}
+
 	@PostMapping("/insertReview")
 
 	public String insertReview(@ModelAttribute("uservo") Uservo uservo, ReviewRegistrationvo reviewRegistrationvo, Model model) {
@@ -95,6 +93,7 @@ public class ReviewController {
 		reviewService.insertReview(reviewRegistrationvo);
 		return "redirect:doReviewList";
 	}
+
 	@GetMapping("/doReviewView")
 	public String getReviewVIew(@ModelAttribute("uservo") Uservo uservo, ReviewRegistrationvo reviewRegistrationvo, Commentvo commentvo , Model model) {
 		if (uservo.getNickname() == null) {
@@ -149,6 +148,7 @@ public class ReviewController {
 		
 //		logger.info(model.toString());
 		return "th/review/reviewList";
+
 	}
 	
 	

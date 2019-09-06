@@ -130,13 +130,23 @@ public class HomeMainController {
 //			model.addAttribute("userSearch", userService.getSearchKeyword(searchKeyword.getSearchKeyword()));
 //
 //		};
-		
-		switch (searchKeyword.getTypes()) {
+		if(searchKeyword.getSearchKeyword()!="") {
+			
+			switch (searchKeyword.getTypes()) {
 			case "review" :
+				System.out.println(reviewService.getSearchKeyword(searchKeyword.getSearchKeyword()));
+				if(reviewService.getSearchKeyword(searchKeyword.getSearchKeyword()).isEmpty()) {
+					model.addAttribute("nothing", "리뷰 검색 결과가 없습니다");
+					break;
+				}
 				System.out.println("리뷰리뷰리뷰리뷰did it come in here?");
 				model.addAttribute("reviewSearch", reviewService.getSearchKeyword(searchKeyword.getSearchKeyword()));
 				break;
 			case "user" :
+				if(userService.getSearchKeyword(searchKeyword.getSearchKeyword()).isEmpty()) {
+					model.addAttribute("nothing", "유저 검색 결과가 없습니다");
+					break;
+				}
 				System.out.println("유저유저유저유저 왔나오?");
 				model.addAttribute("userSearch", userService.getSearchKeyword(searchKeyword.getSearchKeyword()));
 				break;
@@ -145,14 +155,41 @@ public class HomeMainController {
 				break;
 			case "advertisement" :
 				System.out.println("광광광고고고고고고곡 여기에 왔나요?");
+				if(advService.getSearchKeyword(searchKeyword.getSearchKeyword()).isEmpty()) {
+					model.addAttribute("nothing", "기업 검색 결과가 없습니다");
+					break;
+				}
 				model.addAttribute("advertisementSearch", advService.getSearchKeyword(searchKeyword.getSearchKeyword()));
 				break;
+			}
+		} else {
+			model.addAttribute("nothing", "검색 결과가 없습니다");
 		}
 		System.out.println("reviewREVIEWREIVRWREIVEW " + reviewService.getSearchKeyword(searchKeyword.getSearchKeyword()));
 		System.out.println("USERUSERUSERUSERUSER " + userService.getSearchKeyword(searchKeyword.getSearchKeyword()));
 		System.out.println("ADVADVADVADVADVasdvadv " + advService.getSearchKeyword(searchKeyword.getSearchKeyword()));
 		return "th/main/search";
-		
+	}
+
+	
+	
+//	public String getHomeMain(Uservo Uservo, Model model) {
+//		List<Uservo> UservoList = userService.getUservoListOrderByFollowingCountDes(Uservo);
+//		model.addAttribute("Uservo", UservoList);
+//		System.out.println(UservoList);
+//		return "main/homemain";
+//	}
+	
+	
+	
+
+
+	
+	//korean food list top six testing ajax
+	@RequestMapping("/getkoreanfood")
+	public String getKoreanFood(Model model) {
+		model.addAttribute("businessone", reviewService.getBusinessFieldOne());
+		return "th/main/reviewselector/getKoreanReview";
 	}
 
 }

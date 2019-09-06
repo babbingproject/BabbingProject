@@ -11,7 +11,7 @@ import com.example.demo.domain.mypage.Uservo;
 public interface UserRepository extends CrudRepository<Uservo, Integer>{
 	
 
-	@Query(value = "SELECT u.user_id, u.nickname, u.profile_img, u.following_count, u.post_count FROM Uservo u ORDER BY u.following_count DESC limit 10", nativeQuery = true)
+	@Query(value = "SELECT u.user_id, u.nickname, u.profile_img, u.following_count, u.post_count FROM Uservo u ORDER BY u.user_score DESC limit 10", nativeQuery = true)
 	List<Object[]> getFindAllByIdOrderbyFollowingCountDESC();
 	
 	//유저 서치
@@ -23,11 +23,11 @@ public interface UserRepository extends CrudRepository<Uservo, Integer>{
 	List<Object[]> getSearchKeyword(String searchKeyword);
 
 	@Query(nativeQuery = true, value = "SELECT * FROM Uservo ORDER BY following_count DESC LIMIT 6")
-
 	List<Uservo> findAllByIdOrderbyFollowingCountDESC(Uservo uservo);
 	
 	@Query(value = "select U from Uservo U where U.nickname like %?1%" )
 	Optional<Uservo> findByNickName(String nickName);
 	
+
 }
 
