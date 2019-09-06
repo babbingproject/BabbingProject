@@ -47,9 +47,9 @@ public class ReviewRegistrationvo {
 	@Column(nullable = true) // 임시
 	private Integer reviewTypeId;
 	@Column(nullable = true) // 임시
-	private Integer businessFieldId;
+	private String businessFieldId;
 	@Column(nullable = true) // 임시
-	private Integer themeId;
+	private String themeId;
 	
 	
 	private String writer; // 게시판 테스트용 임시 칼럼

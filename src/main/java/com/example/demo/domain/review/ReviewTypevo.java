@@ -15,7 +15,7 @@ import lombok.ToString;
 public class ReviewTypevo {
 	@Id @GeneratedValue
 	private int reviewTypeId;
-	private int reviewType1;
-	private int reviewType2;
+	private String reviewType;
+
 	
 }

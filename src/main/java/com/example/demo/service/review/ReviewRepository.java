@@ -29,51 +29,51 @@ public interface ReviewRepository extends JpaRepository<ReviewRegistrationvo, In
 	@Query(nativeQuery=true, value=""
 			+ "SELECT r.review_id, r.review_place, r.title, r.business_field_id, ri.img "
 			+ "FROM review_registrationvo AS r, review_imagevo AS ri "
-			+ "WHERE r.review_id = ri.review_id AND r.business_field_id = 1 "
+			+ "WHERE r.review_id = ri.review_id AND r.business_field_id = 'kor'"
 			+ "ORDER BY r.write_date DESC LIMIT 6")
-	List<Object[]> getBusinessFieldOne();
+	List<Object[]> getBusinessFieldKor();
 	
 	@Query(nativeQuery=true, value=""
 			+ "SELECT r.review_id, r.review_place, r.title, r.business_field_id, ri.img "
 			+ "FROM review_registrationvo AS r, review_imagevo AS ri "
-			+ "WHERE r.review_id = ri.review_id AND r.business_field_id = 2 "
+			+ "WHERE r.review_id = ri.review_id AND r.business_field_id = 'wes' "
 			+ "ORDER BY r.write_date DESC LIMIT 6")
-	List<Object[]> getBusinessFieldTwo();
+	List<Object[]> getBusinessFieldWes();
 	
 	@Query(nativeQuery=true, value=""
 			+ "SELECT r.review_id, r.review_place, r.title, r.business_field_id, ri.img "
 			+ "FROM review_registrationvo AS r, review_imagevo AS ri "
-			+ "WHERE r.review_id = ri.review_id AND r.business_field_id = 3 "
+			+ "WHERE r.review_id = ri.review_id AND r.business_field_id = 'jpn' "
 			+ "ORDER BY r.write_date DESC LIMIT 6")
-	List<Object[]> getBusinessFieldThree();
+	List<Object[]> getBusinessFieldJpn();
 	
 	@Query(nativeQuery=true, value=""
 			+ "SELECT r.review_id, r.review_place, r.title, r.business_field_id, ri.img "
 			+ "FROM review_registrationvo AS r, review_imagevo AS ri "
-			+ "WHERE r.review_id = ri.review_id AND r.business_field_id = 4 "
+			+ "WHERE r.review_id = ri.review_id AND r.business_field_id = 'chn' "
 			+ "ORDER BY r.write_date DESC LIMIT 6")
-	List<Object[]> getBusinessFieldFour();
+	List<Object[]> getBusinessFieldChn();
 	
 	@Query(nativeQuery=true, value=""
 			+ "SELECT r.review_id, r.review_place, r.title, r.business_field_id, ri.img "
 			+ "FROM review_registrationvo AS r, review_imagevo AS ri "
-			+ "WHERE r.review_id = ri.review_id AND r.business_field_id = 5 "
+			+ "WHERE r.review_id = ri.review_id AND r.business_field_id = 'snk'"
 			+ "ORDER BY r.write_date DESC LIMIT 6")
-	List<Object[]> getBusinessFieldFive();
+	List<Object[]> getBusinessFieldSnk();
 	
 	@Query(nativeQuery=true, value=""
 			+ "SELECT r.review_id, r.review_place, r.title, r.business_field_id, ri.img "
 			+ "FROM review_registrationvo AS r, review_imagevo AS ri "
-			+ "WHERE r.review_id = ri.review_id AND r.business_field_id = 6 "
+			+ "WHERE r.review_id = ri.review_id AND r.business_field_id = 'fst' "
 			+ "ORDER BY r.write_date DESC LIMIT 6")
-	List<Object[]> getBusinessFieldSix();
+	List<Object[]> getBusinessFieldFst();
 	
 	@Query(nativeQuery=true, value=""
 			+ "SELECT r.review_id, r.review_place, r.title, r.business_field_id, ri.img "
 			+ "FROM review_registrationvo AS r, review_imagevo AS ri "
-			+ "WHERE r.review_id = ri.review_id AND r.business_field_id = 7 "
+			+ "WHERE r.review_id = ri.review_id AND r.business_field_id = 'caf'"
 			+ "ORDER BY r.write_date DESC LIMIT 6")
-	List<Object[]> getBusinessFieldSeven();
+	List<Object[]> getBusinessFieldCaf();
 	
 	//리뷰 서치
 	@Query(nativeQuery=true, value=""

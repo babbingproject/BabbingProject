@@ -45,7 +45,7 @@ public class HomeMainController {
 		model.addAttribute("businessfive", reviewService.getBusinessFieldFive());
 		model.addAttribute("businesssix", reviewService.getBusinessFieldSix());
 		model.addAttribute("businessseven", reviewService.getBusinessFieldSeven());
-		model.addAttribute("Uservo", UservoList);
+		model.addAttribute("uservo", UservoList);
 		model.addAttribute("advvo", advvoList);
 		return "th/main/index1";
 	}

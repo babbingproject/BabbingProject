@@ -48,37 +48,37 @@ public class ReviewServiceImpl implements ReviewService {
 
 	@Override
 	public List<Object[]> getBusinessFieldOne() {
-		return reviewRepo.getBusinessFieldOne();
+		return reviewRepo.getBusinessFieldKor();
 	}
 
 	@Override
 	public List<Object[]> getBusinessFieldTwo() {
-		return reviewRepo.getBusinessFieldTwo();
+		return reviewRepo.getBusinessFieldWes();
 	}
 
 	@Override
 	public List<Object[]> getBusinessFieldThree() {
-		return reviewRepo.getBusinessFieldThree();
+		return reviewRepo.getBusinessFieldJpn();
 	}
 
 	@Override
 	public List<Object[]> getBusinessFieldFour() {
-		return reviewRepo.getBusinessFieldFour();
+		return reviewRepo.getBusinessFieldChn();
 	}
 
 	@Override
 	public List<Object[]> getBusinessFieldFive() {
-		return reviewRepo.getBusinessFieldFive();
+		return reviewRepo.getBusinessFieldSnk();
 	}
 
 	@Override
 	public List<Object[]> getBusinessFieldSix() {
-		return reviewRepo.getBusinessFieldSix();
+		return reviewRepo.getBusinessFieldFst();
 	}
 
 	@Override
 	public List<Object[]> getBusinessFieldSeven() {
-		return reviewRepo.getBusinessFieldSeven();
+		return reviewRepo.getBusinessFieldCaf();
 	}
 
 	@Override

@@ -9,6 +9,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 import com.example.demo.domain.campaign.Campaignvo;
 
@@ -37,4 +38,7 @@ public class Advertisementvo {
 	
 	@OneToMany(mappedBy = "advertisementvo", fetch=FetchType.EAGER, cascade=CascadeType.ALL)
 	private List<Campaignvo> campaignList = new ArrayList<Campaignvo>();
+	
+	@OneToOne(mappedBy ="advertisementvo")
+	private AdvertisementEvaluationvo advertisementEvaluationvo;
 }

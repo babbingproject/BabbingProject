@@ -12,19 +12,10 @@ import lombok.ToString;
 @Setter
 @ToString
 @Entity
-
 public class BusinessFieldvo {
 
-	@Id @GeneratedValue
-	private int businessFieldId;
-	private String businessFieldCode;
-	private String businessFieldWes;
-	private String businessFieldJpn;
-	private String businessFieldChn;
-	private String businessFieldInd;
-	private String businessFieldSea;
-	private String businessFieldSnk;
-	private String businessFieldPaz;
-	private String businessFieldChk;
-	private String businessFieldFst;
+	@Id 
+	private String businessFieldId;
+	private String businessFieldName;
+	
 }

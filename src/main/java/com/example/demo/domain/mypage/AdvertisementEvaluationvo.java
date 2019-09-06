@@ -1,8 +1,11 @@
 package com.example.demo.domain.mypage;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -24,7 +27,10 @@ public class AdvertisementEvaluationvo {
 	private String evaluationComment;
 	private String merit;
 	private String demerit;
-	private int advertisementId;
+	
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name ="advertisementId", referencedColumnName = "advertisementId")
+	private Advertisementvo advertisementvo;
 	
 	
 }
