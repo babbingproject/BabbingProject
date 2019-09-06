@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<!-- ajax¸¦ À§ÇÑ CDN ¹æ½Ä ¶óÀÌºê·¯¸® -->
+<!-- ajaxë¥¼ ìœ„í•œ CDN ë°©ì‹ ë¼ì´ë¸ŒëŸ¬ë¦¬ -->
 <script type="text/javascript"
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script type="text/javascript">
@@ -17,12 +17,12 @@
 				.submit(
 						function() {
 							if ($("#pw").val() !== $("#pw2").val()) {
-								alert("ºñ¹Ğ¹øÈ£°¡ ´Ù¸¨´Ï´Ù.");
+								alert("ë¹„ë°€ë²ˆí˜¸ê°€ ë‹¤ë¦…ë‹ˆë‹¤.");
 								$("#pw").val("").focus();
 								$("#pw2").val("");
 								return false;
 							} else if ($("#pw").val().length < 8) {
-								alert("ºñ¹Ğ¹øÈ£´Â 8ÀÚ ÀÌ»óÀ¸·Î ¼³Á¤ÇØ¾ß ÇÕ´Ï´Ù.");
+								alert("ë¹„ë°€ë²ˆí˜¸ëŠ” 8ì ì´ìƒìœ¼ë¡œ ì„¤ì •í•´ì•¼ í•©ë‹ˆë‹¤.");
 								$("#pw").val("").focus();
 								$("#pw2").val("");
 								return false;
@@ -32,54 +32,54 @@
 											"#nickname").val()
 									|| $.trim($("#user_email").val()) !== $(
 											"#user_email").val()) {
-								alert("°ø¹éÀº ÀÔ·ÂÀÌ ºÒ°¡´ÉÇÕ´Ï´Ù.");
+								alert("ê³µë°±ì€ ì…ë ¥ì´ ë¶ˆê°€ëŠ¥í•©ë‹ˆë‹¤.");
 								return false;
 							}
 							
 						})
 
-		/* ÀÌ¸ŞÀÏ Ã¼Å© */
+		/* ì´ë©”ì¼ ì²´í¬ */
 
-		//input¿¡ ÀÔ·ÂµÈ °ªÀÌ º¯È­°¡ ÀÖÀ»¶§ alert À» ¶ç¿î´Ù.
+		//inputì— ì…ë ¥ëœ ê°’ì´ ë³€í™”ê°€ ìˆì„ë•Œ alert ì„ ë„ìš´ë‹¤.
 		$("input[name='user_email']").on("change", function() {
 			var user_email = $('#user_email').val();
 
-			//ajax È£Ãâ
+			//ajax í˜¸ì¶œ
 
 			$.ajax({
 				//Default datatype : JS ON
 				async : true,
 				type : 'POST',
 				data : JSON.stringify({
-					// ÁÂÇ× - º¯¼ö , ¿ìÇ× - ÀÔ·ÂµÈ µ¥ÀÌÅÍ ÀÇ¹Ì
+					// ì¢Œí•­ - ë³€ìˆ˜ , ìš°í•­ - ì…ë ¥ëœ ë°ì´í„° ì˜ë¯¸
 					'user_email' : user_email
 				}),
-				//¿äÃ» url
+				//ìš”ì²­ url
 				url : "/emailCheck",
-				//controller¿¡¼­ ¼º°øÀûÀ¸·Î return ¹ŞÀ»½Ã ½ÇÇàµÇ´Â ¸Ş¼Òµå¸¦ ÀÔ·ÂÇÕ´Ï´Ù.
+				//controllerì—ì„œ ì„±ê³µì ìœ¼ë¡œ return ë°›ì„ì‹œ ì‹¤í–‰ë˜ëŠ” ë©”ì†Œë“œë¥¼ ì…ë ¥í•©ë‹ˆë‹¤.
 				dataType : "json",
 				contentType : "application/json; charset=UTF-8",
 				success : function(cnt) {
 					if (user_email == "") {
 						$("#chktext").css("color", "gray");
-						$("#chktext").text("ÀÌ¸ŞÀÏÀ» ÀÔ·ÂÇØÁÖ¼¼¿ä.");
+						$("#chktext").text("ì´ë©”ì¼ì„ ì…ë ¥í•´ì£¼ì„¸ìš”.");
 
 						$("#chktext2").html("");
 					} else if (cnt == 0) {
 						$("#chktext2").css("color", "blue");
-						$("#chktext2").text("»ç¿ë °¡´ÉÇÑ ÀÌ¸ŞÀÏ ÀÔ´Ï´Ù.");
+						$("#chktext2").text("ì‚¬ìš© ê°€ëŠ¥í•œ ì´ë©”ì¼ ì…ë‹ˆë‹¤.");
 						$("#chktext").html("");
 						$("#joinBtn").removeAttr("disabled");
 					} else {
 						$("chktext").css("color", "red");
-						$("#chktext").text("ÀÌ¹Ì »ç¿ëÁßÀÎ ÀÌ¸ŞÀÏ ÀÔ´Ï´Ù.");
+						$("#chktext").text("ì´ë¯¸ ì‚¬ìš©ì¤‘ì¸ ì´ë©”ì¼ ì…ë‹ˆë‹¤.");
 						$("#chktext2").html("");
 						$("#joinBtn").attr("disabled", "disabled");
 
 					}
 
 				},
-				//¿¡·¯ ¹ß»ı ½Ã ½ÇÇàµÇ´Â ¸Ş¼Òµå
+				//ì—ëŸ¬ ë°œìƒ ì‹œ ì‹¤í–‰ë˜ëŠ” ë©”ì†Œë“œ
 				error : function(error) {
 
 					alert("error :" + error);
@@ -89,49 +89,49 @@
 		});
 	});
 
-	/*´Ğ³×ÀÓ Ã¼Å©  */
+	/*ë‹‰ë„¤ì„ ì²´í¬  */
 
 	$(function() {
-		//input¿¡ ÀÔ·ÂµÈ °ªÀÌ º¯È­°¡ ÀÖÀ»¶§ alert À» ¶ç¿î´Ù.
+		//inputì— ì…ë ¥ëœ ê°’ì´ ë³€í™”ê°€ ìˆì„ë•Œ alert ì„ ë„ìš´ë‹¤.
 		$("input[name='nickname']").on("change", function() {
 			var nickname = $('#nickname').val();
 
-			//ajax È£Ãâ
+			//ajax í˜¸ì¶œ
 
 			$.ajax({
 				//Default datatype : JS ON
 				async : true,
 				type : 'POST',
 				data : JSON.stringify({
-					// ÁÂÇ× - º¯¼ö , ¿ìÇ× - ÀÔ·ÂµÈ µ¥ÀÌÅÍ ÀÇ¹Ì
+					// ì¢Œí•­ - ë³€ìˆ˜ , ìš°í•­ - ì…ë ¥ëœ ë°ì´í„° ì˜ë¯¸
 					'nickname' : nickname
 				}),
-				//¿äÃ» url
+				//ìš”ì²­ url
 				url : "/nickCheck",
-				//controller¿¡¼­ ¼º°øÀûÀ¸·Î return ¹ŞÀ»½Ã ½ÇÇàµÇ´Â ¸Ş¼Òµå¸¦ ÀÔ·ÂÇÕ´Ï´Ù.
+				//controllerì—ì„œ ì„±ê³µì ìœ¼ë¡œ return ë°›ì„ì‹œ ì‹¤í–‰ë˜ëŠ” ë©”ì†Œë“œë¥¼ ì…ë ¥í•©ë‹ˆë‹¤.
 				dataType : "json",
 				contentType : "application/json; charset=UTF-8",
 				success : function(cnt) {
 					if (nickname == "") {
 						$("#chktext").css("color", "gray");
-						$("#nickchktext").text("´Ğ³×ÀÓÀ» ÀÔ·ÂÇØÁÖ¼¼¿ä.");
+						$("#nickchktext").text("ë‹‰ë„¤ì„ì„ ì…ë ¥í•´ì£¼ì„¸ìš”.");
 
 						$("#nickchktext2").html("");
 					} else if (cnt == 0) {
 						$("#nickchktext2").css("color", "blue");
-						$("#nickchktext2").text("»ç¿ë °¡´ÉÇÑ ´Ğ³×ÀÓ ÀÔ´Ï´Ù.");
+						$("#nickchktext2").text("ì‚¬ìš© ê°€ëŠ¥í•œ ë‹‰ë„¤ì„ ì…ë‹ˆë‹¤.");
 						$("#nickchktext").html("");
 						$("#joinBtn").removeAttr("disabled");
 					} else {
 						$("#nickchktext").css("color", "red");
-						$("#nickchktext").text("ÀÌ¹Ì »ç¿ëÁßÀÎ ´Ğ³×ÀÓ ÀÔ´Ï´Ù.");
+						$("#nickchktext").text("ì´ë¯¸ ì‚¬ìš©ì¤‘ì¸ ë‹‰ë„¤ì„ ì…ë‹ˆë‹¤.");
 						$("#nickchktext2").html("");
 						$("#joinBtn").attr("disabled", "disabled");
 
 					}
 
 				},
-				//¿¡·¯ ¹ß»ı ½Ã ½ÇÇàµÇ´Â ¸Ş¼Òµå
+				//ì—ëŸ¬ ë°œìƒ ì‹œ ì‹¤í–‰ë˜ëŠ” ë©”ì†Œë“œ
 				error : function(error) {
 
 					alert("error :" + error);
@@ -150,12 +150,12 @@
 				<a><img
 					src="${pageContext.request.contextPath}/images/Bobbing-logo.png"
 					style="height: 80px; margin-left: 10px;" /></a> <br> <br>
-				<h3>¹äºù È¸¿ø°¡ÀÔ Å×½ºÆ®</h3>
+				<h3>ë°¥ë¹™ íšŒì›ê°€ì… í…ŒìŠ¤íŠ¸</h3>
 			</div>
 			<div>
 
 				<form id="joinForm" action="/join" method="post">
-					<!-- ¼¼¼Ç¿¡ ÀúÀåÇÑ Ä«Ä«¿À ¾ÆÀÌµğ¸¦ °¡Á®¿È -->
+					<!-- ì„¸ì…˜ì— ì €ì¥í•œ ì¹´ì¹´ì˜¤ ì•„ì´ë””ë¥¼ ê°€ì ¸ì˜´ -->
 					<input type="hidden" name="kakao_id" value="${kakao_id}" />
 
 					<p>
