@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.domain.campaign.Campaignvo;
+import com.example.demo.domain.mypage.Advertisementvo;
 
 @Service
 public class CampaignServiceImpl implements CampaignService {

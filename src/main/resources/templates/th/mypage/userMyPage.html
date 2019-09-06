@@ -1,10 +1,59 @@
-<!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="EUC-KR">
-<title>Insert title here</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>유저 마이 페이지</title>
+<link rel="stylesheet" href="/common/css/styles.css" th:href="@{/common/css/styles.css}" type="text/css">
+
+    <style>
+    /*탭 메뉴(버튼 관련 부분)*/
+    .tablink {
+        background-color: #ffc4f5;
+        color: white;
+        float: left;
+        border: none;
+        outline: none;
+        cursor: pointer;
+        padding: 14px 16px;
+        font-size: 17px;
+        width: 20%;
+    }
+    </style>
 </head>
 <body>
 
+
+<div id="wrap" class="main">
+	<div th:replace="/include/header.html :: header"></div>
+	<span>
+	 <button class="tablink" onclick="openPage('reviewList', this)" id="defaultOpen">작성글</button>
+     <button class="tablink" onclick="openPage('scrapList', this)">스크랩</button>
+     <button class="tablink" onclick="openPage('followList', this)">팔로워</button>
+     <button class="tablink" onclick="openPage('followingList', this)">팔로잉</button>   
+     <button class="tablink" onclick="openPage('puttingList', this)">담아두기</button>	
+	</span>
+</div>
+	<div id="reviewList" class="tabcontent">작성글 리스트</div>                          
+	<div id="scrapList" class="tabcontent">스크랩 </div>
+	<div id="followList" class="tabcontent">팔로워</div>
+    <div id="followingList" class="tabcontent">팔로잉</div>   
+	<div id="puttingList" class="tabcontent">담아둔 곳 </div>   
+
+ <script>
+            function openPage(pageName,elmnt,color) {
+              var i, tabcontent, tablinks;
+              tabcontent = document.getElementsByClassName("tabcontent");
+              for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+              }
+              tablinks = document.getElementsByClassName("tablink");
+              for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].style.backgroundColor = "";
+              }
+              document.getElementById(pageName).style.display = "block";
+              elmnt.style.backgroundColor = color;
+            }            
+            // 기본 열림
+            document.getElementById("defaultOpen").click();
+    </script>
 </body>
 </html>

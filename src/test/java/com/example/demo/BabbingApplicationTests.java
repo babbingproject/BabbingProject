@@ -12,8 +12,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import com.example.demo.domain.campaign.Campaignvo;
 import com.example.demo.domain.mypage.Uservo;
 import com.example.demo.domain.review.ReviewRegistrationvo;
+import com.example.demo.service.campaign.CampaignRepository;
 import com.example.demo.service.review.ReviewRepository;
 import com.example.demo.service.review.ReviewService;
 import com.example.demo.service.user.UserRepository;
@@ -33,6 +35,9 @@ public class BabbingApplicationTests {
 	
 	@PersistenceContext
 	EntityManager em;
+	
+	@Autowired
+	CampaignRepository campaignRepo;
 	
 	/*
 	 * @Test public void contextLoads() { }
@@ -107,6 +112,5 @@ public class BabbingApplicationTests {
 	 * System.out.println(uservo.toString());
 	 * 
 	 * }
-	 */
-	
+	 */	
 }

@@ -8,11 +8,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.example.demo.domain.campaign.Campaignvo;
 import com.example.demo.domain.mypage.Advertisementvo;
 import com.example.demo.service.campaign.CampaignService;
 
+@SessionAttributes("uservo")
 @Controller
 public class CampaignController {
 	
@@ -25,7 +27,6 @@ public class CampaignController {
 		
 		List<Campaignvo> campaignList = campaignService.getListByActive(campaignvo);
 		model.addAttribute("campaignList", campaignList);
-		System.out.println("did it come here");
 		return "th/campaign/campaign";
 	}
 	
