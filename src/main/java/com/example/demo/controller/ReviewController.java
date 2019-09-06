@@ -95,19 +95,12 @@ public class ReviewController {
 	}
 
 	@GetMapping("/doReviewView")
-	public String getReviewVIew(@ModelAttribute("uservo") Uservo uservo, ReviewRegistrationvo reviewRegistrationvo, Commentvo commentvo , Model model) {
+	public String getReviewVIew(@ModelAttribute("uservo") Uservo uservo, ReviewRegistrationvo reviewRegistrationvo, Model model) {
 		if (uservo.getNickname() == null) {
 			return "redirect:login";
 		}
-		
-//		int userId = uservo.getUserId();
-		
-		
-		model.addAttribute("commentList", commentService.selectCommentListAllById(reviewRegistrationvo.getReviewId()));
-//		logger.info(model.toString());
 		model.addAttribute("reviewView", reviewService.selectReviewView(reviewRegistrationvo));
-		
-		
+		model.addAttribute("commentList", commentService.selectCommentList(reviewRegistrationvo));
 		return "th/review/reviewView"; 
 	}
 	

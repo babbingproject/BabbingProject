@@ -8,8 +8,6 @@ import com.example.demo.domain.review.ReviewRegistrationvo;
 
 public interface CommentService {
 	
-	Optional<Commentvo> selectCommentListAllById(int reviewId);
-	
 	void insertComment (Commentvo commentvo);
 
 	List<Commentvo> selectCommentList(ReviewRegistrationvo reviewRegistrationvo);

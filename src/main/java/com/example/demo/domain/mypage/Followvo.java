@@ -4,6 +4,7 @@ import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -17,7 +18,7 @@ import lombok.ToString;
 @ToString
 @Entity
 public class Followvo {
-	@Id @GeneratedValue
+	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int followId;
 	@Temporal(value= TemporalType.TIMESTAMP)
 	private Date followingTime;

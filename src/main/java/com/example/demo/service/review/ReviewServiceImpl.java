@@ -109,14 +109,15 @@ public class ReviewServiceImpl implements ReviewService {
 	@Override
 	public List<Object> selectReviewJoinReviewAndComment(Uservo uservo, 
 			ReviewRegistrationvo reviewRegistrationvo, Commentvo commentvo) {
-		JPAQueryFactory query = new JPAQueryFactory(em);
-//		JPAQuery<Object> query = new JPAQuery<Object>(em);
-
-		QUservo qUservo = QUservo.uservo;
-		QReviewRegistrationvo qReviewRegistrationvo = QReviewRegistrationvo.reviewRegistrationvo;
-		QCommentvo qCommentvo = QCommentvo.commentvo;
-		
-		
+		/*
+		 * JPAQueryFactory query = new JPAQueryFactory(em); // JPAQuery<Object> query =
+		 * new JPAQuery<Object>(em);
+		 * 
+		 * QUservo qUservo = QUservo.uservo; QReviewRegistrationvo qReviewRegistrationvo
+		 * = QReviewRegistrationvo.reviewRegistrationvo; QCommentvo qCommentvo =
+		 * QCommentvo.commentvo;
+		 * 
+		 */
 
 		/*
 		 * return query.from(qReviewRegistrationvo)
@@ -130,10 +131,7 @@ public class ReviewServiceImpl implements ReviewService {
 
 	@Override
 	public ReviewRegistrationvo selectReviewView(ReviewRegistrationvo reviewRegistrationvo) {
-		
-		
 		return reviewRepo.findById(reviewRegistrationvo.getReviewId()).get();
-
 	}
 
 	@Override

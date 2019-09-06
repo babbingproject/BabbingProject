@@ -1,19 +1,20 @@
 package com.example.demo.controller;
 
+import java.util.HashMap;
 import java.util.List;
-import java.util.Optional;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.example.demo.domain.mypage.Uservo;
 import com.example.demo.domain.review.Commentvo;
+import com.example.demo.domain.review.Commentvo2;
 import com.example.demo.domain.review.ReviewRegistrationvo;
 import com.example.demo.service.review.CommentService;
 
@@ -28,7 +29,7 @@ public class CommentController {
 	
 	@RequestMapping("/commentList")
 	@ResponseBody
-	public Optional<Commentvo> commentList(@ModelAttribute("uservo") Uservo uservo, ReviewRegistrationvo
+	public List<Commentvo> commentList(@ModelAttribute("uservo") Uservo uservo, ReviewRegistrationvo
 		reviewRegistrationvo, Commentvo commentvo, Model model) { 
 		/*
 		 * if (uservo.getNickname() == null) { // nickname대신 userId로 조건을 줘야하나? return
@@ -36,7 +37,7 @@ public class CommentController {
 		 */
 //		commentService.selectCommentListAllById(reviewRegistrationvo.getReviewId());
 		System.out.println(reviewRegistrationvo.toString());
-		Optional<Commentvo> commentList = commentService.selectCommentListAllById(reviewRegistrationvo.getReviewId());
+		List<Commentvo> commentList = commentService.selectCommentList(reviewRegistrationvo);
 //		model.addAttribute("commentList", commentList);
 		System.out.println(commentList.toString());
 //	  return "th/review/testComment"; 
@@ -48,23 +49,44 @@ public class CommentController {
 	 * 
 	 * return "th/review/testComment"; }
 	 */
-	@RequestMapping(value="/addComment", method = RequestMethod.POST)
+	@RequestMapping(value="/addComment")
 	@ResponseBody
-	public List<Commentvo> addComment(@ModelAttribute("uservo") Uservo uservo, Commentvo commentvo, ReviewRegistrationvo reviewRegistrationvo) { 
-		System.out.println(" 권 선생님 ");
-		System.out.println(uservo.toString());
-		
+	public Commentvo addComment(@ModelAttribute("uservo") Uservo uservo, Commentvo commentvo, ReviewRegistrationvo reviewRegistrationvo) { 
 		commentvo.setUservo(uservo);
-		System.out.println(uservo.toString());
-		System.out.println(reviewRegistrationvo.toString());
 		commentvo.setReviewRegistrationvo(reviewRegistrationvo);
 		commentService.insertComment(commentvo);
 		
-		List<Commentvo> commentList =  commentService.selectCommentList(reviewRegistrationvo);
 		
-		System.out.println(commentList);
-		return commentList; 
+		System.out.println(commentvo);
+//		Map<String, Commentvo> comment = new HashMap<>();
+//		comment.put("commentvo", commentvo);
+		
+		
+//		Commentvo2 com = new Commentvo2();
+//		com.setContents(commentvo.getContents());
+//		com.setReviewId(commentvo.getReviewRegistrationvo().getReviewId());
+//		com.setUserId(commentvo.getUservo().getUserId());
+//		com.set(commentvo.getUservo().getNickname());
+		
+		return commentvo;
 	}
+	@RequestMapping(value="/addComment2")
+	@ResponseBody
+	public Commentvo2 addComment2(@ModelAttribute("uservo") Uservo uservo, Commentvo commentvo, ReviewRegistrationvo reviewRegistrationvo ) { 
+		
+//		Map<String, Commentvo> comment = new HashMap<>();
+//		comment.put("commentvo", commentvo);
+		
+		
+//		Commentvo com = new Commentvo();
+		Commentvo2 com = new Commentvo2();
+		com.setContents(commentvo.getContents());
+		com.setReviewId(commentvo.getReviewRegistrationvo().getReviewId());
+		com.setUserId(commentvo.getUservo().getUserId());
+		
+		
+		return com;
+	}	
 	@RequestMapping("test")
 	public String testPage() {
 		return "th/review/testComment";
