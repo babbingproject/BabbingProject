@@ -14,12 +14,59 @@
 <script type="text/javascript">
 	$(function() {
 		$("#searchBtn2").submit(function() {
-			if ($.trim($("#inputEmail_2").val()) !== $("#inputEmail_2").val()) {
+			if ($.trim($("#user_email").val()) !== $("#user_email").val()) {
 				alert("아이디를 입력해주세요");
 				return false;
 			}
-			alert("비밀번호 변경 메일을 발송 하였습니다!");
+
 		})
+		//input에 입력된 값이 변화가 있을때 alert 을 띄운다.
+		$("input[name='user_email']").on("change", function() {
+			var user_email = $('#user_email').val();
+
+			//ajax 호출
+
+			$.ajax({
+				//Default datatype : JS ON
+				async : true,
+				type : 'POST',
+				data : JSON.stringify({
+					// 좌항 - 변수 , 우항 - 입력된 데이터 의미
+					'user_email' : user_email
+				}),
+				//요청 url
+				url : "/emailCheck",
+				//controller에서 성공적으로 return 받을시 실행되는 메소드를 입력합니다.
+				dataType : "json",
+				contentType : "application/json; charset=UTF-8",
+				success : function(cnt) {
+					if (user_email == "") {
+						$("#chktext").css("color", "gray");
+						$("#chktext").text("이메일을 입력해주세요.");
+
+						$("#chktext2").html("");
+					} else if (cnt == 0) {
+						$("chktext").css("color", "red");
+						$("#chktext").text("회원가입을 먼저 진행해주세요!");
+						$("#chktext2").html("");
+						$("#joinBtn").attr("disabled", "disabled");
+					} else {
+						$("#chktext2").css("color", "blue");
+						$("#chktext2").text("사용가능합니다!!");
+						$("#chktext").html("");
+						$("#joinBtn").removeAttr("disabled");
+
+					}
+
+				},
+				//에러 발생 시 실행되는 메소드
+				error : function(error) {
+
+					alert("error :" + error);
+
+				}
+			});
+		});
 	});
 </script>
 </head>
@@ -39,18 +86,18 @@
 
 				<p>
 					<input type="text" class="w3-input" name="user_email"
-						id="inputEmail_2" placeholder="example@naver.com"
+						id="user_email" placeholder="example@naver.com"
 						required="required">
 					<!-- 쿠기에 저장된 벨류(아이디값)을 꺼내옵니다. 서비스에서 쿠키지정 ->컨르롤러로 벨류 전달 -->
-					<span id="spanLoginCheck" class="w3-text-red"></span>
+					<span id="chktext" class="w3-text-red"></span> <span id="chktext2"
+						class="w3-text-blue"></span>
+
 				</p>
-				<input type="submit" id="searchBtn2"
-					class="w3-button w3-block w3-pink w3-ripple w3-margin-top w3-margin-bottom w3-round"
-					value="확인">
-				<!-- <button id="searchBtn2" type="button" class="w3-button w3-block w3-black w3-ripple w3-margin-top w3-margin-bottom w3-round">확인</button> -->
+				<button type="submit" id="joinBtn"
+					class="w3-button w3-block w3-pink w3-ripple w3-margin-top w3-round">전송</button>
 				<button type="button" onclick="history.go(-1);"
 					class="w3-button w3-block w3-pink w3-ripple w3-margin-top w3-margin-bottom w3-round">취소</button>
-
+				
 			</form>
 		</div>
 	</div>

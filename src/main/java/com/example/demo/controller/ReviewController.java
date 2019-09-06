@@ -61,16 +61,9 @@ public class ReviewController {
 	public String getReviewImagevo(ReviewImagevo reviewImagevo, Model model) {
 		reviewImagevo.setImgId(1);
 		model.addAttribute("review", reviewImageService.getReviewImagevo(reviewImagevo));
-//		System.out.println(reviewImagevo.toString());
 		return "th/main/homemain";
 	}
 
-	/*
-	 * @RequestMapping("") public String getReviewUserInfo() {
-	 * 
-	 * 
-	 * return"/review/review"; }
-	 */
 	@GetMapping("/insertReview")
 	public String insertReview(@ModelAttribute("uservo") Uservo uservo) {
 		if (uservo.getNickname() == null) { // nickname대신 userId로 조건을 줘야하나?

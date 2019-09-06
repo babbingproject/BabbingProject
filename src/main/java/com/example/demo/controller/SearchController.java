@@ -21,7 +21,7 @@ public class SearchController {
 	public String userJoin(Uservo Uservo, HttpServletRequest request) {
 		// 메일 보내기
 		mailsender.mailSendWithPassword(Uservo.getUser_email(), Uservo.getNickname(), request);
-		return "th/main/homemain";
+		return "userSearchMail";
 	}
 	// 비밀번호 e-mail 인증 컨트롤러
 	@RequestMapping(value = "/userpw/key_alter", method = RequestMethod.GET)
@@ -34,11 +34,9 @@ public class SearchController {
 	@RequestMapping(value="/pwUpdate",method=RequestMethod.POST)
 	public String pwUpdate(@RequestParam("user_email") String user_email, @RequestParam("password") String password) {
 		//입력받은 새 비밀번호를 암호화합니다.
-		System.out.println("새비번 컨트롤러 왔습니다");
 		password = UserSha256.encrypt(password);
-		System.out.println(user_email);
 		//새 비밀번호로 업데이트 합니다
 		mailsender.searchPassword(user_email, password);
-		return "th/main/homemain";
+		return "updatePwSs";
 	}
 }

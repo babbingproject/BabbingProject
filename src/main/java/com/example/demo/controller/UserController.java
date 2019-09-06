@@ -16,7 +16,6 @@ import com.example.demo.service.user.UserMailSendService;
 import com.example.demo.service.user.UserService;
 import com.example.demo.service.user.UserSha256;
 
-
 @Controller
 public class UserController {
 
@@ -36,9 +35,6 @@ public class UserController {
 	}
 
 	@RequestMapping("/join")
-
-//	public String userJoin(Uservo Uservo) {
-//		userMapper.joinUser(Uservo);
 	public String userJoin(Uservo Uservo, Model model, HttpServletRequest request) {
 		// 받아온 비밀번호를 암호화 합니다.
 		String encryPassword = UserSha256.encrypt(Uservo.getPassword());
@@ -48,13 +44,11 @@ public class UserController {
 		userService.joinUser(Uservo);
 		// 메일 보내기
 		mailsender.mailSendWithUserKey(Uservo.getUser_email(), Uservo.getNickname(), request);
-
-		return "th/main/index1";
+		return "joinMail";
 	}
 
 	@ResponseBody
 	@RequestMapping("/emailCheck")
-
 	public int emailCheck(@RequestBody Uservo vo) {
 		return userService.emailCheck(vo, vo.getUser_email());
 	}
@@ -77,12 +71,5 @@ public class UserController {
 		return "regSuccess";
 	}
 
-	@RequestMapping("/login")
-	public String login() {
-		return "login";
-	}
-	@RequestMapping("/loginss")
-	public String loginss() {
-		return "th/main/index1";
-	}
+
 }

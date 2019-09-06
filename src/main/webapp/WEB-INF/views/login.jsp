@@ -103,18 +103,14 @@
 							class="w3-button w3-block w3-pink w3-ripple w3-margin-top w3-round"
 							href="${pageContext.request.contextPath}/joinForm">JOIN</a> <a
 							class="w3-button w3-block w3-pink w3-ripple w3-margin-top w3-round"
-							href="${pageContext.request.contextPath}/index">HOME</a> <a href="">
+							href="${pageContext.request.contextPath}/">HOME</a> <%-- <a href="">
 							<img
 							src="${pageContext.request.contextPath}/images/facebook_big.png"
-							width="30%" height="50"
-							class=" w3-ripple w3-margin-top w3-margin-bottom " /> <img
-							id="socialimage"
-							src="${pageContext.request.contextPath}/images/kakao_account_login_btn_medium_narrow (1).png"
-							height="50" align="middle" width="33%"  /> <img
-							src="${pageContext.request.contextPath}/images/네이버 아이디로 로그인_완성형_Green.PNG"
-						 align="middle" height="50" width="35%"/>
-
-
+							width="100%" height="50"
+							class=" w3-ripple w3-block w3-margin-top w3-margin-bottom " /> --%><br> <a
+							href="${url}"> <img
+								src="${pageContext.request.contextPath}/images/네이버 아이디로 로그인_완성형_Green.PNG"
+								align="middle" height="50" width="100%"/ >
 						</a>
 					</p>
 					<a href="${pageContext.request.contextPath}/userSearch">&nbsp;
@@ -141,9 +137,17 @@
 						src="${pageContext.request.contextPath}/images/네이버 아이디로 로그인_완성형_Green.PNG"
 						width="25%" align="middle" height="100%" />
 					</a> --%>
-				</div>
+
+				<%-- 네아로 버튼
+					<div id="naver_id_login" style="text-align: center">
+								<a href="${url}"> <img width="223"
+									src="https://developers.naver.com/doc/review_201802/CK_bEFnWMeEBjXpQ5o8N_20180202_7aot50.png" /></a>
+							</div>
+						</a> --%>
+
 			</div>
 		</div>
+	</div>
 	</div>
 
 </body>

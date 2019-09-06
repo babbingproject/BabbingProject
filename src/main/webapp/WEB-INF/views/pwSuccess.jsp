@@ -26,7 +26,7 @@
 						$("#pw2").val("");
 						return false;
 					} 
-					alert("신규 비밀번호로 변경 완료되었습니다!");
+					
 				})
 	});
 </script>
