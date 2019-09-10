@@ -3,6 +3,7 @@
 <head>
 <title>리뷰 목록</title>
 <meta http-equiv="Content-type" content="text/html; charset=UTF-8">
+
 <style type="text/css">
 /* iframe {
 	width: 600px;
@@ -25,9 +26,9 @@ small {
 </style>
 <link rel="stylesheet"
 	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<!-- <script src="//code.jquery.com/jquery-1.11.3.min.js"></script> -->
+<!-- <script src="https://code.jquery.com/jquery-1.12.4.js"></script> -->
+<!-- <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script> -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
 <body th:align="left">
@@ -45,7 +46,7 @@ small {
 			</tr>
 			<tr>
 				<th bgcolor="orange">작성자</th>
-				<td align="left"><input name="writer" size="20" type="text" th:value="${uservo.nickname}"></input></td>
+				<td align="left"><input name="nickName" size="20" type="text" th:value="${uservo.nickname}"></input></td>
 				
 			</tr>
 			<!-- <tr>

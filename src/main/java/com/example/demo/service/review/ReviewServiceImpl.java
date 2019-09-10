@@ -6,6 +6,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.domain.mypage.Uservo;
@@ -34,10 +36,10 @@ public class ReviewServiceImpl implements ReviewService {
 		return reviewRepo.getKoreanFoodTopSix();
 	}
 
-	@Override
-	public List<Object[]> getNewestReview() {
-		return reviewRepo.getNewestReview();
-	}
+//	@Override
+//	public List<Object[]> getNewestReview() {
+//		return reviewRepo.getNewestReview();
+//	}
 
 	@Override
 	public List<Object[]> getEverythingTopSix() {
@@ -83,6 +85,10 @@ public class ReviewServiceImpl implements ReviewService {
 	public List<Object[]> getSearchKeyword(String searchKeyword) {
 		return reviewRepo.getSearchKeyword(searchKeyword);
 	}
+//	@Override
+//	public Page<Object[]> getSearchKeyword(String searchKeyword, PageRequest pageRequest) {
+//		return reviewRepo.getSearchKeyword(searchKeyword, pageRequest);
+//	}
 
 	@Override
 
@@ -166,6 +172,21 @@ public class ReviewServiceImpl implements ReviewService {
 	public List<ReviewRegistrationvo> selectReviewList() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+	
+	public Page<ReviewRegistrationvo> findAll(Pageable pageable){
+		return reviewRepo.findAll(pageable);
+	}
+	
+	public List<ReviewRegistrationvo> findAll(){
+		return reviewRepo.findAll();
+	}
+	
+	public List<ReviewRegistrationvo> getNewestReviewList(){
+		return reviewRepo.getNewestReviewList();
+	}
+	public List<ReviewRegistrationvo> getNewestReview(){
+		return (List<ReviewRegistrationvo>) reviewRepo.getNewestReview();
 	}
 
 }

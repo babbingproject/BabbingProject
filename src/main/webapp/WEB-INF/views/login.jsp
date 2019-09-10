@@ -7,9 +7,10 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>login</title>
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="common/css/stylesJoin2.css" rel="stylesheet">
+<link href="common/css/wlogin.css" rel="stylesheet">
 <!-- ajax를 위한 CDN 방식 라이브러리 -->
 <script type="text/javascript"
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -59,17 +60,37 @@
 </script>
 </head>
 <body>
+
 	<!-- Cookie가 비어있지 않을 때 checked 속성을 줌 -->
 	<c:if test="${not empty cookie.user_check}">
 		<c:set value="checked" var="checked" />
 	</c:if>
-	<div class="w3-content w3-container w3-margin-top">
+	<div class="w3-center">
+		<div id="logoBack">
+			<a href="index"><img src="images/Bobbing-logo.png" alt="밥빙 logo" /></a>
+		</div>
+
+	</div>
+
+	<div class="w3-content w3-container w3-margin-top w3-center">
+
 		<div class="w3-container w3-card-4">
+
+			<div id="layer_11">
+				<a href="/login"><img src="images/layer_11.png" /></a>
+			</div>
+			<div id="layer_12">
+				<a href="/adLogin"><img src="images/layer_12.png" /></a>
+			</div>
+			<div id="Shape740copy2">
+				<img src="images/Shape740copy2.png">
+			</div>
+			<div id="Shape740copy">
+				<img src="images/Shape740copy.png">
+			</div>
 			<div class="w3-center w3-large w3-margin-top">
-				<a><img
-					src="${pageContext.request.contextPath}/images/Bobbing-logo.png"
-					style="height: 80px; margin-left: 10px;" /></a> <br> <br>
-				<h3>밥빙 로그인 테스트</h3>
+				<br> <br> <br> <br>
+
 			</div>
 			<div>
 				<form id="login" method="post">
@@ -78,77 +99,54 @@
 					<!-- 세션에 저장한 카카오 아이디를 가져옴 -->
 					<input type="hidden" name="kakao_id" value="${kakao_id}" />
 					<p>
-						<label>Email</label><br> <input type="text" class="w3-input"
-							name="user_email" id="user_email" placeholder="Email"
+						<input type="text" class="w3-input" name="user_email"
+							id="user_email" placeholder="이메일(example@naver.com)"
 							value="${cookie.user_check.value}" required="required">
 						<!-- 쿠기에 저장된 벨류(아이디값)을 꺼내옵니다. 서비스에서 쿠키지정 ->컨르롤러로 벨류 전달 -->
 						<span id="spanLoginCheck" class="w3-text-red"></span>
 					</p>
 					<p>
-						<label>Password</label><br> <input type="password"
-							class="w3-input" name="password" id="inputPassword"
-							placeholder="Password" required="required"> <span
-							id="spanLoginCheck" class="w3-text-red"></span>
-					</p>
-					<p>
-						<label class="font-weight-bold text-white"> <input
-							type="checkbox" id="remember_us" name="remember_userId"
-							${checked}> 이메일 기억하기 <!-- 위에 벨류값에 따라 checked가 실행되거나 안되게 합니다. -->
-						</label>
+						<input type="password" class="w3-input" name="password"
+							id="inputPassword" placeholder="비밀번호" required="required">
+						<span id="spanLoginCheck" class="w3-text-red"></span>
 					</p>
 					<p>
 						<input type="button" id="loginBtn"
 							class="w3-button w3-block w3-pink w3-ripple w3-margin-top w3-margin-bottom w3-round"
-							value="LOGIN"> <a
-							class="w3-button w3-block w3-pink w3-ripple w3-margin-top w3-round"
-							href="${pageContext.request.contextPath}/joinForm">JOIN</a> <a
-							class="w3-button w3-block w3-pink w3-ripple w3-margin-top w3-round"
-							href="${pageContext.request.contextPath}/">HOME</a> <%-- <a href="">
-							<img
-							src="${pageContext.request.contextPath}/images/facebook_big.png"
-							width="100%" height="50"
-							class=" w3-ripple w3-block w3-margin-top w3-margin-bottom " /> --%><br> <a
-							href="${url}"> <img
-								src="${pageContext.request.contextPath}/images/네이버 아이디로 로그인_완성형_Green.PNG"
-								align="middle" height="50" width="100%"/ >
-						</a>
+							value="로그인">
+					<p>
+						<label class="font-weight-bold text-white"
+							style="margin-right: 352px;"> <input type="checkbox"
+							id="remember_us" name="remember_userId" ${checked}> 이메일
+							저장하기 <!-- 위에 벨류값에 따라 checked가 실행되거나 안되게 합니다. -->
+						</label> <a style="margin-left: -95px;"
+							href="${pageContext.request.contextPath}/userSearch"> 비밀번호 찾기</a>
 					</p>
-					<a href="${pageContext.request.contextPath}/userSearch">&nbsp;
-						비밀번호 찾기</a>
+					<p>
+						<a href="${url}"> <img
+							src="${pageContext.request.contextPath}/images/네아로.png"
+							align="middle" height="50" width="80%" />
+						</a> <a href=""> <img
+							src="${pageContext.request.contextPath}/images/페아로.png"
+							width="100%" height="50"
+							class=" w3-ripple w3-block w3-margin-top w3-margin-bottom " /></a> 
+							<br>
+							<div id=""><img src="images/멘트로고.png"></div>
+							<br>
+							<input
+							type="button" onclick="location.href='/joinForm'"
+							class="w3-button w3-block w3-pink w3-ripple w3-margin-top w3-margin-bottom w3-round"
+							value="회원가입"></input>
+
+
 
 				</form>
-				<%-- <!-- 소셜 로그인 시작  -->
-				<div class="form-group socialimage" id="facebookBtn">
-					<a href=""> <img
-						src="${pageContext.request.contextPath}/images/facebook_big.png"
-						width="25%" height="100%" />
-					</a>
-				</div>
-				<div class="form-group socialimage" id="kakaoBtn">
-					<a
-						href="https://kauth.kakao.com/oauth/authorize?client_id=85f4a0fdfed755ce3d9b2b081af17f44&redirect_uri=http://localhost:8080/MS/kakaologin&response_type=code">
-						<img id="socialimage"
-						src="${pageContext.request.contextPath}/images/kakao_account_login_btn_medium_narrow (1).png"
-						height="100%" align="middle" />
-					</a>
-				</div>
-				<div class="w3-margin-top w3-margin-bottom" id="naverBtn">
-					<a href=""> <img
-						src="${pageContext.request.contextPath}/images/네이버 아이디로 로그인_완성형_Green.PNG"
-						width="25%" align="middle" height="100%" />
-					</a> --%>
 
-				<%-- 네아로 버튼
-					<div id="naver_id_login" style="text-align: center">
-								<a href="${url}"> <img width="223"
-									src="https://developers.naver.com/doc/review_201802/CK_bEFnWMeEBjXpQ5o8N_20180202_7aot50.png" /></a>
-							</div>
-						</a> --%>
 
 			</div>
 		</div>
 	</div>
-	</div>
+
 
 </body>
 </html>

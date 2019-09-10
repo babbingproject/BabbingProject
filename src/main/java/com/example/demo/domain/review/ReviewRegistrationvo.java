@@ -23,7 +23,7 @@ import lombok.ToString;
 
 @Getter
 @Setter
-@ToString(exclude = {"commentList", "uservo"})
+@ToString(exclude = {"commentList", "uservo", "reviewImgList"})
 @Entity
 public class ReviewRegistrationvo {
 	@Id
@@ -67,6 +67,7 @@ public class ReviewRegistrationvo {
 	@OneToMany(mappedBy = "reviewRegistrationvo", fetch = FetchType.EAGER, cascade = CascadeType.ALL )
 	private List<Commentvo> commentList = new ArrayList<Commentvo>();
 
+	
 	@OneToMany(mappedBy = "reviewRegistrationvo", cascade = CascadeType.ALL)
 	private List<ReviewImagevo> reviewImgList = new ArrayList<ReviewImagevo>();
 

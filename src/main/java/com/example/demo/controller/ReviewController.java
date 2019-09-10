@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.example.demo.domain.mypage.Uservo;
@@ -72,13 +73,13 @@ public class ReviewController {
 	}
 
 	@PostMapping("/insertReview")
-
 	public String insertReview(Uservo uservo, ReviewRegistrationvo reviewRegistrationvo, Model model) {
 		if (uservo.getNickname() == null) {
 //			model.addAttribute("userId", uservo);
 //			logger.info(uservo.toString());
 			return "redirect:login";
 		}
+
 		System.out.println(uservo.toString());
 		
 		reviewRegistrationvo.setUservo(uservo);
@@ -99,6 +100,7 @@ public class ReviewController {
 	}
 	
 	@PostMapping("/updateReviewView")
+
 	public String updateReview(Uservo uservo, ReviewRegistrationvo reviewRegistrationvo) {
 		/*
 		 * if (uservo.getNickname() == null) { return "redirect:login"; }
@@ -135,6 +137,8 @@ public class ReviewController {
 		return "th/review/reviewList";
 
 	}
+	
+	
 	
 	
 }

@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.example.demo.domain.mypage.Advertisementvo;
 import com.example.demo.domain.mypage.Uservo;
@@ -84,6 +83,7 @@ public class LoginController {
 //		return "login";
 		return "th/review/loginReview";
 	}
+
 	@RequestMapping("/adLogin")
 	public String adlogin() {
 		return "adLogin";
@@ -103,6 +103,7 @@ public class LoginController {
 	public String userSearch() {
 		return "userSearch";
 	}
+
 	@RequestMapping("/adUserSearch")
 	public String adUserSearch() {
 		return "adUserSearch";
@@ -166,7 +167,7 @@ public class LoginController {
 		String naverAuthUrl = naverLoginBO.getAuthorizationUrl(session);
 
 		// 네이버
-		model.addAttribute("url", naverAuthUrl);
+		model.addAttribute("url", naverAuthUrl); //
 
 		/* 생성한 인증 URL을 View로 전달 */
 //		return "login";
@@ -186,4 +187,26 @@ public class LoginController {
 		/* 네이버 로그인 성공 페이지 View 호출 */
 		return "naverSuccess";
 	}
+
+	@RequestMapping("/joinForm")
+	public String userJoinForm(Model model, HttpSession session) {
+		/* 네이버아이디로 인증 URL을 생성하기 위하여 naverLoginBO클래스의 getAuthorizationUrl메소드 호출 */
+		String naverAuthUrl = naverLoginBO.getAuthorizationUrl(session);
+
+		// 네이버
+		model.addAttribute("url", naverAuthUrl); //
+
+		return "join2";
+	}
+
+	@RequestMapping("/adjoinForm")
+	public String adJoinForm(Model model, HttpSession session) {
+		String naverAuthUrl = naverLoginBO.getAuthorizationUrl(session);
+
+		// 네이버
+		model.addAttribute("url", naverAuthUrl); //
+
+		return "adJoin2";
+	}
+
 }

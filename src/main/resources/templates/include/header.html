@@ -4,20 +4,21 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script>
-
+ 
 </script>
 </head>
 <body>
 	<div id="wrap" class="main">
 		<div class="header" th:fragment="header">
+<span th:text="${session[uservos]}"></span>
 			<div class="top">
 				<div class="logo">
 					<a href="index"><img src="images/Bobbing-logo.png" alt="밥빙 logo" /></a>
 				</div>
 				<div class="heaer-gnb">
 					<ul>
-						<li><a th:href="@{/doReviewList}">리뷰</a></li>
-						<li><a href="#">랭킹</a></li>
+						<li><a th:href="@{/doReviewView}">리뷰</a></li>
+						<li><a th:href="@{/rank(followerMe=${username})}">랭킹</a></li>
 						<li><a th:href="@{/getCampaignList}">캠페인</a></li>
 					</ul>
 				</div>
@@ -37,7 +38,7 @@
 					</form>
 				</div>
 				
-				<th:block th:if="${session['uservo'] != null}">
+				<!-- <th:block th:if="${session['member'] != null}"> -->
 				<div class="heaer-btnR">
 					<div class="selectbox">
 						<dl class="dropdown">
@@ -55,7 +56,7 @@
 						</dl>
 					</div>
 				</div>
-				</th:block>
+				<!-- </th:block> -->
 				
 				<th:block th:if="${session['uservo'] == null}">
 				<a href="login">로그인</a> | <a href="joinForm">회원가입</a>

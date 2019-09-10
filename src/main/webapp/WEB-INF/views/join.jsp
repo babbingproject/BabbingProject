@@ -1,42 +1,42 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>joinForm</title>
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<title>login</title>
+
+<link href="common/css/stylesJoin.css" rel="stylesheet">
+
 <!-- ajax를 위한 CDN 방식 라이브러리 -->
 <script type="text/javascript"
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script type="text/javascript">
 	$(function() {
-		$("#joinForm")
-				.submit(
-						function() {
-							if ($("#pw").val() !== $("#pw2").val()) {
-								alert("비밀번호가 다릅니다.");
-								$("#pw").val("").focus();
-								$("#pw2").val("");
-								return false;
-							} else if ($("#pw").val().length < 8) {
-								alert("비밀번호는 8자 이상으로 설정해야 합니다.");
-								$("#pw").val("").focus();
-								$("#pw2").val("");
-								return false;
-							} else if ($.trim($("#pw").val()) !== $("#pw")
+		$("#joinForm").submit(
+				function() {
+					if ($("#pw").val() !== $("#pw2").val()) {
+						alert("비밀번호가 다릅니다.");
+						$("#pw").val("").focus();
+						$("#pw2").val("");
+						return false;
+					} else if ($("#pw").val().length < 8) {
+						alert("비밀번호는 8자 이상으로 설정해야 합니다.");
+						$("#pw").val("").focus();
+						$("#pw2").val("");
+						return false;
+					} else if ($.trim($("#pw").val()) !== $("#pw").val()
+							|| $.trim($("#nickname").val()) !== $("#nickname")
 									.val()
-									|| $.trim($("#nickname").val()) !== $(
-											"#nickname").val()
-									|| $.trim($("#user_email").val()) !== $(
-											"#user_email").val()) {
-								alert("공백은 입력이 불가능합니다.");
-								return false;
-							}
-							
-						})
+							|| $.trim($("#user_email").val()) !== $(
+									"#user_email").val()) {
+						alert("공백은 입력이 불가능합니다.");
+						return false;
+					}
+
+				})
 
 		/* 이메일 체크 */
 
@@ -63,7 +63,6 @@
 					if (user_email == "") {
 						$("#chktext").css("color", "gray");
 						$("#chktext").text("이메일을 입력해주세요.");
-
 						$("#chktext2").html("");
 					} else if (cnt == 0) {
 						$("#chktext2").css("color", "blue");
@@ -144,56 +143,90 @@
 
 </head>
 <body>
-	<div class="w3-content w3-container w3-margin-top">
-		<div class="w3-container w3-card-4">
-			<div class="w3-center w3-large w3-margin-top">
-				<a><img
-					src="${pageContext.request.contextPath}/images/Bobbing-logo.png"
-					style="height: 80px; margin-left: 10px;" /></a> <br> <br>
-				<h3>밥빙 일반 회원가입 테스트</h3>
+	<!-- Cookie가 비어있지 않을 때 checked 속성을 줌 -->
+	<c:if test="${not empty cookie.user_check}">
+		<c:set value="checked" var="checked" />
+	</c:if>
+	<form id="joinForm" action="/join" method="post">
+	<div id="background">
+		<div id="total">
+			<div id="Layer4">
+				<img src="images/Layer4.png">
 			</div>
-			<div>
-
-				<form id="joinForm" action="/join" method="post">
-					<!-- 세션에 저장한 카카오 아이디를 가져옴 -->
-					<input type="hidden" name="kakao_id" value="${kakao_id}" />
-
-					<p>
-						<label>Email</label><br> <input type="text" class="w3-input"
-							name="user_email" id="user_email" placeholder="Email"
-							required="required"> <span id="chktext"
-							class="w3-text-red"></span> <span id="chktext2"
-							class="w3-text-blue"></span>
-					</p>
-
-					<p>
-						<label>NickName</label><br> <input type="text"
-							class="w3-input" name="nickname" id="nickname"
-							placeholder="NinckName" required="required"> <span
-							id="nickchktext" class="w3-text-red"></span> <span
-							id="nickchktext2" class="w3-text-blue"></span>
-					</p>
-					<p>
-						<label>Password</label><br> <input type="password"
-							class="w3-input" name="password" id="pw" placeholder="Password"
-							required="required">
-					</p>
-					<p>
-						<label>Confirm</label><br> <input type="password"
-							class="w3-input" id="pw2" placeholder="Cofirm"
-							required="required">
-					</p>
-					<p>
-						<button type="submit" id="joinBtn"
-							class="w3-button w3-block w3-pink w3-ripple w3-margin-top w3-round">JOIN</button>
-						<br>
-						<button type="button" onclick="history.go(-1);"
-							class="w3-button w3-block w3-pink w3-ripple w3-margin-top w3-margin-bottom w3-round">CANCLE</button>
-					</p>
-				</form>
+			<div id="RoundedRectangle744">
+				<img src="images/RoundedRectangle744.png">
+			</div>
+			<div id="Shape740copy2">
+				<img src="images/Shape740copy2.png">
+			</div>
+			<div id="Shape740copy">
+				<img src="images/Shape740copy.png">
+			</div>
+			<div id="layer_5">
+				<img src="images/layer_5.png">
+			</div>
+			<div id="layer_6">
+				<img src="images/layer_6.png">
+			</div>
+			<div id="layer_7">
+				<img src="images/layer_7.png">
+			</div>
+			<div id="copy">
+				<img src="images/copy.png">
+			</div>
+			<div id="copy2">
+				<a href="${pageContext.request.contextPath}/"><img
+					src="images/copy2.png"></a>
+			</div>
+			<div id="layer_10">
+				<img src="images/layer_10.png">
+			</div>
+			<div id="layer_11">
+				<img src="images/layer_11.png">
+			</div>
+			<div id="layer_12">
+				<img src="images/layer_12.png">
+			</div>
+			<div id="layer_13">
+				<a href="${pageContext.request.contextPath}/joinForm"><img
+					src="images/layer_13.png"></a>
+			</div>
+			<div id="layer_14">
+				<input id="user_email" type="text" required="required"
+					placeholder="이메일" />
+			</div>
+			<div id="layer_15">
+				<input type="text" id="nickName" required="required"
+					placeholder="닉네임" />
+			</div>
+			<div id="layer_16">
+				<img src="images/layer_16.png">
+			</div>
+			<div id="copy_0">
+				<img src="images/copy_0.png">
+			</div>
+			<div id="layer_616">
+				<input type="password" id="password" required="required"
+					placeholder="비밀번호(8자리이상)" />
+			</div>
+			<div id="layer_19">
+				<input type="password" id="password2" required="required"
+					placeholder="비밀번호 확인" />
+			</div>
+			<div id="layer_20">
+				<span id="chktext" class="w3-text-red"></span> <span id="chktext2">afdad</span>
+			</div>
+			<div id="layer_616_0">
+				<img src="images/layer_616_0.png">
+			</div>
+			<div id="layer_22">
+				<img src="images/layer_22.png">
+			</div>
+			<div id="layer_23">
+				<img src="images/layer_23.png">
 			</div>
 		</div>
 	</div>
-
+	</form>
 </body>
 </html>

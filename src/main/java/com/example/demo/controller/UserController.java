@@ -29,10 +29,8 @@ public class UserController {
 		return "th/main/index1";
 	}
 
-	@RequestMapping("/joinForm")
-	public String userJoinForm() {
-		return "join";
-	}
+	
+	
 
 	@RequestMapping("/join")
 	public String userJoin(Uservo Uservo, Model model, HttpServletRequest request) {
