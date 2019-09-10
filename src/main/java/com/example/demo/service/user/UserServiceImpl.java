@@ -123,4 +123,10 @@ public class UserServiceImpl implements UserService {
 	public void scrapFactorDecrease(Integer reviewUserId) {
 		userRepo.scrapFactorDecrease(reviewUserId);
 	}
+
+	@Override
+	public Uservo findByUserEmail(String user_email) {
+		
+		return userRepo.findByUserEmail(user_email);
+	}
 }

@@ -37,8 +37,6 @@ public interface AdvertisementRepository extends JpaRepository<Advertisementvo, 
 	void decreasePut(String followerYou);
 //	List<Object[]> getSearchKeyword(String searchKeyword);
 	
-	@Query("SELECT advertisementname FROM Advertisementvo ad WHERE ad.advertisement_email like %?1%")
-	String selectAdvertisementname(String adEmail);
-	@Query("SELECT advertisement_num FROM Advertisementvo ad WHERE ad.advertisementname like %?1%")
-	String selectAdvertisementNum(String nickName);
+	@Query(value="SELECT * FROM advertisementvo WHERE advertisement_email = ?1", nativeQuery=true)
+	Advertisementvo findByAdvertisementEmail(String advertisement_email);
 }

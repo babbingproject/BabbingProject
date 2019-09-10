@@ -64,5 +64,8 @@ public interface UserRepository extends CrudRepository<Uservo, Integer>{
 			+ "SET scrap_factor = scrap_factor - 1 "
 			+ "WHERE user_id = ?1")
 	void scrapFactorDecrease(Integer reviewUserId);
+	
+	@Query(value="SELECT * FROM uservo WHERE user_email= ?1",nativeQuery= true)
+	Uservo findByUserEmail(String user_email);
 }
 
