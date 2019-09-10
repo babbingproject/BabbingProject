@@ -2,22 +2,23 @@ package com.example.demo.service.review;
 
 import java.util.List;
 
-import org.apache.ibatis.annotations.Param;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 
 import com.example.demo.domain.mypage.Uservo;
 import com.example.demo.domain.review.Commentvo;
 import com.example.demo.domain.review.ReviewRegistrationvo;
-import com.querydsl.core.Tuple;
 
 public interface ReviewService {
 
 
 //	List<Uservo> selectUservoInfo();
 
-
+	List<ReviewRegistrationvo> findAll();
 	List<Object[]> getKoreanTopSix();
 
-	List<Object[]> getNewestReview();
+	List<ReviewRegistrationvo> getNewestReview();
 
 	List<Object[]> getEverythingTopSix();
 
@@ -36,6 +37,7 @@ public interface ReviewService {
 	List<Object[]> getBusinessFieldSeven();
 
 	List<Object[]> getSearchKeyword(String searchKeyword);
+//	Page<Object[]> getSearchKeyword(String searchKeyword, PageRequest pageRequest);
 
 
 
@@ -57,4 +59,6 @@ public interface ReviewService {
 	
 	void deleteReview(ReviewRegistrationvo reviewRegistrationvo);
 	
+	public Page<ReviewRegistrationvo> findAll(Pageable pageable);
+	public List<ReviewRegistrationvo> getNewestReviewList();
 }

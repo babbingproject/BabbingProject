@@ -17,6 +17,7 @@ import com.example.demo.service.user.UserSha256;
 public class SearchController {
 	@Autowired
 	private PwSearchServiceImpl mailsender;
+
 	// 비밀번호 찾기
 	@RequestMapping("/user/searchPassword")
 	public String userJoin(Uservo Uservo, HttpServletRequest request) {
@@ -24,37 +25,40 @@ public class SearchController {
 		mailsender.mailSendWithPassword(Uservo.getUser_email(), Uservo.getNickname(), request);
 		return "userSearchMail";
 	}
+
 	@RequestMapping("/adUser/searchPassword")
 	public String adUserJoin(Advertisementvo Advertisementvo, HttpServletRequest request) {
 		// 메일 보내기
-		mailsender.admailSendWithPassword(Advertisementvo.getAdvertisement_email(), Advertisementvo.getAdvertisement_name(), request);
+		mailsender.admailSendWithPassword(Advertisementvo.getAdvertisement_email(), request);
 		return "userSearchMail";
 	}
-	
+
 	// 비밀번호 e-mail 인증 컨트롤러
 	@RequestMapping(value = "/adUserpw/key_alter", method = RequestMethod.GET)
-	public String adKey_alterConfirm(@RequestParam("advertisement_email") String advertisement_email, @RequestParam("password") String password) {
-		//임시 발급된 비번을 암호화합니다.
+	public String adKey_alterConfirm(@RequestParam("advertisement_email") String advertisement_email,
+			@RequestParam("password") String password) {
+		// 임시 발급된 비번을 암호화합니다.
 		password = UserSha256.encrypt(password);
 		return "adPwSuccess";
 	}
-	
+
 	@RequestMapping(value = "/userpw/key_alter", method = RequestMethod.GET)
-	public String key_alterConfirm(@RequestParam("user_email") String user_email, @RequestParam("password") String password) {
-		//임시 발급된 비번을 암호화합니다.
+	public String key_alterConfirm(@RequestParam("user_email") String user_email,
+			@RequestParam("password") String password) {
+		// 임시 발급된 비번을 암호화합니다.
 		password = UserSha256.encrypt(password);
 		return "pwSuccess";
 	}
-	
-	@RequestMapping(value="/pwUpdate",method=RequestMethod.POST)
+
+	@RequestMapping(value = "/pwUpdate", method = RequestMethod.POST)
 	public String pwUpdate(@RequestParam("user_email") String user_email, @RequestParam("password") String password) {
-		//입력받은 새 비밀번호를 암호화합니다.
+		// 입력받은 새 비밀번호를 암호화합니다.
 		password = UserSha256.encrypt(password);
-		//새 비밀번호로 업데이트 합니다
+		// 새 비밀번호로 업데이트 합니다
 		mailsender.searchPassword(user_email, password);
 		return "updatePwSs";
 	}
-	
+
 	@RequestMapping(value="/adPwUpdate",method=RequestMethod.POST)
 	public String adPwUpdate(@RequestParam("advertisement_email") String advertisement_email, @RequestParam("password") String password) {
 		//입력받은 새 비밀번호를 암호화합니다.
@@ -64,14 +68,6 @@ public class SearchController {
 		mailsender.adsearchPassword(advertisement_email, password);
 		return "updatePwSs";
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 }
+

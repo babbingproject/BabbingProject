@@ -23,6 +23,6 @@ public class Putvo {
 	private int putId;
 	@Temporal(value= TemporalType.TIMESTAMP)
 	private Date putTime;
-	private int advertisementId;
-	private int userId;
+	private String advertisementName;
+	private String userName;
 }

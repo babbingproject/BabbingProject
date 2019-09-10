@@ -102,7 +102,7 @@ public class PwSearchServiceImpl implements PwSearchService {
 	}
 
 	@Override
-	public void admailSendWithPassword(String advertisement_email, String advertisement_name,
+	public void admailSendWithPassword(String advertisement_email, 
 			HttpServletRequest request) {
 		// TODO Auto-generated method stub
 		String password = getKey(false, 10);

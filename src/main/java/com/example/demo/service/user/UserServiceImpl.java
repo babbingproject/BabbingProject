@@ -49,7 +49,7 @@ public class UserServiceImpl implements UserService {
 	// 유저 정보를 높은 펄로우 수 순서대로 리스트 형식에 6명 저장해주는 메소드
 	@Override
 	public List<Object[]> getUservoListOrderByFollowingCountDes(){
-		return userRepo.getFindAllByIdOrderbyFollowingCountDESC();
+		return userRepo.getAllOrderbyUserscoreDESC();
 	}
 	
 	//유저 닉네임으로 검색하기
@@ -89,5 +89,38 @@ public class UserServiceImpl implements UserService {
 		// TODO Auto-generated method stub
 		return  userMapper.nickCheck(vo.getNickname());
 	}
+	
+	////태원 -- 로그인 연동 못해서 작업용 로그인
+	public Optional<Uservo> findById(Integer id) {
+		return userRepo.findById(id);
+	}
+	
+	//좋아요 누를시 유저 라이크평점 +1
+	public void likeFavorFactor(String nickname) {
+		userRepo.likeFavorFactor(nickname);
+	}
+	//좋아요 누를시 유저 라이크평점 -1
+	public void unlikeFavorFactor(String nickname) {
+		userRepo.unlikeFavorFactor(nickname);
+	}
+	//팔로 누릴시 유저 팔로우 +1
+	public void followingCountIncrease(String nickname) {
+		userRepo.followingCountIncrease(nickname);
+	}
+	//팔로 누를시 유저 팔로우 -1
+	public void followingCountDecrease(String nickname) {
+		userRepo.followingCountDecrease(nickname);
+	}
 
+	public List<Uservo> findByNickname(String nickname){
+		return userRepo.findByNickname(nickname);
+	}
+	
+	public void scrapFactorIncrease(Integer reviewUserId) {
+		userRepo.scrapFactorIncrease(reviewUserId);
+	}
+	
+	public void scrapFactorDecrease(Integer reviewUserId) {
+		userRepo.scrapFactorDecrease(reviewUserId);
+	}
 }

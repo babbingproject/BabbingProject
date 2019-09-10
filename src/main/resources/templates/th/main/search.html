@@ -3,12 +3,13 @@
 <head>
 <meta charset="utf-8">
 <title>Insert title here</title>
-<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <link rel="stylesheet" href="common/css/styles.css">
 <style>
 #reviewdiv{display:none;}
 #userdiv{display:none;} 
 #advertisementdiv{display:none;}
+.active{background-color:blue; color: white;}
 </style>
 <script type="text/javascript" th:inline="javascript">
 	
@@ -16,6 +17,7 @@ $(function(){
 	$('#reviewdiv').hide();
 	$('#userdiv').hide();
 	$('#advertisementdiv').hide();
+	$('#campaigndiv').hide();
 // 	var userSearch = [[${userSearch}]];
 // 	$("${reviewSearch}"!= null){
 // 		$("#reviewdiv").css({display:'block'});
@@ -44,7 +46,7 @@ $(function(){
 		
 		<p th:text="${nothing}" th:align="center">
 		
-		<div class="cont-area" id="reviewdiv">
+		<div class="cont-area info" id="reviewdiv">
 		<h3>리뷰</h3>
 			<ul class="list-style03">
 				<li id="reviewlist" th:each="reviewSearch:${reviewSearch}">
@@ -52,14 +54,27 @@ $(function(){
 						<p class="photo">
 							<img th:src="${reviewSearch[4]}">
 						</p>
-						<a href="#" class="best01">베스트</a>
+						<a href="#" class="best02">베스트</a>
 						<ul class="info">
-							<li><span th:text="${reviewSearch[1]}"></span>| 강남불백</li>
+							<li><span th:text="${reviewSearch[1]}"></span>|</li> 
 							<li><span th:text="${reviewSearch[2]}"></span></li>
-							<li><img src="images/Bobbing-main-Circle-member.gif" /> 고유지니</li>
+							<li><img th:src="${reviewSearch[5]}"/> <span th:text="${reviewSearch[6]}"></span></li>
 						</ul>
 					</div>
 				</li>
+<!-- 				<li id="reviewlist" th:each="reviewSearch:${reviewSearch}"> -->
+<!-- 					<div class="cont-txt"> -->
+<!-- 						<p class="photo"> -->
+<!-- 							<img th:src="${reviewSearch[4]}"> -->
+<!-- 						</p> -->
+<!-- 						<a href="#" class="best01">베스트</a> -->
+<!-- 						<ul class="info"> -->
+<!-- 							<li><span th:text="${reviewSearch[1]}"></span>| 강남불백</li> -->
+<!-- 							<li><span th:text="${reviewSearch[2]}"></span></li> -->
+<!-- 							<li><img src="images/Bobbing-main-Circle-member.gif" /> 고유지니</li> -->
+<!-- 						</ul> -->
+<!-- 					</div> -->
+<!-- 				</li> -->
 			</ul>
 		</div>
 		<div class="cont-area" id="userdiv">
@@ -75,8 +90,10 @@ $(function(){
 			</div>
 		</div>
 		
-		<h3>캠페인</h3>
-		<hr>
+		<div id="campaigndiv">
+			<h3>캠페인</h3>
+			<hr>
+		</div>
 		
 		<div class="cont-area" id="advertisementdiv">
 		<h3>맛집</h3>
@@ -93,5 +110,37 @@ $(function(){
 		</div>
 		
 	</div>
+
+
+
+<!-- 	<div id="wrap" class="main"> -->
+<!-- 		<div th:replace="/include/header.html :: header"></div> -->
+<!-- 		<table th:align="center" border="1"> -->
+<!-- 			<thead> -->
+<!-- 				<tr> -->
+<!-- 					<th>id</th> -->
+<!-- 					<th>country</th> -->
+<!-- 					<th>capital</th> -->
+<!-- 				</tr> -->
+<!-- 			</thead> -->
+<!-- 			<tbody> -->
+<!-- 				<tr th:each="review : ${data}"> -->
+<!-- 					<td th:text="${review.reviewId}"></td> -->
+<!-- 					<td th:text="${review.title}"></td> -->
+<!-- 					<td th:text="${review.advantages}"></td> -->
+<!-- 				</tr> -->
+<!-- 			</tbody> -->
+<!-- 		</table> -->
+<!-- 		<hr> -->
+<!-- 		<ul> -->
+<!-- 			<li th:each="i : ${#numbers.sequence(0,data.totalPages-1)}"> -->
+<!-- 				<a th:href="@{/testsearch(page=${i})}" th:text="${i}" -->
+<!-- 				th:classappend="${currentPage}==${i}?'active' : 'none'"></a> -->
+<!-- 			</li> -->
+<!-- 		</ul> -->
+
+
+
+<!-- 	</div> -->
 </body>
 </html>

@@ -12,6 +12,6 @@ public interface CommentService {
 
 	List<Commentvo> selectCommentList(ReviewRegistrationvo reviewRegistrationvo);
 	
-//	List<Commentvo> selectCommentList();
+	void deleteComment(int commentId);
 	
 }

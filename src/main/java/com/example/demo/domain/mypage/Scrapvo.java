@@ -20,6 +20,6 @@ public class Scrapvo {
 	private int scrapId;
 	private Timestamp scrapTime;
 	private int reviewId;
-	private int userId;
+	private String username;
 	
 }

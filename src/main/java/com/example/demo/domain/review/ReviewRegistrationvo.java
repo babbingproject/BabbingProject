@@ -23,7 +23,7 @@ import lombok.ToString;
 
 @Getter
 @Setter
-@ToString(exclude = {"commentList", "uservo"})
+@ToString(exclude = {"commentList", "uservo", "reviewImgList"})
 @Entity
 public class ReviewRegistrationvo {
 	@Id
@@ -64,9 +64,10 @@ public class ReviewRegistrationvo {
 	@JoinColumn(name = "userId", nullable = false)
 	private Uservo uservo;
 
-	@OneToMany(mappedBy = "reviewRegistrationvo", fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.PERSIST} )
+	@OneToMany(mappedBy = "reviewRegistrationvo", fetch = FetchType.EAGER, cascade = CascadeType.ALL )
 	private List<Commentvo> commentList = new ArrayList<Commentvo>();
 
+	
 	@OneToMany(mappedBy = "reviewRegistrationvo", cascade = CascadeType.ALL)
 	private List<ReviewImagevo> reviewImgList = new ArrayList<ReviewImagevo>();
 

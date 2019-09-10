@@ -8,7 +8,7 @@ import com.example.demo.domain.mypage.Uservo;
 public interface UserService {
 
 	
-
+	List<Uservo> findByNickname(String nickname);
 	
 
 	Uservo getUser(Uservo user);
@@ -33,5 +33,15 @@ public interface UserService {
 	// @Param("user_email") 생략해도 돕니다.
 
 	public int nickCheck(Uservo vo, String nickname);// 닉네임 중복 확인 입니다.
+	
+	//로그인 연동 못해서 임시적 로그인
+	 Optional<Uservo> findById(Integer id);
+	 
+	 void likeFavorFactor(String nickname);
+	 void unlikeFavorFactor(String nickname);
+	 void followingCountIncrease(String nickname);
+	 void followingCountDecrease(String nickname);
+	 void scrapFactorIncrease(Integer reviewUserId);
+	 void scrapFactorDecrease(Integer reviewUserId);
 
 }
