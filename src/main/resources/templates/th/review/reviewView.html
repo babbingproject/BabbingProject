@@ -12,8 +12,7 @@
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 </head>
 <body th:align="center">
-<span th:text="${session.nickName}"></span>
-<span th:text="${session.userId}"></span>
+<span th:text="${session['uservo'].nickname}"></span>
 	<h1>리뷰 글 상세</h1>
 	<form th:action="@{updateReviewView}" method="post">
 		<input id="reviewId" name="reviewId" type="hidden"
@@ -105,7 +104,7 @@
 
 					<div class="col-sm-2">
 
-						<input type="text" path="reg_id" class="form-control" id="userId" th:value="${session.nickName}" placeholder="댓글 작성자"></input>
+						<input type="text" path="reg_id" class="form-control" id="nickname" th:value="${session['uservo'].nickname}" placeholder="댓글 작성자"></input>
 
 						<button type="button" class="btn btn-sm btn-primary" id="btnReplySave" style="width: 10%; margin-top: 10px"> 댓글 저장 </button>
 
@@ -132,7 +131,7 @@
 			</div> 
 
 
-	<script th:inline="javascript">
+	<!-- <script th:inline="javascript">
 		$(function commentList() {
 			$("#replyAddBtn")
 					.on(
@@ -204,7 +203,7 @@
 				
 			});
 		});
-		</script>
+		</script> -->
 	<script>
 
   	// 이전 코드 생략
@@ -213,20 +212,21 @@
 
 // 		var url = "${pageContext.request.contextPath}/restBoard/getReqlyList";
 
-		var paramData = {"commentList" : "${reviewView.reviewId}"};
-
+		var paramData = {"reviewId" : "${reviewView.reviewId}"};
+		alert("췤0");
+		alert(paramData);
 		$.ajax({
 
-            type: 'POST',
+            type: 'GET',
 
-            url: '/getCommentList',
+            url: 'getCommentList',
 
             data: paramData,
 
             dataType: 'json',
 
             success: function(result) {
-
+				alert("췍1");
                	var htmls = "";
 
 			if(result.length < 1){
@@ -234,7 +234,7 @@
 				htmls.push("등록된 댓글이 없습니다.");
 
 			} else {
-
+						alert("췤2");
 	                    $(result).each(function(){
 
 	                     htmls += '<div class="media text-muted pt-3" id="reviewId' + this.reviewId + '">';

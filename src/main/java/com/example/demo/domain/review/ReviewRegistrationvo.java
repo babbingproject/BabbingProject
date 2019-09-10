@@ -51,8 +51,6 @@ public class ReviewRegistrationvo {
 	private String themeId;
 	
 	
-	private String writer; // 게시판 테스트용 임시 칼럼
-	private Long cnt;	// 게시판 테스트용 임시 칼럼
 
 
 	/*

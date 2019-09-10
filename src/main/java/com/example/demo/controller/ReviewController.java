@@ -3,6 +3,8 @@ package com.example.demo.controller;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,8 +15,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.example.demo.domain.mypage.Uservo;
 import com.example.demo.domain.review.Commentvo;
@@ -79,7 +80,6 @@ public class ReviewController {
 //			logger.info(uservo.toString());
 			return "redirect:login";
 		}
-
 		System.out.println(uservo.toString());
 		
 		reviewRegistrationvo.setUservo(uservo);
@@ -87,20 +87,25 @@ public class ReviewController {
 		return "redirect:doReviewList";
 	}
 
-	@GetMapping("/doReviewView")
-	public String getReviewVIew(Uservo uservo, ReviewRegistrationvo reviewRegistrationvo, Model model) {
+	@RequestMapping(value = "/doReviewView", method=RequestMethod.GET)
+	public String getReviewVIew(Uservo uservo, 
+			ReviewRegistrationvo reviewRegistrationvo, 
+			HttpSession session, Model model) {
 		/*
 		 * if (uservo.getNickname() == null) { return "redirect:login"; }
 		 */
-		System.out.println(uservo.toString());
+		uservo=(Uservo)session.getAttribute("uservo");
+		
+		System.out.println(reviewRegistrationvo.getReviewId());
+		reviewRepo.findById(reviewRegistrationvo.getReviewId()).get();
+		System.err.println(uservo.toString());
 		reviewRegistrationvo.setUservo(uservo);
 		model.addAttribute("reviewView", reviewService.selectReviewView(reviewRegistrationvo));
 		model.addAttribute("commentList", commentService.selectCommentList(reviewRegistrationvo));
 		return "th/review/reviewView"; 
 	}
 	
-	@PostMapping("/updateReviewView")
-
+	@RequestMapping("/updateReviewView")
 	public String updateReview(Uservo uservo, ReviewRegistrationvo reviewRegistrationvo) {
 		/*
 		 * if (uservo.getNickname() == null) { return "redirect:login"; }
@@ -110,7 +115,7 @@ public class ReviewController {
 		reviewService.updateReview(reviewRegistrationvo);		
 		return "forward:doReviewList";
 	}
-	@GetMapping("/deleteReviewView")
+	@RequestMapping("/deleteReviewView")
 	public String deleteReview(Uservo uservo, ReviewRegistrationvo reviewRegistrationvo) {
 		/*
 		 * if (uservo.getNickname() == null) { return "redirect:login"; }
@@ -137,8 +142,6 @@ public class ReviewController {
 		return "th/review/reviewList";
 
 	}
-	
-	
 	
 	
 }

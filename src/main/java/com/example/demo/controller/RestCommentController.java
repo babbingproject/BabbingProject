@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.domain.review.Commentvo;
@@ -20,9 +21,9 @@ public class RestCommentController {
 	@Autowired
 	private CommentService commentService;
 	
-	@RequestMapping(value = "/getCommentList", method = RequestMethod.POST)
-	public List<Commentvo> getCommentList(int commentId) throws Exception {
-		return commentService.getCommentList(commentId);
+	@RequestMapping(value = "getCommentList", method = RequestMethod.POST)
+	public List<Commentvo> getCommentList(@RequestParam("reviewId") int reviewId) throws Exception {
+		return commentService.getCommentList(reviewId);
 	}
 
 }
