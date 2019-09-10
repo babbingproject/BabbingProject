@@ -14,25 +14,32 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.example.demo.domain.mypage.Advertisementvo;
 import com.example.demo.domain.mypage.Uservo;
+import com.example.demo.service.advertisement.AdvertisementRepository;
+import com.example.demo.service.login.LoginRepository;
 import com.example.demo.service.login.LoginServiceImpl;
 import com.example.demo.service.user.UserSha256;
 import com.github.scribejava.core.model.OAuth2AccessToken;
 
-@SessionAttributes("uervo")
 @Controller
 public class LoginController {
 
 	@Autowired
 	private LoginServiceImpl loginService;
-
+	
+	@Autowired
+	private LoginRepository loginRepo;
+	
+	@Autowired
+	private AdvertisementRepository adverRepo;
+	
+	
 	@RequestMapping(value = "/logincon", method = RequestMethod.POST)
 	@ResponseBody
 	public int userLoingPass(Uservo Uservo, HttpSession httpSession, HttpServletRequest request,
-			HttpServletResponse response) {
+			HttpServletResponse response, Model model) {
 		// userLogin.jsp에서 아이디기억하기 name값(remember) 가져오기
 		String user_check = request.getParameter("remember_userId");
 		// 암호화 확인
@@ -55,16 +62,26 @@ public class LoginController {
 			// 세션 저장하기 전에 비밀번호 가리기
 			Uservo.setPassword("");
 			// 세션에 vo 객체 저장
+			String nickName = loginRepo.selectNickName(Uservo.getUser_email());
+			// 닉네임을 세션에 담는다
+			httpSession.setAttribute("nickName", nickName);
+			System.out.println(nickName);
+			
 			httpSession.setAttribute("userSession", Uservo);
 			// 접속자 아이디를 세션에 담는다.
 			httpSession.setAttribute("signedUser", Uservo.getUser_email());
+			String userId = loginRepo.selectUserId(nickName);
+			// userId를 세션에 담는다
+			httpSession.setAttribute("userId", userId);
+			
 		}
 		return result;
 	}
 
 	@RequestMapping("/login")
 	public String login() {
-		return "login";
+//		return "login";
+		return "th/review/loginReview";
 	}
 
 	@RequestMapping("/adLogin")
@@ -127,9 +144,16 @@ public class LoginController {
 			// 세션 저장하기 전에 비밀번호 가리기
 			vo.setPassword("");
 			// 세션에 vo 객체 저장
-			httpSession.setAttribute("adUserSession", vo);
+			httpSession.setAttribute("adUserSession", vo);			
 			// 접속자 아이디를 세션에 담는다.
 			httpSession.setAttribute("adSignedUser", vo.getAdvertisement_email());
+			// 사업자 명을 세션에 담는다
+			httpSession.setAttribute("adName", adverRepo.selectAdvertisementName(vo.getAdvertisement_email()));
+			String adName = adverRepo.selectAdvertisementName(vo.getAdvertisement_email());
+			// 사업자 번호를 세션에 담는다
+			httpSession.setAttribute("adNum", adverRepo.selectAdvertisementNum(adName));
+			
+			
 		}
 		return result;
 	}
@@ -145,6 +169,7 @@ public class LoginController {
 		model.addAttribute("url", naverAuthUrl); //
 
 		/* 생성한 인증 URL을 View로 전달 */
+//		return "login";
 		return "login";
 	}
 

@@ -26,7 +26,6 @@ public class ReviewImagevo {
 
 	@Id 
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column
 	private int imgId;
 	private String img;
 	private String imgReview;

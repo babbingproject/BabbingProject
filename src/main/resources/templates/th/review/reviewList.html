@@ -7,8 +7,10 @@
 
 </head>
 <body th:align="center">
+<span th:text="${session.signedUser}"></span>
 	<h1>리뷰 목록</h1>
 <!-- 	<h3><font color="black" th:text="${session['member'].nickname}"></font>님 또 인생낭비하러 왔음?</h3> -->
+	<h3><font color="black" th:text="${session.nickname}"></font>님 또 인생낭비하러 왔음?</h3>
 	<a th:href="@{logout}">LOG_OUT</a>
 	<br>
 	<table th:align="center" border="1" th:cellpqdding="0"

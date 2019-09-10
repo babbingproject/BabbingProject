@@ -2,7 +2,6 @@ package com.example.demo.domain.review;
 
 import java.util.Date;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -19,7 +18,7 @@ import lombok.ToString;
 
 @Getter
 @Setter
-@ToString(exclude = {"reviewRegistrationvo","uservo"})
+@ToString(exclude = { "reviewRegistrationvo", "uservo" })
 @Entity
 public class Commentvo {
 	@Id
@@ -44,9 +43,9 @@ public class Commentvo {
 		reviewRegistrationvo.getCommentList().add(this);
 	}
 
-	/*
-	 * public void setUservo(Uservo uservo) { this.uservo = uservo;
-	 * uservo.getCommentList().add(this); }
-	 */
+	public void setUservo(Uservo uservo) {
+		this.uservo = uservo;
+		uservo.getCommentList().add(this);
+	}
 
 }

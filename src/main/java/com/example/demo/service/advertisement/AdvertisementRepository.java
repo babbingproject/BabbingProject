@@ -37,4 +37,10 @@ public interface AdvertisementRepository extends JpaRepository<Advertisementvo, 
 			+ "SET puted_count = puted_count - 1 "
 			+ "WHERE advertisement_name = ?1 ")
 	void decreasePut(String followerYou);
+	List<Object[]> getSearchKeyword(String searchKeyword);
+	
+	@Query("SELECT advertisement_name FROM Advertisementvo ad WHERE ad.advertisement_email like %?1%")
+	String selectAdvertisementName(String adEmail);
+	@Query("SELECT advertisement_num FROM Advertisementvo ad WHERE ad.advertisement_name like %?1%")
+	String selectAdvertisementNum(String nickName);
 }

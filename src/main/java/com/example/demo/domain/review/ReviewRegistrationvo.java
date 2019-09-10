@@ -64,7 +64,7 @@ public class ReviewRegistrationvo {
 	@JoinColumn(name = "userId", nullable = false)
 	private Uservo uservo;
 
-	@OneToMany(mappedBy = "reviewRegistrationvo", fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.PERSIST} )
+	@OneToMany(mappedBy = "reviewRegistrationvo", fetch = FetchType.EAGER, cascade = CascadeType.ALL )
 	private List<Commentvo> commentList = new ArrayList<Commentvo>();
 
 	

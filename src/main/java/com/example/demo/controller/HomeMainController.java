@@ -25,6 +25,7 @@ import com.example.demo.utils.CheckingPut;
 import com.example.demo.utils.CheckingRanking;
 import com.example.demo.utils.CheckingScrap;
 
+
 @Controller
 public class HomeMainController {
 
