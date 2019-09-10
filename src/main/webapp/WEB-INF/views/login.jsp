@@ -75,24 +75,21 @@
 	<div class="w3-content w3-container w3-margin-top w3-center">
 
 		<div class="w3-container w3-card-4">
-
-			<div id="layer_11">
-				<a href="/login"><img src="images/layer_11.png" /></a>
+			<div class="w3-center w3-large w3-margin-top floatClear">
+				<div id="layer_11">
+					<a href="/login"><img src="images/layer_11.png" /></a>
+				</div>
+				<div id="layer_12">
+					<a href="/adLogin"><img src="images/layer_12.png" /></a>
+				</div>
+				<div id="Shape740copy2">
+					<img src="images/Shape740copy.png">
+				</div>
+				<div id="Shape740copy">
+					<img src="images/Shape740copy2.png">
+				</div>
 			</div>
-			<div id="layer_12">
-				<a href="/adLogin"><img src="images/layer_12.png" /></a>
-			</div>
-			<div id="Shape740copy2">
-				<img src="images/Shape740copy2.png">
-			</div>
-			<div id="Shape740copy">
-				<img src="images/Shape740copy.png">
-			</div>
-			<div class="w3-center w3-large w3-margin-top">
-				<br> <br> <br> <br>
-
-			</div>
-			<div>
+			<div class="loginForm">
 				<form id="login" method="post">
 					<!-- <form id="login" method="post"> -->
 

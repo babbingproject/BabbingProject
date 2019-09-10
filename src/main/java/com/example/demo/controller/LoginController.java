@@ -82,7 +82,7 @@ public class LoginController {
 
 	@RequestMapping("/loginss")
 	public String loginss() {
-		return "th/main/index1";
+		return "redirect:/";
 	}
 
 	@RequestMapping("/logout")

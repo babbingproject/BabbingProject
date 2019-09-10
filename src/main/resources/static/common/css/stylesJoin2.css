@@ -1,38 +1,45 @@
+.floatClear{}
+
+.floatClear::after{content:'';display:block;clear:both;}
+
 #layer_11 {
-	left: 569px;
-	top: 100px;
-	position: absolute;
-	width: 81px;
-	height: 22px;
+	float:left;
+	width: 316px;
+	height: 43px;
+	line-height:43px;
 	z-index: 11;
 }
 
 #layer_12 {
-	left: 857px;
-	top: 100px;
-	position: absolute;
-	width: 81px;
-	height: 22px;
+	float:left;
+	width: 316px;
+	height: 43px;
+	line-height:43px;
 	z-index: 12;
 }
 
 #Shape740copy2 {
-	left: 755px;
-	top: 122px;
-	position: absolute;
+	float:left;
 	width: 316px;
 	height: 8px;
 	z-index: 3;
 }
+#Shape740copy2 img{
+	width:100%;
+}
 
 #Shape740copy {
-	left: 444px;
-	top: 122px;
-	position: absolute;
-	width: 321px;
+	float:left;
+	width: 316px;
 	height: 8px;
 	z-index: 4;
 }
+#Shape740copy img{
+	width:100%;
+}
+
+.loginForm{margin-top:76px;}
+
 
 #copy2 {
 	left: 500px;

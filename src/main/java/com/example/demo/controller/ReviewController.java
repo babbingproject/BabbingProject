@@ -67,19 +67,19 @@ public class ReviewController {
 
 	@GetMapping("/insertReview")
 	public String insertReview(Uservo uservo) {
-		if (uservo.getUser_email() == null) { // nickname대신 userId로 조건을 줘야하나?
-			return "redirect:login";
-		}
+		/*
+		 * if (uservo.getUser_email() == null) { // nickname대신 userId로 조건을 줘야하나? return
+		 * "redirect:login"; }
+		 */
 		return "th/review/reviewWrite";
 	}
 
 	@PostMapping("/insertReview")
 	public String insertReview(Uservo uservo, ReviewRegistrationvo reviewRegistrationvo, Model model) {
-		if (uservo.getNickname() == null) {
-//			model.addAttribute("userId", uservo);
-//			logger.info(uservo.toString());
-			return "redirect:login";
-		}
+		/*
+		 * if (uservo.getNickname() == null) { // model.addAttribute("userId", uservo);
+		 * // logger.info(uservo.toString()); return "redirect:login"; }
+		 */
 		System.out.println(uservo.toString());
 		
 		reviewRegistrationvo.setUservo(uservo);

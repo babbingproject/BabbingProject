@@ -141,7 +141,7 @@ $(function(){
 		var current = $(this);
 		var followerMe = $(this).parent().parent().siblings('#followerMe').val();
 		
-		alert(type);
+		alert(followerMe);
 		$.ajax({
 			url: "tabMenu",
 			dataType: "JSON",
@@ -158,8 +158,13 @@ $(function(){
 					htmlStr += "<p class='photo'>";
 					htmlStr += "<div class='cont-txt' id='wee'>";
 					htmlStr += "<span>";
-					htmlStr += "<img src="+testing[i].reviewRegistrationvo.reviewImgList.img+"></img>";
-					htmlStr += "</span>";
+					htmlStr += testing[i].reviewRegistrationvo.reviewImgList;
+					htmlStr += testing[i].reviewImagevo.img;
+//					for(a in testing[i]reviewImgList){
+//						htmlStr += reviewImgList[i].img;
+//					}
+//					htmlStr += "<img src="+testing[i].reviewRegistrationvo.reviewImgList.img+"></img>";
+//					htmlStr += "</span>";
 				}
 				
 //				for(var i in testing){

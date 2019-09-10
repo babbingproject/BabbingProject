@@ -49,7 +49,7 @@ public class HomeMainController {
 		return "th/main/homemain";
 	}
 	//메인 홈페이지! 계속 추가추가 수정수정하자!
-	@RequestMapping("/index")
+	@RequestMapping("/")
 	public String goIndex1(Model model, String followerMe) {
 //		List<Object[]> UservoList = userService.getUservoListOrderByFollowingCountDes();
 //		List<Object[]> advvoList = advService.getAdvertisementvoOrderByWeightAvg();
@@ -135,6 +135,8 @@ public class HomeMainController {
 			for(int i = 0; i < businessFieldKor.size(); i ++) {
 				CheckingScrap checkingScrap = new CheckingScrap();
 				checkingScrap.setReviewRegistrationvo(businessFieldKor.get(i));
+				checkingScrap.setReviewImagevo(businessFieldKor.get(i).getReviewImgList().get(i));
+				checkingScrap.setUservo(businessFieldKor.get(i).getUservo());
 				checkingScrap.setScrapvo(scrapService.checkScrap(businessFieldKor.get(i).getReviewId(), followerMe));
 				System.out.println("KOREAN REVIEWSSSSSSSS" + businessFieldKor.get(i));
 				System.out.println("KOREAN SCRAP +" +scrapService.checkScrap(businessFieldKor.get(i).getReviewId(), followerMe));

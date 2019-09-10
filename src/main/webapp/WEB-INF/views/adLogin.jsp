@@ -83,10 +83,10 @@
 				<a href="/adLogin"><img src="images/layer_12.png" /></a>
 			</div>
 			<div id="Shape740copy2">
-				<img src="images/Shape740copy.png">
+				<img src="images/Shape740copy2.png">
 			</div>
 			<div id="Shape740copy">
-				<img src="images/Shape740copy2.png">
+				<img src="images/Shape740copy.png">
 			</div>
 			<div class="w3-center w3-large w3-margin-top">
 				<br> <br> <br> <br>

@@ -24,11 +24,7 @@ public class UserController {
 	@Autowired
 	private UserMailSendService mailsender;
 
-	@RequestMapping("/")
-	public String userMain() {
-		return "th/main/index1";
-	}
-
+	
 	
 	
 
