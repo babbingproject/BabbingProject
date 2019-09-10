@@ -55,10 +55,10 @@
 				<div class="cont-txtB">
 					NEW 리뷰 <a href="#" class="more-btn">더보기</a>
 				</div>
-				<ul class="list-style03"  th:each="newestreview:${newestreview}">
+				<ul class="list-style03" >
 <!-- 				<option th:each="i : ${#numbers.sequence(1, 3/1)}"> -->
 					
-					<li >
+					<li  th:each="newestreview:${newestreview}">
 						<div class="cont-txt">
 							<p class="photo">
 								<span th:each="check:${newestreview.reviewRegistrationvo.reviewImgList}">

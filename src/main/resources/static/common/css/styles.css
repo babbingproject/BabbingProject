@@ -84,6 +84,7 @@ a {text-decoration: none;color: inherit;cursor: pointer;}
 .cont-area .list-style03 .cont-txt .info li:nth-child(2){font-size: 18px; font-weight: bold; }
 .cont-area .list-style03 .cont-txt .info li:nth-child(3){}
 .cont-area .list-style03 .cont-txt .info li  img {width: 25px;  border-radius: 100px;margin-right:10px;margin-bottom: -8px;}
+
 .cont-area .list-style04-user{display: block; padding:30px ;}
 .cont-area .list-style04-user li{float: left;    margin-right: 12px;    width: 165px;}
 .cont-area .list-style04-user li a{display: block; text-align: center;}
