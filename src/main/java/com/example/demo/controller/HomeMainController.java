@@ -6,13 +6,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.example.demo.domain.main.Searchvo;
 import com.example.demo.service.advertisement.AdvertisementService;
 import com.example.demo.service.review.ReviewService;
 import com.example.demo.service.review.image.ReviewImageService;
 import com.example.demo.service.user.UserService;
-
+@SessionAttributes("uservo")
 @Controller
 public class HomeMainController {
 

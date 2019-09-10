@@ -20,13 +20,12 @@ import lombok.ToString;
 
 @Getter
 @Setter
-@ToString(exclude = "tagList")
+@ToString(exclude = {"tagList","reviewRegistrationvo"})
 @Entity
 public class ReviewImagevo {
 
 	@Id 
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column
 	private int imgId;
 	private String img;
 	private String imgReview;

@@ -22,4 +22,9 @@ public interface AdvertisementRepository extends JpaRepository<Advertisementvo, 
 			+ "FROM advertisementvo WHERE advertisement_name LIKE %:searchKeyword% "
 			+ "LIMIT 6")
 	List<Object[]> getSearchKeyword(String searchKeyword);
+	
+	@Query("SELECT advertisement_name FROM Advertisementvo ad WHERE ad.advertisement_email like %?1%")
+	String selectAdvertisementName(String adEmail);
+	@Query("SELECT advertisement_num FROM Advertisementvo ad WHERE ad.advertisement_name like %?1%")
+	String selectAdvertisementNum(String nickName);
 }

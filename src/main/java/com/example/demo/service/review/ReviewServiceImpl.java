@@ -8,10 +8,8 @@ import javax.persistence.PersistenceContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.demo.domain.mypage.QUservo;
 import com.example.demo.domain.mypage.Uservo;
 import com.example.demo.domain.review.Commentvo;
-import com.example.demo.domain.review.QCommentvo;
 import com.example.demo.domain.review.QReviewRegistrationvo;
 import com.example.demo.domain.review.ReviewRegistrationvo;
 import com.example.demo.service.user.UserRepository;

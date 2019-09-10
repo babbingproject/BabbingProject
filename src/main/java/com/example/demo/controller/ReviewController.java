@@ -26,7 +26,6 @@ import com.example.demo.service.review.image.ReviewImageService;
 import com.example.demo.service.user.UserRepository;
 import com.example.demo.service.user.UserService;
 
-@SessionAttributes("uservo") //uservo객체를 세션에 등록하기 위한 어노테이션
 @Controller
 public class ReviewController {
 	
@@ -45,7 +44,7 @@ public class ReviewController {
 	ReviewImageService reviewImageService;
 	@Autowired
 	UserRepository userRepo;
-
+	@Autowired
 	ReviewRepository reviewRepo;
 	
 	
@@ -65,8 +64,8 @@ public class ReviewController {
 	}
 
 	@GetMapping("/insertReview")
-	public String insertReview(@ModelAttribute("uservo") Uservo uservo) {
-		if (uservo.getNickname() == null) { // nickname대신 userId로 조건을 줘야하나?
+	public String insertReview(Uservo uservo) {
+		if (uservo.getUser_email() == null) { // nickname대신 userId로 조건을 줘야하나?
 			return "redirect:login";
 		}
 		return "th/review/reviewWrite";
@@ -74,7 +73,7 @@ public class ReviewController {
 
 	@PostMapping("/insertReview")
 
-	public String insertReview(@ModelAttribute("uservo") Uservo uservo, ReviewRegistrationvo reviewRegistrationvo, Model model) {
+	public String insertReview(Uservo uservo, ReviewRegistrationvo reviewRegistrationvo, Model model) {
 		if (uservo.getNickname() == null) {
 //			model.addAttribute("userId", uservo);
 //			logger.info(uservo.toString());
@@ -88,44 +87,44 @@ public class ReviewController {
 	}
 
 	@GetMapping("/doReviewView")
-	public String getReviewVIew(@ModelAttribute("uservo") Uservo uservo, ReviewRegistrationvo reviewRegistrationvo, Model model) {
-		if (uservo.getNickname() == null) {
-			return "redirect:login";
-		}
+	public String getReviewVIew(Uservo uservo, ReviewRegistrationvo reviewRegistrationvo, Model model) {
+		/*
+		 * if (uservo.getNickname() == null) { return "redirect:login"; }
+		 */
+		System.out.println(uservo.toString());
+		reviewRegistrationvo.setUservo(uservo);
 		model.addAttribute("reviewView", reviewService.selectReviewView(reviewRegistrationvo));
 		model.addAttribute("commentList", commentService.selectCommentList(reviewRegistrationvo));
 		return "th/review/reviewView"; 
 	}
 	
 	@PostMapping("/updateReviewView")
-	public String updateReview(@ModelAttribute("uservo") Uservo uservo, ReviewRegistrationvo reviewRegistrationvo) {
-		if (uservo.getNickname() == null) {
-			return "redirect:login";
-		}
-		
+	public String updateReview(Uservo uservo, ReviewRegistrationvo reviewRegistrationvo) {
+		/*
+		 * if (uservo.getNickname() == null) { return "redirect:login"; }
+		 */
 //		logger.info(uservo.toString());
 //		logger.info(reviewRegistrationvo.toString());
 		reviewService.updateReview(reviewRegistrationvo);		
 		return "forward:doReviewList";
 	}
 	@GetMapping("/deleteReviewView")
-	public String deleteReview(@ModelAttribute("uservo") Uservo uservo, ReviewRegistrationvo reviewRegistrationvo) {
-		if (uservo.getNickname() == null) {
-			return "redirect:login";
-		}
-				
+	public String deleteReview(Uservo uservo, ReviewRegistrationvo reviewRegistrationvo) {
+		/*
+		 * if (uservo.getNickname() == null) { return "redirect:login"; }
+		 */
+		System.out.println(reviewRegistrationvo.toString());		
 		
 		reviewService.deleteReview(reviewRegistrationvo);
 		return "forward:doReviewList";
 	}
 	
 	@RequestMapping("/doReviewList")
-	public String getReviewList(@ModelAttribute("uservo") Uservo uservo,
+	public String getReviewList(Uservo uservo,
 			Model model, ReviewRegistrationvo reviewRegistrationvo, Commentvo commentvo) {
-		if (uservo.getNickname()== null) {
-			return "redirect:login";
-		}
-
+		/*
+		 * if (uservo.getNickname()== null) { return "redirect:login"; }
+		 */
 		List<ReviewRegistrationvo> reviewList = reviewService.selectReviewList(reviewRegistrationvo);
 
 		commentvo.setReviewRegistrationvo(reviewRegistrationvo);
