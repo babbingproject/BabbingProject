@@ -145,6 +145,7 @@ public class ReviewServiceImpl implements ReviewService {
 
 	@Override
 	public void deleteReview(ReviewRegistrationvo reviewRegistrationvo) {
+		
 		reviewRepo.deleteById(reviewRegistrationvo.getReviewId());
 
 

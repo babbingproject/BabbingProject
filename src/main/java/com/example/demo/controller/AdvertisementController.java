@@ -44,7 +44,7 @@ public class AdvertisementController {
 		// 회원가입 메서드
 		advertisementService.joinAd(vo);
 		// 메일 보내기
-		mailsender.mailSendWithAdKey(vo.getAdvertisement_email(),vo.getAdvertisement_name(), request);
+		mailsender.mailSendWithAdKey(vo.getAdvertisement_email(),vo.getAdvertisementname(), request);
 		return "joinMail";
 	}
 
@@ -66,7 +66,7 @@ public class AdvertisementController {
 	@ResponseBody
 	@RequestMapping("/adnickCheck")
 	public int adnickCheck(@RequestBody Advertisementvo vo) {
-		return advertisementService.adnickCheck(vo, vo.getAdvertisement_name());
+		return advertisementService.adnickCheck(vo, vo.getAdvertisementname());
 	}
 	
 	

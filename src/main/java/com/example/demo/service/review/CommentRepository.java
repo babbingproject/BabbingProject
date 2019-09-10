@@ -14,5 +14,8 @@ public interface CommentRepository extends JpaRepository<Commentvo, Integer> {
 
 	@Query(value = "delete from commentvo where comment_id = ?", nativeQuery = true)
 	void deleteComment(int commentId);
+	
+	@Query(value = "SELECT cm FROM Commentvo cm WHERE cm.commentId like %?1%")
+	List<Commentvo> findByComment(int commentId);
 
 }

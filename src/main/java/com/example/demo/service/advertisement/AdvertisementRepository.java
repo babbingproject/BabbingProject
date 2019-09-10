@@ -13,7 +13,6 @@ public interface AdvertisementRepository extends JpaRepository<Advertisementvo, 
 	//기업 정보 가지고와서 리스트에 저장하기
 
 	@Query(nativeQuery=true, value = "SELECT advertisement_id, advertisement_name, profile_img, puted_count FROM advertisementvo ORDER BY advertisement_id  DESC limit 6")
-
 	List<Object[]> findAllbyAdvertisementidOrderByWeightedAvg();
 	
 	//기업 정보 서치
@@ -23,8 +22,8 @@ public interface AdvertisementRepository extends JpaRepository<Advertisementvo, 
 			+ "LIMIT 6")
 	List<Object[]> getSearchKeyword(String searchKeyword);
 	
-	@Query("SELECT advertisement_name FROM Advertisementvo ad WHERE ad.advertisement_email like %?1%")
-	String selectAdvertisementName(String adEmail);
-	@Query("SELECT advertisement_num FROM Advertisementvo ad WHERE ad.advertisement_name like %?1%")
+	@Query("SELECT advertisementname FROM Advertisementvo ad WHERE ad.advertisement_email like %?1%")
+	String selectAdvertisementname(String adEmail);
+	@Query("SELECT advertisement_num FROM Advertisementvo ad WHERE ad.advertisementname like %?1%")
 	String selectAdvertisementNum(String nickName);
 }

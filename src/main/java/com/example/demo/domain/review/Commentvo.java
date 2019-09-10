@@ -31,11 +31,11 @@ public class Commentvo {
 	private Date modifiedDate;
 
 	@ManyToOne
-	@JoinColumn(name = "reviewId", nullable = false)
+	@JoinColumn(name = "reviewId")
 	private ReviewRegistrationvo reviewRegistrationvo;
 
 	@ManyToOne
-	@JoinColumn(name = "userId", nullable = false)
+	@JoinColumn(name = "userId")
 	private Uservo uservo;
 
 	public void getReviewRegistrationvo(ReviewRegistrationvo reviewRegistrationvo) {
@@ -43,9 +43,9 @@ public class Commentvo {
 		reviewRegistrationvo.getCommentList().add(this);
 	}
 
-	public void setUservo(Uservo uservo) {
-		this.uservo = uservo;
-		uservo.getCommentList().add(this);
-	}
+	/*
+	 * public void setUservo(Uservo uservo) { this.uservo = uservo;
+	 * uservo.getCommentList().add(this); }
+	 */
 
 }

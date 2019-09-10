@@ -143,12 +143,13 @@ public class LoginController {
 			// 세션 저장하기 전에 비밀번호 가리기
 			vo.setPassword("");
 			// 세션에 vo 객체 저장
-			httpSession.setAttribute("adUserSession", vo);			
+			httpSession.setAttribute("adUserSession", vo);
+			System.out.println(vo.toString());
 			// 접속자 아이디를 세션에 담는다.
 			httpSession.setAttribute("adSignedUser", vo.getAdvertisement_email());
 			// 사업자 명을 세션에 담는다
-			httpSession.setAttribute("adName", adverRepo.selectAdvertisementName(vo.getAdvertisement_email()));
-			String adName = adverRepo.selectAdvertisementName(vo.getAdvertisement_email());
+			httpSession.setAttribute("adName", adverRepo.selectAdvertisementname(vo.getAdvertisement_email()));
+			String adName = adverRepo.selectAdvertisementname(vo.getAdvertisement_email());
 			// 사업자 번호를 세션에 담는다
 			httpSession.setAttribute("adNum", adverRepo.selectAdvertisementNum(adName));
 			

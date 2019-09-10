@@ -83,8 +83,11 @@ public class Uservo {
 	private List<ReviewRegistrationvo> reviewRegistrationList = new ArrayList<ReviewRegistrationvo>();
 
 
-	@OneToMany(mappedBy = "uservo", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	public List<Commentvo> commentList = new ArrayList<Commentvo>();
+	/*
+	 * @OneToMany(mappedBy = "uservo", fetch = FetchType.EAGER, cascade =
+	 * CascadeType.ALL) public List<Commentvo> commentList = new
+	 * ArrayList<Commentvo>();
+	 */
 
 
 }
