@@ -8,7 +8,7 @@ public interface UserMailSendService {
 
 	public int alter_userKey_service(String user_email, String key);
 
-	public void mailSendWithAdKey(String advertisement_email, String advertisement_name, HttpServletRequest request);
+	public void mailSendWithAdKey(String advertisement_email, String advertisementname, HttpServletRequest request);
 
 	public int alter_adKey_service(String advertisement_email, String key);
 

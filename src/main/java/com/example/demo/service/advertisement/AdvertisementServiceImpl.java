@@ -48,7 +48,7 @@ public class AdvertisementServiceImpl implements AdvertisementService  {
 	}
 
 	@Override
-	public int adnickCheck(Advertisementvo vo, String advertisement_name) {
+	public int adnickCheck(Advertisementvo vo, String advertisementname) {
 		// TODO Auto-generated method stub
 		return adMapper.adnickCheck(vo.getAdvertisementname());
 	}

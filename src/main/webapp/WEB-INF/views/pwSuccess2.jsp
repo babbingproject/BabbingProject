@@ -2525,7 +2525,7 @@ to {
 						<form id="modify" action="/pwUpdate" method="post">
 
 							<p>
-								<input type="hidden" value="${sessionScope.signedUser }"
+								<input type="hidden" value="${user_email }"
 									name="user_email"> <input type="password"
 									class="w3-input" name="password" id="pw" placeholder="새 비밀번호"
 									required="required">

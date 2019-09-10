@@ -99,8 +99,8 @@
 
 	$(function() {
 		//input에 입력된 값이 변화가 있을때 alert 을 띄운다.
-		$("input[name='advertisement_name']").on("change", function() {
-			var advertisement_name = $('#advertisement_name').val();
+		$("input[name='advertisementname']").on("change", function() {
+			var advertisementname = $('#advertisementname').val();
 
 			//ajax 호출
 
@@ -110,7 +110,7 @@
 				type : 'POST',
 				data : JSON.stringify({
 					// 좌항 - 변수 , 우항 - 입력된 데이터 의미
-					'advertisement_name' : advertisement_name
+					'advertisementname' : advertisementname
 				}),
 				//요청 url
 				url : "/adnickCheck",
@@ -118,7 +118,7 @@
 				dataType : "json",
 				contentType : "application/json; charset=UTF-8",
 				success : function(cnt) {
-					if (advertisement_name == "") {
+					if (advertisementname == "") {
 						$("#chktext").css("color", "gray");
 						$("#nickchktext").text("기업명을 입력해주세요.");
 						$("#nickchktext2").html("");
@@ -190,8 +190,8 @@
 							class="w3-text-blue"></span>
 					</p>
 					<p>
-						<input type="text" class="w3-input" name="advertisement_name"
-							id="advertisement_name" placeholder="기업명" required="required">
+						<input type="text" class="w3-input" name="advertisementname"
+							id="advertisementname" placeholder="기업명" required="required">
 						<span id="nickchktext" class="w3-text-red"></span> <span
 							id="nickchktext2" class="w3-text-blue"></span>
 					</p>

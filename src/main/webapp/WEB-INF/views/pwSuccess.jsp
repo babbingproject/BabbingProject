@@ -2773,7 +2773,7 @@ to {
 				<form id="modify" action="/pwUpdate" method="post">
 
 					<p>
-						<input type="hidden" value="${sessionScope.signedUser }"
+						<input type="hidden" value="${user_email }"
 							name="user_email"> <input type="password"
 							style="position: absolute; top: 572px; left: 500px; width: 418px; height: 57px; border-radius: 28.5px;"
 							class="w3-input" name="password" id="pw" placeholder="새 비밀번호"

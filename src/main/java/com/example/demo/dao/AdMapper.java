@@ -11,7 +11,7 @@ public interface AdMapper {
 
 	public int ademailCheck(String advertisement_email);
 
-	public int adnickCheck(String advertisement_name);
+	public int adnickCheck(String advertisementname);
 	
 	public int adsearchPassword(String advertisement_email,String password);
 

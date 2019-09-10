@@ -23,14 +23,14 @@ SELECT COUNT(*)
 		advertisement_email
 		,password
 		,advertisement_num
-		,advertisement_name
+		,advertisementname
 		)
 		VALUES
 		(
 		#{advertisement_email}
 		,#{password}
 		,#{advertisement_num}
-		,#{advertisement_name}
+		,#{advertisementname}
 		)
 
 	</insert>
@@ -40,8 +40,8 @@ SELECT COUNT(*)
 		SELECT
 		COUNT(*)
 		FROM Advertisementvo
-		WHERE advertisement_name =
-		#{advertisement_name}
+		WHERE advertisementname =
+		#{advertisementname}
 
 	</select>
 
