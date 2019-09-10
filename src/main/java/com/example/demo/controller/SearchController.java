@@ -45,9 +45,8 @@ public class SearchController {
 	}
 
 	@RequestMapping(value = "/userpw/key_alter", method = RequestMethod.GET)
-	public String key_alterConfirm(Model model,@RequestParam("user_email") String user_email,
-			@RequestParam("password") String password) {
-		// 임시 발급된 비번을 암호화합니다.
+	public String key_alterConfirm(Model model,@RequestParam("user_email") String user_email, @RequestParam("password") String password) {
+		//임시 발급된 비번을 암호화합니다.
 		password = UserSha256.encrypt(password);
 		model.addAttribute("user_email", user_email);
 		return "pwSuccess";

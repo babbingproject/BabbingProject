@@ -86,31 +86,56 @@
 			모집 인원<br>
 			<p th:text="|${campaign.participants} / ${campaign.recruitment}|"></p> 
 		
-		<input th:if="${session['member'].advertisementId} == ${campaign.advertisementvo.advertisementId}" type="button" name="viewapply" data-toggle="modal" data-target="#campaignModal" value="응모자 보기">
+		<th:block th:if="${session[advertisementvo] != null}">
+		<input th:if="${session['advertisementvo'].advertisementId} == ${campaign.advertisementvo.advertisementId}" type="button" id="applyBtn" value="응모자 보기">
+		</th:block>
 		
-		<th:block th:if="${session['member'].advertisement_num == null}">
+		<th:block th:if="${session[uservo] != null}">
+		<form th:if="${participant} == null" th:action="@{participants}" method="post">		
+		<input type="hidden" name="userId" th:value="${session['uservo'].userId}">
+		<input type="hidden" name="campaignId" th:value="${campaign.campaignId}">
+		<input type="submit" value="응모하기">	
+		</form>
+		
+		<form th:if="${participant} != null" th:action="@{deleteParticipants}" method="post">
+		<input type="hidden" name="userId" th:value="${session['uservo'].userId}">
+		<input type="hidden" name="campaignId" th:value="${campaign.campaignId}">
+		<input type="submit" value="취소하기">
+		</form>
+		</th:block>
+		<!-- 
+		<th:block th:if="${session['uservo'] != null}">
 		<form th:if="${session['member'].advertisementId != 0} and ${participant} == null" th:action="@{participants}" method="post">		
 		<input type="hidden" name="advertisementId" th:value="${session['member'].advertisementId}">
 		<input type="hidden" name="campaign_id" th:value="${campaign.campaign_id}">
 		<input type="submit" onclick="applyFunction()" value="응모하기">	
 		</form>
 		
-		<form th:if="${participant} != null" th:action="@{deleteParticipants}" method="post">
-		<input type="hidden" name="advertisementId" th:value="${session['member'].advertisementId}">
-		<input type="hidden" name="campaign_id" th:value="${campaign.campaign_id}">
-		<input type="submit" onclick="applyFunction()" value="취소하기">
-		</form>		
-		</th:block>
+				
+		</th:block> -->
 		<!-- Trigger/Open The Modal -->	
-    	<button id="myBtn">Open Modal</button>
- 
     	<!-- The Modal -->
-    	<div id="myModal" class="modal">
+    	<div id="applyModal" class="modal">
  
       	<!-- Modal content -->
       	<div class="modal-content">
         <span class="close"></span>                                                               
-        <p>Some text in the Modal..</p>                 
+        	<table >
+                    		<tr th:each="participants:${participantsList} ">
+                        	<td th:text="${participants.uservo.nickname}">
+                        	<td>
+							<form th:if ="${participants.participation} == 'N'" th:action="@{selectParticipants}">
+                        	<input type="hidden" name="participantsId" th:value="${participants.participantsId}">
+                        	<input type="submit" style="float: right" value="선정하기">
+                    		</form>
+                    	  
+                    		<form th:if ="${participants.participation} == 'Y'" th:action="@{cancleParticipants}">
+                        	<input type="hidden" name="participantsId" th:value="${participants.participantsId}">
+                        	<input type="submit" style="float: right" value="취소하기">
+                    		</form>
+                    		</td>
+	                        </tr>                        
+                    	</table>                 
       	</div> 
     	</div>	
 			
@@ -119,10 +144,10 @@
 
 	<script>
 	// Get the modal
-	var modal = document.getElementById('myModal');
+	var modal = document.getElementById('applyModal');
 	
 	// Get the button that opens the modal
-	var btn = document.getElementById("myBtn");
+	var btn = document.getElementById("applyBtn");
 	
 	// Get the <span> element that closes the modal
 	var span = document.getElementsByClassName("close")[0];                                          
@@ -142,8 +167,7 @@
 	    if (event.target == modal) {
 	        modal.style.display = "none";
 	    }
-	}
-	
+	}	
 	</script>
 
 
