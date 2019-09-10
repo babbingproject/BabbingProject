@@ -22,6 +22,6 @@ public class Followvo {
 	private int followId;
 	@Temporal(value= TemporalType.TIMESTAMP)
 	private Date followingTime;
-	private int followingUserId;
-	private int followerUserId;
+	private String followerMe;
+	private String followingYou;
 }

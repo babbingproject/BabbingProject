@@ -1,7 +1,6 @@
 package com.example.demo.service.review;
 
 import java.util.List;
-import java.util.Optional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -13,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.demo.domain.review.Commentvo;
 import com.example.demo.domain.review.ReviewRegistrationvo;
+import com.example.demo.service.scrap.ScrapRepository;
 
 
 @Service
@@ -28,6 +28,8 @@ public class CommentServiceImp implements CommentService {
 	@PersistenceContext
 	EntityManager em;
 	
+	@Autowired
+	ScrapRepository scrapRepo;
 //	@Override
 //	public Optional<Commentvo> selectCommentListAllById(int reviewId) {
 //		

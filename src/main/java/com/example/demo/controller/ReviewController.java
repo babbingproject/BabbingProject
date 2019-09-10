@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.example.demo.domain.mypage.Uservo;
@@ -46,6 +47,7 @@ public class ReviewController {
 	@Autowired
 	UserRepository userRepo;
 
+	
 	ReviewRepository reviewRepo;
 	
 	
@@ -136,6 +138,8 @@ public class ReviewController {
 		return "th/review/reviewList";
 
 	}
+	
+	
 	
 	
 }

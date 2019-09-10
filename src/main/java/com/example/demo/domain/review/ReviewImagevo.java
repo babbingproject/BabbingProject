@@ -20,7 +20,7 @@ import lombok.ToString;
 
 @Getter
 @Setter
-@ToString(exclude = "tagList")
+@ToString(exclude = {"tagList", "reviewRegistrationvo"})
 @Entity
 public class ReviewImagevo {
 
