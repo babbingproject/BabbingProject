@@ -50,78 +50,78 @@ public interface ReviewRepository extends JpaRepository<ReviewRegistrationvo, In
 	
 	
 	@Query(nativeQuery=true, value=""
-			+ "SELECT r.review_id, r.review_place, r.title, r.business_field_id, ri.img, user.profile_img, user.nickname "
+			+ "SELECT *, ri.img, user.profile_img, user.nickname "
 			+ "FROM review_registrationvo AS r INNER JOIN review_imagevo AS ri "
 			+ "ON r.review_id = ri.review_id "
 			+ "INNER JOIN uservo AS user "
 			+ "ON r.user_id = user.user_id "
 			+ "AND r.business_field_id = 'kor'"
 			+ "ORDER BY r.write_date DESC LIMIT 6")
-	List<Object[]> getBusinessFieldKor();
+	Iterable<ReviewRegistrationvo> getBusinessFieldKor();
 	
 	@Query(nativeQuery=true, value=""
-			+ "SELECT r.review_id, r.review_place, r.title, r.business_field_id, ri.img, user.profile_img, user.nickname  "
+			+ "SELECT *, ri.img, user.profile_img, user.nickname  "
 			+ "FROM review_registrationvo AS r INNER JOIN review_imagevo AS ri "
 			+ "ON r.review_id = ri.review_id "
 			+ "INNER JOIN uservo AS user "
 			+ "ON r.user_id = user.user_id "
 			+ "AND r.business_field_id = 'wes' "
 			+ "ORDER BY r.write_date DESC LIMIT 6")
-	List<Object[]> getBusinessFieldWes();
+	Iterable<ReviewRegistrationvo> getBusinessFieldWes();
 	
 	@Query(nativeQuery=true, value=""
-			+ "SELECT r.review_id, r.review_place, r.title, r.business_field_id, ri.img, user.profile_img, user.nickname  "
+			+ "SELECT *, ri.img, user.profile_img, user.nickname  "
 			+ "FROM review_registrationvo AS r INNER JOIN review_imagevo AS ri "
 			+ "ON r.review_id = ri.review_id "
 			+ "INNER JOIN uservo AS user "
 			+ "ON r.user_id = user.user_id "
 			+ "AND r.business_field_id = 'jpn' "
 			+ "ORDER BY r.write_date DESC LIMIT 6")
-	List<Object[]> getBusinessFieldJpn();
+	Iterable<ReviewRegistrationvo> getBusinessFieldJpn();
 	
 	@Query(nativeQuery=true, value=""
-			+ "SELECT r.review_id, r.review_place, r.title, r.business_field_id, ri.img, user.profile_img, user.nickname  "
+			+ "SELECT *, ri.img, user.profile_img, user.nickname  "
 			+ "FROM review_registrationvo AS r INNER JOIN review_imagevo AS ri "
 			+ "ON r.review_id = ri.review_id "
 			+ "INNER JOIN uservo AS user "
 			+ "ON r.user_id = user.user_id "
 			+ "AND r.business_field_id = 'chn' "
 			+ "ORDER BY r.write_date DESC LIMIT 6")
-	List<Object[]> getBusinessFieldChn();
+	Iterable<ReviewRegistrationvo> getBusinessFieldChn();
 	
 	@Query(nativeQuery=true, value=""
-			+ "SELECT r.review_id, r.review_place, r.title, r.business_field_id, ri.img, user.profile_img, user.nickname  "
+			+ "SELECT *, ri.img, user.profile_img, user.nickname  "
 			+ "FROM review_registrationvo AS r INNER JOIN review_imagevo AS ri "
 			+ "ON r.review_id = ri.review_id "
 			+ "INNER JOIN uservo AS user "
 			+ "ON r.user_id = user.user_id "
 			+ "AND r.business_field_id = 'snk'"
 			+ "ORDER BY r.write_date DESC LIMIT 6")
-	List<Object[]> getBusinessFieldSnk();
+	Iterable<ReviewRegistrationvo> getBusinessFieldSnk();
 	
 	@Query(nativeQuery=true, value=""
-			+ "SELECT r.review_id, r.review_place, r.title, r.business_field_id, ri.img, user.profile_img, user.nickname  "
+			+ "SELECT *, ri.img, user.profile_img, user.nickname  "
 			+ "FROM review_registrationvo AS r INNER JOIN review_imagevo AS ri "
 			+ "ON r.review_id = ri.review_id "
 			+ "INNER JOIN uservo AS user "
 			+ "ON r.user_id = user.user_id "
 			+ "AND r.business_field_id = 'fst' "
 			+ "ORDER BY r.write_date DESC LIMIT 6")
-	List<Object[]> getBusinessFieldFst();
+	Iterable<ReviewRegistrationvo> getBusinessFieldFst();
 	
 	@Query(nativeQuery=true, value=""
-			+ "SELECT r.review_id, r.review_place, r.title, r.business_field_id, ri.img, user.profile_img, user.nickname  "
+			+ "SELECT *, ri.img, user.profile_img, user.nickname  "
 			+ "FROM review_registrationvo AS r INNER JOIN review_imagevo AS ri "
 			+ "ON r.review_id = ri.review_id "
 			+ "INNER JOIN uservo AS user "
 			+ "ON r.user_id = user.user_id "
 			+ "AND r.business_field_id = 'caf'"
 			+ "ORDER BY r.write_date DESC LIMIT 6")
-	List<Object[]> getBusinessFieldCaf();
+	Iterable<ReviewRegistrationvo> getBusinessFieldCaf();
 	
 	//리뷰 서치
 	@Query(nativeQuery=true, value=""
-			+ "SELECT r.review_id, r.review_place, r.title, r.business_field_id, ri.img, user.profile_img, user.nickname  "
+			+ "SELECT *, ri.img, user.profile_img, user.nickname  "
 			+ "FROM review_registrationvo AS r INNER JOIN review_imagevo AS ri "
 			+ "ON r.review_id = ri.review_id "
 			+ "INNER JOIN uservo AS user "

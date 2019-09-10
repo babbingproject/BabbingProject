@@ -16,6 +16,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import com.example.demo.domain.mypage.Uservo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -60,6 +61,7 @@ public class ReviewRegistrationvo {
 	 * CascadeType.ALL) private List<ReviewImagevo> reviewImagevoList = new
 	 * ArrayList<ReviewImagevo>();
 	 */
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "userId", nullable = false)
 	private Uservo uservo;
@@ -68,6 +70,7 @@ public class ReviewRegistrationvo {
 	private List<Commentvo> commentList = new ArrayList<Commentvo>();
 
 	
+	@JsonIgnore
 	@OneToMany(mappedBy = "reviewRegistrationvo", cascade = CascadeType.ALL)
 	private List<ReviewImagevo> reviewImgList = new ArrayList<ReviewImagevo>();
 

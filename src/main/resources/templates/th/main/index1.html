@@ -11,7 +11,7 @@
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="common/js/jquery.slides.js"></script>
-<script src="common/js/index.js"></script>
+<script th:inline="javascript" src="common/js/index.js"></script>
 <script>
 	$(function() {
 		//배너 슬라이드 부분
@@ -115,19 +115,32 @@
 					<li class="buttons"><span id="caf">카페</span></li>
 				</ul>
 			</div>
+					<input type="hidden" th:value="${username}" id="followerMe">
 			<div class="cont-area info" id="list1">
 				<ul class="list-style03" >
-					<li th:each="everything:${everything}" id="wee">
-						<div class="cont-txt">
+					<li th:each="everything:${everything}" >
+						<div class="cont-txt" id="wee">
 							<p class="photo">
-								<img th:src="${everything[4]}" />
+								<span th:each="check : ${everything.reviewRegistrationvo.reviewImgList}">
+								<img th:src="${check.img}" /></span>
 							</p>
-							<a href="#" class="best01">베스트</a>
+							<span th:if="${#lists.isEmpty(everything.scrapvo)}">
+								<span id="scrapButton" class="button best02"></span>
+							<input type="hidden" id="followMe" th:value="${username}">
+							</span>
+							<span th:if="!${#lists.isEmpty(everything.scrapvo)}">
+								<span id="scrapButton" class="button best01"></span>
+							<input type="hidden" id="followMe" th:value="${username}">
+							</span>
 							<ul class="info">
-								<li><span th:text="${everything[1]}"></span>|</li>
-								<li><span th:text="${everything[2]}"></span></li>
-								<li><img th:src="${everything[5]}" />
-									<span th:text="${everything[6]}"></span></li>
+								<li><span th:text="${everything.reviewRegistrationvo.reviewPlace}"></span>|</li>
+								<input type="hidden" th:value="${everything.reviewRegistrationvo.reviewId}" id="get">
+								<li><span th:text="${everything.reviewRegistrationvo.title}"></span></li>
+								<li>
+								<span th:each="check:${everything.reviewRegistrationvo.uservo}">
+								<img th:src="${check.profileImg}" />
+								<input type="hidden" id="reviewUserId" th:value="${check.userId}">
+									<span th:text="${check.nickname}"></span></span></li>
 							</ul>
 						</div>
 					</li>

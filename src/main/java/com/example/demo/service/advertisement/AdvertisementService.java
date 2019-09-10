@@ -26,5 +26,6 @@ public interface AdvertisementService {
 	void increasePut(String followerYou);
 	void decreasePut(String followerYou);
 	
+	Advertisementvo findAllByAdvertisementEmail(String advertisement_email);
 	
 }

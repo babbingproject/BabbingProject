@@ -107,46 +107,62 @@ public class HomeMainController {
 	
 	@ResponseBody
 	@RequestMapping("tabMenu")
-	public List<Object[]> tabMenu(String type, Model model) {
-		int value = 0;
+	public List<CheckingScrap> tabMenu(String type, Model model, String followerMe) {
 		System.out.println("types is " +type);
-		List<Object[]> testing = null;
+		List<CheckingScrap> testing = new ArrayList();
+		List<ReviewRegistrationvo> everythingTopSix = reviewService.getEverythingTopSix();
+		List<ReviewRegistrationvo> businessFieldKor = reviewService.getBusinessFieldOne();
+		List<ReviewRegistrationvo> businnesFieldWes = reviewService.getBusinessFieldTwo();
+		List<ReviewRegistrationvo> businessFieldJpn = reviewService.getBusinessFieldThree();
+		List<ReviewRegistrationvo> businessFieldChn = reviewService.getBusinessFieldFour();
+		List<ReviewRegistrationvo> businessFieldSnk = reviewService.getBusinessFieldFive();
+		List<ReviewRegistrationvo> businessFieldFst = reviewService.getBusinessFieldSix();
+		List<ReviewRegistrationvo> businessFieldCaf = reviewService.getBusinessFieldSeven();
 		switch(type) {
 		case "all":
 //			testing = reviewService.getEverythingTopSix();
-			value = 0;
+			for(int i = 0; i < everythingTopSix.size(); i ++) {
+				CheckingScrap checkingScrap = new CheckingScrap();
+				checkingScrap.setReviewRegistrationvo(everythingTopSix.get(i));
+				checkingScrap.setScrapvo(scrapService.checkScrap(everythingTopSix.get(i).getReviewId(), followerMe));
+				System.out.println("EVEYRYHITNG TPO SIX REVIEW"+everythingTopSix.get(i));
+				System.out.println("EVERYTHING TOP SIX SCRAP " +scrapService.checkScrap(everythingTopSix.get(i).getReviewId(), followerMe));
+				testing.add(checkingScrap);
+			}
 			break;
 		case "kor":
-			testing = reviewService.getBusinessFieldOne();
-			value = 1;
+//			testing = reviewService.getBusinessFieldOne();
+			for(int i = 0; i < businessFieldKor.size(); i ++) {
+				CheckingScrap checkingScrap = new CheckingScrap();
+				checkingScrap.setReviewRegistrationvo(businessFieldKor.get(i));
+				checkingScrap.setScrapvo(scrapService.checkScrap(businessFieldKor.get(i).getReviewId(), followerMe));
+				System.out.println("KOREAN REVIEWSSSSSSSS" + businessFieldKor.get(i));
+				System.out.println("KOREAN SCRAP +" +scrapService.checkScrap(businessFieldKor.get(i).getReviewId(), followerMe));
+				testing.add(checkingScrap);
+			}
 			break;
-		case "wes":
-			testing =reviewService.getBusinessFieldTwo();
-			System.out.println("case wes");
-			value = 2;
-			break;
-		case "jpn":
-			testing = reviewService.getBusinessFieldThree();
-			value = 3;
-			break;
-		case "chn":
-			testing = reviewService.getBusinessFieldFour();
-			value = 4;
-			break;
-		case "snk":
-			testing = reviewService.getBusinessFieldFive();
-			value = 5;
-			break;
-		case "fst":
-			testing = reviewService.getBusinessFieldSix();
-			value = 6;
-			break;
-		case "caf":
-			testing = reviewService.getBusinessFieldSeven();
-			value = 7;
-			break;
+//		case "wes":
+//			testing =reviewService.getBusinessFieldTwo();
+//			System.out.println("case wes");
+//			break;
+//		case "jpn":
+//			testing = reviewService.getBusinessFieldThree();
+//			break;
+//		case "chn":
+//			testing = reviewService.getBusinessFieldFour();
+//			break;
+//		case "snk":
+//			testing = reviewService.getBusinessFieldFive();
+//			break;
+//		case "fst":
+//			testing = reviewService.getBusinessFieldSix();
+//			break;
+//		case "caf":
+//			testing = reviewService.getBusinessFieldSeven();
+//			break;
 		default :
 		}
+		model.addAttribute("everything", testing);
 		return testing;
 	}
 	//태원의 제2의 메인홈 테스팅 메소드. 화면 정보 다 뿌려주자자자자자

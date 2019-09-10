@@ -64,6 +64,12 @@ public class AdvertisementServiceImpl implements AdvertisementService  {
 	public void decreasePut(String followerYou) {
 		advertiseRepo.decreasePut(followerYou);
 	}
+
+	@Override
+	public Advertisementvo findAllByAdvertisementEmail(String advertisement_email) {
+		
+		return advertiseRepo.findByAdvertisementEmail(advertisement_email);
+	}
 	
 	
 }

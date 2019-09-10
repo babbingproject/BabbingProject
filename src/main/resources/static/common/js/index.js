@@ -133,44 +133,55 @@ $(function(){
 		});
 		
 	})
-	
+	//업종 버튼
 	$('.buttons').on('click', function(){
 		$('.buttons.on').removeClass('on');
 		$(this).closest('.buttons').addClass('on');
 		var type = $(this).closest('.buttons').children().attr('id');
 		var current = $(this);
-		
+		var followerMe = $(this).parent().parent().siblings('#followerMe').val();
 		
 		alert(type);
 		$.ajax({
 			url: "tabMenu",
 			dataType: "JSON",
-			type: "POST",
-			data: {type : type},
+			type: "GET",
+			data: {type : type, followerMe : followerMe},
 			
 			success:function(testing){
+				alert('success');
 				var insideDiv = $(current).parent().parent().siblings().closest(".cont-area.info");
-				$(insideDiv).children().children('#wee').remove();
+				$(insideDiv).children().children().children('#wee').remove();
 				var htmlStr = "";
-				for(var i in testing){
-					htmlStr += "<li id='wee'>";
-					htmlStr += "<div class='cont-txt'>";
+				for(i in testing){
+					htmlStr += "<div class='cont-txt' id='wee'>";
 					htmlStr += "<p class='photo'>";
-					htmlStr += "<img src="+testing[i][4]+"></p>";
-					htmlStr += "<a href='#' class='best01'>베스트</a>";
-					htmlStr += "<ul class='info'>";
-					htmlStr += "<li><span></span>"+testing[i][1]+" | "+testing[i][2]+"</li>";
-					htmlStr += "<li><img src="+testing[i][5]+"><span>"+testing[i][6]+"</span></li>"
-					htmlStr += "</ul></div></li>"
-					
-					$(insideDiv).children('.list-style03').html(htmlStr);
-					
+					htmlStr += "<div class='cont-txt' id='wee'>";
+					htmlStr += "<span>";
+					htmlStr += "<img src="+testing[i].reviewRegistrationvo.reviewImgList.img+"></img>";
+					htmlStr += "</span>";
 				}
 				
+//				for(var i in testing){
+//					htmlStr += testing.reviewRegistrationvo.reviewPlace;
+//					htmlStr += "></span></p></div>"
+//					htmlStr += "<span th:each="+check +":"+ [[${everything.reviewRegistrationvo.reviewImgList}]]+">";
+//					htmlStr += "<img th:src='${check.img'}></span></p>";
+				
+//					htmlStr += "<p class='photo'>";
+//					htmlStr += "<img src="+testing[i][4]+"></p>";
+//					htmlStr += "<a href='#' class='best01'>베스트</a>";
+//					htmlStr += "<ul class='info'>";
+//					htmlStr += "<li><span></span>"+testing[i][1]+" | "+testing[i][2]+"</li>";
+//					htmlStr += "<li><img src="+testing[i][5]+"><span>"+testing[i][6]+"</span></li>"
+//					htmlStr += "</ul></div></li>"
+					$(insideDiv).children('.list-style03').html(htmlStr);
+					
+//				}
 			}
 		})
 	})
-	
+	//스크랩 버튼 이름 죄송
 	$('.button').on('click', function(){
 		var button = $(this);
 		var followerMe = $('#followerMe').val();

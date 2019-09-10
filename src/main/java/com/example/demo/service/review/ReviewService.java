@@ -22,19 +22,19 @@ public interface ReviewService {
 
 	List<ReviewRegistrationvo> getEverythingTopSix();
 
-	List<Object[]> getBusinessFieldOne();
+	List<ReviewRegistrationvo> getBusinessFieldOne();
 
-	List<Object[]> getBusinessFieldTwo();
+	List<ReviewRegistrationvo> getBusinessFieldTwo();
 
-	List<Object[]> getBusinessFieldThree();
+	List<ReviewRegistrationvo> getBusinessFieldThree();
 
-	List<Object[]> getBusinessFieldFour();
+	List<ReviewRegistrationvo> getBusinessFieldFour();
 
-	List<Object[]> getBusinessFieldFive();
+	List<ReviewRegistrationvo> getBusinessFieldFive();
 
-	List<Object[]> getBusinessFieldSix();
+	List<ReviewRegistrationvo> getBusinessFieldSix();
 
-	List<Object[]> getBusinessFieldSeven();
+	List<ReviewRegistrationvo> getBusinessFieldSeven();
 
 	List<Object[]> getSearchKeyword(String searchKeyword);
 //	Page<Object[]> getSearchKeyword(String searchKeyword, PageRequest pageRequest);

@@ -47,38 +47,38 @@ public class ReviewServiceImpl implements ReviewService {
 	}
 
 	@Override
-	public List<Object[]> getBusinessFieldOne() {
-		return reviewRepo.getBusinessFieldKor();
+	public List<ReviewRegistrationvo> getBusinessFieldOne() {
+		return (List<ReviewRegistrationvo>) reviewRepo.getBusinessFieldKor();
 	}
 
 	@Override
-	public List<Object[]> getBusinessFieldTwo() {
-		return reviewRepo.getBusinessFieldWes();
+	public List<ReviewRegistrationvo> getBusinessFieldTwo() {
+		return (List<ReviewRegistrationvo>) reviewRepo.getBusinessFieldWes();
 	}
 
 	@Override
-	public List<Object[]> getBusinessFieldThree() {
-		return reviewRepo.getBusinessFieldJpn();
+	public List<ReviewRegistrationvo> getBusinessFieldThree() {
+		return (List<ReviewRegistrationvo>) reviewRepo.getBusinessFieldJpn();
 	}
 
 	@Override
-	public List<Object[]> getBusinessFieldFour() {
-		return reviewRepo.getBusinessFieldChn();
+	public List<ReviewRegistrationvo> getBusinessFieldFour() {
+		return (List<ReviewRegistrationvo>) reviewRepo.getBusinessFieldChn();
 	}
 
 	@Override
-	public List<Object[]> getBusinessFieldFive() {
-		return reviewRepo.getBusinessFieldSnk();
+	public List<ReviewRegistrationvo> getBusinessFieldFive() {
+		return (List<ReviewRegistrationvo>) reviewRepo.getBusinessFieldSnk();
 	}
 
 	@Override
-	public List<Object[]> getBusinessFieldSix() {
-		return reviewRepo.getBusinessFieldFst();
+	public List<ReviewRegistrationvo> getBusinessFieldSix() {
+		return (List<ReviewRegistrationvo>) reviewRepo.getBusinessFieldFst();
 	}
 
 	@Override
-	public List<Object[]> getBusinessFieldSeven() {
-		return reviewRepo.getBusinessFieldCaf();
+	public List<ReviewRegistrationvo> getBusinessFieldSeven() {
+		return (List<ReviewRegistrationvo>) reviewRepo.getBusinessFieldCaf();
 	}
 
 	@Override
