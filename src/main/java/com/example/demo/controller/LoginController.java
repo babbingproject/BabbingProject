@@ -22,7 +22,7 @@ import com.example.demo.service.login.LoginServiceImpl;
 import com.example.demo.service.user.UserSha256;
 import com.github.scribejava.core.model.OAuth2AccessToken;
 
-@SessionAttributes("member")
+@SessionAttributes("uervo")
 @Controller
 public class LoginController {
 
@@ -66,6 +66,7 @@ public class LoginController {
 	public String login() {
 		return "login";
 	}
+
 	@RequestMapping("/adLogin")
 	public String adlogin() {
 		return "adLogin";
@@ -85,6 +86,7 @@ public class LoginController {
 	public String userSearch() {
 		return "userSearch";
 	}
+
 	@RequestMapping("/adUserSearch")
 	public String adUserSearch() {
 		return "adUserSearch";
@@ -140,7 +142,7 @@ public class LoginController {
 		String naverAuthUrl = naverLoginBO.getAuthorizationUrl(session);
 
 		// 네이버
-		model.addAttribute("url", naverAuthUrl);
+		model.addAttribute("url", naverAuthUrl); //
 
 		/* 생성한 인증 URL을 View로 전달 */
 		return "login";
@@ -159,4 +161,26 @@ public class LoginController {
 		/* 네이버 로그인 성공 페이지 View 호출 */
 		return "naverSuccess";
 	}
+
+	@RequestMapping("/joinForm")
+	public String userJoinForm(Model model, HttpSession session) {
+		/* 네이버아이디로 인증 URL을 생성하기 위하여 naverLoginBO클래스의 getAuthorizationUrl메소드 호출 */
+		String naverAuthUrl = naverLoginBO.getAuthorizationUrl(session);
+
+		// 네이버
+		model.addAttribute("url", naverAuthUrl); //
+
+		return "join2";
+	}
+
+	@RequestMapping("/adjoinForm")
+	public String adJoinForm(Model model, HttpSession session) {
+		String naverAuthUrl = naverLoginBO.getAuthorizationUrl(session);
+
+		// 네이버
+		model.addAttribute("url", naverAuthUrl); //
+
+		return "adJoin2";
+	}
+
 }

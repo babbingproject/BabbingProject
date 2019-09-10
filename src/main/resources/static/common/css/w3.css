@@ -1,35 +1,3 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>비밀번호즉시변경</title>
-
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<!-- ajax를 위한 CDN 방식 라이브러리 -->
-<script type="text/javascript"
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script type="text/javascript">
-	$(function() {
-		$("#modify").submit(function() {
-			if ($("#pw").val() !== $("#pw2").val()) {
-				alert("비밀번호가 다릅니다.");
-				$("#pw").val("").focus();
-				$("#pw2").val("");
-				return false;
-			} else if ($("#pw").val().length < 8) {
-				alert("비밀번호는 8자 이상으로 설정해야 합니다.");
-				$("#pw").val("").focus();
-				$("#pw2").val("");
-				return false;
-			}
-
-		})
-	});
-</script>
-<style>
 /* W3.CSS 4.13 June 2019 by Jan Egil and Borge Refsnes */
 html {
 	box-sizing: border-box
@@ -92,44 +60,6 @@ audio
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 :not
 
 
@@ -144,45 +74,7 @@ audio
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -213,45 +105,7 @@ controls
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -293,64 +147,7 @@ display
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 :
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -378,64 +175,7 @@ display
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 none
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -490,44 +230,6 @@ height
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 :
 
 
@@ -542,45 +244,7 @@ height
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -764,7 +428,6 @@ h4 {
 	font-size: 20px
 }
 
-}
 h5 {
 	font-size: 18px
 }
@@ -778,29 +441,9 @@ h6 {
 }
 
 h1, h2, h3, h4, h5, h6 {
-	height: 17px;
-	font-family: AppleSDGothicNeo;
-	font-size: 18.5px;
-	font-weight: bold;
-	font-style: normal;
-	font-stretch: normal;
-	line-height: 1.3;
-	letter-spacing: normal;
-	text-align: center;
-	color: #010101;
-}
-
-#pwInfo {
-	height: 32px;
-	font-family: AppleSDGothicNeo;
-	font-size: 14.5px;
-	font-weight: normal;
-	font-style: normal;
-	font-stretch: normal;
-	line-height: 1.28;
-	letter-spacing: normal;
-	text-align: center;
-	color: #474747;
+	font-family: "Segoe UI", Arial, sans-serif;
+	font-weight: 400;
+	margin: 10px 0
 }
 
 .w3-wide {
@@ -885,7 +528,7 @@ a {
 	text-align: center;
 	cursor: pointer;
 	white-space: nowrap;
-	height: 57px;
+	 height: 57px;
 }
 
 .w3-btn:hover {
@@ -973,7 +616,6 @@ a {
 	height: 57px;
 	margin-left: 65px;
 	font-size: 18.5px;
-	margin-top: -339px;
 }
 
 .w3-select {
@@ -1546,7 +1188,7 @@ a {
 
 .w3-container, .w3-panel {
 	width: 632px;
-	height: 534px;
+	height: 796px;
 	border-radius: 30px;
 	background-color: #ffffff;
 }
@@ -1651,83 +1293,7 @@ transform
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 :rotate(359deg)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -1797,83 +1363,7 @@ opacity
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 :
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -1934,83 +1424,7 @@ opacity
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 :
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -2354,7 +1768,7 @@ to {
 	background-color: #fff !important;
 	border-color: #ff4d80;
 	border: 1.4px solid #ff4d80;
-	height: 57px;
+	 height: 57px;
 }
 
 .w3-transparent, .w3-hover-none:hover {
@@ -2527,7 +1941,7 @@ to {
 }
 
 .w3-text-blue, .w3-hover-text-blue:hover {
-	margin-right: 240px;
+	margin-right: -165px;
 	color: #2196F3 !important
 }
 
@@ -2589,7 +2003,7 @@ to {
 }
 
 .w3-text-red, .w3-hover-text-red:hover {
-	margin-left: -36px;
+	margin-left: -457px;
 	color: #f44336 !important;
 }
 
@@ -2751,52 +2165,3 @@ to {
 .w3-border-pale-blue, .w3-hover-border-pale-blue:hover {
 	border-color: #e7ffff !important
 }
-</style>
-</head>
-<body>
-	<div class="w3-center">
-		<div id="logoBack">
-			<a href="${pageContext.request.contextPath}/"><img
-				src="${pageContext.request.contextPath}/images/Bobbing-logo.png"
-				alt="밥빙 logo" /></a>
-		</div>
-
-	</div>
-
-	<div class="w3-content w3-container w3-margin-top w3-center">
-
-		<div class="w3-container w3-card-4">
-			<br> <br>
-			<h3>비밀번호를 변경하시겠어요?</h3>
-			<p>새로운 비밀번호를 입력해주세요</p>
-			<div>
-				<form id="modify" action="/pwUpdate" method="post">
-
-					<p>
-						<input type="hidden" value="${sessionScope.signedUser }"
-							name="user_email"> <input type="password"
-							style="position: absolute; top: 572px; left: 500px; width: 418px; height: 57px; border-radius: 28.5px;"
-							class="w3-input" name="password" id="pw" placeholder="새 비밀번호"
-							required="required">
-					</p>
-					<p>
-						<input type="password" class="w3-input"
-							style="position: absolute; top: 640px; left: 500px; width: 418px; height: 57px; border-radius: 28.5px;"
-							id="pw2" placeholder="비밀번호 확인" required="required">
-					</p>
-
-					<button type="submit" id="modify"
-						style="position: absolute; top: 377px; left: 500px; width: 418px; height: 57px; border-radius: 28.5px; border: solid 1px #ff4d80;"
-						class="w3-button w3-block w3-pink w3-ripple w3-margin-top w3-round">비밀번호
-						변경</button>
-					<br>
-				</form>
-			</div>
-		</div>
-
-	</div>
-	</div>
-
-	</div>
-</body>
-</html>

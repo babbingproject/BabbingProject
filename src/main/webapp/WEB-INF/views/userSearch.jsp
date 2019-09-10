@@ -1,13 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>비밀번호 찾기</title>
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="common/css/stylesJoin2.css" rel="stylesheet">
+<link href="common/css/wpwInfo.css" rel="stylesheet">
+
 <!-- ajax를 위한 CDN 방식 라이브러리 -->
 <script type="text/javascript"
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -52,7 +54,7 @@
 						$("#joinBtn").attr("disabled", "disabled");
 					} else {
 						$("#chktext2").css("color", "blue");
-						$("#chktext2").text("사용가능합니다!!");
+						$("#chktext2").text("회원님 비밀번호 변경 가능합니다!");
 						$("#chktext").html("");
 						$("#joinBtn").removeAttr("disabled");
 
@@ -72,34 +74,39 @@
 </head>
 <body>
 
-	<div class="w3-content w3-container w3-margin-top">
-		<div class="w3-container w3-card-4">
-			<div class="w3-center w3-large w3-margin-top">
-				<a><img
-					src="${pageContext.request.contextPath}/images/Bobbing-logo.png"
-					style="height: 80px; margin-left: 10px;" /></a> <br> <br>
-				<h3>비밀번호 찾기</h3>
-				<p>회원 가입시 사용한 이메일 주소를 입력하시면</p>
-				<p>비밀번호 재설정 안내 메일을 보내드립니다.</p>
-			</div>
-			<form action="user/searchPassword" id="searchBtn2" method="post">
 
-				<p>
-					<input type="text" class="w3-input" name="user_email"
-						id="user_email" placeholder="example@naver.com"
-						required="required">
-					<!-- 쿠기에 저장된 벨류(아이디값)을 꺼내옵니다. 서비스에서 쿠키지정 ->컨르롤러로 벨류 전달 -->
-					<span id="chktext" class="w3-text-red"></span> <span id="chktext2"
-						class="w3-text-blue"></span>
-
-				</p>
-				<button type="submit" id="joinBtn"
-					class="w3-button w3-block w3-pink w3-ripple w3-margin-top w3-round">전송</button>
-				<button type="button" onclick="history.go(-1);"
-					class="w3-button w3-block w3-pink w3-ripple w3-margin-top w3-margin-bottom w3-round">취소</button>
-				
-			</form>
+	<div class="w3-center">
+		<div id="logoBack">
+			<a href="index"><img src="images/Bobbing-logo.png" alt="밥빙 logo" /></a>
 		</div>
+
 	</div>
+
+	<div class="w3-content w3-container w3-margin-top w3-center">
+
+		<div class="w3-container w3-card-4">
+			<br> <br>
+			<h4>비밀번호를 잃어버리셨나요?</h4>
+			<p id="pwInfo">
+				회원 가입시 사용한 이메일 주소를 입력하시면<br> 비밀번호 재설정 안내 메일을 보내드립니다.
+			</p>
+		</div>
+		<form action="user/searchPassword" id="searchBtn2" method="post">
+
+			<p>
+				<input type="text" class="w3-input" name="user_email"
+					id="user_email" placeholder="example@naver.com" required="required">
+				<!-- 쿠기에 저장된 벨류(아이디값)을 꺼내옵니다. 서비스에서 쿠키지정 ->컨르롤러로 벨류 전달 -->
+				<span id="chktext" class="w3-text-red"></span> <span id="chktext2"
+					class="w3-text-blue"></span>
+
+			</p>
+			<button type="submit" id="joinBtn"
+				class="w3-button w3-block w3-pink w3-ripple w3-margin-top w3-round">안내 메일전송</button>
+			
+
+		</form>
+	</div>
+
 </body>
 </html>

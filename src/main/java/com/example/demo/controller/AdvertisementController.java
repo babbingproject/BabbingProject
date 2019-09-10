@@ -30,11 +30,6 @@ public class AdvertisementController {
 		return "th/main/homemain";
 	}
 
-	@RequestMapping("/adjoinForm")
-	public String adJoinForm() {
-		return "adJoin";
-	}
-
 	@RequestMapping("/adJoin")
 	public String userJoin(Advertisementvo vo, Model model, HttpServletRequest request) {
 		// 받아온 비밀번호를 암호화 합니다.

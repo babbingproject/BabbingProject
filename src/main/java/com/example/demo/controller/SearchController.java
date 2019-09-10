@@ -40,5 +40,5 @@ public class SearchController {
 		return "updatePwSs";
 	}
 	
-	
+
 }

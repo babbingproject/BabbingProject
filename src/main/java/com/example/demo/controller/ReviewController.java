@@ -68,20 +68,20 @@ public class ReviewController {
 
 	@GetMapping("/insertReview")
 	public String insertReview(@ModelAttribute("uservo") Uservo uservo) {
-		if (uservo.getNickname() == null) { // nickname대신 userId로 조건을 줘야하나?
-			return "redirect:login";
-		}
+//		if (uservo.getNickname() == null) { // nickname대신 userId로 조건을 줘야하나?
+//			return "redirect:login";
+//		}
 		return "th/review/reviewWrite";
 	}
 
 	@PostMapping("/insertReview")
 
 	public String insertReview(@ModelAttribute("uservo") Uservo uservo, ReviewRegistrationvo reviewRegistrationvo, Model model) {
-		if (uservo.getNickname() == null) {
-//			model.addAttribute("userId", uservo);
-//			logger.info(uservo.toString());
-			return "redirect:login";
-		}
+//		if (uservo.getNickname() == null) {
+////			model.addAttribute("userId", uservo);
+////			logger.info(uservo.toString());
+//			return "redirect:login";
+//		}
 		System.out.println(uservo.toString());
 		
 		reviewRegistrationvo.setUservo(uservo);
@@ -91,9 +91,9 @@ public class ReviewController {
 
 	@GetMapping("/doReviewView")
 	public String getReviewVIew(@ModelAttribute("uservo") Uservo uservo, ReviewRegistrationvo reviewRegistrationvo, Model model) {
-		if (uservo.getNickname() == null) {
-			return "redirect:login";
-		}
+//		if (uservo.getNickname() == null) {
+//			return "redirect:login";
+//		}
 		model.addAttribute("reviewView", reviewService.selectReviewView(reviewRegistrationvo));
 		model.addAttribute("commentList", commentService.selectCommentList(reviewRegistrationvo));
 		return "th/review/reviewView"; 
@@ -101,9 +101,9 @@ public class ReviewController {
 	
 	@PostMapping("/updateReviewView")
 	public String updateReview(@ModelAttribute("uservo") Uservo uservo, ReviewRegistrationvo reviewRegistrationvo) {
-		if (uservo.getNickname() == null) {
-			return "redirect:login";
-		}
+//		if (uservo.getNickname() == null) {
+//			return "redirect:login";
+//		}
 		
 //		logger.info(uservo.toString());
 //		logger.info(reviewRegistrationvo.toString());
@@ -112,9 +112,9 @@ public class ReviewController {
 	}
 	@GetMapping("/deleteReviewView")
 	public String deleteReview(@ModelAttribute("uservo") Uservo uservo, ReviewRegistrationvo reviewRegistrationvo) {
-		if (uservo.getNickname() == null) {
-			return "redirect:login";
-		}
+//		if (uservo.getNickname() == null) {
+//			return "redirect:login";
+//		}
 				
 		
 		reviewService.deleteReview(reviewRegistrationvo);
@@ -124,9 +124,9 @@ public class ReviewController {
 	@RequestMapping("/doReviewList")
 	public String getReviewList(@ModelAttribute("uservo") Uservo uservo,
 			Model model, ReviewRegistrationvo reviewRegistrationvo, Commentvo commentvo) {
-		if (uservo.getNickname()== null) {
-			return "redirect:login";
-		}
+		/*
+		 * if (uservo.getNickname()== null) { return "redirect:login"; }
+		 */
 
 		List<ReviewRegistrationvo> reviewList = reviewService.selectReviewList(reviewRegistrationvo);
 
