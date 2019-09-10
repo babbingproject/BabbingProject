@@ -14,10 +14,10 @@ public interface ParticipantsRepository extends JpaRepository<Participantsvo, In
 	List<Participantsvo> getParticipantList(int campaignId);
 	
 	// 응모자 단일 객체 호출
-	@Query(value="select * from participantsvo where advertisement_id = ?1 and campaign_id = ?2", nativeQuery = true)
+	@Query(value="select * from participantsvo where user_id = ?1 and campaign_id = ?2", nativeQuery = true)
 	Participantsvo getParticipant(int advertisementId, int campaignId);
 	
 	// 응모 취소
-	@Query(value="delete from participantsvo where advertisement_id = ?1 and campaign_id = ?2", nativeQuery = true)
+	@Query(value="delete from participantsvo where user_id = ?1 and campaign_id = ?2", nativeQuery = true)
 	void deleteParticipants(int advertisement_id, int campaign_id);
 }

@@ -43,5 +43,7 @@ public interface UserService {
 	 void followingCountDecrease(String nickname);
 	 void scrapFactorIncrease(Integer reviewUserId);
 	 void scrapFactorDecrease(Integer reviewUserId);
+	 
+	 Uservo findByUserEmail(String user_email);
 
 }

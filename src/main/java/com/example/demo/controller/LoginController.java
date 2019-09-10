@@ -17,9 +17,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.demo.domain.mypage.Advertisementvo;
 import com.example.demo.domain.mypage.Uservo;
-import com.example.demo.service.advertisement.AdvertisementRepository;
-import com.example.demo.service.login.LoginRepository;
+import com.example.demo.service.advertisement.AdvertisementService;
 import com.example.demo.service.login.LoginServiceImpl;
+import com.example.demo.service.user.UserService;
 import com.example.demo.service.user.UserSha256;
 import com.github.scribejava.core.model.OAuth2AccessToken;
 
@@ -30,11 +30,10 @@ public class LoginController {
 	private LoginServiceImpl loginService;
 	
 	@Autowired
-	private LoginRepository loginRepo;
-	
+	private UserService userService;
+
 	@Autowired
-	private AdvertisementRepository adverRepo;
-	
+	private AdvertisementService adverService;
 	
 	@RequestMapping(value = "/logincon", method = RequestMethod.POST)
 	@ResponseBody
@@ -61,19 +60,10 @@ public class LoginController {
 			}
 			// 세션 저장하기 전에 비밀번호 가리기
 			Uservo.setPassword("");
-			// 세션에 vo 객체 저장
-			String nickName = loginRepo.selectNickName(Uservo.getUser_email());
-			// 닉네임을 세션에 담는다
-			httpSession.setAttribute("nickName", nickName);
-			System.out.println(nickName);
-			
-			httpSession.setAttribute("userSession", Uservo);
-			// 접속자 아이디를 세션에 담는다.
-			httpSession.setAttribute("signedUser", Uservo.getUser_email());
-			String userId = loginRepo.selectUserId(nickName);
-			// userId를 세션에 담는다
-			httpSession.setAttribute("userId", userId);
-			
+			// 세션에 vo 객체 저장			
+			httpSession.setAttribute("uservo", userService.findByUserEmail(Uservo.getUser_email()));
+			System.err.println("유저 세션 : " + userService.findByUserEmail(Uservo.getUser_email()));
+
 		}
 		return result;
 	}
@@ -143,19 +133,10 @@ public class LoginController {
 			}
 			// 세션 저장하기 전에 비밀번호 가리기
 			vo.setPassword("");
-			// 세션에 vo 객체 저장
-			httpSession.setAttribute("adUserSession", vo);
-			System.out.println(vo.toString());
-			// 접속자 아이디를 세션에 담는다.
-			httpSession.setAttribute("adSignedUser", vo.getAdvertisement_email());
-			// 사업자 명을 세션에 담는다
-			httpSession.setAttribute("adName", adverRepo.selectAdvertisementname(vo.getAdvertisement_email()));
-			String adName = adverRepo.selectAdvertisementname(vo.getAdvertisement_email());
-			// 사업자 번호를 세션에 담는다
-			httpSession.setAttribute("adNum", adverRepo.selectAdvertisementNum(adName));
-			
-			
+			httpSession.setAttribute("advertisementvo", adverService.findAllByAdvertisementEmail(vo.getAdvertisement_email()));
+			System.err.println("광고주 세션 : " + adverService.findAllByAdvertisementEmail(vo.getAdvertisement_email()));			
 		}
+		
 		return result;
 	}
 
