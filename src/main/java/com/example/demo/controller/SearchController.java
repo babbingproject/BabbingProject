@@ -39,4 +39,14 @@ public class SearchController {
 		mailsender.searchPassword(user_email, password);
 		return "updatePwSs";
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }
