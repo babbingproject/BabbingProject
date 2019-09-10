@@ -2505,7 +2505,7 @@ to {
 <body>
 	<div class="w3-center">
 		<div id="logoBack">
-			<a href="index"><img
+			<a href="${pageContext.request.contextPath}/index"><img
 				src="${pageContext.request.contextPath}/images/Bobbing-logo.png"
 				alt="밥빙 logo" /></a>
 		</div>

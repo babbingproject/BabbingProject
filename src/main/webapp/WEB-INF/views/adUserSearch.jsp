@@ -16,15 +16,15 @@
 <script type="text/javascript">
 	$(function() {
 		$("#searchBtn2").submit(function() {
-			if ($.trim($("#user_email").val()) !== $("#user_email").val()) {
+			if ($.trim($("#advertisement_email").val()) !== $("#advertisement_email").val()) {
 				alert("아이디를 입력해주세요");
 				return false;
 			}
 
 		})
 		//input에 입력된 값이 변화가 있을때 alert 을 띄운다.
-		$("input[name='user_email']").on("change", function() {
-			var user_email = $('#user_email').val();
+		$("input[name='advertisement_email']").on("change", function() {
+			var advertisement_email = $('#advertisement_email').val();
 
 			//ajax 호출
 
@@ -34,15 +34,15 @@
 				type : 'POST',
 				data : JSON.stringify({
 					// 좌항 - 변수 , 우항 - 입력된 데이터 의미
-					'user_email' : user_email
+					'advertisement_email' : advertisement_email
 				}),
 				//요청 url
-				url : "/emailCheck",
+				url : "/ademailCheck",
 				//controller에서 성공적으로 return 받을시 실행되는 메소드를 입력합니다.
 				dataType : "json",
 				contentType : "application/json; charset=UTF-8",
 				success : function(cnt) {
-					if (user_email == "") {
+					if (advertisement_email == "") {
 						$("#chktext").css("color", "gray");
 						$("#chktext").text("이메일을 입력해주세요.");
 
@@ -91,11 +91,11 @@
 				회원 가입시 사용한 이메일 주소를 입력하시면<br> 비밀번호 재설정 안내 메일을 보내드립니다.
 			</p>
 		</div>
-		<form action="user/searchPassword" id="searchBtn2" method="post">
+		<form action="adUser/searchPassword" id="searchBtn2" method="post">
 
 			<p>
-				<input type="text" class="w3-input" name="user_email"
-					id="user_email" placeholder="example@naver.com" required="required">
+				<input type="text" class="w3-input" name="advertisement_email"
+					id="advertisement_email" placeholder="example@naver.com" required="required">
 				<!-- 쿠기에 저장된 벨류(아이디값)을 꺼내옵니다. 서비스에서 쿠키지정 ->컨르롤러로 벨류 전달 -->
 				<span id="chktext" class="w3-text-red"></span> <span id="chktext2"
 					class="w3-text-blue"></span>

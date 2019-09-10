@@ -71,7 +71,7 @@ SELECT COUNT(*)
 	</select>
 
 	<!-- 회원 임시 비밀번호 -->
-	<update id="searchPassword" parameterType="Map">
+	<update id="adsearchPassword" parameterType="Map">
 		UPDATE Advertisementvo
 		SET password = #{param2}
 		WHERE advertisement_email = #{param1}

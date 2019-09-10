@@ -1,31 +1,36 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-
-<!doctype html>
-<html lang="ko">
+<!DOCTYPE html>
+<html>
 <head>
+<meta charset="UTF-8">
+<title>비밀번호즉시변경</title>
+
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link href="common/css/stylesJoin2.css" rel="stylesheet">
-<link href="common/css/wpwInfo.css" rel="stylesheet">
+<!-- ajax를 위한 CDN 방식 라이브러리 -->
 <script type="text/javascript"
-	src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.2.js"
-	charset="utf-8"></script>
-<script type="text/javascript"
-	src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
-<style type="text/css">
-html, div, body, h3 {
-	margin: 0;
-	padding: 0;
-	color: #fff;
-}
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script type="text/javascript">
+	$(function() {
+		$("#modify").submit(function() {
+			if ($("#pw").val() !== $("#pw2").val()) {
+				alert("비밀번호가 다릅니다.");
+				$("#pw").val("").focus();
+				$("#pw2").val("");
+				return false;
+			} else if ($("#pw").val().length < 8) {
+				alert("비밀번호는 8자 이상으로 설정해야 합니다.");
+				$("#pw").val("").focus();
+				$("#pw2").val("");
+				return false;
+			}
 
-h3 {
-	display: inline-block;
-	padding: 0.6em;
-} /* W3.CSS 4.13 June 2019 by Jan Egil and Borge Refsnes */
+		})
+	});
+</script>
+<style>
+/* W3.CSS 4.13 June 2019 by Jan Egil and Borge Refsnes */
 html {
 	box-sizing: border-box
 }
@@ -111,6 +116,20 @@ audio
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 :not
 
 
@@ -137,7 +156,21 @@ audio
 
 
 
+
+
+
+
+
+
+
  
+
+
+
+
+
+
+
 
 
 
@@ -192,7 +225,21 @@ controls
 
 
 
+
+
+
+
+
+
+
  
+
+
+
+
+
+
+
 
 
 
@@ -270,7 +317,28 @@ display
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 :
+
+
+
+
+
+
+
 
 
 
@@ -322,7 +390,28 @@ display
 
 
 
+
+
+
+
+
+
+
 none
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -425,6 +514,20 @@ height
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 :
 
 
@@ -451,7 +554,21 @@ height
 
 
 
+
+
+
+
+
+
+
  
+
+
+
+
+
+
+
 
 
 
@@ -670,6 +787,7 @@ h1, h2, h3, h4, h5, h6 {
 	line-height: 1.3;
 	letter-spacing: normal;
 	text-align: center;
+	color: #010101;
 }
 
 #pwInfo {
@@ -1557,7 +1675,35 @@ transform
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 :rotate(359deg)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -1675,7 +1821,35 @@ opacity
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 :
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -1784,7 +1958,35 @@ opacity
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 :
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -2550,20 +2752,11 @@ to {
 	border-color: #e7ffff !important
 }
 </style>
-<script type="text/javascript">
-  $(document).ready(function() {
-    var name = ${result}.response.name;
-    var email = ${result}.response.email;
-    $("#email").html("환영합니다. "+email+"님");
-   
-    });
-</script>
-
 </head>
 <body>
 	<div class="w3-center">
 		<div id="logoBack">
-			<a href="${pageContext.request.contextPath}/index"><img
+			<a href="${pageContext.request.contextPath}/"><img
 				src="${pageContext.request.contextPath}/images/Bobbing-logo.png"
 				alt="밥빙 logo" /></a>
 		</div>
@@ -2574,27 +2767,36 @@ to {
 
 		<div class="w3-container w3-card-4">
 			<br> <br>
-			<div
-				style="background-color: #FF4D80; height: 6%; text-align: center; color: white; margin-top: 175px; border-radius: 28.5px; border: solid 1px; width: 40%; left: 454px; position: absolute;">
-				<h3>비밀번호 변경 메일을 발송 하였습니다!</h3>
+			<h3>비밀번호를 변경하시겠어요?</h3>
+			<p>새로운 비밀번호를 입력해주세요</p>
+			<div>
+				<form id="modify" action="/adPwUpdate" method="post">
 
+					<p>
+						<input type="hidden" value="${sessionScope.adSignedUser }"
+							name="advertisement_email"> <input type="password"
+							style="position: absolute; top: 572px; left: 500px; width: 418px; height: 57px; border-radius: 28.5px;"
+							class="w3-input" name="password" id="pw" placeholder="새 비밀번호"
+							required="required">
+					</p>
+					<p>
+						<input type="password" class="w3-input"
+							style="position: absolute; top: 640px; left: 500px; width: 418px; height: 57px; border-radius: 28.5px;"
+							id="pw2" placeholder="비밀번호 확인" required="required">
+					</p>
+
+					<button type="submit" id="modify"
+						style="position: absolute; top: 377px; left: 500px; width: 418px; height: 57px; border-radius: 28.5px; border: solid 1px #ff4d80;"
+						class="w3-button w3-block w3-pink w3-ripple w3-margin-top w3-round">비밀번호
+						변경</button>
+					<br>
+				</form>
 			</div>
-			<br>
-			<h2 style="text-align: center" id="name"></h2>
-			<h4 style="text-align: center" id="email"></h4>
-
-			<script>
-    $(function () {
-      $("body").hide();
-      $("body").fadeIn(1000);  // 2초 뒤에 사라 지자 
-     
-      setTimeout(function(){$("body").fadeOut(3000);},1000);
-      setTimeout(function(){location.href= "${pageContext.request.contextPath}/"},4000);
-
-    
-    })
-  </script>
 		</div>
+
+	</div>
+	</div>
+
 	</div>
 </body>
 </html>
