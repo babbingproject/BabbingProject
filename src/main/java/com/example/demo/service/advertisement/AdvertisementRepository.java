@@ -2,8 +2,6 @@ package com.example.demo.service.advertisement;
 
 import java.util.List;
 
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
@@ -18,11 +16,11 @@ public interface AdvertisementRepository extends JpaRepository<Advertisementvo, 
 	List<Object[]> findAllbyAdvertisementidOrderbyEvaluationAvg();
 	
 	//기업 정보 서치
-	@Query(nativeQuery=true, value = ""
-			+ "SELECT advertisement_id, advertisement_name, profile_img, puted_count "
-			+ "FROM advertisementvo WHERE advertisement_name LIKE %:searchKeyword% "
-			+ "LIMIT 6")
-	Page<Advertisementvo> getSearchKeyword(String searchKeyword, Pageable pageable);
+//	@Query(nativeQuery=true, value = ""
+//			+ "SELECT advertisement_id, advertisement_name, profile_img, puted_count "
+//			+ "FROM advertisementvo WHERE advertisement_name LIKE %:searchKeyword% "
+//			+ "LIMIT 6")
+//	Page<Advertisementvo> getSearchKeyword(@Param("searchKeyword") String searchKeyword, Pageable pageable);
 	
 	List<Advertisementvo> findByAdvertisementname(String advertisementName);
 	
@@ -37,10 +35,10 @@ public interface AdvertisementRepository extends JpaRepository<Advertisementvo, 
 			+ "SET puted_count = puted_count - 1 "
 			+ "WHERE advertisement_name = ?1 ")
 	void decreasePut(String followerYou);
-	List<Object[]> getSearchKeyword(String searchKeyword);
+//	List<Object[]> getSearchKeyword(String searchKeyword);
 	
-	@Query("SELECT advertisement_name FROM Advertisementvo ad WHERE ad.advertisement_email like %?1%")
-	String selectAdvertisementName(String adEmail);
-	@Query("SELECT advertisement_num FROM Advertisementvo ad WHERE ad.advertisement_name like %?1%")
+	@Query("SELECT advertisementname FROM Advertisementvo ad WHERE ad.advertisement_email like %?1%")
+	String selectAdvertisementname(String adEmail);
+	@Query("SELECT advertisement_num FROM Advertisementvo ad WHERE ad.advertisementname like %?1%")
 	String selectAdvertisementNum(String nickName);
 }

@@ -11,7 +11,7 @@ public interface AdvertisementService {
 
 	List<Object[]> getAdvertisementvoOrderByWeightAvg();
 
-	Page<Advertisementvo> getSearchKeyword(String searchKeyword, Pageable pageable);
+//	Page<Advertisementvo> getSearchKeyword(String searchKeyword, Pageable pageable);
 
 	public int joinAd(Advertisementvo vo);
 
