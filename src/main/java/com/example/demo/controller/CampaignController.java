@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
@@ -25,8 +26,10 @@ public class CampaignController {
 	@Autowired
 	CampaignService campaignService;
 
+
 	@Autowired
 	ParticipantsService participantsService;
+
 
 	// 캠페인 리스트 불러오기
 	@RequestMapping("/getCampaignList")
@@ -39,8 +42,10 @@ public class CampaignController {
 
 	// 캠페인 정렬 코드 아직 미구현
 
+
 	@GetMapping("/getCampaign")
 	public String getCampaign(HttpSession session, Model model, Campaignvo campaignvo) {
+
 		
 
 		Campaignvo campInfo = campaignService.getCampaign(campaignvo);
@@ -55,16 +60,23 @@ public class CampaignController {
 			System.err.println("참여자 객체 : " + participantsService.getParticipants(userId, campInfo.getCampaignId()));
 			return "th/campaign/campaignView";
 		}
+
 	 
 		return "th/campaign/campaignView";
 	}
 
+	
+	/*
+	 * model.addAttribute("campaign", campaignService.getCampaign(campaignvo));
+	 * return "th/campaign/campaignView"; }
+	 */
+	
 	@GetMapping("insertCampaign")
 	public String insertCampaignView() {
 		return "th/campaign/campaignWrite";
 	}
+	
 
-	//
 	@PostMapping("/insertCampaign")
 	public String insertCampaign(Advertisementvo advertisementvo, Campaignvo campaignvo) {
 

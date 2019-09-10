@@ -38,6 +38,7 @@
 					</form>
 				</div>
 				
+
 				<th:block th:if="${session['uservo']} == null and ${session['advertisementvo'] == null}">
 				<a th:href="login">로그인 </a> | <a th:href="joinForm">회원가입</a>
 				</th:block>
@@ -59,6 +60,7 @@
 				</div>
 				</th:block>
 								<th:block th:if="${session['uservo'] != null}">
+
 				<div class="heaer-btnR">
 					<div class="selectbox">
 						<dl class="dropdown">
@@ -74,7 +76,9 @@
 						</dl>
 					</div>
 				</div>
+
 				</th:block>
+
 			</div>
 		</div>
 	</div>

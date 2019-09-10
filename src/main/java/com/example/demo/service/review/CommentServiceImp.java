@@ -72,6 +72,15 @@ public class CommentServiceImp implements CommentService {
 		
 	}
 
+	@Override
+	public List<Commentvo> getCommentList(int reviewId) throws Exception {
+		
+		Commentvo commentvo = new Commentvo();
+		commentvo.setCommentId(reviewId);
+		return commentRepo.findByComment(reviewId);
+		
+	}
+
 	/*
 	 * @Override public List<Commentvo> selectCommentList(ReviewRegistrationvo
 	 * reviewRegistrationvo) {
@@ -94,5 +103,7 @@ public class CommentServiceImp implements CommentService {
 	 * 
 	 * }
 	 */
+	
+	
 
 }

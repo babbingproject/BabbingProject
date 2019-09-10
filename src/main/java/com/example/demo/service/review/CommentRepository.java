@@ -14,5 +14,8 @@ public interface CommentRepository extends JpaRepository<Commentvo, Integer> {
 
 	@Query(value = "delete from commentvo where comment_id = ?", nativeQuery = true)
 	void deleteComment(int commentId);
+	
+	@Query(value = "SELECT * FROM commentvo WHERE review_id = ?", nativeQuery = true)
+	List<Commentvo> findByComment(int reviewId);
 
 }

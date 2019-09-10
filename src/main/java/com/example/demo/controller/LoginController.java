@@ -60,21 +60,7 @@ public class LoginController {
 			}
 			// 세션 저장하기 전에 비밀번호 가리기
 			Uservo.setPassword("");
-//<<<<<<< HEAD
-//			// 세션에 vo 객체 저장
-//			String nickname = loginRepo.selectNickName(Uservo.getUser_email());
-//			// 닉네임을 세션에 담는다
-//			httpSession.setAttribute("nickname", nickname);
-//			System.out.println(nickname);
-//			
-//			httpSession.setAttribute("userSession", Uservo);
-//			// 접속자 아이디를 세션에 담는다.
-//			httpSession.setAttribute("signedUser", Uservo.getUser_email());
-//			String userId = loginRepo.selectUserId(nickname);
-//			// userId를 세션에 담는다
-//			httpSession.setAttribute("userId", userId);
-//			
-//=======
+
 			// 세션에 vo 객체 저장			
 			httpSession.setAttribute("uservo", userService.findByUserEmail(Uservo.getUser_email()));
 			System.err.println("유저 세션 : " + userService.findByUserEmail(Uservo.getUser_email()));
@@ -148,19 +134,7 @@ public class LoginController {
 			}
 			// 세션 저장하기 전에 비밀번호 가리기
 			vo.setPassword("");
-//<<<<<<< HEAD
-//			// 세션에 vo 객체 저장
-//			httpSession.setAttribute("adUserSession", vo);			
-//			// 접속자 아이디를 세션에 담는다.
-//			httpSession.setAttribute("adSignedUser", vo.getAdvertisement_email());
-//			// 사업자 명을 세션에 담는다
-//			httpSession.setAttribute("adname", adverRepo.selectAdvertisementname(vo.getAdvertisement_email()));
-//			String adname = adverRepo.selectAdvertisementname(vo.getAdvertisement_email());
-//			// 사업자 번호를 세션에 담는다
-//			httpSession.setAttribute("adNum", adverRepo.selectAdvertisementNum(adname));
-//			
-//			
-//=======
+
 			httpSession.setAttribute("advertisementvo", adverService.findAllByAdvertisementEmail(vo.getAdvertisement_email()));
 			System.err.println("광고주 세션 : " + adverService.findAllByAdvertisementEmail(vo.getAdvertisement_email()));			
 		}
