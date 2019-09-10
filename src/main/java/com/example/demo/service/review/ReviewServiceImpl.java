@@ -42,8 +42,8 @@ public class ReviewServiceImpl implements ReviewService {
 //	}
 
 	@Override
-	public List<Object[]> getEverythingTopSix() {
-		return reviewRepo.getEverything();
+	public List<ReviewRegistrationvo> getEverythingTopSix() {
+		return (List<ReviewRegistrationvo>) reviewRepo.getEverything();
 	}
 
 	@Override

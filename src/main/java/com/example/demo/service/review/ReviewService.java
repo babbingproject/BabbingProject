@@ -20,7 +20,7 @@ public interface ReviewService {
 
 	List<ReviewRegistrationvo> getNewestReview();
 
-	List<Object[]> getEverythingTopSix();
+	List<ReviewRegistrationvo> getEverythingTopSix();
 
 	List<Object[]> getBusinessFieldOne();
 

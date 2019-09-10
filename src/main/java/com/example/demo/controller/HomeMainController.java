@@ -58,12 +58,12 @@ public class HomeMainController {
 	
 		List<CheckingRanking> checkingList = new ArrayList();
 		List<CheckingPut> checkingPutList = new ArrayList();
-		List<CheckingScrap> checkingScrapTopSixList = new ArrayList();
 		List<CheckingScrap> checkingScrapNewList = new ArrayList();
+		List<CheckingScrap> checkingScrapTopSixList = new ArrayList();
 		List<Uservo> userList = rankService.getAllUser();
 		List<Advertisementvo> advList = advService.findAll();
 		List<ReviewRegistrationvo> reviewNewestList = reviewService.getNewestReview();
-		List<Object[]> reviewEverythingTopSix = reviewService.getEverythingTopSix();
+		List<ReviewRegistrationvo> reviewEverythingTopSix = reviewService.getEverythingTopSix();
 		for(int i = 0; i < userList.size(); i++) {
 			CheckingRanking checkingRanking = new CheckingRanking();
 			checkingRanking.setUservo(userList.get(i));
@@ -79,8 +79,19 @@ public class HomeMainController {
 		for(int i = 0; i < reviewNewestList.size(); i++) {
 			CheckingScrap checkingScrap = new CheckingScrap();
 			checkingScrap.setReviewRegistrationvo(reviewNewestList.get(i));
-			checkingScrap.setScrapvo(scrapService.checkScrap(reviewNewestList.get(i).getUservo().getUserId(), followerMe));
+			System.out.println("reviewList ++!!" +reviewNewestList.get(i));
+			checkingScrap.setScrapvo(scrapService.checkScrap(reviewNewestList.get(i).getReviewId(), followerMe));
+			
+			System.out.println("NUMBER THAT IS RUNNING NOW "+i);
+			System.out.println("reviewId that needs to be inserted but displays this number = "+reviewNewestList.get(i).getUservo().getUserId());
+			System.out.println("scrapService three sccrap?????????" +scrapService.checkScrap(reviewNewestList.get(i).getReviewId(), followerMe));
 			checkingScrapNewList.add(checkingScrap);
+		}
+		for(int i = 0; i < reviewEverythingTopSix.size(); i ++) {
+			CheckingScrap checkingScrap = new CheckingScrap();
+			checkingScrap.setReviewRegistrationvo(reviewEverythingTopSix.get(i));
+			checkingScrap.setScrapvo(scrapService.checkScrap(reviewEverythingTopSix.get(i).getReviewId(), followerMe));
+			checkingScrapTopSixList.add(checkingScrap);
 		}
 		CheckingScrap checkingScrap = new CheckingScrap();
 		System.out.println(checkingScrap.getScrapvo());
@@ -89,6 +100,7 @@ public class HomeMainController {
 		model.addAttribute("uservo", checkingList);
 		model.addAttribute("advvo", checkingPutList);
 		model.addAttribute("newestreview", checkingScrapNewList);
+		model.addAttribute("everything", checkingScrapTopSixList);
 		System.out.println(followerMe);
 		return "th/main/index1";
 	}
@@ -101,7 +113,7 @@ public class HomeMainController {
 		List<Object[]> testing = null;
 		switch(type) {
 		case "all":
-			testing = reviewService.getEverythingTopSix();
+//			testing = reviewService.getEverythingTopSix();
 			value = 0;
 			break;
 		case "kor":

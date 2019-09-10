@@ -20,13 +20,14 @@ public interface ReviewRepository extends JpaRepository<ReviewRegistrationvo, In
 //			"where r.review_id = ri.review_id AND r.user_id = user.user_id" + 
 //			"ORDER BY r.write_date DESC LIMIT 6")
 	@Query(nativeQuery=true, value=""
-			+ "SELECT r.review_id, r.review_place, r.title, r.business_field_id, ri.img, user.profile_img, user.nickname "
+			+ "SELECT * , ri.img, user.profile_img, user.nickname "
 			+ "FROM review_registrationvo AS r INNER JOIN review_imagevo AS ri "
 			+ "ON r.review_id = ri.review_id "
 			+ "INNER JOIN uservo AS user "
 			+ "ON r.user_id = user.user_id "
+			+ "GROUP BY ri.review_id "
 			+ "ORDER BY r.write_date DESC LIMIT 6")
-	List<Object[]> getEverything();
+	Iterable<ReviewRegistrationvo> getEverything();
 	
 	@Query(nativeQuery=true, value="SELECT * , ri.img, user.profile_img, user.nickname "
 			+ "FROM review_registrationvo AS r INNER JOIN uservo AS user "
@@ -34,7 +35,7 @@ public interface ReviewRepository extends JpaRepository<ReviewRegistrationvo, In
 			+ "INNER JOIN review_imagevo AS ri "
 			+ "ON r.review_id = ri.review_id "
 			+ "GROUP BY ri.review_id "
-			+ "LIMIT 3")
+			+ "ORDER BY r.write_date DESC LIMIT 3")
 //			+ "ORDER BY r.write_date DESC LIMIT 3")
 	Iterable<ReviewRegistrationvo> getNewestReview();
 	
