@@ -24,8 +24,7 @@ public class MyPageController {
 	}
 	
 	@RequestMapping("/getAdvertisementMyPage")
-	public String getAdvertisementMyPage(int advertisement_id, Model model) {
-		
+	public String getAdvertisementMyPage(Advertisementvo advertisementvo, Model model) {		
 		
 		
 		return "th/mypage/advertisementMyPage";

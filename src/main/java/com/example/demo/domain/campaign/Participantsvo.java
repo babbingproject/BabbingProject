@@ -19,8 +19,7 @@ import lombok.ToString;
 @ToString
 @Entity
 public class Participantsvo {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int participantsId;
 	
 	@ManyToOne

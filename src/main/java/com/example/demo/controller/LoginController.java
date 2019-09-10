@@ -17,9 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.demo.domain.mypage.Advertisementvo;
 import com.example.demo.domain.mypage.Uservo;
-import com.example.demo.service.advertisement.AdvertisementRepository;
 import com.example.demo.service.advertisement.AdvertisementService;
-import com.example.demo.service.login.LoginRepository;
 import com.example.demo.service.login.LoginServiceImpl;
 import com.example.demo.service.user.UserService;
 import com.example.demo.service.user.UserSha256;

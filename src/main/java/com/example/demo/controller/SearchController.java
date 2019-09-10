@@ -4,6 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -25,9 +26,10 @@ public class SearchController {
 	}
 	// 비밀번호 e-mail 인증 컨트롤러
 	@RequestMapping(value = "/userpw/key_alter", method = RequestMethod.GET)
-	public String key_alterConfirm(@RequestParam("user_email") String user_email, @RequestParam("password") String password) {
+	public String key_alterConfirm(Model model,@RequestParam("user_email") String user_email, @RequestParam("password") String password) {
 		//임시 발급된 비번을 암호화합니다.
 		password = UserSha256.encrypt(password);
+		model.addAttribute("user_email", user_email);
 		return "pwSuccess";
 	}
 	
