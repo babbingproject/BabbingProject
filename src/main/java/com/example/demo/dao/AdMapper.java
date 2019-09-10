@@ -7,11 +7,13 @@ import com.example.demo.domain.mypage.Advertisementvo;
 
 @Mapper
 public interface AdMapper {
-	int joinAd(Advertisementvo vo);
+	public int joinAd(Advertisementvo vo);
 
-	int ademailCheck(String advertisement_email);
+	public int ademailCheck(String advertisement_email);
 
-	int adnickCheck(String advertisement_name);
+	public int adnickCheck(String advertisement_name);
+	
+	public int adsearchPassword(String advertisement_email,String password);
 
 	public int alter_adKey(String advertisement_email, String key);
 

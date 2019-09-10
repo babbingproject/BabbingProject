@@ -116,7 +116,7 @@
 							id="remember_us" name="remember_userId" ${checked}> 이메일
 							저장하기 <!-- 위에 벨류값에 따라 checked가 실행되거나 안되게 합니다. -->
 						</label> <a style="margin-left: -95px;"
-							href="${pageContext.request.contextPath}/userSearch"> 비밀번호 찾기</a>
+							href="${pageContext.request.contextPath}/adUserSearch"> 비밀번호 찾기</a>
 					</p>
 					<p>
 						<input type="button" id="loginBtn"
