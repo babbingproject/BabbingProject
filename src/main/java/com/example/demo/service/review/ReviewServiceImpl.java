@@ -50,6 +50,12 @@ public class ReviewServiceImpl implements ReviewService {
 	public List<ReviewRegistrationvo> getBusinessFieldOne() {
 		return (List<ReviewRegistrationvo>) reviewRepo.getBusinessFieldKor();
 	}
+	@Override
+	public List<Object[]> getBusinessFieldOneObject() {
+		return reviewRepo.getBusinessFieldKorObject();
+	}
+	
+
 
 	@Override
 	public List<ReviewRegistrationvo> getBusinessFieldTwo() {

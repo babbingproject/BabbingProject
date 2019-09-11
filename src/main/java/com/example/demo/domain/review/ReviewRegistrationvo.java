@@ -71,7 +71,8 @@ public class ReviewRegistrationvo {
 	@JsonIgnore
 	@OneToMany(mappedBy = "reviewRegistrationvo", cascade = CascadeType.ALL)
 	private List<ReviewImagevo> reviewImgList = new ArrayList<ReviewImagevo>();
-
+	
+	
 	public void setUservo(Uservo uservo) {
 		this.uservo = uservo;
 		uservo.getReviewRegistrationList().add(this);

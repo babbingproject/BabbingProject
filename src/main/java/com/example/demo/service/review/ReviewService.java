@@ -23,6 +23,7 @@ public interface ReviewService {
 	List<ReviewRegistrationvo> getEverythingTopSix();
 
 	List<ReviewRegistrationvo> getBusinessFieldOne();
+	List<Object[]> getBusinessFieldOneObject();
 
 	List<ReviewRegistrationvo> getBusinessFieldTwo();
 

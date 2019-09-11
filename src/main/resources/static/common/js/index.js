@@ -1,4 +1,12 @@
+
 $(function(){
+	
+	var list = document.getElementsByClassName('temp');
+	alert(list);
+	for ( var i = 0; i < list.length; i ++){
+		list[i].setAttribute('id', "box" + i);
+	}
+	
 //	//유저 아이디 스크롤
 //		$(function(){
 //			// <ul id="banner">를 list 변수에 참조
@@ -149,17 +157,46 @@ $(function(){
 			data: {type : type, followerMe : followerMe},
 			
 			success:function(testing){
+				
 				alert('success');
 				var insideDiv = $(current).parent().parent().siblings().closest(".cont-area.info");
-				$(insideDiv).children().children().children('#wee').remove();
+				var first = $(insideDiv).children().find('#box0');
+				var second = $(insideDiv).children().find('#box1');
+				var third = $(insideDiv).children().find('#box2');
+				var fourth = $(insideDiv).children().find('#box3');
+				var fifth = $(insideDiv).children().find('#box4');
+				var sixth = $(insideDiv).children().find('#box5');
+				
+				var weeDiv = $(insideDiv).children().children().children('#wee');
 				var htmlStr = "";
+			
+				if(!testing[1].scrapvo.isEmpty){
+					alert('wee');
+				}
+				
 				for(i in testing){
-					htmlStr += "<div class='cont-txt' id='wee'>";
-					htmlStr += "<p class='photo'>";
-					htmlStr += "<div class='cont-txt' id='wee'>";
-					htmlStr += "<span>";
-					htmlStr += testing[i].reviewRegistrationvo.reviewImgList;
-					htmlStr += testing[i].reviewImagevo.img;
+//					$(weeDiv).children().find('#box'+i).children().closest('img').attr('src', testing[i].img[i][4]);
+					$(weeDiv).append("this is " + i + " order, testing "  + testing[i].img[i][4]);
+					$(first).children().children().children().find("img").attr('src', testing[i].img[i][4]);
+//					htmlStr += "<div class='cont-txt' id='wee'>";
+//					htmlStr += "<p class='photo'>";
+//					htmlStr += "<img src=";
+//					htmlStr += testing[i].img[i][4];
+//					htmlStr += " /></p></div>";
+//					htmlStr += "<span> ";
+//					if(testing[i].scrapvo.isEmpty){
+//						htmlStr += "<span id='scrapButton' class='button best02'></span>";
+//					} else {
+//						htmlStr += "<span id='scrapButton' class='button best01'></span>";
+//					}
+//					htmlStr += "</span>";
+//					htmlStr += testing[i].uservo.nickname;
+					
+					
+					
+					
+//					htmlStr += testing[i].reviewImagevo.img;
+//					htmlStr += testing[i].reviewImagevo.img;
 //					for(a in testing[i]reviewImgList){
 //						htmlStr += reviewImgList[i].img;
 //					}
@@ -180,7 +217,9 @@ $(function(){
 //					htmlStr += "<li><span></span>"+testing[i][1]+" | "+testing[i][2]+"</li>";
 //					htmlStr += "<li><img src="+testing[i][5]+"><span>"+testing[i][6]+"</span></li>"
 //					htmlStr += "</ul></div></li>"
-					$(insideDiv).children('.list-style03').html(htmlStr);
+				
+				
+//					$(insideDiv).children('.list-style03').html(htmlStr);
 					
 //				}
 			}

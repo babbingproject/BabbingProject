@@ -6,12 +6,12 @@
 <title>밥빙에 오신걸 환영합니다.</title>
 
 <!-- <link rel="stylesheet" th:href="@{common/css/styles.css}" type="text/css"> -->
+<script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script th:inline="javascript" src="common/js/index.js"></script>
 <link rel="stylesheet" href="/common/css/styles.css"
 	th:href="@{/common/css/styles.css}" type="text/css">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
 <script src="common/js/jquery.slides.js"></script>
-<script th:inline="javascript" src="common/js/index.js"></script>
 <script>
 	$(function() {
 		//배너 슬라이드 부분
@@ -124,9 +124,9 @@
 					<input type="hidden" th:value="${username}" id="followerMe">
 			<div class="cont-area info" id="list1">
 				<ul class="list-style03" >
-					<li th:each="everything:${everything}" >
+					<li th:each="everything:${everything}" class="temp">
 						<div class="cont-txt" id="wee">
-							<p class="photo">
+							<p class="photos">
 								<span th:each="check : ${everything.reviewRegistrationvo.reviewImgList}">
 								<img th:src="${check.img}" /></span>
 							</p>

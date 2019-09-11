@@ -2,6 +2,7 @@ package com.example.demo.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Spliterator;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.example.demo.domain.main.Searchvo;
 import com.example.demo.domain.mypage.Advertisementvo;
 import com.example.demo.domain.mypage.Uservo;
+import com.example.demo.domain.review.ReviewImagevo;
 import com.example.demo.domain.review.ReviewRegistrationvo;
 import com.example.demo.service.advertisement.AdvertisementService;
 import com.example.demo.service.rank.RankService;
@@ -111,6 +113,7 @@ public class HomeMainController {
 		System.out.println("types is " +type);
 		List<CheckingScrap> testing = new ArrayList();
 		List<ReviewRegistrationvo> everythingTopSix = reviewService.getEverythingTopSix();
+		List<Object[]> businessFieldKorObject = reviewService.getBusinessFieldOneObject();
 		List<ReviewRegistrationvo> businessFieldKor = reviewService.getBusinessFieldOne();
 		List<ReviewRegistrationvo> businnesFieldWes = reviewService.getBusinessFieldTwo();
 		List<ReviewRegistrationvo> businessFieldJpn = reviewService.getBusinessFieldThree();
@@ -135,12 +138,23 @@ public class HomeMainController {
 			for(int i = 0; i < businessFieldKor.size(); i ++) {
 				CheckingScrap checkingScrap = new CheckingScrap();
 				checkingScrap.setReviewRegistrationvo(businessFieldKor.get(i));
-				checkingScrap.setReviewImagevo(businessFieldKor.get(i).getReviewImgList().get(i));
 				checkingScrap.setUservo(businessFieldKor.get(i).getUservo());
 				checkingScrap.setScrapvo(scrapService.checkScrap(businessFieldKor.get(i).getReviewId(), followerMe));
-				System.out.println("KOREAN REVIEWSSSSSSSS" + businessFieldKor.get(i));
-				System.out.println("KOREAN SCRAP +" +scrapService.checkScrap(businessFieldKor.get(i).getReviewId(), followerMe));
+//				System.out.println(checkingScrap.reviewImagevo);
+//				System.out.println("picture url " + checkingScrap.getReviewImagevo());
+				checkingScrap.setImg(businessFieldKorObject);
+				System.out.println("TESTING OBJECT LIST " +checkingScrap.getImg());
+			
+				
+				
+//				System.out.println("spliterator" + email.spliterator());
+////				checkingScrap.setImg((checkingScrap.getReviewImagevo().get(i).getImg()));
+//				System.out.println("KOREAN GET REVIEW IMG LIST " + businessFieldKor.get(i).getReviewImgList());
+//				System.out.println("KOREAN USERVO LSIT "+businessFieldKor.get(i).getUservo().getNickname());
+//				System.out.println("KOREAN REVIEWSSSSSSSS" + businessFieldKor.get(i));
+//				System.out.println("KOREAN SCRAP +" +scrapService.checkScrap(businessFieldKor.get(i).getReviewId(), followerMe));
 				testing.add(checkingScrap);
+				
 			}
 			break;
 //		case "wes":

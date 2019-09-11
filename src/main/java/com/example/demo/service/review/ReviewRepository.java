@@ -60,6 +60,16 @@ public interface ReviewRepository extends JpaRepository<ReviewRegistrationvo, In
 	Iterable<ReviewRegistrationvo> getBusinessFieldKor();
 	
 	@Query(nativeQuery=true, value=""
+			+ "SELECT r.review_id, r.review_place, r.title, r.business_field_id, ri.img, user.profile_img, user.nickname "
+			+ "FROM review_registrationvo AS r INNER JOIN review_imagevo AS ri "
+			+ "ON r.review_id = ri.review_id "
+			+ "INNER JOIN uservo AS user "
+			+ "ON r.user_id = user.user_id "
+			+ "AND r.business_field_id = 'kor'"
+			+ "ORDER BY r.write_date DESC LIMIT 6")
+	List<Object[]> getBusinessFieldKorObject();
+	
+	@Query(nativeQuery=true, value=""
 			+ "SELECT *, ri.img, user.profile_img, user.nickname  "
 			+ "FROM review_registrationvo AS r INNER JOIN review_imagevo AS ri "
 			+ "ON r.review_id = ri.review_id "
