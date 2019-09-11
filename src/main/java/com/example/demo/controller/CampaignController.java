@@ -18,6 +18,7 @@ import com.example.demo.domain.mypage.Uservo;
 import com.example.demo.service.campaign.CampaignService;
 import com.example.demo.service.campaign.ParticipantsService;
 
+
 @SessionAttributes("usevo")
 @Controller
 public class CampaignController {
@@ -38,7 +39,8 @@ public class CampaignController {
 	}
 
 	// 캠페인 정렬 코드 아직 미구현
-
+	
+	// 캠페인 글 조회
 	@GetMapping("/getCampaign")
 	public String getCampaign(HttpSession session, Model model, Campaignvo campaignvo) {
 		
@@ -59,12 +61,11 @@ public class CampaignController {
 		return "th/campaign/campaignView";
 	}
 
-	@GetMapping("insertCampaign")
+	@GetMapping("/insertCampaign")
 	public String insertCampaignView() {
 		return "th/campaign/campaignWrite";
 	}
 
-	//
 	@PostMapping("/insertCampaign")
 	public String insertCampaign(Advertisementvo advertisementvo, Campaignvo campaignvo) {
 
@@ -73,8 +74,13 @@ public class CampaignController {
 
 		return "redirect:getCampaignList";
 	}
+	
+	@GetMapping("/updateCampaign")
+	public String updateCampaignView(Model model, Campaignvo campaignvo) {
+		model.addAttribute("campaign", campaignService.getCampaign(campaignvo));
+		return "th/campaign/campaignModify";
+	}
 
-	// 캠페인 수정
 	@PostMapping("/updateCampaign")
 	public String updateCampaign(Campaignvo campaignvo) {
 		campaignService.updateCampaign(campaignvo);

@@ -14,5 +14,8 @@ public interface CampaignRepository extends JpaRepository<Campaignvo, Integer>{
 	
 	@Query(value= "select * from campaignvo where end_date > now()", nativeQuery=true)
 	List<Campaignvo> findAllByActive();
+	
+	@Query(value="DELETE FROM campaignvo WHERE campaign_id = ?1 ", nativeQuery=true)
+	void deleteByCampaignId(int campaignId);
 
 }

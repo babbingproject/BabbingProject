@@ -23,13 +23,13 @@ public class Participantsvo {
 	private int participantsId;
 	
 	@ManyToOne
-	@JoinColumn(name="campaignId")
-	private Campaignvo campaignvo;
+	@JoinColumn(name="campaignId" )
+	private Campaignvo campaignvo;	
 	
 	@ManyToOne
 	@JoinColumn(name="userId")
 	private Uservo uservo;
 	
-	@Column(nullable=false, columnDefinition = "char default 'N'")
+	@Column(nullable=false, columnDefinition = "CHAR default 'N'")
 	private char participation;
 }

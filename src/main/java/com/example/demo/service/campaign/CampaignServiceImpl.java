@@ -69,8 +69,7 @@ public class CampaignServiceImpl implements CampaignService {
 
 	@Override
 	public void deleteCampaign(Campaignvo campaignvo) {
-		campaignRepo.deleteById(campaignvo.getCampaignId());
-		
+		campaignRepo.deleteByCampaignId(campaignvo.getCampaignId());
 	}
 
 	@Override

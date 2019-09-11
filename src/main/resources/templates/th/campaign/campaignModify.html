@@ -9,10 +9,9 @@
 <body>
 	<div id="wrap" class="main">
 		<div th:replace="/include/header.html :: header"></div>
-	<form th:action="@{updateCampaign}" method="post">
-		<input name="campaignId" type="hidden"
-			th:value="${campaign.campaignId}"> <input name="modifiedDate"
-			type="hidden">
+		<form th:action="@{updateCampaign}" method="post">
+		<input name="campaignId" type="hidden" th:value="${campaign.campaignId}">
+		<input name="modifiedDate" type="hidden">
 		<table>
 			<tr>
 				<td colspan="6"><input type="text" name="title"

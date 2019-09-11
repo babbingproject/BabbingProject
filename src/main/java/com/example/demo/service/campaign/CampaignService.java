@@ -19,12 +19,14 @@ public interface CampaignService {
  	void insertCampaign(Campaignvo campaignvo);
 	Campaignvo getCampaign(Campaignvo campaignvo);
 	void updateCampaign(Campaignvo campaignvo);
+	
 	void deleteCampaign(Campaignvo campaignvo);
 	
 	// 참여자수 증가
 	void participantCountUp(Campaignvo campaignvo);
 	// 참여자수 감소
 	void participantCountDown(Campaignvo campaignvo);
+	
 	
 	
 }
