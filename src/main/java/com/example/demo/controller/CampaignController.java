@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
@@ -18,6 +17,7 @@ import com.example.demo.domain.mypage.Advertisementvo;
 import com.example.demo.domain.mypage.Uservo;
 import com.example.demo.service.campaign.CampaignService;
 import com.example.demo.service.campaign.ParticipantsService;
+
 
 @SessionAttributes("usevo")
 @Controller
@@ -41,8 +41,6 @@ public class CampaignController {
 	}
 
 	// 캠페인 정렬 코드 아직 미구현
-
-
 	@GetMapping("/getCampaign")
 	public String getCampaign(HttpSession session, Model model, Campaignvo campaignvo) {
 
@@ -65,13 +63,8 @@ public class CampaignController {
 		return "th/campaign/campaignView";
 	}
 
-	
-	/*
-	 * model.addAttribute("campaign", campaignService.getCampaign(campaignvo));
-	 * return "th/campaign/campaignView"; }
-	 */
-	
-	@GetMapping("insertCampaign")
+
+	@GetMapping("/insertCampaign")
 	public String insertCampaignView() {
 		return "th/campaign/campaignWrite";
 	}
@@ -85,8 +78,13 @@ public class CampaignController {
 
 		return "redirect:getCampaignList";
 	}
+	
+	@GetMapping("/updateCampaign")
+	public String updateCampaignView(Model model, Campaignvo campaignvo) {
+		model.addAttribute("campaign", campaignService.getCampaign(campaignvo));
+		return "th/campaign/campaignModify";
+	}
 
-	// 캠페인 수정
 	@PostMapping("/updateCampaign")
 	public String updateCampaign(Campaignvo campaignvo) {
 		campaignService.updateCampaign(campaignvo);

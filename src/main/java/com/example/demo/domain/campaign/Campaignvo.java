@@ -22,6 +22,7 @@ import lombok.ToString;
 
 @Getter
 @Setter
+@ToString(exclude="advertisementvo")
 @Entity
 public class Campaignvo {
 	@Id

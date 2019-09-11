@@ -27,6 +27,7 @@ public class ParticipantsServiceImpl implements ParticipantsService {
 	public void insertParticipants(Participantsvo participants) {
 		participants.setParticipation('N');
 		participantsRepo.save(participants);
+		
 
 	}
 
