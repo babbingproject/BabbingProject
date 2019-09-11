@@ -81,6 +81,13 @@ public class CommentServiceImp implements CommentService {
 		
 	}
 
+	@Override
+	public void saveComment(Commentvo commentvo) throws Exception {
+		
+		commentRepo.save(commentvo);
+		
+	}
+
 	/*
 	 * @Override public List<Commentvo> selectCommentList(ReviewRegistrationvo
 	 * reviewRegistrationvo) {

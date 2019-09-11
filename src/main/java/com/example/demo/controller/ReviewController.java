@@ -102,6 +102,7 @@ public class ReviewController {
 		reviewRegistrationvo.setUservo(uservo);
 		model.addAttribute("reviewView", reviewService.selectReviewView(reviewRegistrationvo));
 		model.addAttribute("commentList", commentService.selectCommentList(reviewRegistrationvo));
+//		model.addAttribute("commentvo", new Commentvo());
 		return "th/review/reviewView"; 
 	}
 	

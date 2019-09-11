@@ -11,6 +11,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 import com.example.demo.domain.mypage.Uservo;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -23,7 +24,7 @@ import lombok.ToString;
 public class Commentvo {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int commentId;
+	private Integer commentId;
 	private String contents;
 	@Column(insertable = false, updatable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
 	private Date writeDate;
@@ -32,6 +33,7 @@ public class Commentvo {
 
 	@ManyToOne
 	@JoinColumn(name = "reviewId")
+	@JsonManagedReference
 	private ReviewRegistrationvo reviewRegistrationvo;
 
 	@ManyToOne

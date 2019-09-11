@@ -3,16 +3,15 @@
 <head>
 <title>리뷰 상세보기</title>
 <meta http-equiv="Content-type" content="text/html; charset=UTF-8">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <link rel="stylesheet"
 	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-
 <!-- <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script> -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> -->
+<!-- <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script> -->
 </head>
 <body th:align="center">
-<span th:text="${session['uservo'].nickname}"></span>
+	<span th:text="${session['uservo'].nickname}"></span>
 	<h1>리뷰 글 상세</h1>
 	<form th:action="@{updateReviewView}" method="post">
 		<input id="reviewId" name="reviewId" type="hidden"
@@ -50,252 +49,146 @@
 			<tr>
 				<td colspan="2" align="right"><input type="submit"
 					value="리뷰 수정"></td>
-				<td colspan="2" align="right"><a th:href="@{/doReviewList}">리뷰 목록</a></td>
-				<td colspan="2" align="right"><a th:href="@{/deleteReviewView(reviewId=(${reviewView.reviewId}))}">리뷰 삭제</a></td>
+				<td colspan="2" align="right"><a th:href="@{/doReviewList}">리뷰
+						목록</a></td>
+				<td colspan="2" align="right"><a
+					th:href="@{/deleteReviewView(reviewId=(${reviewView.reviewId}))}">리뷰
+						삭제</a></td>
 
 			</tr>
 		</table>
 	</form>
-
-	<!-- <div>
-		<div>
-			REPLY TEXT <input type="text" name="contents" id="newReplyText">
+	<br>
+	<div>
+		<div align="center">
+			<textarea rows="3" cols="60" id="inputContents" placeholder="상대 부모님이 궁금해요? 당신도 키보드 워리어가 될 수 있습니다."></textarea>
+			<a id="addComment" href="#">댓글 등록</a><br>
+			<input id="saveNickname"
+			th:value="${session['uservo'].nickname}">
+			
 		</div>
-		<button id="replyAddBtn">ADD REPLY</button>
-	</div> -->
-	<!-- <table id="commentArea" th:align="center" border="1" th:cellpadding="0"
+	<br>	
+	<table id="commentArea" th:align="center" border="1" th:cellpadding="0"
 		th:cellspacing="0">
-				<tr>
-					<td>내용</td>
-					<td>수정</td>
-					<td>삭제</td>
-				</tr>
-
-		<tr th:each="comment:${commentList}">
+		
+		<tr th:each="comment:${commentList}">			
 			<td><span>번호</span></td>
 			<td><span id="commentId" th:text="${comment.commentId}"></span></td>
 			<td><span>내용</span></td>
-			<td><span id="contents" th:text="${comment.contents}"></span></td>
+			<td><span id="outputContents" th:text="${comment.contents}"></span></td>
 			<td><span>닉네임</span></td>
-			<td><span id="nickName" th:text="${comment.uservo.nickname}"></span></td>
-			<td><a id="updateComment" href="#">댓글 수정</a></td>
-			<td><a id="deleteComment" href="#">댓글 삭제</a></td>
-		</tr>
-	<input type="hidden" id="hiddenvalue" th:value="${session.nickName}">
-	</table> -->
-	
-	<!-- <script th:inline="javascript"></script>
-	var nickName=[[${session.nickName}]]; -->
-	
-
-			<div class="my-3 p-3 bg-white rounded shadow-sm" style="padding-top: 10px">
-
-				<form name="form" id="form" role="form" modelAttribute="replyVO" method="post">
-
-				<input type="hidden" path="bid" id="reviewId"/>
-
-				<div class="row">
-
-					<div class="col-sm-10">
-
-						<textarea path="content" id="contents" class="form-control" rows="3" placeholder="댓글을 입력해 주세요"></textarea>
-
-					</div>
-
-					<div class="col-sm-2">
-
-						<input type="text" path="reg_id" class="form-control" id="nickname" th:value="${session['uservo'].nickname}" placeholder="댓글 작성자"></input>
-
-						<button type="button" class="btn btn-sm btn-primary" id="btnReplySave" style="width: 10%; margin-top: 10px"> 댓글 저장 </button>
-
-					</div>
-
-				</div>
-
-				</form>
-
-			</div>
-
-			<!-- Reply Form {e} -->
-
+			<td><span id="outputNickname" th:text="${comment.uservo.nickname}"></span></td>
+			<td><a id="modifyComment" th:href="@{/modifyComment}">댓글 수정</a></td>
+			<td><a id="deleteComment" th:href="@{/deleteComment}">댓글 삭제</a></td>
 			
+		</tr>
+	</table>
+	</div>
 
-			<!-- Reply List {s}-->
-
-			<div class="my-3 p-3 bg-white rounded shadow-sm" style="padding-top: 10px">
-
-				<h6 class="border-bottom pb-2 mb-0">Reply list</h6>
-
-				<div id="commentList"></div>
-
-			</div> 
-
-
-	<!-- <script th:inline="javascript">
-		$(function commentList() {
-			$("#replyAddBtn")
-					.on(
-							"click",
-							function() {
-								alert("111");
-								var contents = $("#newReplyText").val();
-								var reviewId = $("#reviewId").val();
-								var userId = [[${session.userId}]];
-								var nickName = [[${session.nickName}]];
-								console.log(userId);
-								console.log(reviewId);
-								console.log(nickName);
-								alert(nickName)
-								$
-										.ajax({
-											url : 'addComment',
-											data : {
-												contents : contents,
-												reviewId : reviewId,
-												userId : userId,
-												nickname : nickName
-											},
-											datatype : "application/json",
-											success : function(result) {
-
-												var a = "";
-												a += "<tr>";
-												a += "<td><span>번호</spen></td>";
-												a += "<td><span id='commentId'>" + result.commentId
-														+ "</spen></td>";
-												a += "<td><span>내용</spen></td>";
-												a += "<td><span id='contents'>" + result.contents
-														+ "</span></td>";
-												a += "<td><span>닉네임</spen></td>";
-												a += "<td><span id='nickName'>" + result.nickName
-														+ "</span></td>";
-												a += "<td><a id='updateComment'"+"href='#'>댓글 수정</a></td>";
-												a += "<td><a id='deleteComment'"+"href='#'>댓글 삭제</a></td>";
-												a += "</tr>";
-												//a +="<td><a href='/deleteComment?commentId="+commentList[0].commnetId+"'>삭제</a></td>";
-												$("#commentArea").append(a);
-											},
-											error : function(ee) {
-												alert("fff");
-											}
-										});
-							});
-		});
-		</script>
-		<script>
-		$(function (){
-			$("#deleteComment").on("click", function (){
-				alert("권재범");
-				var commentId= $("#commentId").text();
-				alert(commentId);
-				alert("챜0");
-				$.ajax({
-					url: 'deleteComment',
-					data: {commentId : commentId},
-					success: function(){
-						commentList();
-						alert("쳌1");
-					},
-					error: function(ee){
-						alert("fail");
-					}
-				});
+	<script th:inline="javascript">
+	$(document).on('click', '#addComment', function(){
+		var reviewId = $('#reviewId').val();
+		var userId = $('#userId').val();
+		var contents = $('#inputContents').val();		
+// 		var nickname = $('#saveNickname').val();
+		alert(reviewId);
+		alert(userId);
+		alert(contents);
+// 		alert(nickname);
+		$.ajax({
+// 			type: 'POST',
+			url: '/addComment2',
+			data: {
+				reviewId : reviewId,
+				contents : contents,
+				userId: userId
+// 				nickname : nickname
+				},
+// 				dataType: 'json',
+// 				contentType : "application/json; charset=UTF-8",
+				success: function(result){
+				alert(result)
+				var a = '';
+					if(result.length <1){
+						a.push("등록된 댓글이 없습니다")
+					} else {
+						$(result).each(function(){
+							
+							a += "<td>";
+							a += "<span id ='commentId' th:text='${comment.commentId}'>";
+							a += "</span></td>";
+							a += "<td>";
+							a += "<span id = 'outputContents' th:text='${comment.contents}'>";
+							a += "</span></td>";
+							a += "<td>";
+							a += "<span id = 'outputNickname' th:text='${nickname}'>";
+							a += "</span></td>";
+							a += "<td>";
+							a += "<a id ='updateComment' th:href='@{/updateComment}'>댓글 수정</a>";
+							a += "</td>"
+							a += "<td>";
+							a += "<a id ='deleteComment' th:href='@{/deleteComment}'>댓글 삭제</a>";
+							a += "</td>";
+// 							a += "<td>";
+// 							a += "<a id ='addComment' th:href='@{/addComment}'>댓글 등록</a>";
+// 							a += "</td>";
+							
+							
+					});
+					$("#commentArea").append(a);
 				
+					}
+				},
+				error: function(error){
+					console.log("에러 : " + error);
+				}
 			});
+		
 		});
-		</script> -->
+	
+		
+	
+	</script>
 	<script>
 
-  	// 이전 코드 생략
-
-	function showReplyList(){
-
-// 		var url = "${pageContext.request.contextPath}/restBoard/getReqlyList";
-
-		var paramData = {"reviewId" : "${reviewView.reviewId}"};
-		alert("췤0");
-		alert(paramData);
-		$.ajax({
-
-            type: 'GET',
-
-            url: 'getCommentList',
-
-            data: paramData,
-
-            dataType: 'json',
-
-            success: function(result) {
-				alert("췍1");
-               	var htmls = "";
-
-			if(result.length < 1){
-
-				htmls.push("등록된 댓글이 없습니다.");
-
-			} else {
-						alert("췤2");
-	                    $(result).each(function(){
-
-	                     htmls += '<div class="media text-muted pt-3" id="reviewId' + this.reviewId + '">';
-
-	                     htmls += '<svg class="bd-placeholder-img mr-2 rounded" width="32" height="32" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder:32x32">';
-
-	                     htmls += '<title>Placeholder</title>';
-
-	                     htmls += '<rect width="100%" height="100%" fill="#007bff"></rect>';
-
-	                     htmls += '<text x="50%" fill="#007bff" dy=".3em">32x32</text>';
-
-	                     htmls += '</svg>';
-
-	                     htmls += '<p class="media-body pb-3 mb-0 small lh-125 border-bottom horder-gray">';
-
-	                     htmls += '<span class="d-block">';
-
-	                     htmls += '<strong class="text-gray-dark">' + this.userId + '</strong>';
-
-	                     htmls += '<span style="padding-left: 7px; font-size: 9pt">';
-
-	                     htmls += '<a href="javascript:void(0)" onclick="fn_editReply(' + this.commentId + ', \'' + this.userId + '\', \'' + this.contents + '\' )" style="padding-right:5px">수정</a>';
-
-	                     htmls += '<a href="javascript:void(0)" onclick="fn_deleteReply(' + this.commentId + ')" >삭제</a>';
-
-	                     htmls += '</span>';
-
-	                     htmls += '</span>';
-
-	                     htmls += this.contents;
-
-	                     htmls += '</p>';
-
-	                     htmls += '</div>';
-
-
-
-	                });	//each end
-			}
-
-			$("#commentList").html(htmls);
-            }	   // Ajax success end
-
-		});	// Ajax end
-	}
-  
-
-</script>
-<script>
-
 	$(document).ready(function(){
-
-		showReplyList();
-
+		function showCommentList(){
+			$.ajax({
+			url: "commentList",
+			type: "GET",
+			dateType: "json",
+			success : function(result) {
+				var cm= "";
+					$(result).each(function(){
+						a += "<td>";
+						a += "<span id ='commentId' th:th:text='${comment.commentId}'>";
+						a += "</span></td>";
+						a += "<td>";
+						a += "<span id = 'contents' th:text='${comment.contents}'>";
+						a += "</span></td>";
+						a += "<td>";
+						a += "<span id = 'nickname' th:text='${nickname}'>";
+						a += "</span></td>";
+						a += "<td>";
+						a += "<a id ='modifyComment' th:href='@{/modifyComment}'>댓글 수정</a>";
+						a += "</td>"
+						a += "<td>";
+						a += "<a id ='deleteComment' th:href='@{/deleteComment}'>댓글 삭제</a>";
+						a += "</td>"
+// 						a += "<td>";
+// 						a += "<a id ='addComment' th:href='@{/addComment}'>댓글 등록</a>";
+// 						a += "</td>";
+					});
+					$("#commentArea").append(a);
+				
+					},
+					error: function(error){
+						console.log("에러 : " + error);							
+				}
+			})			
+		}
 	});
-
-
-</script>
-
-
-
-
+	</script>
+	
+	
 </html>

@@ -16,6 +16,7 @@ import javax.persistence.OneToMany;
 
 import com.example.demo.domain.review.Commentvo;
 import com.example.demo.domain.review.ReviewRegistrationvo;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -29,7 +30,7 @@ public class Uservo {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int userId;
+	private Integer userId;
 	private String nickname;
 	private String password;
 	private String introduce;
@@ -77,6 +78,7 @@ public class Uservo {
 	private String role;
 
 	@OneToMany(mappedBy = "uservo", fetch = FetchType.EAGER,  cascade = CascadeType.ALL)
+	@JsonBackReference
 	private List<ReviewRegistrationvo> reviewRegistrationList = new ArrayList<ReviewRegistrationvo>();
 
 
