@@ -5,7 +5,11 @@
 <head>
 <meta charset="UTF-8">
 <title>비밀번호즉시변경</title>
-
+<style>
+*:focus {
+	outline: none;
+}
+</style>
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <!-- ajax를 위한 CDN 방식 라이브러리 -->
@@ -130,6 +134,8 @@ audio
 
 
 
+
+
 :not
 
 
@@ -163,7 +169,9 @@ audio
 
 
 
+
  
+
 
 
 
@@ -232,7 +240,9 @@ controls
 
 
 
+
  
+
 
 
 
@@ -331,7 +341,10 @@ display
 
 
 
+
+
 :
+
 
 
 
@@ -397,7 +410,10 @@ display
 
 
 
+
 none
+
+
 
 
 
@@ -528,6 +544,8 @@ height
 
 
 
+
+
 :
 
 
@@ -561,7 +579,9 @@ height
 
 
 
+
  
+
 
 
 
@@ -1689,7 +1709,11 @@ transform
 
 
 
+
+
 :rotate(359deg)
+
+
 
 
 
@@ -1835,7 +1859,11 @@ opacity
 
 
 
+
+
 :
+
+
 
 
 
@@ -1972,7 +2000,11 @@ opacity
 
 
 
+
+
 :
+
+
 
 
 
@@ -2773,8 +2805,8 @@ to {
 				<form id="modify" action="/pwUpdate" method="post">
 
 					<p>
-						<input type="hidden" value="${user_email }"
-							name="user_email"> <input type="password"
+						<input type="hidden" value="${user_email }" name="user_email">
+						<input type="password"
 							style="position: absolute; top: 572px; left: 500px; width: 418px; height: 57px; border-radius: 28.5px;"
 							class="w3-input" name="password" id="pw" placeholder="새 비밀번호"
 							required="required">

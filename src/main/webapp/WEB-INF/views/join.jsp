@@ -1,15 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
 <!DOCTYPE html>
 <html>
 <head>
+<style>
+*:focus {
+	outline: none;
+}
+</style>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>login</title>
-
-<link href="common/css/stylesJoin.css" rel="stylesheet">
-
+<title>joinForm</title>
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="common/css/stylesJoin2.css" rel="stylesheet">
+<link href="common/css/w3.css" rel="stylesheet">
 <!-- ajax를 위한 CDN 방식 라이브러리 -->
 <script type="text/javascript"
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -63,6 +67,7 @@
 					if (user_email == "") {
 						$("#chktext").css("color", "gray");
 						$("#chktext").text("이메일을 입력해주세요.");
+
 						$("#chktext2").html("");
 					} else if (cnt == 0) {
 						$("#chktext2").css("color", "blue");
@@ -143,18 +148,22 @@
 
 </head>
 <body>
-	<!-- Cookie가 비어있지 않을 때 checked 속성을 줌 -->
-	<c:if test="${not empty cookie.user_check}">
-		<c:set value="checked" var="checked" />
-	</c:if>
-	<form id="joinForm" action="/join" method="post">
-	<div id="background">
-		<div id="total">
-			<div id="Layer4">
-				<img src="images/Layer4.png">
+	<div class="w3-center">
+		<div id="logoBack">
+			<a href="/"><img src="images/Bobbing-logo.png" alt="밥빙 logo" /></a>
+		</div>
+
+	</div>
+
+	<div class="w3-content w3-container w3-margin-top w3-center">
+
+		<div class="w3-container w3-card-4">
+
+			<div id="layer_11">
+				<a href="#"><img src="images/layer_11.png" /></a>
 			</div>
-			<div id="RoundedRectangle744">
-				<img src="images/RoundedRectangle744.png">
+			<div id="layer_12">
+				<a href="/adjoinForm"><img src="images/layer_12.png" /></a>
 			</div>
 			<div id="Shape740copy2">
 				<img src="images/Shape740copy2.png">
@@ -162,71 +171,54 @@
 			<div id="Shape740copy">
 				<img src="images/Shape740copy.png">
 			</div>
-			<div id="layer_5">
-				<img src="images/layer_5.png">
+			<div class="w3-center w3-large w3-margin-top">
+				<br> <br> <br> <br>
+
 			</div>
-			<div id="layer_6">
-				<img src="images/layer_6.png">
-			</div>
-			<div id="layer_7">
-				<img src="images/layer_7.png">
-			</div>
-			<div id="copy">
-				<img src="images/copy.png">
-			</div>
-			<div id="copy2">
-				<a href="${pageContext.request.contextPath}/"><img
-					src="images/copy2.png"></a>
-			</div>
-			<div id="layer_10">
-				<img src="images/layer_10.png">
-			</div>
-			<div id="layer_11">
-				<img src="images/layer_11.png">
-			</div>
-			<div id="layer_12">
-				<img src="images/layer_12.png">
-			</div>
-			<div id="layer_13">
-				<a href="${pageContext.request.contextPath}/joinForm"><img
-					src="images/layer_13.png"></a>
-			</div>
-			<div id="layer_14">
-				<input id="user_email" type="text" required="required"
-					placeholder="이메일" />
-			</div>
-			<div id="layer_15">
-				<input type="text" id="nickName" required="required"
-					placeholder="닉네임" />
-			</div>
-			<div id="layer_16">
-				<img src="images/layer_16.png">
-			</div>
-			<div id="copy_0">
-				<img src="images/copy_0.png">
-			</div>
-			<div id="layer_616">
-				<input type="password" id="password" required="required"
-					placeholder="비밀번호(8자리이상)" />
-			</div>
-			<div id="layer_19">
-				<input type="password" id="password2" required="required"
-					placeholder="비밀번호 확인" />
-			</div>
-			<div id="layer_20">
-				<span id="chktext" class="w3-text-red"></span> <span id="chktext2">afdad</span>
-			</div>
-			<div id="layer_616_0">
-				<img src="images/layer_616_0.png">
-			</div>
-			<div id="layer_22">
-				<img src="images/layer_22.png">
-			</div>
-			<div id="layer_23">
-				<img src="images/layer_23.png">
+			<div>
+
+				<form id="joinForm" action="/join" method="post">
+					<!-- 세션에 저장한 카카오 아이디를 가져옴 -->
+					<input type="hidden" name="kakao_id" value="${kakao_id}" />
+
+					<p>
+						<input type="text" class="w3-input" name="user_email"
+							id="user_email" placeholder="이메일(example@naver.com)"
+							required="required"> <span id="chktext"
+							class="w3-text-red"></span> <span id="chktext2"
+							class="w3-text-blue"></span>
+					</p>
+
+					<p>
+						<input type="text" class="w3-input" name="nickname" id="nickname"
+							placeholder="닉네임" required="required"> <span
+							id="nickchktext" class="w3-text-red"></span> <span
+							id="nickchktext2" class="w3-text-blue"></span>
+					</p>
+					<p>
+						<input type="password" class="w3-input" name="password" id="pw"
+							placeholder="비밀번호(8자리 이상)" required="required">
+					</p>
+					<p>
+						<br> <input type="password" class="w3-input" id="pw2"
+							placeholder="비밀번호 확인" required="required">
+					</p>
+
+					<p>
+						<br> <a href="${url}"> <img
+							src="${pageContext.request.contextPath}/images/네아로.png"
+							align="middle" height="50" width="80%" />
+						</a> <a href="#"> <img
+							src="${pageContext.request.contextPath}/images/페아로.png"
+							width="80%" height="50" class="  w3-margin-top " />
+						</a> <br> <br> <br>
+						<button type="submit" id="joinBtn"
+							class="w3-button w3-block w3-pink w3-ripple w3-margin-top w3-round">회원가입</button>
+					</p>
+				</form>
 			</div>
 		</div>
 	</div>
-	</form>
+
 </body>
 </html>

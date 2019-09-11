@@ -6,6 +6,11 @@
 <!doctype html>
 <html lang="ko">
 <head>
+<style>
+*:focus {
+	outline: none;
+}
+</style>
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link href="common/css/stylesJoin2.css" rel="stylesheet">
@@ -113,6 +118,8 @@ audio
 
 
 
+
+
 :not
 
 
@@ -140,7 +147,9 @@ audio
 
 
 
+
  
+
 
 
 
@@ -197,7 +206,9 @@ controls
 
 
 
+
  
+
 
 
 
@@ -278,7 +289,10 @@ display
 
 
 
+
+
 :
+
 
 
 
@@ -332,7 +346,10 @@ display
 
 
 
+
 none
+
+
 
 
 
@@ -439,6 +456,8 @@ height
 
 
 
+
+
 :
 
 
@@ -466,7 +485,9 @@ height
 
 
 
+
  
+
 
 
 
@@ -1575,7 +1596,11 @@ transform
 
 
 
+
+
 :rotate(359deg)
+
+
 
 
 
@@ -1697,7 +1722,11 @@ opacity
 
 
 
+
+
 :
+
+
 
 
 
@@ -1810,7 +1839,11 @@ opacity
 
 
 
+
+
 :
+
+
 
 
 

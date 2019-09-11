@@ -5,6 +5,11 @@
 <head>
 <meta charset="UTF-8">
 <title>비밀번호 찾기</title>
+<style>
+*:focus {
+	outline: none;
+}
+</style>
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link href="common/css/stylesJoin2.css" rel="stylesheet">
@@ -15,13 +20,15 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script type="text/javascript">
 	$(function() {
-		$("#searchBtn2").submit(function() {
-			if ($.trim($("#advertisement_email").val()) !== $("#advertisement_email").val()) {
-				alert("아이디를 입력해주세요");
-				return false;
-			}
+		$("#searchBtn2").submit(
+				function() {
+					if ($.trim($("#advertisement_email").val()) !== $(
+							"#advertisement_email").val()) {
+						alert("아이디를 입력해주세요");
+						return false;
+					}
 
-		})
+				})
 		//input에 입력된 값이 변화가 있을때 alert 을 띄운다.
 		$("input[name='advertisement_email']").on("change", function() {
 			var advertisement_email = $('#advertisement_email').val();
@@ -77,7 +84,8 @@
 
 	<div class="w3-center">
 		<div id="logoBack">
-			<a href="${pageContext.request.contextPath}/index"><img src="images/Bobbing-logo.png" alt="밥빙 logo" /></a>
+			<a href="${pageContext.request.contextPath}/index"><img
+				src="images/Bobbing-logo.png" alt="밥빙 logo" /></a>
 		</div>
 
 	</div>
@@ -95,15 +103,17 @@
 
 			<p>
 				<input type="text" class="w3-input" name="advertisement_email"
-					id="advertisement_email" placeholder="example@naver.com" required="required">
+					id="advertisement_email" placeholder="example@naver.com"
+					required="required">
 				<!-- 쿠기에 저장된 벨류(아이디값)을 꺼내옵니다. 서비스에서 쿠키지정 ->컨르롤러로 벨류 전달 -->
 				<span id="chktext" class="w3-text-red"></span> <span id="chktext2"
 					class="w3-text-blue"></span>
 
 			</p>
 			<button type="submit" id="joinBtn"
-				class="w3-button w3-block w3-pink w3-ripple w3-margin-top w3-round">안내 메일전송</button>
-			
+				class="w3-button w3-block w3-pink w3-ripple w3-margin-top w3-round">안내
+				메일전송</button>
+
 
 		</form>
 	</div>
