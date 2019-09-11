@@ -3,17 +3,22 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script type="text/javascript" src="common/js/jquery.slideto.min2.js"></script>
+<link href="common/css/wlogin2.css" rel="stylesheet">
 <script>
- 
+	
 </script>
 </head>
 <body>
 	<div id="wrap" class="main">
-		<div class="header" th:fragment="header">
-<span th:text="${session[uservos]}"></span>
+		<div class="header" th:fragment="header"
+			style="position: fixed; z-index: 999; background-color: #fff; transition: top 0.2s ease-in-out; height: 90px;">
+			<span th:text="${session[uservos]}"></span>
 			<div class="top">
 				<div class="logo">
-					<a href="index"><img src="images/Bobbing-logo.png" alt="밥빙 logo" /></a>
+					<a href="/"><img src="images/Bobbing-logo.png" alt="밥빙 logo" /></a>
 				</div>
 				<div class="heaer-gnb">
 					<ul>
@@ -25,57 +30,66 @@
 				<div class="heaer-search">
 					<form action="search" enctype="multipart/form-data">
 						<div class="fl MainSearch">
-							<label class="hidden" for="">검색어입력</label> 
-							<select th:name="types">
+							<label class="hidden" for="">검색어입력</label> <select
+								th:name="types">
 								<option th:value="review">리뷰</option>
 								<option th:value="user">유저</option>
 								<option th:value="campaign">캠페인</option>
 								<option th:value="advertisement">맛집</option>
-							</select>
-							<input name="searchKeyword" class="input_type1" id="" style="width: 180px;" type="text" maxlength="100">
+							</select> <input name="searchKeyword" class="input_type1" id=""
+								style="width: 180px;" type="text" maxlength="100">
 						</div>
-						<input type="image" value="submit" src="images/Bobbing-header-search.gif" class="fl"><!-- <img alt="" src="images/Bobbing-header-search.gif"> --> 
+						<input type="image" value="submit"
+							src="images/Bobbing-header-search.gif" class="fl">
+						<!-- <img alt="" src="images/Bobbing-header-search.gif"> -->
 					</form>
 				</div>
-				
 
-				<th:block th:if="${session['uservo']} == null and ${session['advertisementvo'] == null}">
-				<a th:href="login">로그인 </a> | <a th:href="joinForm">회원가입</a>
+
+				<th:block
+					th:if="${session['uservo']} == null and ${session['advertisementvo'] == null}">
+					<a th:href="login">로그인 </a> | <a th:href="joinForm">회원가입</a>
 				</th:block>
 				<th:block th:if="${session['advertisementvo'] != null}">
-				<div class="heaer-btnR">
-					<div class="selectbox">
-						<dl class="dropdown">
-							<dt>
-								<a href="#" style="padding-top: 4px;"><span><img src="images/Bobbing-main-Circle-member.gif" /></span></a>
-							</dt>
-							<dd>
-								<ul class="dropdown2">
-									<li><a href="getAdvertisementMyPage"><img src="images/Bobbing-main-Circle-shop.gif" /> 마이페이지</a></li>
-									<li><a href="logout"><img src="images/Bobbing-main-Circle-member.gif" />로그아웃</a></li>									
-								</ul>
-							</dd>
-						</dl>
+					<div class="heaer-btnR">
+						<div class="selectbox">
+							<dl class="dropdown">
+								<dt>
+									<a href="#" style="padding-top: 4px;"><span><img
+											src="images/Bobbing-main-Circle-member.gif" /></span></a>
+								</dt>
+								<dd>
+									<ul class="dropdown2">
+										<li><a href="getAdvertisementMyPage"><img
+												src="images/Bobbing-main-Circle-shop.gif" /> 마이페이지</a></li>
+										<li><a href="logout"><img
+												src="images/Bobbing-main-Circle-member.gif" />로그아웃</a></li>
+									</ul>
+								</dd>
+							</dl>
+						</div>
 					</div>
-				</div>
 				</th:block>
-								<th:block th:if="${session['uservo'] != null}">
+				<th:block th:if="${session['uservo'] != null}">
 
-				<div class="heaer-btnR">
-					<div class="selectbox">
-						<dl class="dropdown">
-							<dt>
-								<a href="#" style="padding-top: 4px;"><span><img src="images/Bobbing-main-Circle-member.gif" /></span></a>
-							</dt>
-							<dd>
-								<ul class="dropdown2">
-									<li><a href="getUserMyPage"><img src="images/Bobbing-main-Circle-shop.gif" /> 마이페이지</a></li>
-									<li><a href="logout"><img src="images/Bobbing-main-Circle-member.gif" />로그아웃</a></li>									
-								</ul>
-							</dd>
-						</dl>
+					<div class="heaer-btnR">
+						<div class="selectbox">
+							<dl class="dropdown">
+								<dt>
+									<a href="#" style="padding-top: 4px;"><span><img
+											src="images/Bobbing-main-Circle-member.gif" /></span></a>
+								</dt>
+								<dd>
+									<ul class="dropdown2">
+										<li><a href="getUserMyPage"><img
+												src="images/Bobbing-main-Circle-shop.gif" /> 마이페이지</a></li>
+										<li><a href="logout"><img
+												src="images/Bobbing-main-Circle-member.gif" />로그아웃</a></li>
+									</ul>
+								</dd>
+							</dl>
+						</div>
 					</div>
-				</div>
 
 				</th:block>
 

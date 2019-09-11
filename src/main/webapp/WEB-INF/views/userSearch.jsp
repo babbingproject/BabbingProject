@@ -5,6 +5,11 @@
 <head>
 <meta charset="UTF-8">
 <title>비밀번호 찾기</title>
+<style>
+*:focus {
+	outline: none;
+}
+</style>
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link href="common/css/stylesJoin2.css" rel="stylesheet">
@@ -77,7 +82,8 @@
 
 	<div class="w3-center">
 		<div id="logoBack">
-			<a href="${pageContext.request.contextPath}/index"><img src="images/Bobbing-logo.png" alt="밥빙 logo" /></a>
+			<a href="${pageContext.request.contextPath}/index"><img
+				src="images/Bobbing-logo.png" alt="밥빙 logo" /></a>
 		</div>
 
 	</div>
@@ -102,8 +108,9 @@
 
 			</p>
 			<button type="submit" id="joinBtn"
-				class="w3-button w3-block w3-pink w3-ripple w3-margin-top w3-round">안내 메일전송</button>
-			
+				class="w3-button w3-block w3-pink w3-ripple w3-margin-top w3-round">안내
+				메일전송</button>
+
 
 		</form>
 	</div>

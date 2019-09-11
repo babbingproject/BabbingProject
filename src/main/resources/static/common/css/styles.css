@@ -139,7 +139,7 @@ a {text-decoration: none;color: inherit;cursor: pointer;}
 
 .footer-area{background:#e0e0e0;margin-top:80px;min-height:200px}
 .footer-area .footer{width:1135px;margin:0 auto; padding:20px 0 20px 20px;color:#999;position: relative; }
-.footer-area .top-btn{background:url('../../images/Bobbing-icon.png') no-repeat 0 bottom;    text-indent: -9999px;   position: absolute;    width: 75px;    height: 75px;    top: -75px;    right: 10px;}
+.footer-area .top-btn{background:url('../../images/topbtn.png') no-repeat 0 bottom;    text-indent: -9999px;   position: absolute;    width: 75px;    height: 75px;    top: -75px;    right: 10px;}
 
 .mgtXS{margin-top:5px}
 .mgtS{margin-top:10px}
@@ -149,7 +149,7 @@ a {text-decoration: none;color: inherit;cursor: pointer;}
 .tab li.on span {background-color: rgb(255, 105, 180);color: white;}
 .info.hidden{display:none;}
 
-/* 랭킹 페이지 태원 작업중*/
+/* �옲�궧 �럹�씠吏� �깭�썝 �옉�뾽以�*/
 .container {overflow: hidden;}
 .container.title .userranking{width: 45%; float: left;  margin: 30px 0px 0px 70px;}
 .container.title .advertisementranking{width: 45%; float: left;  margin: 30px 0px 0px 40px;}

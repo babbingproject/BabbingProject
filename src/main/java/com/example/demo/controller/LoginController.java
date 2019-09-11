@@ -179,7 +179,7 @@ public class LoginController {
 		// 네이버
 		model.addAttribute("url", naverAuthUrl); //
 
-		return "join2";
+		return "join";
 	}
 
 	@RequestMapping("/adjoinForm")
@@ -189,7 +189,7 @@ public class LoginController {
 		// 네이버
 		model.addAttribute("url", naverAuthUrl); //
 
-		return "adJoin2";
+		return "adJoin";
 	}
 
 }

@@ -4,7 +4,7 @@ html {
 }
 
 *, *:before, *:after {
-	box-sizing: inherit
+	box-sizing: inherit;
 }
 /* Extract from normalize.css by Nicolas Gallagher and Jonathan Neal git.io/normalize */
 html {
@@ -547,7 +547,7 @@ hr {
 }
 
 img {
-	vertical-align: middle
+	vertical-align: middle;
 }
 
 a {
@@ -604,7 +604,7 @@ a {
 .w3-btn, .w3-button {
 	border: none;
 	display: inline-block;
-	padding: 8px 16px;
+	padding: 0px 16px;
 	vertical-align: middle;
 	overflow: hidden;
 	text-decoration: none;
@@ -613,7 +613,7 @@ a {
 	text-align: center;
 	cursor: pointer;
 	white-space: nowrap;
-	height: 57px;
+	height: 50px;
 }
 
 .w3-btn:hover {
@@ -698,7 +698,7 @@ a {
 	border: none;
 	border: 1.4px solid #b5b5b5;
 	width: 80%;
-	height: 57px;
+	height: 50px;
 	margin-left: 65px;
 	font-size: 18.5px;
 }
@@ -1779,7 +1779,7 @@ to {
 }
 
 .w3-center {
-	text-align: center !important
+	/* text-align: center !important; */
 }
 
 .w3-center2 {
@@ -1840,7 +1840,7 @@ to {
 }
 
 .w3-margin-bottom {
-	margin-bottom: 16px !important
+	/* margin-bottom: 16px !important */
 }
 
 .w3-margin-left {
@@ -1901,7 +1901,7 @@ to {
 	background-color: #fff !important;
 	border-color: #ff4d80;
 	border: 1.4px solid #ff4d80;
-	height: 57px;
+	height: 50px;
 }
 
 .w3-transparent, .w3-hover-none:hover {
@@ -2297,4 +2297,131 @@ to {
 
 .w3-border-pale-blue, .w3-hover-border-pale-blue:hover {
 	border-color: #e7ffff !important
+}
+
+/* Fix login */
+.login_wrap{
+	width:432px;
+	margin:0 auto;
+}
+.login_wrap .login_title{
+	padding:32px 0;
+	box-sizing:border-box;
+	text-align:center;
+}
+.login_wrap .w3-container{
+	width:100%;
+	height: 632px;
+}
+.login_wrap .w3-margin-top{
+	margin-top:0 !important;
+}
+.login_wrap .loginForm{
+	margin-top:0;
+}
+
+.login_wrap .loginForm p{
+	margin:0;
+	padding-top: 25px;
+	box-sizing:border-box;
+}
+.login_wrap .loginForm .email{
+	height:100px;
+}
+
+.login_wrap .loginForm .pw{
+	padding-top:0;
+}
+
+.login_wrap .loginForm span{
+	display:block;
+	width:80%;
+	margin:0 auto;
+}
+
+.login_wrap .loginForm .w3-input{
+	margin:0 auto;
+	font-size:15px;
+}
+
+.login_wrap .w3-block{
+	margin:0 auto;
+	font-size:15px;
+	box-sizing: border-box;
+}
+
+.login_wrap .tab{
+	float: left;
+	width: 50%;
+	z-index: 12;
+	text-align: center;
+}
+
+.login_wrap .tab a{
+	display:block;
+	padding: 15px 0;
+	box-sizing:border-box;
+}
+
+.login_wrap .tab a img{width:70px;}
+
+.login_wrap .btn_remember{display:block;width:80%;margin:0 auto !important;}
+.login_wrap .btn_remember::after{content:'';display:block;clear:both;}
+
+.login_wrap .btn_remember laber{float:left;}
+.login_wrap .btn_remember a{float:right;}
+
+.login_wrap .btn_sns{display:block;width:80%;margin:0 auto !important;}
+
+.login_wrap .btn_sns a{display:block;width:100%;margin-bottom:20px;}
+.login_wrap .btn_sns a:last-child{margin-bottom:0;}
+.login_wrap .btn_sns a img{width:100%;}
+
+.login_wrap .txt_img{text-align:center;margin:20px 0;}
+
+.floatClear{}
+
+.floatClear::after{content:'';display:block;clear:both;}
+
+
+
+#Shape740copy2 {
+	float: left;
+	width: 50%;
+	height: 8px;
+	z-index: 3;
+}
+#Shape740copy2 img{
+	width:100%;
+	vertical-align: top;
+}
+
+#Shape740copy {
+	float: left;
+	width: 50%;
+	height: 8px;
+	z-index: 4;
+}
+#Shape740copy img{
+	width:100%;
+	vertical-align: top;
+}
+
+.loginForm{margin-top:76px;}
+
+
+#copy2 {
+	left: 500px;
+	top: 626px;
+	position: absolute;
+	width: 421px;
+	height: 59px;
+	z-index: 9;
+	color: #000 !important;
+	background-color: #ccc !important
+}
+
+#logoBack{
+	background-color: #fff;
+    border: none;
 }

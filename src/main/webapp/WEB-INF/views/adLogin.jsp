@@ -5,6 +5,11 @@
 <!DOCTYPE html>
 <html>
 <head>
+<style>
+*:focus {
+	outline: none;
+}
+</style>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>login</title>
 <link rel="stylesheet"
@@ -67,7 +72,7 @@
 	</c:if>
 	<div class="w3-center">
 		<div id="logoBack">
-			<a href="index"><img src="images/Bobbing-logo.png" alt="밥빙 logo" /></a>
+			<a href="/"><img src="images/Bobbing-logo.png" alt="밥빙 logo" /></a>
 		</div>
 
 	</div>
@@ -116,12 +121,14 @@
 							id="remember_us" name="remember_userId" ${checked}> 이메일
 							저장하기 <!-- 위에 벨류값에 따라 checked가 실행되거나 안되게 합니다. -->
 						</label> <a style="margin-left: -95px;"
-							href="${pageContext.request.contextPath}/adUserSearch"> 비밀번호 찾기</a>
+							href="${pageContext.request.contextPath}/adUserSearch"> 비밀번호
+							찾기</a>
 					</p>
 					<p>
 						<input type="button" id="loginBtn"
 							class="w3-button w3-block w3-pink w3-ripple w3-margin-top w3-margin-bottom w3-round"
-							value="로그인"><br><br> <input type="button"
+							value="로그인"><br>
+						<br> <input type="button"
 							onclick="location.href='/adjoinForm'"
 							class="w3-button w3-block w3-pink w3-ripple w3-margin-top w3-margin-bottom w3-round"
 							value="회원가입"></input>
