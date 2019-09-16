@@ -6,7 +6,8 @@
 <title>밥빙에 오신걸 환영합니다.</title>
 
 <!-- <link rel="stylesheet" th:href="@{common/css/styles.css}" type="text/css"> -->
-<script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script th:inline="javascript" src="common/js/index.js"></script>
 <link rel="stylesheet" href="/common/css/styles.css"
 	th:href="@{/common/css/styles.css}" type="text/css">
@@ -31,7 +32,6 @@
 		});
 
 	});
-
 
 	$(function() {
 		//배너 슬라이드 부분
@@ -71,7 +71,7 @@
 
 		<div class="contact">
 			<div class="cont-area content" data-role="content">
-				<div class="cont-txtB">캠페인</div>
+				<div class="cont-txtB" style="margin-top: 10%;">캠페인</div>
 				<div id="slides">
 					<img src="images/Bobbing-m-visual.jpg" alt=""> <img
 						src="images/Bobbing-m-visual2.jpg" alt=""> <img
@@ -147,35 +147,39 @@
 			</div>
 			<input type="hidden" th:value="${username}" id="followerMe">
 			<div class="cont-area info" id="list1">
-
-				<ul class="list-style03" >
+				<ul class="list-style03">
+				
 					<li th:each="everything:${everything}" class="temp">
 						<div class="cont-txt" id="wee">
 							<p class="photos">
 								<span th:each="check : ${everything.reviewRegistrationvo.reviewImgList}">
-								<img th:src="${check.img}" /></span>
+									<img th:src="${check.img}" id="img1" />
+								</span>
 
 							</p>
-							<span th:if="${#lists.isEmpty(everything.scrapvo)}"> <span
-								id="scrapButton" class="button best02"></span> <input
-								type="hidden" id="followMe" th:value="${username}">
-							</span> <span th:if="!${#lists.isEmpty(everything.scrapvo)}"> <span
-								id="scrapButton" class="button best01"></span> <input
-								type="hidden" id="followMe" th:value="${username}">
+							<span th:if="${#lists.isEmpty(everything.scrapvo)}">
+								<span id="scrapButton" class="button best02"></span> 
+								<input type="hidden" id="followMe" th:value="${username}">
+							</span> 
+							<span th:if="!${#lists.isEmpty(everything.scrapvo)}"> 
+								<span id="scrapButton" class="button best01"></span> 
+								<input type="hidden" id="followMe" th:value="${username}">
 							</span>
 							<ul class="info">
-								<li><span
-									th:text="${everything.reviewRegistrationvo.reviewPlace}"></span>|</li>
-								<input type="hidden"
-									th:value="${everything.reviewRegistrationvo.reviewId}" id="get">
-								<li><span
-									th:text="${everything.reviewRegistrationvo.title}"></span></li>
-								<li><span
-									th:each="check:${everything.reviewRegistrationvo.uservo}">
-										<img th:src="${check.profileImg}" /> <input type="hidden"
-										id="reviewUserId" th:value="${check.userId}"> <span
-										th:text="${check.nickname}"></span>
-								</span></li>
+								<li>
+									<span th:text="${everything.reviewRegistrationvo.reviewPlace}" id="reviewPlace"></span>|
+								</li>
+								<input type="hidden" th:value="${everything.reviewRegistrationvo.reviewId}" id="get">
+								<li >
+									<span th:text="${everything.reviewRegistrationvo.title}" id="reviewTitle"></span>
+								</li>
+								<li>
+									<span th:each="check:${everything.reviewRegistrationvo.uservo}">
+										<img th:src="${check.profileImg}" id="img2" /> 
+										<input type="hidden" id="reviewUserId" th:value="${check.userId}">
+										<span th:text="${check.nickname}" id="userNickname"></span>
+									</span>
+								</li>
 							</ul>
 						</div>
 					</li>
@@ -185,22 +189,29 @@
 			<div class="bannerWrap">
 				<div class="cont-area">
 					<div class="cont-txtB">
-						인기 유저 <a href="#" class="more-btn">더보기</a>
+						인기 유저 <a th:href="@{/rank(followerMe=${username})}" class="more-btn">더보기</a>
 					</div>
 					<ul class="list-style04-user" id="banner">
-						<li th:each="uservo:${uservo}" class="emptyspace"><input
-							type="hidden" id="followerMe" th:value="${username}"> <img
-							th:src="${uservo.uservo.profileImg}"> <span class="name">
-								<input type="hidden" id="followingYou"
-								th:value="${uservo.uservo.nickname}"> <span
-								th:text="${uservo.uservo.nickname}"></span> <span>팔로워</span>| <span
-								th:text="${uservo.uservo.followingCount}"> </span>리뷰수 <span
+						<li th:each="uservo:${uservo}"> 
+							<a th:href="@{/getUserMyPage(nickname=${uservo.uservo.nickname}, followerMe=${username})}">
+							<img th:src="${uservo.uservo.profileImg}"> <span class="name">
+								<input type="hidden" id="followingYou" th:value="${uservo.uservo.nickname}"> 
+								<span th:text="${uservo.uservo.nickname}"></span><br>
+								<span>팔로워&nbsp; </span><span
+								th:text="${uservo.uservo.followingCount}"> </span>&nbsp; | &nbsp;리뷰수 <span
 								th:text="${uservo.uservo.postCount}"> </span>
-						</span> <span th:if="${#lists.isEmpty(uservo.followvo)}"> <span
-								class="followbtn btn02">팔로우</span>
-						</span> <span th:if="!${#lists.isEmpty(uservo.followvo)}"> <span
-								class="followbtn btn01">팔로잉</span>
-						</span></li>
+							</span></a>
+						<span class="emptyspace"> 
+							<input type="hidden" id="followingYou" th:value="${uservo.uservo.nickname}">
+							<input type="hidden" id="followerMe" th:value="${username}">
+							<span th:if="${#lists.isEmpty(uservo.followvo)}"> <span
+									class="followbtn btn02">팔로우</span>
+							</span> 
+							<span th:if="!${#lists.isEmpty(uservo.followvo)}"> <span
+									class="followbtn btn01">팔로잉</span>
+							</span>
+						</span>
+						</li>
 					</ul>
 					<div class="arr-area">
 						<span class="arr-btn-left" id="left"></span> <span
@@ -212,21 +223,26 @@
 
 			<div class="cont-area">
 				<div class="cont-txtB">
-					인기 맛집 <a href="#" class="more-btn">더보기</a>
+					인기 맛집 <a th:href="@{/rank(followerMe=${username})}" class="more-btn">더보기</a>
 				</div>
 				<ul class="list-style04-restaurant">
-					<li th:each="advvo:${advvo}" class="emptyspace2"><input
-						type="hidden" id="followerMe" th:value="${username}"> <input
-						type="hidden" id="followingYou"
-						th:value="${advvo.advvo.advertisementname}"> <img
-						th:src="${advvo.advvo.profileImg}"> <span
-						th:text="${advvo.advvo.advertisementname}" class="name"></span>
-						리뷰수<span th:text="${advvo.advvo.putedCount}"></span> <span
-						th:if="${#lists.isEmpty(advvo.putvo)}"> <span
-							class="followbtn btn02">담아두기</span>
-					</span> <span th:if="!${#lists.isEmpty(advvo.putvo)}"> <span
-							class="followbtn btn01">담기완료</span>
-					</span></li>
+					<li th:each="advvo:${advvo}" > 
+						<img th:src="${advvo.advvo.profileImg}"> 
+						<span th:text="${advvo.advvo.advertisementname}" class="name"></span><br>
+						리뷰수
+						<span class="emptyspace2">
+							<input type="hidden" id="followerMe" th:value="${username}"> 
+							<input type="hidden" id="followingYou" th:value="${advvo.advvo.advertisementname}">
+							<span th:text="${advvo.advvo.putedCount}"></span> 
+							<span th:if="${#lists.isEmpty(advvo.putvo)}">
+								<span class="followbtn btn02">담아두기</span>
+							</span>
+						 	<span th:if="!${#lists.isEmpty(advvo.putvo)}" > 
+								
+								<span class="followbtn btn01">담기완료</span>
+							</span>
+						</span>
+					</li>
 				</ul>
 				<div class="arr-area">
 					<a href="#" class="arr-btn-left on" onclick="click"></a> <a
@@ -235,13 +251,13 @@
 			</div>
 		</div>
 		<div class="footer-area">
-			<div class="footer">
+         <div class="footer">
 
-				<button class="top-btn" id="top-btn"
-					style="position: fixed; left: 1466px; top: 740px; border: none; width: 50px; height: 50px; background-size: 100%;"></button>
+            <button class="top-btn" id="top-btn"
+               style="position: fixed; left: 1466px; top: 662px; border: none; width: 50px; height: 55px; background-size: 100%;"></button>
 
-			</div>
-		</div>
+         </div>
+      </div>
 	</div>
 	<script type="text/javascript">
 		$(".dropdown dt a").click(function() {

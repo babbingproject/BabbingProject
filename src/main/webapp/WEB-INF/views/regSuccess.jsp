@@ -17,16 +17,7 @@
 <script type="text/javascript"
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <style type="text/css">
-html, div, body, h3 {
-	margin: 0;
-	padding: 0;
-	font-family: AppleSDGothicNeo;
-}
-
-h3 {
-	display: inline-block;
-	padding: 0.6em;
-} /* W3.CSS 4.13 June 2019 by Jan Egil and Borge Refsnes */
+/* W3.CSS 4.13 June 2019 by Jan Egil and Borge Refsnes */
 html {
 	box-sizing: border-box
 }
@@ -116,6 +107,54 @@ audio
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 :not
 
 
@@ -144,7 +183,55 @@ audio
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -203,7 +290,55 @@ controls
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -287,7 +422,79 @@ display
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 :
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -343,7 +550,79 @@ display
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 none
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -454,6 +733,54 @@ height
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 :
 
 
@@ -482,7 +809,55 @@ height
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -703,6 +1078,7 @@ h1, h2, h3, h4, h5, h6 {
 	line-height: 1.3;
 	letter-spacing: normal;
 	text-align: center;
+	color: #010101;
 }
 
 #pwInfo {
@@ -1594,7 +1970,103 @@ transform
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 :rotate(359deg)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -1720,7 +2192,103 @@ opacity
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 :
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -1837,7 +2405,103 @@ opacity
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 :
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -2606,30 +3270,207 @@ to {
 .w3-border-pale-blue, .w3-hover-border-pale-blue:hover {
 	border-color: #e7ffff !important
 }
+/* Fix login */
+.login_wrap {
+	width: 432px;
+	margin: 0 auto;
+}
+
+.login_wrap .login_title {
+	padding: 32px 0;
+	box-sizing: border-box;
+	text-align: center;
+}
+
+.login_wrap .w3-container {
+	width: 100%;
+	height: 632px;
+}
+
+.login_wrap .w3-margin-top {
+	margin-top: 0 !important;
+}
+
+.login_wrap .loginForm {
+	margin-top: 0;
+}
+
+.login_wrap .loginForm p {
+	margin: 0;
+	padding-top: 25px;
+	box-sizing: border-box;
+}
+
+.login_wrap .loginForm .email {
+	height: 100px;
+}
+
+.login_wrap .loginForm .email2 {
+	padding-top: -50;
+}
+
+.login_wrap .loginForm .pw {
+	padding-top: 0;
+}
+
+.login_wrap .loginForm .pww {
+	padding-top: 0;
+	height: 75px;
+	padding-bottom: 0;
+}
+
+.login_wrap .loginForm span {
+	display: block;
+	width: 80%;
+	margin: 0 auto;
+}
+
+.login_wrap .loginForm .w3-input {
+	margin: 0 auto;
+	font-size: 15px;
+}
+
+.login_wrap .w3-block {
+	margin: 0 auto;
+	font-size: 15px;
+	box-sizing: border-box;
+}
+
+.login_wrap .tab {
+	float: left;
+	width: 50%;
+	z-index: 12;
+	text-align: center;
+}
+
+.login_wrap .tab a {
+	display: block;
+	padding: 15px 0;
+	box-sizing: border-box;
+}
+
+.login_wrap .tab a img {
+	width: 70px;
+}
+
+.login_wrap .btn_remember {
+	display: block;
+	width: 80%;
+	margin: 0 auto !important;
+}
+
+.login_wrap .btn_remember::after {
+	content: '';
+	display: block;
+	clear: both;
+}
+
+.login_wrap .btn_remember laber {
+	float: left;
+}
+
+.login_wrap .btn_remember a {
+	float: right;
+}
+
+.login_wrap .btn_sns {
+	display: block;
+	width: 80%;
+	margin: 0 auto !important;
+}
+
+.login_wrap .btn_sns a {
+	display: block;
+	width: 100%;
+	margin-bottom: 20px;
+}
+
+.login_wrap .btn_sns a:last-child {
+	margin-bottom: 0;
+}
+
+.login_wrap .btn_sns a img {
+	width: 100%;
+}
+
+.login_wrap .txt_img {
+	text-align: center;
+	margin: 20px 0;
+}
+
+.floatClear {
+	
+}
+
+.floatClear::after {
+	content: '';
+	display: block;
+	clear: both;
+}
+
+#Shape740copy2 {
+	float: left;
+	width: 50%;
+	height: 8px;
+	z-index: 3;
+}
+
+#Shape740copy2 img {
+	width: 100%;
+	vertical-align: top;
+}
+
+#Shape740copy {
+	float: left;
+	width: 50%;
+	height: 8px;
+	z-index: 4;
+}
+
+#Shape740copy img {
+	width: 100%;
+	vertical-align: top;
+}
+
+.loginForm {
+	margin-top: 76px;
+}
+
+#copy2 {
+	left: 500px;
+	top: 626px;
+	position: absolute;
+	width: 421px;
+	height: 59px;
+	z-index: 9;
+	color: #000 !important;
+	background-color: #ccc !important
+}
+
+#logoBack {
+	background-color: #fff;
+	border: none;
+}
 </style>
 </head>
 <body>
-	<div class="w3-center">
-		<div id="logoBack">
-			<a href="${pageContext.request.contextPath}/index"><img
+	<div class="login_wrap">
+		<div id="logoBack" class="login_title">
+			<a href="${pageContext.request.contextPath}/"><img
 				src="${pageContext.request.contextPath}/images/Bobbing-logo.png"
 				alt="밥빙 logo" /></a>
 		</div>
-
-	</div>
-	<div>
-		<div class="w3-content w3-container w3-margin-top">
+		<div class="w3-content w3-container w3-margin-top w3-center">
 			<div class="w3-container w3-card-4">
-				<div class="w3-center w3-large w3-margin-top">
+				<div class="loginForm">
 					<br> <br>
 					<h3>안녕하세요, ${param.user_email} 님</h3>
-					<br>
-					<br>
+					<br> <br>
 					<p>환영합니다! 밥빙에서 다양한 체험의 기회를 얻으세요!</p>
 
 					<p>회원가입이 정상적으로 이루어 졌습니다.</p>
 
-					<p>로그인 하시면 홈페이지 내의 모든 서비스를 이용하실 수 있습니다.</p>
+					
 					<br> <input type="button" onclick="location.href='/'"
 						class="w3-button w3-block w3-pink w3-ripple w3-margin-top w3-margin-bottom w3-round"
 						value="메인 페이지로 이동하기"></input>

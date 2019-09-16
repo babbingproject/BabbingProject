@@ -20,6 +20,14 @@ public class UserServiceImpl implements UserService {
 	@Autowired
 	private UserMapper userMapper;
 
+	public List<Uservo> getAllFollowers(String followingYou){
+		return userRepo.getAllFollowers(followingYou);
+	}
+	
+	public List<Uservo> getAllFollowingUsers(String followingMe){
+		return userRepo.getAllFollowingUsers(followingMe);
+	}
+	
 	@Override
 	public Uservo getUser(Uservo uservo) {
 		

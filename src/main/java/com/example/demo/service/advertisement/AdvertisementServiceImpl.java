@@ -19,6 +19,9 @@ public class AdvertisementServiceImpl implements AdvertisementService  {
 	@Autowired
 	private AdMapper adMapper;
 	
+	public List<Advertisementvo> getAllUserPut(String username){
+		return advertiseRepo.getAllUserPut(username);
+	}
 	@Override
 	public List<Object[]> getAdvertisementvoOrderByWeightAvg(){
 		return advertiseRepo.findAllbyAdvertisementidOrderbyEvaluationAvg();

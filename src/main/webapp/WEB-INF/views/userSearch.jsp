@@ -12,8 +12,7 @@
 </style>
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link href="common/css/stylesJoin2.css" rel="stylesheet">
-<link href="common/css/wpwInfo.css" rel="stylesheet">
+<link href="common/css/wlogin.css" rel="stylesheet">
 
 <!-- ajax를 위한 CDN 방식 라이브러리 -->
 <script type="text/javascript"
@@ -78,42 +77,55 @@
 </script>
 </head>
 <body>
-
-
-	<div class="w3-center">
-		<div id="logoBack">
-			<a href="${pageContext.request.contextPath}/index"><img
-				src="images/Bobbing-logo.png" alt="밥빙 logo" /></a>
+	<div class="login_wrap">
+		<div id="logoBack" class="login_title">
+			<a href="/"><img src="images/Bobbing-logo.png" alt="밥빙 logo" /></a>
 		</div>
+		<div class="w3-content w3-container w3-margin-top w3-center">
 
-	</div>
+			<div class="w3-container w3-card-4">
+				<div class="w3-center w3-large w3-margin-top floatClear">
+					<div id="layer_11" class="tab">
+						<a href="/userSearch"><img src="images/layer_11.png" /></a>
+					</div>
+					<div id="layer_12" class="tab">
+						<a href="/adUserSearch"><img src="images/layer_12.png" /></a>
+					</div>
+					<div id="Shape740copy2">
+						<img src="images/Shape740copy.png">
+					</div>
+					<div id="Shape740copy">
+						<img src="images/Shape740copy2.png">
+					</div>
+				</div>
+				<div class="loginForm">
+					
 
-	<div class="w3-content w3-container w3-margin-top w3-center">
+				<form action="user/searchPassword" id="searchBtn2" method="post">
+					<br> <br>
+					<h4>비밀번호를 잃어버리셨나요?</h4>
+					<p id="pwInfo">
+						회원 가입시 사용한 이메일 주소를 입력하시면<br> 비밀번호 재설정 안내 메일을 보내드립니다.
+					</p><br> <br>
+					<p class="email">
+						<input type="text" class="w3-input" name="user_email"
+							id="user_email" placeholder="example@naver.com"
+							required="required">
+						<!-- 쿠기에 저장된 벨류(아이디값)을 꺼내옵니다. 서비스에서 쿠키지정 ->컨르롤러로 벨류 전달 -->
+						<span id="chktext" class="w3-text-red"></span> <span id="chktext2"
+							class="w3-text-blue"></span>
 
-		<div class="w3-container w3-card-4">
-			<br> <br>
-			<h4>비밀번호를 잃어버리셨나요?</h4>
-			<p id="pwInfo">
-				회원 가입시 사용한 이메일 주소를 입력하시면<br> 비밀번호 재설정 안내 메일을 보내드립니다.
-			</p>
+					</p>
+					<button type="submit" id="joinBtn"
+						class="w3-button w3-block w3-pink w3-ripple w3-margin-top w3-round">안내
+						메일전송</button>
+
+
+				</form>
+
+			</div>
 		</div>
-		<form action="user/searchPassword" id="searchBtn2" method="post">
-
-			<p>
-				<input type="text" class="w3-input" name="user_email"
-					id="user_email" placeholder="example@naver.com" required="required">
-				<!-- 쿠기에 저장된 벨류(아이디값)을 꺼내옵니다. 서비스에서 쿠키지정 ->컨르롤러로 벨류 전달 -->
-				<span id="chktext" class="w3-text-red"></span> <span id="chktext2"
-					class="w3-text-blue"></span>
-
-			</p>
-			<button type="submit" id="joinBtn"
-				class="w3-button w3-block w3-pink w3-ripple w3-margin-top w3-round">안내
-				메일전송</button>
-
-
-		</form>
 	</div>
-
+	</div>
 </body>
 </html>

@@ -87,21 +87,22 @@ a {text-decoration: none;color: inherit;cursor: pointer;}
 
 .cont-area .list-style04-user{display: block; padding:30px ;}
 .cont-area .list-style04-user li{float: left;    margin-right: 12px;    width: 165px;}
+.cont-area .list-style04-user #banner{float: left;  margin-top: 100px;    width: 165px;}
 .cont-area .list-style04-user li a{display: block; text-align: center;}
 .cont-area .list-style04-user li img{width: 100%;  border-radius: 100px;border: 2px #bdbcbc solid; }
 .cont-area .list-style04-user li .name{font-size: 16px; font-weight: bold;margin-top:10px}
 .cont-area .list-style04-user li .btn01{color:#fff; background:#ff4d80; border: 2px #ff4d80 solid;padding: 10px 0px; text-align: center; width: 130px;display: inline-block;  border-radius: 5px;}
 .cont-area .list-style04-user li .btn02{color:#ff4d80;  border: 2px #ff4d80 solid; padding: 10px 0px; text-align: center; width: 130px; display: inline-block;  border-radius: 5px;}
-.cont-area .list-style04-user li span{display:block;text-align: center;margin: 5px 0 10px;;}
+.cont-area .list-style04-user li span{text-align: center;margin: 5px 0 10px;;}
 .cont-area .list-style04-user li:last-child{margin-right:0px}
 .cont-area .list-style04-restaurant{display: block; padding:30px ;}
 .cont-area .list-style04-restaurant li{float: left;    margin-right: 12px;    width: 165px;}
 .cont-area .list-style04-restaurant li a{display: block; text-align: center;}
 .cont-area .list-style04-restaurant li img{width: 100%;  border-radius: 100px;border: 2px #bdbcbc solid; }
-.cont-area .list-style04-restaurant li .name{font-size: 16px; font-weight: bold;margin-top:10px}
+.cont-area .list-style04-restaurant li .name{font-size: 16px; font-weight: bold;margin-top:10px; align: center;}
 .cont-area .list-style04-restaurant li .btn01{color:#fff; background:#ff4d80; border: 2px #ff4d80 solid;padding: 10px 0px; text-align: center; width: 130px;display: inline-block;  border-radius: 5px;}
 .cont-area .list-style04-restaurant li .btn02{color:#ff4d80;  border: 2px #ff4d80 solid; padding: 10px 0px; text-align: center; width: 130px; display: inline-block;  border-radius: 5px;}
-.cont-area .list-style04-restaurant li span{display:block;text-align: center;margin: 5px 0 10px;;}
+.cont-area .list-style04-restaurant li span{text-align: center;margin: 5px 0 10px;;}
 .cont-area .list-style04-restaurant li:last-child{margin-right:0px}
 .cont-area .arr-area{position: relative;}
 .cont-area .arr-area .arr-btn-left{background:url('../../images/Bobbing-icon.png') no-repeat left  -120px;    text-indent: -9999px;    position: absolute;    width: 35px;    height: 45px;    top: 35px;    left: -2px;}
@@ -163,3 +164,5 @@ a {text-decoration: none;color: inherit;cursor: pointer;}
 .container.ranking li .userid{font-size: 20px; font-weight: bold;}
 .container.ranking li .btn01{color:#fff; background:#ff4d80; border: 2px #ff4d80 solid;padding: 10px 0px; text-align: center; width: 130px;display: inline-block;  border-radius: 5px;}
 .container.ranking li .btn02{color:#ff4d80;  border: 2px #ff4d80 solid; padding: 10px 0px; text-align: center; width: 130px; display: inline-block;  border-radius: 5px;}
+
+

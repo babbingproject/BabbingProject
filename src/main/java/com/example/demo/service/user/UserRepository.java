@@ -14,6 +14,24 @@ public interface UserRepository extends CrudRepository<Uservo, Integer>{
 	@Query(value = "SELECT u.user_id, u.nickname, u.profile_img, u.following_count, u.post_count FROM Uservo u ORDER BY u.user_score DESC limit 10", nativeQuery = true)
 	List<Object[]> getAllOrderbyUserscoreDESC();
 	
+	@Query(nativeQuery=true, value=""
+			+ "SELECT * FROM uservo "
+			+ "INNER JOIN followvo AS followvo "
+			+ "ON uservo.nickname = followvo.follower_me "
+			+ "WHERE followvo.following_you = ?1 ")
+//			+ "GROUP BY following_you ") 
+	List<Uservo> getAllFollowers(String followingYou);
+	
+	@Query(nativeQuery=true, value=""
+			+ "SELECT * FROM uservo "
+			+ "INNER JOIN followvo AS followvo "
+			+ "ON uservo.nickname = followvo.following_you "
+			+ "WHERE followvo.follower_me = ?1" )
+	List<Uservo> getAllFollowingUsers(String followingYou);
+	
+	@Query(nativeQuery=true, value=""
+			+ "SELECT * FROM Uservo "
+			+ "WHERE nickname = ?1")
 	List<Uservo> findByNickname(String nickname);
 	//유저 서치
 	@Query(nativeQuery = true, value=""

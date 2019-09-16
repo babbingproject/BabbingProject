@@ -7,6 +7,7 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script type="text/javascript" src="common/js/jquery.slideto.min2.js"></script>
 <link href="common/css/wlogin2.css" rel="stylesheet">
+<link rel="stylesheet" href="common/css/styles.css">
 <script>
 	
 </script>
@@ -14,11 +15,10 @@
 <body>
 	<div id="wrap" class="main">
 		<div class="header" th:fragment="header"
-			style="position: fixed; z-index: 999; background-color: #fff; transition: top 0.2s ease-in-out; height: 90px;">
-			<span th:text="${session[uservos]}"></span>
+			style="position: fixed; z-index: 999; background-color: #fff; transition: top 0.2s ease-in-out; height: 100px;">
 			<div class="top">
 				<div class="logo">
-					<a href="/"><img src="images/Bobbing-logo.png" alt="밥빙 logo" /></a>
+					<a href="/"><img src="images/Bobbing-logo-sub.png" alt="밥빙 logo" /></a>
 				</div>
 				<div class="heaer-gnb">
 					<ul>
@@ -30,18 +30,16 @@
 				<div class="heaer-search">
 					<form action="search" enctype="multipart/form-data">
 						<div class="fl MainSearch">
-							<label class="hidden" for="">검색어입력</label> <select
-								th:name="types">
-								<option th:value="review">리뷰</option>
+							<select th:name="types">
+								<option th:value="review" selected="selected">리뷰</option>
 								<option th:value="user">유저</option>
 								<option th:value="campaign">캠페인</option>
 								<option th:value="advertisement">맛집</option>
-							</select> <input name="searchKeyword" class="input_type1" id=""
-								style="width: 180px;" type="text" maxlength="100">
+							</select> 
+							<label class="hidden" for="">검색어입력</label> 
+							<input name="searchKeyword" class="input_type1" id="" style="width: 180px;" type="text" maxlength="100" placeholder="검색어를 입력하세요">
 						</div>
-						<input type="image" value="submit"
-							src="images/Bobbing-header-search.gif" class="fl">
-						<!-- <img alt="" src="images/Bobbing-header-search.gif"> -->
+						<input type="image" value="submit" src="images/icon-search.png" class="fl">
 					</form>
 				</div>
 
@@ -95,6 +93,15 @@
 
 			</div>
 		</div>
+		<div class="footer-area">
+         <div class="footer">
+
+            <button class="top-btn" id="top-btn"
+               style="position: fixed; left: 1466px; top: 740px; border: none; width: 50px; height: 50px; background-size: 100%;"></button>
+
+         </div>
+      </div>
+		
 	</div>
 </body>
 </html>

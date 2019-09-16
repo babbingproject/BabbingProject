@@ -29,7 +29,7 @@ public class Advertisementvo {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int advertisementId;
 	private String advertisement_email;
-	@Column(name="advertisement_name")
+	@Column(name="advertisementname")
 	private String advertisementname;
 	private String password;
 	private String introduce;

@@ -118,10 +118,10 @@ $(function(){
 			<div class="userranking">
 				<div class="borderspace" th:each="user : ${user}">
 					<ul>
-						<li><img th:src="${user.uservo.profileImg}"></li>
+						<a th:href="@{/getUserMyPage(nickname=${user.uservo.nickname}, followerMe=${followerMe})}"><li><img th:src="${user.uservo.profileImg}"></li>
 						<li><br><br><br><span th:text="${user.uservo.nickname}" class="userid"></span> <br><br>
 						<span>팔로워</span><span id="appenduse"><span th:text="${user.uservo.followingCount}" th:value="${user.uservo.followingCount}" id="followingCount"></span></span> | <span>리뷰수
-						</span><span th:text="${user.uservo.postCount}"></span></li>
+						</span><span th:text="${user.uservo.postCount}"></span></li></a>
 						
 						<li><br><br><br>
 							<span class="emptyspace">

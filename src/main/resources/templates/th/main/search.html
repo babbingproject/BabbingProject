@@ -5,12 +5,7 @@
 <title>Insert title here</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <link rel="stylesheet" href="common/css/styles.css">
-<style>
-#reviewdiv{display:none;}
-#userdiv{display:none;} 
-#advertisementdiv{display:none;}
-.active{background-color:blue; color: white;}
-</style>
+
 <script type="text/javascript" th:inline="javascript">
 	
 $(function(){
@@ -39,26 +34,41 @@ $(function(){
 	}
 });
 </script>
+<style>
+#reviewdiv{display:none; }
+#userdiv{display:none;} 
+#advertisementdiv{display:none;}
+.active{background-color:blue; color: white;}
+.cont-area .info{overflow:hidden; align:center;}
+.cont-area .list-style03 .cont-txt img {
+    width: 100%;
+}
+/* .cont-area .list-style03 .cont-txt .photo{float: left; width: 20%} */
+/* .cont-area .list-style03 .cont-txt .info{float: left; width: 20%} */
+.cont-area .list-style03 #reviewlist{float: left; width: 21%; margin-right: 10px; padding-right: 0px}
+.taewon{width: 100%}
+</style>
 </head>
 <body>
 	<div id="wrap" class="main">
 		<div th:replace="/include/header.html :: header"></div>
-		
+		<div class="taewon">
+<!-- 		<br><br><br><br><br><br><br><br> -->
 		<p th:text="${nothing}" th:align="center">
 		
 		<div class="cont-area info" id="reviewdiv">
 		<h3>리뷰</h3>
 			<ul class="list-style03">
-				<li id="reviewlist" th:each="reviewSearch:${reviewSearch}">
+				<li id="reviewlist" th:each="review:${review}">
 					<div class="cont-txt">
 						<p class="photo">
-							<img th:src="${reviewSearch[4]}">
+							<img th:src="${review.reviewImage}">
 						</p>
 						<a href="#" class="best02">베스트</a>
 						<ul class="info">
-							<li><span th:text="${reviewSearch[1]}"></span>|</li> 
-							<li><span th:text="${reviewSearch[2]}"></span></li>
-							<li><img th:src="${reviewSearch[5]}"/> <span th:text="${reviewSearch[6]}"></span></li>
+							<li><span th:text="${review.}"></span>|</li> 
+<!-- 							<li><span th:text="${reviewSearch[2]}"></span></li> -->
+<!-- 							<li><img th:src="${reviewSearch[5]}"/> <span th:text="${reviewSearch[6]}"></span></li> -->
 						</ul>
 					</div>
 				</li>
@@ -107,6 +117,7 @@ $(function(){
 				<a href="#" class="arr-btn-left on" onclick="click"></a> 
 				<a href="#" class="arr-btn-right"></a>
 			</div>
+		</div>
 		</div>
 		
 	</div>
