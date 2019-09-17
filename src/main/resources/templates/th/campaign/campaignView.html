@@ -11,7 +11,7 @@
 	.modal {
 		display: none; /* Hidden by default */
     	position: fixed; /* Stay in place */
-    	z-index: 1; /* Sit on top */
+    	z-index: 9999; /* Sit on top */
     	left: 0;
     	top: 0;
     	width: 100%; /* Full width */
@@ -57,13 +57,10 @@
 	<div id="wrap" class="main">
 		<div th:replace="/include/header.html :: header"></div>
 		<!-- 본문 영역 Start -->
-<<<<<<< HEAD
+
 		<div style="float: left; width: 70%">
 			<input type="hidden" id="campaignId" th:value="${campaign.campaignId}">
-=======
-		<div style="float: left; width: 70% ;margin-top: 150px;">
->>>>>>> fa44bf8c55e826aea5e8e2f50770246ea1efb2ec
-			<h4 th:text="${campaign.title}"></h4>
+			<h4 th:text="${campaign.title}" style="margin-top: 10%;"></h4>
 			<th:block th:if="${session[advertisementvo] != null}">
 			<a th:if="${session['advertisementvo'].advertisementId} == ${campaign.advertisementvo.advertisementId}" th:href="@{updateCampaign(campaignId=${campaign.campaignId})}">수정하기 </a>
 			<p th:if="${session['advertisementvo'].advertisementId} == ${campaign.advertisementvo.advertisementId}" id="deleteTxt">삭제하기</p>
@@ -86,7 +83,7 @@
 		<!-- 본문 영역 End -->
 
 		<!-- 프로필 영역 Start -->
-		<div style="float: left; width: 25%">
+		<div style="float: left; width: 25% ;margin-top: 5%;">
 			<p th:text="${campaign.advertisementvo.advertisementname}" />
 			<br>신청 기간<br>
 			<p th:text="|${#dates.format(campaign.startDate, 'yyyy-MM-dd')} ~ ${#dates.format(campaign.endDate, 'yyyy-MM-dd')}|"></p>
@@ -115,7 +112,7 @@
 		</th:block>
 
     	<!-- The Modal -->
-    	<div id="applyModal" class="modal">
+    	<div id="applyModal" class="modal" >
          <!-- Modal content -->
          	<div class="modal-content">
         		<span class="close"></span> 

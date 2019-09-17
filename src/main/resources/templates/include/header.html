@@ -31,12 +31,9 @@ input:focus {
 <body>
 	<div id="wrap" class="main">
 		<div class="header" th:fragment="header"
-<<<<<<< HEAD
-			style="z-index: 999; background-color: #fff; transition: top 0.2s ease-in-out; height: 90px;">
-			<span th:text="${session[uservos]}"></span>
-=======
+
 			style="position: fixed; z-index: 999; background-color: white;">
->>>>>>> fa44bf8c55e826aea5e8e2f50770246ea1efb2ec
+
 			<div class="top">
 				<div class="logo">
 					<a href="/"><img src="images/Bobbing-logo-sub.png"
@@ -69,10 +66,29 @@ input:focus {
 
 
 				</div>
+				<th:block th:if="${session['uservo']} == null and ${session['advertisementvo'] == null}">
 				<div class="login-btnR">
 					<a href="/login" class="login">로그인</a> ㅣ <a href="/joinForm"
 						class="join">회원가입</a>
 				</div>
+				</th:block>
+				
+				<!-- 기업 회원일 때 -->
+				<th:block th:if="${session['advertisementvo'] != null}">
+				<div class="login-btnR">
+					<a href="/getAdvertisementMyPage" class="login">마이 페이지</a> ㅣ <a href="/logout"
+						class="join">로그아웃</a>
+				</div>
+				</th:block>
+				
+				<!-- 일반 회원일 때 -->
+				<th:block th:if="${session['uservo'] != null}">
+				<div class="login-btnR">
+					<a href="/getUserMyPage" class="login">마이 페이지</a> ㅣ <a href="/logout"
+						class="join">로그아웃</a>
+				</div>
+				</th:block>
+				
 			</div>
 		</div>
 

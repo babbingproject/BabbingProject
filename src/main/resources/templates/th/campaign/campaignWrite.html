@@ -16,6 +16,7 @@
 		<div th:replace="/include/header.html :: header"></div>
 		<form th:action="@{insertCampaign}" method="post" enctype="multipart/form-data" onsubmit="return formValidation();">
 			<input type="hidden" name="advertisementId"	th:value="${session['advertisementvo'].advertisementId}">
+			<br><br><br><br><br><br><br><br>
 			<table>
 				<tr>
 					<td colspan="6"><input type="text" id="title" name="title" placeholder="제목을 입력 해주세요" size="95"></td>
