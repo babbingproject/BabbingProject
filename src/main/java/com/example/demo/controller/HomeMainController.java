@@ -54,17 +54,10 @@ public class HomeMainController {
 	}
 	//메인 홈페이지! 계속 추가추가 수정수정하자!
 	@RequestMapping("/")
-<<<<<<< HEAD
-	public String goIndex1(Model model, String followerMe) {
-
-=======
 	public String goIndex1(Model model, String followerMe, HttpSession httpSession) {
 		
 		System.out.println("SESSION" + httpSession.getServletContext());
-//		List<Object[]> UservoList = userService.getUservoListOrderByFollowingCountDes();
-//		List<Object[]> advvoList = advService.getAdvertisementvoOrderByWeightAvg();
-//		model.addAttribute("newestreview", reviewService.getNewestReview());
->>>>>>> fa44bf8c55e826aea5e8e2f50770246ea1efb2ec
+
 		model.addAttribute("everything", reviewService.getEverythingTopSix());
 	
 		List<CheckingRanking> checkingList = new ArrayList();
@@ -102,16 +95,14 @@ public class HomeMainController {
 			checkingScrap.setScrapvo(scrapService.checkScrap(reviewEverythingTopSix.get(i).getReviewId(), followerMe));
 			checkingScrapTopSixList.add(checkingScrap);
 		}
-<<<<<<< HEAD
-		CheckingScrap checkingScrap = new CheckingScrap();		
-=======
+
 		CheckingScrap checkingScrap = new CheckingScrap();
 		System.out.println(checkingScrap.getScrapvo());
 		System.out.println(reviewNewestList);
 		System.out.println("checkingchecking" +reviewNewestList.get(1).getUservo().getUserId());
 		System.out.println("CHECKING PUT LIST 9/12 19:35" + checkingPutList);
 		System.out.println("CHECKING ADVERTISEMENT NICKNAME" + checkingPutList.get(1).getAdvvo().getAdvertisementname());
->>>>>>> fa44bf8c55e826aea5e8e2f50770246ea1efb2ec
+
 		model.addAttribute("uservo", checkingList);
 		model.addAttribute("advvo", checkingPutList);
 		model.addAttribute("newestreview", checkingScrapNewList);
@@ -151,46 +142,37 @@ public class HomeMainController {
 
 		switch(type) {
 		case "all":
-<<<<<<< HEAD
 
-=======
->>>>>>> fa44bf8c55e826aea5e8e2f50770246ea1efb2ec
 			for(int i = 0; i < everythingTopSix.size(); i ++) {
 				CheckingScrap checkingScrap = new CheckingScrap();
 				checkingScrap.setReviewRegistrationvo(everythingTopSix.get(i));
 				checkingScrap.setUservo(everythingTopSix.get(i).getUservo());
 				checkingScrap.setScrapvo(scrapService.checkScrap(everythingTopSix.get(i).getReviewId(), followerMe));
-<<<<<<< HEAD
-=======
+
 				checkingScrap.setImg(everythingTopSixObject);
->>>>>>> fa44bf8c55e826aea5e8e2f50770246ea1efb2ec
+
 				testing.add(checkingScrap);
 			}
 			break;
 		case "kor":
-<<<<<<< HEAD
 
-=======
->>>>>>> fa44bf8c55e826aea5e8e2f50770246ea1efb2ec
+
 			for(int i = 0; i < businessFieldKor.size(); i ++) {
 				CheckingScrap checkingScrap = new CheckingScrap();
 				checkingScrap.setReviewRegistrationvo(businessFieldKor.get(i));
 				checkingScrap.setUservo(businessFieldKor.get(i).getUservo());
 				checkingScrap.setScrapvo(scrapService.checkScrap(businessFieldKor.get(i).getReviewId(), followerMe));
 				checkingScrap.setImg(businessFieldKorObject);
-<<<<<<< HEAD
-				
-=======
+
 				System.out.println("TESTING OBJECT LIST " +checkingScrap.getImg());
 				System.out.println(checkingScrap.getScrapvo());
 				System.out.println("GET KOR FIELD'S EACH REVIEWID" + businessFieldKor.get(i).getReviewId());
->>>>>>> fa44bf8c55e826aea5e8e2f50770246ea1efb2ec
+
 				testing.add(checkingScrap);
 				
 			}
 			break;
-<<<<<<< HEAD
-=======
+
 		case "wes":
 			for(int i = 0; i < businessFieldWes.size(); i ++) {
 				CheckingScrap checkingScrap = new CheckingScrap();
@@ -251,7 +233,7 @@ public class HomeMainController {
 				testing.add(checkingScrap);
 			}
 			break;
->>>>>>> fa44bf8c55e826aea5e8e2f50770246ea1efb2ec
+
 		default :
 		}
 		return testing;
@@ -276,10 +258,10 @@ public class HomeMainController {
 						model.addAttribute("nothing", "리뷰 검색 결과가 없습니다");
 						break;
 					}
-<<<<<<< HEAD
+
 					
 					model.addAttribute("reviewSearch", reviewService.getSearchKeyword(searchKeyword.getSearchKeyword()));
-=======
+
 					System.out.println("리뷰리뷰리뷰리뷰did it come in here?");
 					for(int i = 0; i < review.size(); i++) {
 						SearchPaging searchPaging = new SearchPaging();
@@ -289,7 +271,7 @@ public class HomeMainController {
 						searchingPaging.add(searchPaging);
 					}
 					model.addAttribute("review", searchingPaging);
->>>>>>> fa44bf8c55e826aea5e8e2f50770246ea1efb2ec
+
 					break;
 				case "user" :
 					if(userService.getSearchKeyword(searchKeyword.getSearchKeyword()).isEmpty()) {
@@ -332,13 +314,11 @@ public class HomeMainController {
 	@RequestMapping("/scrapButton")
 	public int scrapButton(String followerMe, Integer reviewUserId, Integer reviewId) {
 		int result = 0;
-<<<<<<< HEAD
 
-=======
 		System.out.println("USER THAT IS LOGGED IN   " + followerMe);
 		System.out.println("USER THAT HAS WROTE THIS CURRENT REVIEW    " + reviewUserId);
 		System.out.println("REVIEW'S ID   " + reviewId);
->>>>>>> fa44bf8c55e826aea5e8e2f50770246ea1efb2ec
+
 		if(followerMe.isEmpty()) {
 			result = -1;
 			
