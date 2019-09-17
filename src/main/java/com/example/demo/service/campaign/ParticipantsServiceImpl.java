@@ -19,7 +19,7 @@ public class ParticipantsServiceImpl implements ParticipantsService {
 	}
 
 	@Override
-	public Participantsvo getParticipants(int userId, int campaignId) {
+	public int getParticipants(int userId, int campaignId) {
 		return participantsRepo.getParticipant(userId, campaignId);
 	}
 
@@ -27,14 +27,11 @@ public class ParticipantsServiceImpl implements ParticipantsService {
 	public void insertParticipants(Participantsvo participants) {
 		participants.setParticipation('N');
 		participantsRepo.save(participants);
-		
-
 	}
 
 	@Override
 	public void deleteParticipants(int advertisementId, int campaignId) {
 		participantsRepo.deleteParticipants(advertisementId, campaignId);	
-
 	}
 
 	@Override
@@ -42,7 +39,6 @@ public class ParticipantsServiceImpl implements ParticipantsService {
 		Participantsvo participantsvo = participantsRepo.findById(participantsId).get();
 		participantsvo.setParticipation('Y');
 		participantsRepo.save(participantsvo);
-
 	}
 
 	@Override
@@ -50,5 +46,10 @@ public class ParticipantsServiceImpl implements ParticipantsService {
 		Participantsvo participantsvo = participantsRepo.findById(participantsId).get();
 		participantsvo.setParticipation('N');
 		participantsRepo.save(participantsvo);
+	}
+
+	@Override
+	public String applyCheck(int participantsId) {
+		return participantsRepo.applyCheck(participantsId);
 	}
 }

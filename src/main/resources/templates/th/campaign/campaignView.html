@@ -7,57 +7,50 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
 <style>
- /* The Modal (background) */
-        .modal {
-            display: none; /* Hidden by default */
-            position: fixed; /* Stay in place */
-            z-index: 1; /* Sit on top */
-            left: 0;
-            top: 0;
-            width: 100%; /* Full width */
-            height: 100%; /* Full height */
-            overflow: auto; /* Enable scroll if needed */
-            background-color: rgb(0,0,0); /* Fallback color */
-            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-        }
+ 	/* The Modal (background) */
+	.modal {
+		display: none; /* Hidden by default */
+    	position: fixed; /* Stay in place */
+    	z-index: 1; /* Sit on top */
+    	left: 0;
+    	top: 0;
+    	width: 100%; /* Full width */
+    	height: 100%; /* Full height */
+    	overflow: auto; /* Enable scroll if needed */
+    	background-color: rgb(0,0,0); /* Fallback color */
+    	background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+	}
     
-        /* Modal Content/Box */
-        .modal-content {
-            background-color: #fefefe;
-            margin: 15% auto; /* 15% from the top and centered */
-            padding: 20px;
-            border: 1px solid #888;
-            width: 50%; /* Could be more or less, depending on screen size */                          
-        }
-        /* The Close Button */
-        .close {
-            color: #aaa;
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
-        }
-        .close:hover,
-        .close:focus {
-            color: black;
-            text-decoration: none;
-            cursor: pointer;
-        }
+    /* Modal Content/Box */
+    .modal-content {
+    	background-color: #fefefe;
+        margin: 15% auto; /* 15% from the top and centered */
+        padding: 20px;
+        border: 1px solid #888;
+        width: 50%; /* Could be more or less, depending on screen size */                          
+    }
+    
+    /* The Close Button */
+    .close {
+       color: #aaa;
+       float: right;
+       font-size: 28px;
+       font-weight: bold;
+    }
+    
+    .close:hover,
+    .close:focus {
+    	color: black;
+        text-decoration: none;
+        cursor: pointer;
+    }    
 </style>
-
 
 <!-- Alertyfy.js -->
 <script   src="//cdn.jsdelivr.net/npm/alertifyjs@1.11.4/build/alertify.min.js"></script>
 <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.11.4/build/css/alertify.min.css" />
 <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.11.4/build/css/themes/default.min.css" />
 
-   <!-- 레이어 팝업 -->
-   <script>
-      function applyFunction() {
-         alertify.set('notifier', 'delay', 1);
-         alertify.set('notifier', 'position', 'bottom-center');
-         alertify.success('응모가 완료되었습니다.');
-      }
-   </script>
 </head>
 
 <body>
@@ -65,10 +58,16 @@
 		<div th:replace="/include/header.html :: header"></div>
 		<!-- 본문 영역 Start -->
 		<div style="float: left; width: 70%">
+			<input type="hidden" id="campaignId" th:value="${campaign.campaignId}">
 			<h4 th:text="${campaign.title}"></h4>
 			<th:block th:if="${session[advertisementvo] != null}">
 			<a th:if="${session['advertisementvo'].advertisementId} == ${campaign.advertisementvo.advertisementId}" th:href="@{updateCampaign(campaignId=${campaign.campaignId})}">수정하기 </a>
-			<a th:if="${session['advertisementvo'].advertisementId} == ${campaign.advertisementvo.advertisementId}" th:href="@{deleteCampaign(campaignId=${campaign.campaignId}) }">삭제하기</a><br>
+			<p th:if="${session['advertisementvo'].advertisementId} == ${campaign.advertisementvo.advertisementId}" id="deleteTxt">삭제하기</p>
+
+			</th:block>
+			<th:block th:each="campaignImg:${campaignImgList}">
+				<img th:src="${campaignImg.campaignImg}" width="50%" height="50%">
+				<br><br>
 			</th:block>
 			<textarea cols="60" rows="5" readonly="readonly"
 				th:text="${campaign.introduction}"></textarea>
@@ -88,77 +87,51 @@
 			<br>신청 기간<br>
 			<p th:text="|${#dates.format(campaign.startDate, 'yyyy-MM-dd')} ~ ${#dates.format(campaign.endDate, 'yyyy-MM-dd')}|"></p>
 			모집 인원<br>
-			<p th:text="|${campaign.participants} / ${campaign.recruitment}|"></p> 
+			<div id="campaignParticipants">
+				<p th:text="|${campaign.participants} / ${campaign.recruitment}|"></p>
+			</div> 
 		
 		<th:block th:if="${session[advertisementvo] != null}">
 		<input th:if="${session['advertisementvo'].advertisementId} == ${campaign.advertisementvo.advertisementId}" type="button" id="applyBtn" value="응모자 보기">
 		</th:block>
 		
 		<th:block th:if="${session[uservo] != null}">
-		<form th:if="${participant} == null" th:action="@{participants}" method="post">		
-		<input type="hidden" name="userId" th:value="${session['uservo'].userId}">
-		<input type="hidden" name="campaignId" th:value="${campaign.campaignId}">
-		<input type="submit" value="응모하기">	
-		</form>
 		
-		<form th:if="${participant} != null" th:action="@{deleteParticipants}" method="post">
-		<input type="hidden" name="userId" th:value="${session['uservo'].userId}">
-		<input type="hidden" name="campaignId" th:value="${campaign.campaignId}">
-		<input type="submit" value="취소하기">
-		</form>
+		<input type="hidden" id="userId" th:value="${session['uservo'].userId}">
+		<input type="hidden" id="campaignId" th:value="${campaign.campaignId}">
+		
+		<div id="participantPlus">		
+		<input type="button" id="participantPlusBtn" value="응모하기">	
+		</div>
+		
+		<div id="participantMinus">
+		<input type="button" id="participantMinusBtn" value="취소하기">
+		</div>
+		
 		</th:block>
 
     	<!-- The Modal -->
     	<div id="applyModal" class="modal">
-
- 
          <!-- Modal content -->
-         <div class="modal-content">
-        <span class="close"></span>                                                               
-
-        	<table >
-                    		<tr th:each="participants:${participantsList} ">
-                        	<td th:text="${participants.uservo.nickname}">
-                        	<td>
-							<form th:if ="${participants.participation} == 'N'" th:action="@{selectParticipants}">
-                        	<input type="hidden" name="participantsId" th:value="${participants.participantsId}">
-                        	<input type="submit" style="float: right" value="선정하기">
-                    		</form>
-                    	  
-                    		<form th:if ="${participants.participation} == 'Y'" th:action="@{cancleParticipants}">
-                        	<input type="hidden" name="participantsId" th:value="${participants.participantsId}">
-                        	<input type="submit" style="float: right" value="취소하기">
-                    		</form>
-                    		</td>
-	                        </tr>                        
-                    	</table>                 
-      	</div> 
+         	<div class="modal-content">
+        		<span class="close"></span> 
+        		<div id="modalParticipants"></div>                                                            
+      		</div> 
     	</div>	
 			
-    	</div>		
+    	</div> <!-- 프로필 영역 END -->	
 	</div>
 
+
+	<!-- 모달 스크립트 -->
 	<script>
-	// Get the modal
+	
 	var modal = document.getElementById('applyModal');
-	
-	// Get the button that opens the modal
-	var btn = document.getElementById("applyBtn");
-	
-	// Get the <span> element that closes the modal
-	var span = document.getElementsByClassName("close")[0];                                          
-	
-	// When the user clicks on the button, open the modal 
-	btn.onclick = function() {
-	    modal.style.display = "block";
-	}
-	
-	// When the user clicks on <span> (x), close the modal
+	var span = document.getElementsByClassName("close")[0];	
 	span.onclick = function() {
 	    modal.style.display = "none";
-	}
-	
-	// When the user clicks anywhere outside of the modal, close it
+	}	
+
 	window.onclick = function(event) {
 	    if (event.target == modal) {
 	        modal.style.display = "none";
@@ -167,5 +140,160 @@
 	</script>
 
 
+	<!-- 응모하기 / 취소하기 스크립트 -->
+	<script>
+	$(document).ready(function(){
+		var userId = $("#userId").val();
+		var campaignId = $("#campaignId").val();
+		$.ajax({
+			url:"/participantsCheck",
+			data:{
+				userId:userId,
+				campaignId:campaignId
+			},
+			success:function(result){
+				if(result==0){
+					$("#participantMinus").hide();
+					$("#participantPlus").show();
+				}else{
+					$("#participantPlus").hide();
+					$("#participantMinus").show();
+				}			
+				
+			}
+		});
+		
+		$("#participantPlusBtn").click(function(){
+			var userId = $("#userId").val();
+			var campaignId = $("#campaignId").val();
+			$.ajax({
+				url:"/participants",
+				data:{
+					userId:userId,
+					campaignId:campaignId
+				},
+				success:function(participants){
+					var str="<p>"+participants.participants+"/"+participants.recruitment+"</p>";
+					$("#campaignParticipants p").remove();
+					$("#campaignParticipants").html(str);
+					$("#participantPlus").hide();
+					$("#participantMinus").show();
+					
+		    		alertify.set('notifier', 'delay', 2);
+		        	alertify.set('notifier', 'position', 'bottom-right');
+		        	alertify.success('응모가 완료되었습니다.');
+				}
+			});
+		});
+		
+		$("#participantMinusBtn").click(function(){
+			var userId = $("#userId").val();
+			var campaignId = $("#campaignId").val();
+			$.ajax({
+				url:"/deleteParticipants",
+				data:{
+					userId:userId,
+					campaignId:campaignId
+				},
+				success:function(participants){
+					var str="<p>"+participants.participants+"/"+participants.recruitment+"</p>";
+					$("#campaignParticipants p").remove();
+					$("#campaignParticipants").html(str);
+					$("#participantMinus").hide();
+					$("#participantPlus").show();
+					
+					alertify.set('notifier', 'delay', 2);
+		        	alertify.set('notifier', 'position', 'bottom-right');
+		        	alertify.error('취소가 완료되었습니다.');
+				}
+			});
+		});
+	});
+	</script>
+	
+	
+	<!-- 선정하기 / 취소하기 스크립트 -->
+	<script>
+	$(document).ready(function(){
+			
+		$("#applyBtn").click(function(){
+			participant();
+			modal.style.display = "block";
+		});
+		
+		$(document).on('click','.selectParticipantBtn',function(){
+			var participantsId = $(this).next().val();
+			$.ajax({
+				url:"/selectParticipant",
+				data:{participantsId:participantsId},
+				success:function(){
+					participant();
+					
+		    		alertify.set('notifier', 'delay', 2);
+		        	alertify.set('notifier', 'position', 'bottom-right');
+		        	alertify.success('선정이 완료되었습니다.');
+				}
+			});
+		});
+		
+		$(document).on('click','.cancelParticipantBtn',function(){
+			var participantsId = $(this).next().val();
+			$.ajax({
+				url:"/cancelParticipant",
+				data:{participantsId:participantsId},
+				success:function(){
+					participant();
+					
+					alertify.set('notifier', 'delay', 2);
+		        	alertify.set('notifier', 'position', 'bottom-right');
+		        	alertify.error('선정 취소가 완료되었습니다.');
+				}
+			});
+		});
+		
+		function participant(){
+			var campaignId = $("#campaignId").val();
+			$.ajax({
+				url:"/selectParticipantList",
+				data:{campaignId:campaignId},
+				success:function(participantList){
+					var str="";
+					str += "<table>";
+					for(var i in participantList){
+						str += "<tr><td>"+participantList[i].nickname+"</td>";
+						if(participantList[i].participation=="N"){
+							str += "<td><input type='button' class='selectParticipantBtn' style='float: right' value='선정하기'>";
+							str += "<input type='hidden' value='"+participantList[i].participantsId+"'></td>"
+						}else{
+							str += "<td><input type='button' class='cancelParticipantBtn' style='float: right' value='취소하기'>";
+							str += "<input type='hidden' value='"+participantList[i].participantsId+"'></td></tr>"
+						}
+					}
+					str += "</table>";
+					$("#modalParticipants table").remove;
+					$("#modalParticipants").html(str);			
+					
+				}
+			});
+		}
+	});
+	</script>
+	
+	<!-- 삭제하기 스크립트 -->
+	<script>
+	$(document).ready(function(){
+		$("#deleteTxt").click(function(){
+			
+			var campaignId = $("#campaignId").val();
+			alertify.confirm('', '게시물을 삭제하시겠습니까?',
+					function(){ alertify.success('Ok') ,	            	
+					location.href="/deleteCampaign?campaignId="+campaignId;
+	            }
+           ,function(){ 
+        	   alertify.set('notifier','delay',2);
+        	   alertify.error('취소하였습니다.')});
+		});		
+	})	
+	</script>
 </body>
 </html>

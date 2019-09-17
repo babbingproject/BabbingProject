@@ -14,7 +14,7 @@
 <body>
 	<div id="wrap" class="main">
 		<div class="header" th:fragment="header"
-			style="position: fixed; z-index: 999; background-color: #fff; transition: top 0.2s ease-in-out; height: 90px;">
+			style="z-index: 999; background-color: #fff; transition: top 0.2s ease-in-out; height: 90px;">
 			<span th:text="${session[uservos]}"></span>
 			<div class="top">
 				<div class="logo">
@@ -50,6 +50,7 @@
 					th:if="${session['uservo']} == null and ${session['advertisementvo'] == null}">
 					<a th:href="login">로그인 </a> | <a th:href="joinForm">회원가입</a>
 				</th:block>
+				
 				<th:block th:if="${session['advertisementvo'] != null}">
 					<div class="heaer-btnR">
 						<div class="selectbox">

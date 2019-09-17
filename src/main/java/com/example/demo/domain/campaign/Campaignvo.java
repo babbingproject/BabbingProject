@@ -30,6 +30,7 @@ public class Campaignvo {
 	private int campaignId;
 	
 	private String title;
+	
 	private String introduction;
 	
 	@Column(nullable = false, columnDefinition="int default 0")

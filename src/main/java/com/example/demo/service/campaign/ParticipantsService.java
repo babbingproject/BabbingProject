@@ -8,7 +8,7 @@ public interface ParticipantsService {
 	
 	List <Participantsvo> getParticipantsList(int campaignId);
 	
-	Participantsvo getParticipants(int userId, int campaignId);
+	int getParticipants(int userId, int campaignId);
 	
 	// 응모하기
 	void insertParticipants(Participantsvo participants);
@@ -17,6 +17,8 @@ public interface ParticipantsService {
 	// 선정하기	
 	void selectParticipants(int participantsId);
 	// 선정취소
-	void cancleParticipants(int participantsId);	
+	void cancleParticipants(int participantsId);
+
+	String applyCheck(int participantsId);	
 	
 }

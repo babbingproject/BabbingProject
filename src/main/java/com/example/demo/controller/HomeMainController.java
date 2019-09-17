@@ -53,9 +53,7 @@ public class HomeMainController {
 	//메인 홈페이지! 계속 추가추가 수정수정하자!
 	@RequestMapping("/")
 	public String goIndex1(Model model, String followerMe) {
-//		List<Object[]> UservoList = userService.getUservoListOrderByFollowingCountDes();
-//		List<Object[]> advvoList = advService.getAdvertisementvoOrderByWeightAvg();
-//		model.addAttribute("newestreview", reviewService.getNewestReview());
+
 		model.addAttribute("everything", reviewService.getEverythingTopSix());
 	
 		List<CheckingRanking> checkingList = new ArrayList();
@@ -81,12 +79,10 @@ public class HomeMainController {
 		for(int i = 0; i < reviewNewestList.size(); i++) {
 			CheckingScrap checkingScrap = new CheckingScrap();
 			checkingScrap.setReviewRegistrationvo(reviewNewestList.get(i));
-			System.out.println("reviewList ++!!" +reviewNewestList.get(i));
+			
 			checkingScrap.setScrapvo(scrapService.checkScrap(reviewNewestList.get(i).getReviewId(), followerMe));
 			
-			System.out.println("NUMBER THAT IS RUNNING NOW "+i);
-			System.out.println("reviewId that needs to be inserted but displays this number = "+reviewNewestList.get(i).getUservo().getUserId());
-			System.out.println("scrapService three sccrap?????????" +scrapService.checkScrap(reviewNewestList.get(i).getReviewId(), followerMe));
+		
 			checkingScrapNewList.add(checkingScrap);
 		}
 		for(int i = 0; i < reviewEverythingTopSix.size(); i ++) {
@@ -95,22 +91,19 @@ public class HomeMainController {
 			checkingScrap.setScrapvo(scrapService.checkScrap(reviewEverythingTopSix.get(i).getReviewId(), followerMe));
 			checkingScrapTopSixList.add(checkingScrap);
 		}
-		CheckingScrap checkingScrap = new CheckingScrap();
-		System.out.println(checkingScrap.getScrapvo());
-		System.out.println(reviewNewestList);
-		System.out.println("checkingchecking" +reviewNewestList.get(1).getUservo().getUserId());
+		CheckingScrap checkingScrap = new CheckingScrap();		
 		model.addAttribute("uservo", checkingList);
 		model.addAttribute("advvo", checkingPutList);
 		model.addAttribute("newestreview", checkingScrapNewList);
 		model.addAttribute("everything", checkingScrapTopSixList);
-		System.out.println(followerMe);
+
 		return "th/main/index1";
 	}
 	
 	@ResponseBody
 	@RequestMapping("tabMenu")
 	public List<CheckingScrap> tabMenu(String type, Model model, String followerMe) {
-		System.out.println("types is " +type);
+
 		List<CheckingScrap> testing = new ArrayList();
 		List<ReviewRegistrationvo> everythingTopSix = reviewService.getEverythingTopSix();
 		List<Object[]> businessFieldKorObject = reviewService.getBusinessFieldOneObject();
@@ -123,116 +116,35 @@ public class HomeMainController {
 		List<ReviewRegistrationvo> businessFieldCaf = reviewService.getBusinessFieldSeven();
 		switch(type) {
 		case "all":
-//			testing = reviewService.getEverythingTopSix();
+
 			for(int i = 0; i < everythingTopSix.size(); i ++) {
 				CheckingScrap checkingScrap = new CheckingScrap();
 				checkingScrap.setReviewRegistrationvo(everythingTopSix.get(i));
 				checkingScrap.setScrapvo(scrapService.checkScrap(everythingTopSix.get(i).getReviewId(), followerMe));
-				System.out.println("EVEYRYHITNG TPO SIX REVIEW"+everythingTopSix.get(i));
-				System.out.println("EVERYTHING TOP SIX SCRAP " +scrapService.checkScrap(everythingTopSix.get(i).getReviewId(), followerMe));
 				testing.add(checkingScrap);
 			}
 			break;
 		case "kor":
-//			testing = reviewService.getBusinessFieldOne();
+
 			for(int i = 0; i < businessFieldKor.size(); i ++) {
 				CheckingScrap checkingScrap = new CheckingScrap();
 				checkingScrap.setReviewRegistrationvo(businessFieldKor.get(i));
 				checkingScrap.setUservo(businessFieldKor.get(i).getUservo());
 				checkingScrap.setScrapvo(scrapService.checkScrap(businessFieldKor.get(i).getReviewId(), followerMe));
-//				System.out.println(checkingScrap.reviewImagevo);
-//				System.out.println("picture url " + checkingScrap.getReviewImagevo());
 				checkingScrap.setImg(businessFieldKorObject);
-				System.out.println("TESTING OBJECT LIST " +checkingScrap.getImg());
-			
 				
-				
-//				System.out.println("spliterator" + email.spliterator());
-////				checkingScrap.setImg((checkingScrap.getReviewImagevo().get(i).getImg()));
-//				System.out.println("KOREAN GET REVIEW IMG LIST " + businessFieldKor.get(i).getReviewImgList());
-//				System.out.println("KOREAN USERVO LSIT "+businessFieldKor.get(i).getUservo().getNickname());
-//				System.out.println("KOREAN REVIEWSSSSSSSS" + businessFieldKor.get(i));
-//				System.out.println("KOREAN SCRAP +" +scrapService.checkScrap(businessFieldKor.get(i).getReviewId(), followerMe));
 				testing.add(checkingScrap);
 				
 			}
 			break;
-//		case "wes":
-//			testing =reviewService.getBusinessFieldTwo();
-//			System.out.println("case wes");
-//			break;
-//		case "jpn":
-//			testing = reviewService.getBusinessFieldThree();
-//			break;
-//		case "chn":
-//			testing = reviewService.getBusinessFieldFour();
-//			break;
-//		case "snk":
-//			testing = reviewService.getBusinessFieldFive();
-//			break;
-//		case "fst":
-//			testing = reviewService.getBusinessFieldSix();
-//			break;
-//		case "caf":
-//			testing = reviewService.getBusinessFieldSeven();
-//			break;
 		default :
 		}
 		model.addAttribute("everything", testing);
 		return testing;
 	}
-	//태원의 제2의 메인홈 테스팅 메소드. 화면 정보 다 뿌려주자자자자자
-//	@RequestMapping("/taewonhome")
-//	public String getHomeMain(Uservo Uservo, Model model) {
-//		List<Object[]> UservoList = userService.getUservoListOrderByFollowingCountDes();
-//		model.addAttribute("Uservo", UservoList);
-//		System.out.println(UservoList);
-//		return "main/homemain";
-//	}
-//	@RequestMapping("/board")
-//	public String goBoard() {
-//		return "board";
-//	}
-	
-	//태원의 메인홈 테스팅 메소드. 화면 정보 열로 다 뿌려주기
-//	@RequestMapping("/taewonhome")
-//	public String getHomeMain(Uservo Uservo, Model model) {
-//		List<Uservo> UservoList = userService.getUservoList(Uservo);
-//		model.addAttribute("Uservo", UservoList);
-//		System.out.println(UservoList);
-//		return "main/homemain";
-//	}
-	
-	//해당 리뷰 카테고리 선택해서 뿌려주기
-//	@RequestMapping("/taewonhome")
-//	public String getReviewCategories(Model model) {
-//		List<Object[]> koreanReviewList = reviewService.getKoreanTopSix();
-//		model.addAttribute("koreanReviewList", koreanReviewList);
-//		return "main/homemain";
-//	}
-	
-	//150개이상되는 데이터를 하나하나 입력하기 싫어서 이렇게 넣어볼려했는데 review_id에서 걸리네요..나중에 해결책 찾기
-//	@RequestMapping("/quickinsert")
-//	public String quickinsert() {
-//		for(int i = 43; i < 157; i ++) {
-//			ReviewImagevo review = new ReviewImagevo();
-//			review.setImg("https://www.dropbox.com/s/r48ealh2taf052f/%EA%B9%80%EC%B2%9C%EC%9E%AC%EC%9D%98%EC%A1%B1%EB%B0%9C%EC%9D%B4%EB%B3%B4%EA%B3%B1%EB%8B%AD_%EC%8B%A0%EB%85%BC%ED%98%844.png?dl=0");
-//			review.setImg_review("hope it inserts");
-//			review.setReview_id(i);
-//			reviewImageService.saveReviewImagevo(review);
-//		}
-//		
-//		return "main/homemain";
-//	}
-	
-
-	
-	//서치페이지로 가기!
 		@RequestMapping("/search")
 		public String goToSearch(Searchvo searchKeyword, Model model, @RequestParam(defaultValue = "0")int page) {
-			System.out.println(searchKeyword.getTypes());
-			System.out.println(searchKeyword.getSearchKeyword());
-		
+
 			List<CheckingScrap> checkingScrapList = new ArrayList();
 			List<ReviewRegistrationvo> reviewList = reviewService.findAll(); 
 			
@@ -240,12 +152,12 @@ public class HomeMainController {
 				
 				switch (searchKeyword.getTypes()) {
 				case "review" :
-//					System.out.println(reviewService.getSearchKeyword(searchKeyword.getSearchKeyword(), PageRequest.of(page, 5)));
+
 					if(reviewService.getSearchKeyword(searchKeyword.getSearchKeyword()).isEmpty()) {
 						model.addAttribute("nothing", "리뷰 검색 결과가 없습니다");
 						break;
 					}
-					System.out.println("리뷰리뷰리뷰리뷰did it come in here?");
+					
 					model.addAttribute("reviewSearch", reviewService.getSearchKeyword(searchKeyword.getSearchKeyword()));
 					break;
 				case "user" :
@@ -253,39 +165,24 @@ public class HomeMainController {
 						model.addAttribute("nothing", "유저 검색 결과가 없습니다");
 						break;
 					}
-					System.out.println("유저유저유저유저 왔나오?");
+					
 					model.addAttribute("userSearch", userService.getSearchKeyword(searchKeyword.getSearchKeyword()));
 					break;
 				case "campaign" :
 					
 					break;
 				case "advertisement" :
-//					System.out.println("광광광고고고고고고곡 여기에 왔나요?");
-//					if(advService.getSearchKeyword(searchKeyword.getSearchKeyword()).isEmpty()) {
-//						model.addAttribute("nothing", "기업 검색 결과가 없습니다");
-//						break;
-//					}
-//					model.addAttribute("advertisementSearch", advService.getSearchKeyword(searchKeyword.getSearchKeyword()));
+
 					break;
 				}
 			} else {
 				model.addAttribute("nothing", "검색 결과가 없습니다");
 			}
-//			System.out.println("reviewREVIEWREIVRWREIVEW " + reviewService.getSearchKeyword(searchKeyword.getSearchKeyword(), PageRequest.of(page, 5)));
-			System.out.println("reviewREVIEWREIVRWREIVEW " + reviewService.getSearchKeyword(searchKeyword.getSearchKeyword()));
-			System.out.println("USERUSERUSERUSERUSER " + userService.getSearchKeyword(searchKeyword.getSearchKeyword()));
-//			System.out.println("ADVADVADVADVADVasdvadv " + advService.getSearchKeyword(searchKeyword.getSearchKeyword()));
+
 			return "th/main/search";
 		}
 	
-	
-//	public String getHomeMain(Uservo Uservo, Model model) {
-//		List<Uservo> UservoList = userService.getUservoListOrderByFollowingCountDes(Uservo);
-//		model.addAttribute("Uservo", UservoList);
-//		System.out.println(UservoList);
-//		return "main/homemain";
-//	}
-	
+
 	@RequestMapping("/testsearch")
 	public String showPage(Model model, @RequestParam(defaultValue="0")int page) {
 		model.addAttribute("data", reviewService.findAll(PageRequest.of(page, 4)));
@@ -293,11 +190,7 @@ public class HomeMainController {
 		return "th/main/search";
 	}
 	
-	
 
-
-	
-	//korean food list top six testing ajax
 	@RequestMapping("/getkoreanfood")
 	public String getKoreanFood(Model model) {
 		model.addAttribute("businessone", reviewService.getBusinessFieldOne());
@@ -308,9 +201,7 @@ public class HomeMainController {
 	@RequestMapping("/scrapButton")
 	public int scrapButton(String followerMe, Integer reviewUserId, Integer reviewId) {
 		int result = 0;
-		System.out.println(followerMe);
-		System.out.println(reviewUserId);
-		System.out.println(reviewId);
+
 		if(followerMe.isEmpty()) {
 			result = -1;
 			
@@ -323,8 +214,7 @@ public class HomeMainController {
 			userService.scrapFactorDecrease(reviewUserId);
 			result = 1;
 		}
-		
-		System.out.println("print result value" + result);
+
 		return result;
 	}
 

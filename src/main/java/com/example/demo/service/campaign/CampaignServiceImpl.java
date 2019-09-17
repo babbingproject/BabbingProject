@@ -6,14 +6,16 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.demo.domain.campaign.CampaignImgvo;
 import com.example.demo.domain.campaign.Campaignvo;
-import com.example.demo.domain.mypage.Advertisementvo;
 
 @Service
 public class CampaignServiceImpl implements CampaignService {
 	@Autowired
 	CampaignRepository campaignRepo;
-	
+	@Autowired
+	CampaignImgRepository campaignImgRepo;
+		
 	@Override
 	public List<Campaignvo> getCampaignList(Campaignvo campaignvo) {
 		 
@@ -21,23 +23,23 @@ public class CampaignServiceImpl implements CampaignService {
 	}
 
 	@Override
-	public List<Campaignvo> getListByWriteDate(Campaignvo campaignvo) {
-		 
-		return (List<Campaignvo>) campaignRepo.findAllByOrderByWriteDateDesc();
-	}
-
-	@Override
-	public List<Campaignvo> getListByEndDate(Campaignvo campaignvo) {
-		// 
-		return (List<Campaignvo>) campaignRepo.findAllByOrderByEndDateAsc();
-	}
-
-	@Override
 	public List<Campaignvo> getListByActive(Campaignvo campaignvo) {
 		// TODO Auto-generated method stub
 		return (List<Campaignvo>) campaignRepo.findAllByActive();
 	}
+	
+	@Override
+	public List<Campaignvo> getListByEndDate(Campaignvo campaignvo) {
+		// 
+		return (List<Campaignvo>) campaignRepo.findAllByOrderByEndDateAsc();
+	}	
 
+	@Override
+	public List<Campaignvo> getListByPopular(Campaignvo campaignvo) {
+		
+		return (List<Campaignvo>) campaignRepo.findAllByPopularByActive();
+	}
+	
 	@Override
 	public void insertCampaign(Campaignvo campaignvo) {
 		campaignRepo.save(campaignvo);
@@ -85,4 +87,20 @@ public class CampaignServiceImpl implements CampaignService {
 		campaignRepo.save(campaignvo);
 		
 	}
+
+	@Override
+	public int selectCampaignId() {
+		return campaignRepo.selectCampaignId();
+	}
+
+	@Override
+	public void inserCampaignImg(CampaignImgvo campaignImgvo) {
+		campaignImgRepo.save(campaignImgvo);
+	}
+
+	@Override
+	public List<CampaignImgvo> selectCampaignImgList(int campaignId) {
+		return campaignImgRepo.findByCampaignId(campaignId);
+	}
+
 }

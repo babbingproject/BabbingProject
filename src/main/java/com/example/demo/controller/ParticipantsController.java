@@ -1,15 +1,20 @@
 package com.example.demo.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.demo.domain.campaign.Campaignvo;
 import com.example.demo.domain.campaign.Participantsvo;
+import com.example.demo.domain.campaign.TemporaryParticipantsvo;
 import com.example.demo.domain.mypage.Uservo;
 import com.example.demo.service.campaign.CampaignService;
 import com.example.demo.service.campaign.ParticipantsService;
+import com.example.demo.utils.TemporaryParticipants;
 
 @Controller
 public class ParticipantsController {
@@ -20,39 +25,89 @@ public class ParticipantsController {
 	@Autowired
 	private CampaignService campaignService;
 	
-	@PostMapping("/participants")
-	public String insertParticipants(Uservo uservo, Campaignvo campaignvo, Participantsvo participantsvo) {
+	@RequestMapping("/participantsCheck")
+	@ResponseBody
+	public int participantsCheck(Uservo uservo, Campaignvo campaignvo) {
+		return participantsService.getParticipants(uservo.getUserId(), campaignvo.getCampaignId());
+	}
+	
+	@RequestMapping("/participants")
+	@ResponseBody
+	public TemporaryParticipants insertParticipants(Uservo uservo, Campaignvo campaignvo, Participantsvo participantsvo) {
 		
+		// 응모자 객체 생성
 		participantsvo.setUservo(uservo);
 		participantsvo.setCampaignvo(campaignvo);
 		participantsService.insertParticipants(participantsvo);
 		
+		// 캠페인 참여자 카운트 증가
 		Campaignvo campaignInfo = campaignService.getCampaign(campaignvo);
-		campaignService.participantCountUp(campaignInfo);				
+		campaignService.participantCountUp(campaignInfo);
 		
-		return "redirect:getCampaign?campaignId="+campaignService.getCampaign(campaignvo).getCampaignId();
+		//
+		Campaignvo campaignInfo2 = campaignService.getCampaign(campaignvo);
+		TemporaryParticipants tempo = new TemporaryParticipants();
+		tempo.setParticipants(campaignInfo2.getParticipants());
+		tempo.setRecruitment(campaignInfo2.getRecruitment());
+		
+		return tempo;
 	}
-	
-	@PostMapping("/deleteParticipants")
-	public String deleteParticipants(Uservo uservo, Campaignvo campaignvo) {
-		
+
+	@RequestMapping("/deleteParticipants")
+	@ResponseBody
+	public TemporaryParticipants deleteParticipants(Uservo uservo, Campaignvo campaignvo) {
 		participantsService.deleteParticipants(uservo.getUserId(), campaignvo.getCampaignId());
+		
 		Campaignvo campaignInfo = campaignService.getCampaign(campaignvo);
 		campaignService.participantCountDown(campaignInfo);
 		
-		return "redirect:getCampaign?campaignId="+campaignService.getCampaign(campaignvo).getCampaignId();
+		Campaignvo campaignInfo2 = campaignService.getCampaign(campaignvo);
+		TemporaryParticipants tempo = new TemporaryParticipants();
+		tempo.setParticipants(campaignInfo2.getParticipants());
+		tempo.setRecruitment(campaignInfo2.getRecruitment());
+		
+		return tempo;
 	}
 	
-	@GetMapping("/selectParticipants")
-	public String selectParticipants(int participantsId) {
+	@RequestMapping("/applyCheck")
+	@ResponseBody
+	public String applyCheck(int participantsId) {
+		return participantsService.applyCheck(participantsId);
+	}
+	
+	@RequestMapping("/selectParticipant")
+	@ResponseBody
+	public void selectParticipant(int participantsId) {
 		participantsService.selectParticipants(participantsId);
-		return "redirect:getCampaignList";
 	}
 	
-	@GetMapping("/cancleParticipants")
-	public String cancleParticipants(int participantsId) {
+	@RequestMapping("/cancelParticipant")
+	@ResponseBody
+	public void cancelParticipant(int participantsId) {
 		participantsService.cancleParticipants(participantsId);
-		return "redirect:getCampaignList";
 	}
+	
+	@RequestMapping("/selectParticipantList")
+	@ResponseBody
+	public List<TemporaryParticipantsvo> selectParticipantList(int campaignId) {
+		
+		List<Participantsvo> participantsList = participantsService.getParticipantsList(campaignId);
+		List<TemporaryParticipantsvo> TemporaryParticipantsList = new ArrayList<TemporaryParticipantsvo>();
+		
+		for(Participantsvo participantsvo: participantsList) {
+			TemporaryParticipantsvo temporaryParticipantsvo = new TemporaryParticipantsvo();
+			temporaryParticipantsvo.setCampaignId(participantsvo.getCampaignvo().getCampaignId());
+			temporaryParticipantsvo.setParticipantsId(participantsvo.getParticipantsId());
+			temporaryParticipantsvo.setParticipation(participantsvo.getParticipation());
+			temporaryParticipantsvo.setUserId(participantsvo.getUservo().getUserId());
+			temporaryParticipantsvo.setNickname(participantsvo.getUservo().getNickname());
+			TemporaryParticipantsList.add(temporaryParticipantsvo);
+		}
+		return TemporaryParticipantsList;
+	}
+	
+
+	
+	
 	
 }
