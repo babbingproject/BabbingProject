@@ -10,6 +10,8 @@ public interface UserService {
 	
 	List<Uservo> findByNickname(String nickname);
 	
+	List<Uservo> getAllFollowers(String followingYou);
+	List<Uservo> getAllFollowingUsers(String followingMe);
 
 	Uservo getUser(Uservo user);
 

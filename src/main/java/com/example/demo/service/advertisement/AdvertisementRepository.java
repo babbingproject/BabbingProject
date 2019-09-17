@@ -25,6 +25,13 @@ public interface AdvertisementRepository extends JpaRepository<Advertisementvo, 
 	List<Advertisementvo> findByAdvertisementname(String advertisementName);
 	
 	@Query(nativeQuery=true, value=""
+			+ "SELECT * FROM advertisementvo "
+			+ "INNER JOIN putvo "
+			+ "ON advertisementvo.advertisementname = putvo.advertisement_name "
+			+ "WHERE putvo.user_name = ?1 ")
+	List<Advertisementvo> getAllUserPut(String username);
+	
+	@Query(nativeQuery=true, value=""
 			+ "UPDATE advertisementvo "
 			+ "SET puted_count = puted_count + 1 "
 			+ "WHERE advertisement_name = ?1 ")

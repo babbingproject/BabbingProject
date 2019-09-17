@@ -12,7 +12,6 @@
 </style>
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link href="common/css/stylesJoin2.css" rel="stylesheet">
 <link href="common/css/wlogin.css" rel="stylesheet">
 <!-- ajax를 위한 CDN 방식 라이브러리 -->
 <script type="text/javascript"
@@ -158,72 +157,74 @@
 		<div id="logoBack" class="login_title">
 			<a href="/"><img src="images/Bobbing-logo.png" alt="밥빙 logo" /></a>
 		</div>
+		<div class="w3-content w3-container w3-margin-top w3-center">
 
-	</div>
+			<div class="w3-container w3-card-4">
+				<div class="w3-center w3-large w3-margin-top floatClear">
+					<div id="layer_11" class="tab">
+						<a href="/joinTeb"><img src="images/layer_11.png" /></a>
+					</div>
+					<div id="layer_12" class="tab">
+						<a href="/adJoinTeb"><img src="images/layer_12.png" /></a>
+					</div>
+					<div id="Shape740copy2">
+						<img src="images/Shape740copy2.png">
+					</div>
+					<div id="Shape740copy">
+						<img src="images/Shape740copy.png">
+					</div>
+				</div>
+				<div>
+					<div class="loginForm">
+						<form id="joinForm" action="/adJoin" method="post">
+							<!-- 세션에 저장한 카카오 아이디를 가져옴 -->
+							<input type="hidden" name="kakao_id" value="${kakao_id}" />
 
-	<div class="w3-content w3-container w3-margin-top w3-center">
+							<p class="email">
+								<input type="email" class="w3-input" name="advertisement_email"
+									id="advertisement_email" placeholder="이메일(example@naver.com)"
+									required="required"> <span id="chktext"
+									class="w3-text-red"></span> <span id="chktext2"
+									class="w3-text-blue"></span>
+							</p>
+							<p class="pww">
+								<input type="text" class="w3-input" name="advertisementname"
+									id="advertisementname" placeholder="기업명" required="required">
+								<span id="nickchktext" class="w3-text-red"></span> <span
+									id="nickchktext2" class="w3-text-blue"></span>
+							</p>
 
-		<div class="w3-container w3-card-4">
+							<p class="pw">
+								<input type="password" class="w3-input" name="password" id="pw"
+									placeholder="비밀번호(8자리 이상)" required="required">
+							</p>
+							<p class="">
+								<input type="password" class="w3-input" id="pw2"
+									placeholder="비밀번호 확인" required="required">
+							</p>
+							<p class="">
+								<input type="text" class="w3-input" name="advertisement_num"
+									id="advertisement_num" placeholder="사업자 번호 등록(-없이 숫자만 입력)"
+									required="required"> <span id="adnchktext"
+									class="w3-text-red"></span> <span id="adnchktext2"
+									class="w3-text-blue"></span>
+							</p>
 
-			div class="w3-center w3-large w3-margin-top floatClear">
-			<div id="layer_11" class="tab">
-				<a href="/login"><img src="images/layer_11.png" /></a>
-			</div>
-			<div id="layer_12" class="tab">
-				<a href="/adLogin"><img src="images/layer_12.png" /></a>
-			</div>
-			<div id="Shape740copy2">
-				<img src="images/Shape740copy.png">
-			</div>
-			<div id="Shape740copy">
-				<img src="images/Shape740copy2.png">
+							<p class="btn_sns">
+								<a href="${url}"> <img
+									src="${pageContext.request.contextPath}/images/네아로.png"
+									align="middle" height="50" width="80%" />
+								</a>
+								<button type="submit" id="joinBtn"
+									class="w3-button w3-block w3-pink w3-ripple w3-margin-top w3-round">회원가입</button>
+
+							</p>
+						</form>
+					</div>
+				</div>
 			</div>
 		</div>
-		<form id="joinForm" action="/adJoin" method="post">
-			<!-- 세션에 저장한 카카오 아이디를 가져옴 -->
-			<input type="hidden" name="kakao_id" value="${kakao_id}" />
-
-			<p>
-				<input type="email" class="w3-input" name="advertisement_email"
-					id="advertisement_email" placeholder="이메일(example@naver.com)"
-					required="required"> <span id="chktext" class="w3-text-red"></span>
-				<span id="chktext2" class="w3-text-blue"></span>
-			</p>
-			<p>
-				<input type="text" class="w3-input" name="advertisementname"
-					id="advertisementname" placeholder="기업명" required="required">
-				<span id="nickchktext" class="w3-text-red"></span> <span
-					id="nickchktext2" class="w3-text-blue"></span>
-			</p>
-
-			<p>
-				<input type="password" class="w3-input" name="password" id="pw"
-					placeholder="비밀번호(8자리 이상)" required="required">
-			</p>
-			<p>
-				<br> <input type="password" class="w3-input" id="pw2"
-					placeholder="비밀번호 확인" required="required">
-			</p>
-			<p>
-				<br> <input type="text" class="w3-input"
-					name="advertisement_num" id="advertisement_num"
-					placeholder="사업자 번호 등록(-없이 숫자만 입력)" required="required"> <span
-					id="adnchktext" class="w3-text-red"></span> <span id="adnchktext2"
-					class="w3-text-blue"></span>
-			</p>
-
-			<p>
-				<a href="${url}"> <img
-					src="${pageContext.request.contextPath}/images/네아로.png"
-					align="middle" height="50" width="80%" />
-				</a>
-				<button type="submit" id="joinBtn"
-					class="w3-button w3-block w3-pink w3-ripple w3-margin-top w3-round">회원가입</button>
-				<br>
-			</p>
-		</form>
 	</div>
-
-
+	<!-- //login_wrap end -->
 </body>
 </html>

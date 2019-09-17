@@ -1,11 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-
-<!doctype html>
-<html lang="ko">
+<!DOCTYPE html>
+<html>
 <head>
+<meta charset="UTF-8">
+<title>비밀번호즉시변경</title>
 <style>
 *:focus {
 	outline: none;
@@ -13,24 +12,29 @@
 </style>
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link href="common/css/stylesJoin2.css" rel="stylesheet">
-<link href="common/css/wpwInfo.css" rel="stylesheet">
+<!-- ajax를 위한 CDN 방식 라이브러리 -->
 <script type="text/javascript"
-	src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.2.js"
-	charset="utf-8"></script>
-<script type="text/javascript"
-	src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
-<style type="text/css">
-html, div, body, h3 {
-	margin: 0;
-	padding: 0;
-	color: #fff;
-}
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script type="text/javascript">
+	$(function() {
+		$("#modify").submit(function() {
+			if ($("#pw").val() !== $("#pw2").val()) {
+				alert("비밀번호가 다릅니다.");
+				$("#pw").val("").focus();
+				$("#pw2").val("");
+				return false;
+			} else if ($("#pw").val().length < 8) {
+				alert("비밀번호는 8자 이상으로 설정해야 합니다.");
+				$("#pw").val("").focus();
+				$("#pw2").val("");
+				return false;
+			}
 
-h3 {
-	display: inline-block;
-	padding: 0.6em;
-} /* W3.CSS 4.13 June 2019 by Jan Egil and Borge Refsnes */
+		})
+	});
+</script>
+<style>
+/* W3.CSS 4.13 June 2019 by Jan Egil and Borge Refsnes */
 html {
 	box-sizing: border-box
 }
@@ -118,6 +122,54 @@ audio
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 :not
 
 
@@ -145,7 +197,55 @@ audio
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -202,7 +302,55 @@ controls
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -283,7 +431,79 @@ display
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 :
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -337,7 +557,79 @@ display
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 none
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -444,6 +736,54 @@ height
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 :
 
 
@@ -471,7 +811,55 @@ height
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -1580,7 +1968,103 @@ transform
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 :rotate(359deg)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -1702,7 +2186,103 @@ opacity
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 :
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -1815,7 +2395,103 @@ opacity
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 :
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -2582,51 +3258,224 @@ to {
 .w3-border-pale-blue, .w3-hover-border-pale-blue:hover {
 	border-color: #e7ffff !important
 }
-</style>
-<script type="text/javascript">
-  $(document).ready(function() {
-    var name = ${result}.response.name;
-    var email = ${result}.response.email;
-    $("#email").html("환영합니다. "+email+"님");
-   
-    });
-</script>
+/* Fix login */
+.login_wrap {
+	width: 432px;
+	margin: 0 auto;
+}
 
+.login_wrap .login_title {
+	padding: 32px 0;
+	box-sizing: border-box;
+	text-align: center;
+}
+
+.login_wrap .w3-container {
+	width: 100%;
+	height: 632px;
+}
+
+.login_wrap .w3-margin-top {
+	margin-top: 0 !important;
+}
+
+.login_wrap .loginForm {
+	margin-top: 0;
+}
+
+.login_wrap .loginForm p {
+	margin: 0;
+	padding-top: 25px;
+	box-sizing: border-box;
+}
+
+.login_wrap .loginForm .email {
+	height: 100px;
+}
+
+.login_wrap .loginForm .email2 {
+	padding-top: -50;
+}
+
+.login_wrap .loginForm .pw {
+	padding-top: 0;
+}
+
+.login_wrap .loginForm .pww {
+	padding-top: 0;
+	height: 75px;
+	padding-bottom: 0;
+}
+
+.login_wrap .loginForm span {
+	display: block;
+	width: 80%;
+	margin: 0 auto;
+}
+
+.login_wrap .loginForm .w3-input {
+	margin: 0 auto;
+	font-size: 15px;
+}
+
+.login_wrap .w3-block {
+	margin: 0 auto;
+	font-size: 15px;
+	box-sizing: border-box;
+}
+
+.login_wrap .tab {
+	float: left;
+	width: 50%;
+	z-index: 12;
+	text-align: center;
+}
+
+.login_wrap .tab a {
+	display: block;
+	padding: 15px 0;
+	box-sizing: border-box;
+}
+
+.login_wrap .tab a img {
+	width: 70px;
+}
+
+.login_wrap .btn_remember {
+	display: block;
+	width: 80%;
+	margin: 0 auto !important;
+}
+
+.login_wrap .btn_remember::after {
+	content: '';
+	display: block;
+	clear: both;
+}
+
+.login_wrap .btn_remember laber {
+	float: left;
+}
+
+.login_wrap .btn_remember a {
+	float: right;
+}
+
+.login_wrap .btn_sns {
+	display: block;
+	width: 80%;
+	margin: 0 auto !important;
+}
+
+.login_wrap .btn_sns a {
+	display: block;
+	width: 100%;
+	margin-bottom: 20px;
+}
+
+.login_wrap .btn_sns a:last-child {
+	margin-bottom: 0;
+}
+
+.login_wrap .btn_sns a img {
+	width: 100%;
+}
+
+.login_wrap .txt_img {
+	text-align: center;
+	margin: 20px 0;
+}
+
+.floatClear {
+	
+}
+
+.floatClear::after {
+	content: '';
+	display: block;
+	clear: both;
+}
+
+#Shape740copy2 {
+	float: left;
+	width: 50%;
+	height: 8px;
+	z-index: 3;
+}
+
+#Shape740copy2 img {
+	width: 100%;
+	vertical-align: top;
+}
+
+#Shape740copy {
+	float: left;
+	width: 50%;
+	height: 8px;
+	z-index: 4;
+}
+
+#Shape740copy img {
+	width: 100%;
+	vertical-align: top;
+}
+
+.loginForm {
+	margin-top: 76px;
+}
+
+#copy2 {
+	left: 500px;
+	top: 626px;
+	position: absolute;
+	width: 421px;
+	height: 59px;
+	z-index: 9;
+	color: #000 !important;
+	background-color: #ccc !important
+}
+
+#logoBack {
+	background-color: #fff;
+	border: none;
+}
+</style>
 </head>
 <body>
-	<div class="w3-center">
-		<div id="logoBack">
-			<a href="${pageContext.request.contextPath}/index"><img
+
+	<div class="login_wrap">
+		<div id="logoBack" class="login_title">
+			<a href="${pageContext.request.contextPath}/"><img
 				src="${pageContext.request.contextPath}/images/Bobbing-logo.png"
 				alt="밥빙 logo" /></a>
 		</div>
+		<div class="w3-content w3-container w3-margin-top w3-center">
+			<div class="w3-container w3-card-4">
+				<div class="loginForm">
+					<form id="modify" action="/pwUpdate" method="post">
+						<br> <br>
+						<div
+							style="background-color: #FF4D80; height: 6%; text-align: center; color: white; margin-top: 175px; border-radius: 14%; border-radius: 28.5px; border: solid 1px; width: 100%; left: 454px; color: white;">
+							<h3>비밀번호 변경 메일을 발송하였습니다!</h3>
+							
 
-	</div>
+						</div>
 
-	<div class="w3-content w3-container w3-margin-top w3-center">
+						<script>
+							  $(function () {
+							   $("body").hide();
+							   $("body").fadeIn(1000);  // 2초 뒤에 사라 지자 
+							  
+							   setTimeout(function(){$("body").fadeOut(3000);},1000);
+							   setTimeout(function(){location.href= "${pageContext.request.contextPath}/"},4000);
 
-		<div class="w3-container w3-card-4">
-			<br> <br>
-			<div
-				style="background-color: #FF4D80; height: 6%; text-align: center; color: white; margin-top: 175px; border-radius: 28.5px; border: solid 1px; width: 40%; left: 454px; position: absolute;">
-				<h3>비밀번호 변경 메일을 발송 하였습니다!</h3>
+							 
+							 }) 
+						</script>
+					</form>
 
+				</div>
 			</div>
-			<br>
-			<h2 style="text-align: center" id="name"></h2>
-			<h4 style="text-align: center" id="email"></h4>
-
-			<script>
-    $(function () {
-      $("body").hide();
-      $("body").fadeIn(1000);  // 2초 뒤에 사라 지자 
-     
-      setTimeout(function(){$("body").fadeOut(3000);},1000);
-      setTimeout(function(){location.href= "${pageContext.request.contextPath}/"},4000);
-
-    
-    })
-  </script>
 		</div>
 	</div>
 </body>

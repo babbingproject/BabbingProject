@@ -2,7 +2,7 @@
 $(function(){
 	
 	var list = document.getElementsByClassName('temp');
-	alert(list);
+//	alert(list);
 	for ( var i = 0; i < list.length; i ++){
 		list[i].setAttribute('id', "box" + i);
 	}
@@ -55,9 +55,8 @@ $(function(){
 //		})
 	$('.emptyspace').on('click', function(){
 		var followerMe = $('#followerMe').val();
-		var followingYou = $(this).children().children("#followingYou").val();
+		var followingYou = $(this).children("#followingYou").val();
 		var closestATTR = $(this).find('.followbtn');
-		
 		$.ajax({
 			url:"ajaxfollow",
 			dataType: "JSON",
@@ -100,10 +99,10 @@ $(function(){
 	});
 	$('.emptyspace2').on('click', function(){
 		var followerMe = $('#followerMe').val();
-		var followingYou = $(this).children("#followingYou").val();
+		var followingYou = $(this).children().closest("#followingYou").val();
 		var closestATTR = $(this).find('.followbtn');
 		
-		$.ajax({
+;		$.ajax({
 			url:"ajaxput",
 			dataType: "JSON",
 			type: "POST",
@@ -158,26 +157,48 @@ $(function(){
 			
 			success:function(testing){
 				
-				alert('success');
+//				alert('success');
+				//div tag selector up to .cont area.info class
 				var insideDiv = $(current).parent().parent().siblings().closest(".cont-area.info");
-				var first = $(insideDiv).children().find('#box0');
-				var second = $(insideDiv).children().find('#box1');
-				var third = $(insideDiv).children().find('#box2');
-				var fourth = $(insideDiv).children().find('#box3');
-				var fifth = $(insideDiv).children().find('#box4');
-				var sixth = $(insideDiv).children().find('#box5');
 				
-				var weeDiv = $(insideDiv).children().children().children('#wee');
-				var htmlStr = "";
-			
-				if(!testing[1].scrapvo.isEmpty){
-					alert('wee');
-				}
-				
+//			
+//				if(!testing[1].scrapvo.isEmpty){
+//					alert('wee');
+//				}
+//				$(box).children().children().siblings().find('#reviewPlace').html(testing[i].img[i][4]);
+
 				for(i in testing){
-//					$(weeDiv).children().find('#box'+i).children().closest('img').attr('src', testing[i].img[i][4]);
-					$(weeDiv).append("this is " + i + " order, testing "  + testing[i].img[i][4]);
-					$(first).children().children().children().find("img").attr('src', testing[i].img[i][4]);
+
+					//selecting each div li div, needs to select each single individual 
+					var box = $(insideDiv).children().find('#box'+i);
+					
+					//리뷰의 이미지
+					$(box).children().children('.photos').children().find("#img1").attr("src", testing[i].img[i][4]);
+					//리뷰의 북마크 버튼 여부
+					if(testing[i].scrapvo!=''){
+						
+						$(box).children().children().find('#scrapButton').addClass('best01');
+						$(box).children().children().find('#scrapButton').removeClass('best02');
+					}
+					if(testing[i].scrapvo==''){
+					
+						$(box).children().children().find('#scrapButton').addClass('best02');
+						$(box).children().children().find('#scrapButton').removeClass('best01');
+					}
+					
+					//리뷰의 장소
+					$(box).children().children('.info').children().find('#reviewPlace').html(testing[i].img[i][1]);
+					//리뷰의 타이틀
+					$(box).children().children('.info').children().eq(2).find('#reviewTitle').html(testing[i].img[i][2]);
+					//리뷰의 프로파일 이미지
+					$(box).children().children('.info').children().eq(3).children().find('#img2').attr('src', testing[i].img[i][5]);
+					//리뷰의 프로파일 네임
+					$(box).children().children('.info').children().eq(3).children().find('#userNickname').html(testing[i].img[i][6]);
+					//스크랩을위한 리뷰번호 번경
+					$(box).children().children('.info').find('#get').val(testing[i].img[i][0]);
+					//스크랩을위한 리뷰작성자 아이디 변경
+					$(box).children().children('.info').children().eq(3).children().children('#reviewUserId').val(testing[i].img[i][7]);
+//					$(first).children().children().children().find("img[id=box"+i+"]").attr('src', testing[i].img[i][4]);
 //					htmlStr += "<div class='cont-txt' id='wee'>";
 //					htmlStr += "<p class='photo'>";
 //					htmlStr += "<img src=";

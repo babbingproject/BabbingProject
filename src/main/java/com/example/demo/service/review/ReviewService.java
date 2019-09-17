@@ -14,29 +14,38 @@ public interface ReviewService {
 
 
 //	List<Uservo> selectUservoInfo();
-
+	List<ReviewRegistrationvo> getUserSelfWroteReview(Integer username);
+	List<ReviewRegistrationvo> getScrappedReview(String username);
 	List<ReviewRegistrationvo> findAll();
 	List<Object[]> getKoreanTopSix();
 
 	List<ReviewRegistrationvo> getNewestReview();
 
 	List<ReviewRegistrationvo> getEverythingTopSix();
+	List<Object[]> getEverythingTopSixObject();
 
 	List<ReviewRegistrationvo> getBusinessFieldOne();
 	List<Object[]> getBusinessFieldOneObject();
 
 	List<ReviewRegistrationvo> getBusinessFieldTwo();
+	List<Object[]> getBusinessFieldTwoObject();
 
 	List<ReviewRegistrationvo> getBusinessFieldThree();
+	List<Object[]> getBusinessFieldThreeObject();
 
 	List<ReviewRegistrationvo> getBusinessFieldFour();
+	List<Object[]> getBusinessFieldFourObject();
 
 	List<ReviewRegistrationvo> getBusinessFieldFive();
+	List<Object[]> getBusinessFieldFiveObject();
 
 	List<ReviewRegistrationvo> getBusinessFieldSix();
+	List<Object[]> getBusinessFieldSixObject();
 
 	List<ReviewRegistrationvo> getBusinessFieldSeven();
+	List<Object[]> getBusinessFieldSevenObject();
 
+	Page<ReviewRegistrationvo> getSearchKeywordPage(String searchKeyword, Pageable pageable);
 	List<Object[]> getSearchKeyword(String searchKeyword);
 //	Page<Object[]> getSearchKeyword(String searchKeyword, PageRequest pageRequest);
 

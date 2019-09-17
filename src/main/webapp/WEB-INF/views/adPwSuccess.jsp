@@ -5,7 +5,11 @@
 <head>
 <meta charset="UTF-8">
 <title>비밀번호즉시변경</title>
-
+<style>
+*:focus {
+	outline: none;
+}
+</style>
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <!-- ajax를 위한 CDN 방식 라이브러리 -->
@@ -130,6 +134,42 @@ audio
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 :not
 
 
@@ -163,7 +203,43 @@ audio
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -232,7 +308,43 @@ controls
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -331,7 +443,61 @@ display
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 :
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -397,7 +563,61 @@ display
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 none
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -528,6 +748,42 @@ height
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 :
 
 
@@ -561,7 +817,43 @@ height
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -1689,7 +1981,79 @@ transform
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 :rotate(359deg)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -1835,7 +2199,79 @@ opacity
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 :
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -1972,7 +2408,79 @@ opacity
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 :
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -2751,52 +3259,226 @@ to {
 .w3-border-pale-blue, .w3-hover-border-pale-blue:hover {
 	border-color: #e7ffff !important
 }
+/* Fix login */
+.login_wrap {
+	width: 432px;
+	margin: 0 auto;
+}
+
+.login_wrap .login_title {
+	padding: 32px 0;
+	box-sizing: border-box;
+	text-align: center;
+}
+
+.login_wrap .w3-container {
+	width: 100%;
+	height: 632px;
+}
+
+.login_wrap .w3-margin-top {
+	margin-top: 0 !important;
+}
+
+.login_wrap .loginForm {
+	margin-top: 0;
+}
+
+.login_wrap .loginForm p {
+	margin: 0;
+	padding-top: 25px;
+	box-sizing: border-box;
+}
+
+.login_wrap .loginForm .email {
+	height: 100px;
+}
+
+.login_wrap .loginForm .email2 {
+	padding-top: -50;
+}
+
+.login_wrap .loginForm .pw {
+	padding-top: 0;
+}
+
+.login_wrap .loginForm .pww {
+	padding-top: 0;
+	height: 75px;
+	padding-bottom: 0;
+}
+
+.login_wrap .loginForm span {
+	display: block;
+	width: 80%;
+	margin: 0 auto;
+}
+
+.login_wrap .loginForm .w3-input {
+	margin: 0 auto;
+	font-size: 15px;
+}
+
+.login_wrap .w3-block {
+	margin: 0 auto;
+	font-size: 15px;
+	box-sizing: border-box;
+}
+
+.login_wrap .tab {
+	float: left;
+	width: 50%;
+	z-index: 12;
+	text-align: center;
+}
+
+.login_wrap .tab a {
+	display: block;
+	padding: 15px 0;
+	box-sizing: border-box;
+}
+
+.login_wrap .tab a img {
+	width: 70px;
+}
+
+.login_wrap .btn_remember {
+	display: block;
+	width: 80%;
+	margin: 0 auto !important;
+}
+
+.login_wrap .btn_remember::after {
+	content: '';
+	display: block;
+	clear: both;
+}
+
+.login_wrap .btn_remember laber {
+	float: left;
+}
+
+.login_wrap .btn_remember a {
+	float: right;
+}
+
+.login_wrap .btn_sns {
+	display: block;
+	width: 80%;
+	margin: 0 auto !important;
+}
+
+.login_wrap .btn_sns a {
+	display: block;
+	width: 100%;
+	margin-bottom: 20px;
+}
+
+.login_wrap .btn_sns a:last-child {
+	margin-bottom: 0;
+}
+
+.login_wrap .btn_sns a img {
+	width: 100%;
+}
+
+.login_wrap .txt_img {
+	text-align: center;
+	margin: 20px 0;
+}
+
+.floatClear {
+	
+}
+
+.floatClear::after {
+	content: '';
+	display: block;
+	clear: both;
+}
+
+#Shape740copy2 {
+	float: left;
+	width: 50%;
+	height: 8px;
+	z-index: 3;
+}
+
+#Shape740copy2 img {
+	width: 100%;
+	vertical-align: top;
+}
+
+#Shape740copy {
+	float: left;
+	width: 50%;
+	height: 8px;
+	z-index: 4;
+}
+
+#Shape740copy img {
+	width: 100%;
+	vertical-align: top;
+}
+
+.loginForm {
+	margin-top: 76px;
+}
+
+#copy2 {
+	left: 500px;
+	top: 626px;
+	position: absolute;
+	width: 421px;
+	height: 59px;
+	z-index: 9;
+	color: #000 !important;
+	background-color: #ccc !important
+}
+
+#logoBack {
+	background-color: #fff;
+	border: none;
+}
 </style>
 </head>
 <body>
-	<div class="w3-center">
-		<div id="logoBack">
+
+	<div class="login_wrap">
+		<div id="logoBack" class="login_title">
 			<a href="${pageContext.request.contextPath}/"><img
 				src="${pageContext.request.contextPath}/images/Bobbing-logo.png"
 				alt="밥빙 logo" /></a>
 		</div>
+		<div class="w3-content w3-container w3-margin-top w3-center">
+			<div class="w3-container w3-card-4">
+				<div class="loginForm">
+					<form id="modify" action="/adPwUpdate" method="post">
+						<br> <br>
+						<h3>비밀번호를 변경하시겠어요?</h3>
+						<p>새로운 비밀번호를 입력해주세요</p>
 
-	</div>
+						<p>
+							<input type="hidden" value="${advertisement_email }"
+								name="user_email"> <input type="password"
+								style="top: 572px; left: 560px;" class="w3-input"
+								name="password" id="pw" placeholder="새 비밀번호" required="required">
+						</p>
+						<p>
+							<input type="password" class="w3-input"
+								style="top: 300px; left: 560px;" id="pw2" placeholder="비밀번호 확인"
+								required="required">
+						</p>
 
-	<div class="w3-content w3-container w3-margin-top w3-center">
+						<button type="submit" id="modify"
+							style="position: absolute; top: 470px; left: 596px; width: 342px; height: 57px; border-radius: 28.5px; border: solid 1px #ff4d80;"
+							class="w3-button w3-block w3-pink w3-ripple w3-margin-top w3-round">비밀번호
+							변경</button>
+					</form>
 
-		<div class="w3-container w3-card-4">
-			<br> <br>
-			<h3>비밀번호를 변경하시겠어요?</h3>
-			<p>새로운 비밀번호를 입력해주세요</p>
-			<div>
-				<form id="modify" action="/adPwUpdate" method="post">
-
-					<p>
-						<input type="hidden" value="${advertisement_email }"
-							name="advertisement_email"> <input type="password"
-							style="position: absolute; top: 572px; left: 500px; width: 418px; height: 57px; border-radius: 28.5px;"
-							class="w3-input" name="password" id="pw" placeholder="새 비밀번호"
-							required="required">
-					</p>
-					<p>
-						<input type="password" class="w3-input"
-							style="position: absolute; top: 640px; left: 500px; width: 418px; height: 57px; border-radius: 28.5px;"
-							id="pw2" placeholder="비밀번호 확인" required="required">
-					</p>
-
-					<button type="submit" id="modify"
-						style="position: absolute; top: 377px; left: 500px; width: 418px; height: 57px; border-radius: 28.5px; border: solid 1px #ff4d80;"
-						class="w3-button w3-block w3-pink w3-ripple w3-margin-top w3-round">비밀번호
-						변경</button>
-					<br>
-				</form>
+				</div>
 			</div>
 		</div>
-
-	</div>
-	</div>
-
 	</div>
 </body>
 </html>

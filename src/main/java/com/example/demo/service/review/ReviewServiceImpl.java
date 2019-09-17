@@ -36,6 +36,12 @@ public class ReviewServiceImpl implements ReviewService {
 		return reviewRepo.getKoreanFoodTopSix();
 	}
 
+	public List<ReviewRegistrationvo> getUserSelfWroteReview(Integer username){
+		return (List<ReviewRegistrationvo>) reviewRepo.getUserSelfWroteReview(username);
+	}
+	public List<ReviewRegistrationvo> getScrappedReview(String username) {
+		return (List<ReviewRegistrationvo>) reviewRepo.getScrappedReview(username);
+	}
 //	@Override
 //	public List<Object[]> getNewestReview() {
 //		return reviewRepo.getNewestReview();
@@ -46,6 +52,9 @@ public class ReviewServiceImpl implements ReviewService {
 		return (List<ReviewRegistrationvo>) reviewRepo.getEverything();
 	}
 
+	public List<Object[]> getEverythingTopSixObject(){
+		return reviewRepo.getEverythingObject();
+	}
 	@Override
 	public List<ReviewRegistrationvo> getBusinessFieldOne() {
 		return (List<ReviewRegistrationvo>) reviewRepo.getBusinessFieldKor();
@@ -55,36 +64,59 @@ public class ReviewServiceImpl implements ReviewService {
 		return reviewRepo.getBusinessFieldKorObject();
 	}
 	
-
-
 	@Override
 	public List<ReviewRegistrationvo> getBusinessFieldTwo() {
 		return (List<ReviewRegistrationvo>) reviewRepo.getBusinessFieldWes();
+	}
+	@Override
+	public List<Object[]> getBusinessFieldTwoObject() {
+		return reviewRepo.getBusinessFieldWesObject();
 	}
 
 	@Override
 	public List<ReviewRegistrationvo> getBusinessFieldThree() {
 		return (List<ReviewRegistrationvo>) reviewRepo.getBusinessFieldJpn();
 	}
+	@Override
+	public List<Object[]> getBusinessFieldThreeObject() {
+		return reviewRepo.getBusinessFieldJpnObject();
+	}
 
 	@Override
 	public List<ReviewRegistrationvo> getBusinessFieldFour() {
 		return (List<ReviewRegistrationvo>) reviewRepo.getBusinessFieldChn();
+	}
+	@Override
+	public List<Object[]> getBusinessFieldFourObject() {
+		return reviewRepo.getBusinessFieldChnObject();
 	}
 
 	@Override
 	public List<ReviewRegistrationvo> getBusinessFieldFive() {
 		return (List<ReviewRegistrationvo>) reviewRepo.getBusinessFieldSnk();
 	}
+	@Override
+	public List<Object[]> getBusinessFieldFiveObject() {
+		return reviewRepo.getBusinessFieldSnkObject();
+	}
 
 	@Override
 	public List<ReviewRegistrationvo> getBusinessFieldSix() {
 		return (List<ReviewRegistrationvo>) reviewRepo.getBusinessFieldFst();
 	}
+	@Override
+	public List<Object[]>getBusinessFieldSixObject() {
+		return reviewRepo.getBusinessFieldFstObject();
+	}
 
+	
 	@Override
 	public List<ReviewRegistrationvo> getBusinessFieldSeven() {
 		return (List<ReviewRegistrationvo>) reviewRepo.getBusinessFieldCaf();
+	}
+	@Override
+	public List<Object[]> getBusinessFieldSevenObject() {
+		return reviewRepo.getBusinessFieldCafObject();
 	}
 
 	@Override
@@ -178,6 +210,10 @@ public class ReviewServiceImpl implements ReviewService {
 	public List<ReviewRegistrationvo> selectReviewList() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+	
+	public Page<ReviewRegistrationvo> getSearchKeywordPage(String searchKeyword, Pageable pageable){
+		return reviewRepo.getSearchKeywordPage(searchKeyword, pageable);
 	}
 	
 	public Page<ReviewRegistrationvo> findAll(Pageable pageable){

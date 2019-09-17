@@ -9,6 +9,7 @@ import com.example.demo.domain.mypage.Advertisementvo;
 
 public interface AdvertisementService {
 
+	List<Advertisementvo> getAllUserPut(String username);
 	List<Object[]> getAdvertisementvoOrderByWeightAvg();
 
 //	Page<Advertisementvo> getSearchKeyword(String searchKeyword, Pageable pageable);
