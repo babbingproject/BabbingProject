@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -280,17 +281,19 @@ public class HomeMainController {
 	//서치페이지로 가기!
 		@RequestMapping("/search")
 		public String goToSearch(Searchvo searchKeyword, Model model, @RequestParam(defaultValue = "0")int page) {
-			System.out.println(searchKeyword.getTypes());
-			System.out.println(searchKeyword.getSearchKeyword());
-		
+			System.out.println("types" +searchKeyword.getTypes());
+			System.out.println("searchword" +searchKeyword.getSearchKeyword());
+			model.addAttribute("searchKeyword", searchKeyword);
 			List<CheckingScrap> checkingScrapList = new ArrayList();
 			List<ReviewRegistrationvo> reviewList = reviewService.findAll(); 
 			
 			Page<ReviewRegistrationvo> reviewRegistrationvoPage = reviewService.getSearchKeywordPage(searchKeyword.getSearchKeyword(), PageRequest.of(page, 4));
 			List<Object[]> review = reviewService.getSearchKeyword(searchKeyword.getSearchKeyword());
 			List<SearchPaging> searchingPaging = new ArrayList();
+			System.out.println("2222222222222" + reviewRegistrationvoPage.getTotalPages());
 			System.out.println(reviewRegistrationvoPage);
 			System.out.println("review object list " + review.get(1));
+		
 			if(searchKeyword.getSearchKeyword()!="") {
 				
 				switch (searchKeyword.getTypes()) {
@@ -301,14 +304,33 @@ public class HomeMainController {
 						break;
 					}
 					System.out.println("리뷰리뷰리뷰리뷰did it come in here?");
-					for(int i = 0; i < review.size(); i++) {
+//					for(int j = 0; j < reviewRegistrationvoPage.getTotalPages(); j++) {
+//						SearchPaging searchPaging = new SearchPaging();
+//						System.out.println(j);
+//						searchPaging.setTotalPages(j);
+//						searchingPaging.add(searchPaging);
+//					}
+//					System.out.println("sdfdsf" + searchPaging.getTotalPages());
+					for(int i = 0; i < reviewRegistrationvoPage.getTotalPages(); i++) {
 						SearchPaging searchPaging = new SearchPaging();
-//						searchPaging.setReview(review.get(i));
+						System.out.println("where is i at?" + i);
+						System.err.println("totalpages"+reviewRegistrationvoPage.getTotalPages());
+						System.out.println("reviewService get list" +reviewService.getSearchKeywordPage(searchKeyword.getSearchKeyword(), PageRequest.of(page, 4)).getContent().get(i));
+						
+						searchPaging.setReviewRegistrationvo(reviewService.getSearchKeywordPage(searchKeyword.getSearchKeyword(), PageRequest.of(page, 4)).getContent().get(i));
 						searchPaging.setReviewRegistrationvoPage(reviewService.getSearchKeywordPage(searchKeyword.getSearchKeyword(), PageRequest.of(page, 4)));
-						searchPaging.setReviewImage(reviewService.getSearchKeywordPage(searchKeyword.getSearchKeyword(), PageRequest.of(page, 4)).getContent().get(i).getReviewImgList().get(i).getImg());
+						searchPaging.setReviewImage(reviewService.getSearchKeywordPage(searchKeyword.getSearchKeyword(), PageRequest.of(page, 4)).getContent().get(i).getReviewImgList().get(0).getImg());
+//						searchPaging.setTotalPages(reviewService.getSearchKeywordPage(searchKeyword.getSearchKeyword(), PageRequest.of(page, 4)).getSize());
+						System.out.println(reviewService.getSearchKeywordPage(searchKeyword.getSearchKeyword(), PageRequest.of(page, 4)).getNumber());
+//						searchPaging.setTotalPages(i);
+//						searchPaging.setTotalPages(Arrays.asList(i));
+						
 						searchingPaging.add(searchPaging);
+						System.err.println(searchingPaging.get(i).getTotalPages());
 					}
+//					System.out.println(searchingPaging.get(1).getReviewImage());
 					model.addAttribute("review", searchingPaging);
+					model.addAttribute("total", reviewService.getSearchKeywordPage(searchKeyword.getSearchKeyword(), PageRequest.of(page, 4)));
 					break;
 				case "user" :
 					if(userService.getSearchKeyword(searchKeyword.getSearchKeyword()).isEmpty()) {
@@ -316,7 +338,6 @@ public class HomeMainController {
 						break;
 					}
 					System.out.println("유저유저유저유저 왔나오?");
-					model.addAttribute("userSearch", userService.getSearchKeyword(searchKeyword.getSearchKeyword()));
 					break;
 				case "campaign" :
 					
@@ -337,6 +358,8 @@ public class HomeMainController {
 			System.out.println("reviewREVIEWREIVRWREIVEW " + reviewService.getSearchKeyword(searchKeyword.getSearchKeyword()));
 			System.out.println("USERUSERUSERUSERUSER " + userService.getSearchKeyword(searchKeyword.getSearchKeyword()));
 //			System.out.println("ADVADVADVADVADVasdvadv " + advService.getSearchKeyword(searchKeyword.getSearchKeyword()));
+			
+			model.addAttribute("currentPage", page);
 			return "th/main/search";
 		}
 	

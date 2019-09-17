@@ -269,7 +269,12 @@ public interface ReviewRepository extends JpaRepository<ReviewRegistrationvo, In
 			+ "INNER JOIN uservo as user "
 			+ "ON r.user_id = user.user_id "
 			+ "WHERE r.title LIKE %?1% ",
-			countQuery = "SELECT count(*) FROM review_registrationvo WHERE title LIKE %?1% " )
+			countQuery = "SELECT count(r.review_id) FROM review_registrationvo AS r "
+					+ "INNER JOIN review_imagevo AS ri "
+					+ "ON r.review_id = ri.review_id "
+					+ "INNER JOIN uservo as user "
+					+ "ON r.user_id = user.user_id "
+					+ "WHERE title LIKE %?1% " )
 //			+ "LIMIT 8 ")
 	Page<ReviewRegistrationvo> getSearchKeywordPage(String searchKeyword, Pageable pageable);
 	

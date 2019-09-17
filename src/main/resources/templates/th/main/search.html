@@ -25,7 +25,7 @@ $(function(){
 // 		$("#advertisementdiv").css({display:'block'});
 // 	}
 	
-	if([[${reviewSearch}]] != null){
+	if([[${review}]] != null){
 		$('#reviewdiv').show();
 	} else if([[${userSearch}]] != null){
 		$('#userdiv').show();
@@ -40,9 +40,7 @@ $(function(){
 #advertisementdiv{display:none;}
 .active{background-color:blue; color: white;}
 .cont-area .info{overflow:hidden; align:center;}
-.cont-area .list-style03 .cont-txt img {
-    width: 100%;
-}
+
 /* .cont-area .list-style03 .cont-txt .photo{float: left; width: 20%} */
 /* .cont-area .list-style03 .cont-txt .info{float: left; width: 20%} */
 .cont-area .list-style03 #reviewlist{float: left; width: 21%; margin-right: 10px; padding-right: 0px}
@@ -52,8 +50,7 @@ $(function(){
 <body>
 	<div id="wrap" class="main">
 		<div th:replace="/include/header.html :: header"></div>
-		<div class="taewon">
-<!-- 		<br><br><br><br><br><br><br><br> -->
+		<br><br><br><br><br><br><br><br>
 		<p th:text="${nothing}" th:align="center">
 		
 		<div class="cont-area info" id="reviewdiv">
@@ -66,25 +63,13 @@ $(function(){
 						</p>
 						<a href="#" class="best02">베스트</a>
 						<ul class="info">
-							<li><span th:text="${review.}"></span>|</li> 
-<!-- 							<li><span th:text="${reviewSearch[2]}"></span></li> -->
-<!-- 							<li><img th:src="${reviewSearch[5]}"/> <span th:text="${reviewSearch[6]}"></span></li> -->
+							<li><span th:text="${review.reviewRegistrationvo.reviewPlace}"></span>|</li> 
+							<li><span th:text="${review.reviewRegistrationvo.title}"></span></li>
+							<li><img th:src="${review.reviewRegistrationvo.uservo.profileImg}"/> <span th:text="${review.reviewRegistrationvo.uservo.nickname}"></span></li>
 						</ul>
 					</div>
 				</li>
-<!-- 				<li id="reviewlist" th:each="reviewSearch:${reviewSearch}"> -->
-<!-- 					<div class="cont-txt"> -->
-<!-- 						<p class="photo"> -->
-<!-- 							<img th:src="${reviewSearch[4]}"> -->
-<!-- 						</p> -->
-<!-- 						<a href="#" class="best01">베스트</a> -->
-<!-- 						<ul class="info"> -->
-<!-- 							<li><span th:text="${reviewSearch[1]}"></span>| 강남불백</li> -->
-<!-- 							<li><span th:text="${reviewSearch[2]}"></span></li> -->
-<!-- 							<li><img src="images/Bobbing-main-Circle-member.gif" /> 고유지니</li> -->
-<!-- 						</ul> -->
-<!-- 					</div> -->
-<!-- 				</li> -->
+
 			</ul>
 		</div>
 		<div class="cont-area" id="userdiv">
@@ -118,9 +103,8 @@ $(function(){
 				<a href="#" class="arr-btn-right"></a>
 			</div>
 		</div>
-		</div>
-		
 	</div>
+		
 
 
 
@@ -143,13 +127,27 @@ $(function(){
 <!-- 			</tbody> -->
 <!-- 		</table> -->
 <!-- 		<hr> -->
+
 <!-- 		<ul> -->
 <!-- 			<li th:each="i : ${#numbers.sequence(0,data.totalPages-1)}"> -->
 <!-- 				<a th:href="@{/testsearch(page=${i})}" th:text="${i}" -->
 <!-- 				th:classappend="${currentPage}==${i}?'active' : 'none'"></a> -->
 <!-- 			</li> -->
 <!-- 		</ul> -->
-
+<!-- 		<ul> -->
+<!-- 			<li th:each="i : ${#numbers.sequence(0,result.totalPages-1)}"> -->
+<!-- 				<a th:href="@{/search(page=${i})}" th:text="${i}" -->
+<!-- 				th:classappend="${currentPage}==${i}?'active' : 'none'"></a> -->
+<!-- 			</li> -->
+<!-- 		</ul> -->
+		<span th:text="${searchKeyword.types}"></span>
+		<ul>
+			<li th:each="i : ${review}">
+		<span th:text="${searchKeyword.searchKeyword}"></span>
+				<a th:href="@{/search(page=${i.totalPages},types=${searchKeyword.types}, searchKeyword=${searchKeyword.searchKeyword})}" th:text="${i.totalPages}"
+				th:classappend="${currentPage}==${i.totalPages}?'active' : 'none'"></a>
+			</li>
+		</ul>
 
 
 <!-- 	</div> -->
