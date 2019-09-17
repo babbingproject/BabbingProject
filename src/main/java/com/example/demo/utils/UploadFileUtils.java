@@ -15,17 +15,18 @@ public class UploadFileUtils {
 	
 	public static String uploadFile(String uploadPath, String originalName, byte[] fileData) throws Exception {
 		
-		///uuid발급
-		UUID uuid = UUID.randomUUID();
+		
+		//uuid발급 
+		UUID uuid = UUID.randomUUID(); 
 		//저장할 파일명 = UUID+원본이름
-		String savedName = uuid.toString()+ "_" + originalName;
+		String savedName = uuid.toString()+ "_" + originalName; 
 		//업로드할 디렉토리(날짜별 폴더) 생성
-		String savedPath = calcPath(uploadPath);
-		System.out.println(savedPath);
-		//파일 결로 (기본의 업로드 경로+날짜별 경로), 파일명을 받아 파일 객체 생성
-		File target = new File(uploadPath + savedPath,  savedName);
-		//임시 디렉토리에 업로드된 파일을 지정된 디렉토리로 복사
+		String savedPath = calcPath(uploadPath); 
+		System.out.println(savedPath); 
+		//파일 경로 (기본의 업로드 경로+날짜별 경로), 파일명을 받아 파일 객체 생성 
+		File target = new File(uploadPath + savedPath, savedName); //임시 디렉토리에 업로드된 파일을 지정된 디렉토리로 복사
 		System.out.println(target);
+		 
 		FileCopyUtils.copy(fileData, target);
 		//썸네일을 생성하기 위한 파일의 확장자 검사
 		//파일명이 aaa.bbb.ccc.jpg일 경우 마지막 마침표를 찾기 위해
@@ -42,6 +43,15 @@ public class UploadFileUtils {
 		
 		return uploadedFileName;
 	}
+	public static String UUIDUploadPath (String originalName, byte[] fileData) throws Exception {
+		UUID uuid = UUID.randomUUID();
+		String savedName = uuid.toString()+ "_" + originalName;
+		String savedPath = uploadCalcPath();
+		String target = savedPath+File.separator+savedName;
+		
+		return target;
+	}
+	
 	//썸네이 생성
 	private static String makeThumbnail(String uploadPath, String path, String fileName) throws Exception {
 		//이미지를 읽기 위한 버퍼
@@ -75,6 +85,14 @@ public class UploadFileUtils {
 		System.out.println(datePath);
 		//디렉토리 생성 메서드 호출
 		makeDir(uploadPath, yearPath, monthPath, datePath);
+		return datePath;
+	}
+	
+	public static String uploadCalcPath() {
+		Calendar cal = Calendar.getInstance();
+		String yearPath = File.separator + cal.get(Calendar.YEAR);
+		String monthPath = yearPath +File.separator + new DecimalFormat("00").format(cal.get(Calendar.MONTH)+1);
+		String datePath = monthPath + File.separator + new DecimalFormat("00").format(cal.get(Calendar.DATE));
 		return datePath;
 	}
 	

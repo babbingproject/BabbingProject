@@ -8,4 +8,6 @@ public interface ReviewImageService {
 
 	ReviewImagevo getReviewImagevo(ReviewImagevo reviewImagevo);
 	ReviewImagevo saveReviewImagevo(ReviewImagevo reviewImagevo);
+
+	void insertReviewImg(ReviewImagevo reviewImagevo);
 }

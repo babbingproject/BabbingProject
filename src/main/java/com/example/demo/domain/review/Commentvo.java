@@ -26,6 +26,7 @@ public class Commentvo {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer commentId;
 	private String contents;
+	private String nickname;
 	@Column(insertable = false, updatable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
 	private Date writeDate;
 	@Column(insertable = false, updatable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP")
@@ -38,16 +39,17 @@ public class Commentvo {
 
 	@ManyToOne
 	@JoinColumn(name = "userId")
+	@JsonManagedReference
 	private Uservo uservo;
 
-	public void getReviewRegistrationvo(ReviewRegistrationvo reviewRegistrationvo) {
+	public void setReviewRegistrationvo(ReviewRegistrationvo reviewRegistrationvo) {
 		this.reviewRegistrationvo = reviewRegistrationvo;
 		reviewRegistrationvo.getCommentList().add(this);
 	}
 
-	/*
-	 * public void setUservo(Uservo uservo) { this.uservo = uservo;
-	 * uservo.getCommentList().add(this); }
-	 */
+	public void setUservo(Uservo uservo) {
+		this.uservo = uservo;
+		uservo.getCommentList().add(this);
+	}
 
 }

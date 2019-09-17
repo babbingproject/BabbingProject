@@ -7,6 +7,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
+import com.example.demo.domain.review.AjaxReviewImagevo;
 import com.example.demo.domain.review.ReviewRegistrationvo;
 
 public interface ReviewRepository extends JpaRepository<ReviewRegistrationvo, Integer>{
@@ -133,5 +134,10 @@ public interface ReviewRepository extends JpaRepository<ReviewRegistrationvo, In
 //			+ "WHERE r.reviewId = ri.reviewRegistrationvo.reviewId and r.title LIKE ?1")
 	List<Object[]> getSearchKeyword(String searchKeyword);
 //	Page<Object[]> getSearchKeyword(String searchKeyword, PageRequest pageRequest);
+
+	@Query(nativeQuery = true, value = "delete from review_registrationvo where review_id = ?")
+	void delete(int reviewId);
 	
+	@Query(value = "SELECT * FROM review_registrationvo WHERE review_id = ?", nativeQuery = true)
+	ReviewRegistrationvo getReviewView(int reviewId);
 }

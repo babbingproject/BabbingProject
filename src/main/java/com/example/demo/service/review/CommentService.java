@@ -14,8 +14,10 @@ public interface CommentService {
 	
 	void deleteComment(int commentId);
 	
-	public List<Commentvo> getCommentList(int reviewId) throws Exception;
+	List<Commentvo> getCommentList(ReviewRegistrationvo reviewRegistrationvo);
 	
-	public void saveComment(Commentvo commentvo) throws Exception;
+	void saveComment(Commentvo commentvo) throws Exception;
+
+	void updateComment(Commentvo commentvo);
 	
 }
