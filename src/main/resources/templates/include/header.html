@@ -1,24 +1,41 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script type="text/javascript" src="common/js/jquery.slideto.min2.js"></script>
-<link href="common/css/wlogin2.css" rel="stylesheet">
-<link rel="stylesheet" href="common/css/styles.css">
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>밥빙에 오신걸 환영합니다.</title>
+<link rel="stylesheet" href="common/css/stylesMain_sub.css">
+<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+<script src="common/js/jquery.slides.js"></script>
 <script>
-	
+	$(function() {
+		$('#slides').slidesjs({
+			width : 1134,
+			height : 470,
+			play : {
+				active : true,
+				auto : true,
+				interval : 4000,
+				swap : true
+			}
+		});
+
+	});
 </script>
+<style>
+input:focus {
+	outline: none;
+}
+</style>
 </head>
 <body>
 	<div id="wrap" class="main">
 		<div class="header" th:fragment="header"
-			style="position: fixed; z-index: 999; background-color: #fff; transition: top 0.2s ease-in-out; height: 100px;">
+			style="position: fixed; z-index: 999; background-color: white;">
 			<div class="top">
 				<div class="logo">
-					<a href="/"><img src="images/Bobbing-logo-sub.png" alt="밥빙 logo" /></a>
+					<a href="/"><img src="images/Bobbing-logo-sub.png"
+						alt="밥빙 logo" /></a>
 				</div>
 				<div class="heaer-gnb">
 					<ul>
@@ -28,22 +45,56 @@
 					</ul>
 				</div>
 				<div class="heaer-search">
-					<form action="search" enctype="multipart/form-data">
-						<div class="fl MainSearch">
-							<select th:name="types">
-								<option th:value="review" selected="selected">리뷰</option>
-								<option th:value="user">유저</option>
-								<option th:value="campaign">캠페인</option>
-								<option th:value="advertisement">맛집</option>
-							</select> 
-							<label class="hidden" for="">검색어입력</label> 
-							<input name="searchKeyword" class="input_type1" id="" style="width: 180px;" type="text" maxlength="100" placeholder="검색어를 입력하세요">
-						</div>
-						<input type="image" value="submit" src="images/icon-search.png" class="fl">
-					</form>
+					<div class="fl MainSearch">
+						<select name="Search-select">
+							<option value="">전체</option>
+							<option value="전체" selected="selected">전체</option>
+							<option value="리뷰">리뷰</option>
+							<option value="랭킹">랭킹</option>
+							<option value="캠페인">캠페인</option>
+							<option value="한식">한식</option>
+							<option value="중식">중식</option>
+						</select> <label class="hidden" for="">검색어입력</label> <input name=""
+							class="input_type2" id="" style="width: 320px;" type="text"
+							maxlength="100" placeholder="검색어를 입력하세요."> <a href="#"><img
+							alt="" src="images/icon-search.png"></a>
+					</div>
+
+
 				</div>
+				<div class="login-btnR">
+					<a href="#" class="login">로그인</a> ㅣ <a href="#" class="join">회원가입</a>
+				</div>
+			</div>
+		</div>
+
+		<div class="footer-area">
+			<div class="footer">
+
+				<button class="top-btn" id="top-btn"
+					style="position: fixed; left: 1466px; top: 740px; border: none; width: 50px; height: 50px; background-size: 100%;"></button>
+
+			</div>
+		</div>
+
+	</div>
+	<script type="text/javascript">
+		$(".dropdown dt a").click(function() {
+			$(".dropdown dd ul").toggle();
+		});
+
+		$(".dropdown dd ul li a").click(function() {
+			var text = $(this).html();
+			$(".dropdown dt a span").html(text);
+			$(".dropdown dd ul").hide();
+		});
+	</script>
+</body>
+</html>
 
 
+
+<!-- 
 				<th:block
 					th:if="${session['uservo']} == null and ${session['advertisementvo'] == null}">
 					<a th:href="login">로그인 </a> | <a th:href="joinForm">회원가입</a>
@@ -89,19 +140,4 @@
 						</div>
 					</div>
 
-				</th:block>
-
-			</div>
-		</div>
-		<div class="footer-area">
-         <div class="footer">
-
-            <button class="top-btn" id="top-btn"
-               style="position: fixed; left: 1466px; top: 740px; border: none; width: 50px; height: 50px; background-size: 100%;"></button>
-
-         </div>
-      </div>
-		
-	</div>
-</body>
-</html>
+				</th:block> -->
