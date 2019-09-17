@@ -11,9 +11,11 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.domain.mypage.Uservo;
+import com.example.demo.domain.review.AjaxReviewImagevo;
 import com.example.demo.domain.review.Commentvo;
 import com.example.demo.domain.review.QReviewRegistrationvo;
 import com.example.demo.domain.review.ReviewRegistrationvo;
+import com.example.demo.service.review.image.AjaxReviewImageRepository;
 import com.example.demo.service.user.UserRepository;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 
@@ -29,7 +31,8 @@ public class ReviewServiceImpl implements ReviewService {
 	@PersistenceContext
 	EntityManager em;
 
-
+	@Autowired
+	   AjaxReviewImageRepository ajaxReviewImageRepo;
 
 	@Override
 	public List<Object[]> getKoreanTopSix() {
@@ -230,5 +233,17 @@ public class ReviewServiceImpl implements ReviewService {
 	public List<ReviewRegistrationvo> getNewestReview(){
 		return (List<ReviewRegistrationvo>) reviewRepo.getNewestReview();
 	}
+
+	  @Override
+	   public ReviewRegistrationvo selectReviewView(int reviewId) {
+	      return reviewRepo.getReviewView(reviewId);
+	      
+	   }
+
+	   @Override
+	   public List<AjaxReviewImagevo> selectAjaxReviewImgList(int reviewId) {
+	      // TODO Auto-generated method stub
+	      return ajaxReviewImageRepo.getReviewImg(reviewId);
+	   }
 
 }

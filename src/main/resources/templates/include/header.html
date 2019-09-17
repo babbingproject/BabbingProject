@@ -15,11 +15,11 @@
 <body>
 	<div id="wrap" class="main">
 		<div class="header" th:fragment="header"
-
 			style="position: fixed; z-index: 999; background-color: white;">
 			<div class="top">
 				<div class="logo">
-					<a href="/"><img src="images/Bobbing-logo-sub.png" alt="밥빙 logo" /></a>
+					<a href="/"><img src="images/Bobbing-logo-sub.png"
+						alt="밥빙 logo" /></a>
 				</div>
 				<div class="heaer-gnb">
 					<ul>
@@ -36,39 +36,41 @@
 								<option th:value="user">유저</option>
 								<option th:value="campaign">캠페인</option>
 								<option th:value="advertisement">맛집</option>
-							</select> 
-							<label class="hidden" for="">검색어입력</label> <input name="searchKeyword"
-							class="input_type2" id="" style="width: 320px;" type="text"
-							maxlength="100" placeholder="검색어를 입력하세요.">
-							 <a href="#"><input type="image" value="submit" src="images/icon-search.png" class="fl"></a>
+							</select> <label class="hidden" for="">검색어입력</label> <input
+								name="searchKeyword" class="input_type2" id=""
+								style="width: 320px;" type="text" maxlength="100"
+								placeholder="검색어를 입력하세요."> <a href="#"><input
+								type="image" value="submit" src="images/icon-search.png"
+								class="fl"></a>
 						</div>
-						
+
 					</form>
 				</div>
 
 
-				            <th:block th:if="${session['uservo']} == null and ${session['advertisementvo'] == null}">
-            <div class="login-btnR">
-               <a href="/login" class="login">로그인</a> ㅣ <a href="/joinForm"
-                  class="join">회원가입</a>
-            </div>
-            </th:block>
-            
-            <!-- 기업 회원일 때 -->
-            <th:block th:if="${session['advertisementvo'] != null}">
-            <div class="login-btnR">
-               <a href="/getAdvertisementMyPage" class="login">마이 페이지</a> ㅣ <a href="/logout"
-                  class="join">로그아웃</a>
-            </div>
-            </th:block>
-            
-            <!-- 일반 회원일 때 -->
-            <th:block th:if="${session['uservo'] != null}">
-            <div class="login-btnR">
-               <a href="/getUserMyPage" class="login">마이 페이지</a> ㅣ <a href="/logout"
-                  class="join">로그아웃</a>
-            </div>
-            </th:block>
+				<th:block
+					th:if="${session['uservo']} == null and ${session['advertisementvo'] == null}">
+					<div class="login-btnR">
+						<a href="/login" class="login">로그인</a> ㅣ <a href="/joinForm"
+							class="join">회원가입</a>
+					</div>
+				</th:block>
+
+				<!-- 기업 회원일 때 -->
+				<th:block th:if="${session['advertisementvo'] != null}">
+					<div class="login-btnR">
+						<a href="/getAdvertisementMyPage" class="login">마이 페이지</a> ㅣ <a
+							href="/logout" class="join">로그아웃</a>
+					</div>
+				</th:block>
+
+				<!-- 일반 회원일 때 -->
+				<th:block th:if="${session['uservo'] != null}">
+					<div class="login-btnR">
+						<a href="/getUserMyPage" class="login">마이 페이지</a> ㅣ <a
+							href="/logout" class="join">로그아웃</a>
+					</div>
+				</th:block>
 			</div>
 		</div>
 		<div class="footer-area">
@@ -80,16 +82,16 @@
 			</div>
 		</div>
 		<script type="text/javascript">
-		$(".dropdown dt a").click(function() {
-			$(".dropdown dd ul").toggle();
-		});
+			$(".dropdown dt a").click(function() {
+				$(".dropdown dd ul").toggle();
+			});
 
-		$(".dropdown dd ul li a").click(function() {
-			var text = $(this).html();
-			$(".dropdown dt a span").html(text);
-			$(".dropdown dd ul").hide();
-		});
-	</script>
+			$(".dropdown dd ul li a").click(function() {
+				var text = $(this).html();
+				$(".dropdown dt a span").html(text);
+				$(".dropdown dd ul").hide();
+			});
+		</script>
 	</div>
 </body>
 </html>

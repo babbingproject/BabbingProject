@@ -1,8 +1,8 @@
 package com.example.demo.controller;
 
+import java.io.File;
 import java.util.List;
-
-import javax.servlet.http.HttpSession;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,91 +10,137 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import com.example.demo.domain.campaign.CampaignImgvo;
 import com.example.demo.domain.campaign.Campaignvo;
 import com.example.demo.domain.mypage.Advertisementvo;
-import com.example.demo.domain.mypage.Uservo;
 import com.example.demo.service.campaign.CampaignService;
 import com.example.demo.service.campaign.ParticipantsService;
 
-
-@SessionAttributes("usevo")
 @Controller
 public class CampaignController {
 
-	@Autowired
-	CampaignService campaignService;
+   @Autowired
+   CampaignService campaignService;
 
+   @Autowired
+   ParticipantsService participantsService;
+   
+   // 기본 캠페인 리스트 호출
+   @RequestMapping("/getCampaignList")
+   public String getCampaignList(Model model, Campaignvo campaignvo) {
+      
+      List<Campaignvo> campaignList = campaignService.getListByActive(campaignvo);
+      model.addAttribute("campaignList", campaignList);
+      return "th/campaign/campaign";
+   }
+   
+   // 라디오 버튼 값 선택에 따른 정렬
+   @RequestMapping("/getCampaignListByRadio")
+   public String getCampaignListByRadio(@RequestParam(value = "sort") String sort, Model model, Campaignvo campaignvo) {
+   
+      List<Campaignvo> campaignList;
+      
+      switch(sort) {
+      case "recent" :    
+         campaignList = campaignService.getListByActive(campaignvo);
+         model.addAttribute("campaignList", campaignList);
+         return "th/campaign/campaignSort";
+         
+      case "end_date" :    
+         campaignList = campaignService.getListByEndDate(campaignvo);
+         model.addAttribute("campaignList", campaignList);
+         return "th/campaign/campaignSort";
+         
+      case "popular" :
+         campaignList = campaignService.getListByPopular(campaignvo);
+         model.addAttribute("campaignList", campaignList); 
+         return "th/campaign/campaignSort";      
+      default : return "th/campaign/campaignSort";
+      }
 
-	@Autowired
-	ParticipantsService participantsService;
+   }   
+   
+   // 캠페인 조회
+   @GetMapping("/getCampaign")
+   public String getCampaign(Model model, Campaignvo campaignvo) {
 
+      Campaignvo campInfo = campaignService.getCampaign(campaignvo);
+      model.addAttribute("campaign", campInfo);
+      model.addAttribute("participantsList", participantsService.getParticipantsList(campInfo.getCampaignId()));
+      
+      List<CampaignImgvo> campaignImgList = campaignService.selectCampaignImgList(campInfo.getCampaignId());
+      model.addAttribute("campaignImgList",campaignImgList);
+      
+      return "th/campaign/campaignView";
+   }
+   
+   // 캠페인 등록 페이지 이동
+   @GetMapping("/insertCampaign")
+   public String insertCampaignView() {
+      return "th/campaign/campaignWrite";
+   }
 
-	// 캠페인 리스트 불러오기
-	@RequestMapping("/getCampaignList")
-	public String getCampaignList(Model model, Campaignvo campaignvo) {
+   // 캠페인 등록 실행
+   @PostMapping("/insertCampaign")
+   public String insertCampaign(Advertisementvo advertisementvo, Campaignvo campaignvo, MultipartHttpServletRequest request,
+            @RequestParam("file") MultipartFile[] file) throws Exception {
+      
+      campaignvo.setAdvertisementvo(advertisementvo);
+      campaignService.insertCampaign(campaignvo);
+      
+      int campaignId = campaignService.selectCampaignId();
+      
+      if(file.length!=0) {
+         String uploadPath = request.getSession().getServletContext().getRealPath("/");
+         String addPath = "campaignImages";
+      
+         File dirPath = new File(uploadPath+addPath);
+         if (!dirPath.exists()) {
+            dirPath.mkdir();
+         }
+         
+         String fileOriginName = "";
+          for(int i=0; i<file.length; i++) {
+              fileOriginName = file[i].getOriginalFilename();
+              String uuid = UUID.randomUUID().toString();
+              File f = new File(dirPath+File.separator+uuid+"_"+fileOriginName);
+              file[i].transferTo(f);
+              
+              CampaignImgvo campaignImgvo = new CampaignImgvo();
+              campaignImgvo.setCampaignId(campaignId);
+              campaignImgvo.setCampaignImg(addPath+File.separator+uuid+"_"+fileOriginName);
+              
+              campaignService.inserCampaignImg(campaignImgvo);
+          }
+      }      
+      return "redirect:getCampaignList";
+   }
 
-		List<Campaignvo> campaignList = campaignService.getListByActive(campaignvo);
-		model.addAttribute("campaignList", campaignList);
-		return "th/campaign/campaign";
-	}
+   // 캠페인 수정 페이지 이동
+   @GetMapping("/updateCampaign")
+   public String updateCampaignView(Model model, Campaignvo campaignvo) {
+      model.addAttribute("campaign", campaignService.getCampaign(campaignvo));
+      List<CampaignImgvo> campaignImgList = campaignService.selectCampaignImgList(campaignvo.getCampaignId());
+      model.addAttribute("campaignImgList",campaignImgList);
+      
+      return "th/campaign/campaignModify";
+   }
 
-	// 캠페인 정렬 코드 아직 미구현
-	@GetMapping("/getCampaign")
-	public String getCampaign(HttpSession session, Model model, Campaignvo campaignvo) {
+   // 캠페인 수정 진행
+   @PostMapping("/updateCampaign")
+   public String updateCampaign(Campaignvo campaignvo) {
+      campaignService.updateCampaign(campaignvo);
+      return "forward:getCampaignList";
+   }
 
-		
-
-		Campaignvo campInfo = campaignService.getCampaign(campaignvo);
-		model.addAttribute("campaign", campInfo);
-		model.addAttribute("participantsList", participantsService.getParticipantsList(campInfo.getCampaignId()));
-		System.err.println("참여자 리스트 : " + participantsService.getParticipantsList(campInfo.getCampaignId()));
-
-		if((Uservo)session.getAttribute("uservo") != null) {
-			Uservo uservo = (Uservo)session.getAttribute("uservo");
-			int userId = uservo.getUserId();
-			model.addAttribute("participant", participantsService.getParticipants(userId, campInfo.getCampaignId()));
-			System.err.println("참여자 객체 : " + participantsService.getParticipants(userId, campInfo.getCampaignId()));
-			return "th/campaign/campaignView";
-		}
-
-	 
-		return "th/campaign/campaignView";
-	}
-
-
-	@GetMapping("/insertCampaign")
-	public String insertCampaignView() {
-		return "th/campaign/campaignWrite";
-	}
-	
-
-	@PostMapping("/insertCampaign")
-	public String insertCampaign(Advertisementvo advertisementvo, Campaignvo campaignvo) {
-
-		campaignvo.setAdvertisementvo(advertisementvo);
-		campaignService.insertCampaign(campaignvo);
-
-		return "redirect:getCampaignList";
-	}
-	
-	@GetMapping("/updateCampaign")
-	public String updateCampaignView(Model model, Campaignvo campaignvo) {
-		model.addAttribute("campaign", campaignService.getCampaign(campaignvo));
-		return "th/campaign/campaignModify";
-	}
-
-	@PostMapping("/updateCampaign")
-	public String updateCampaign(Campaignvo campaignvo) {
-		campaignService.updateCampaign(campaignvo);
-		return "forward:getCampaignList";
-	}
-
-	// 캠페인 삭제
-	@GetMapping("/deleteCampaign")
-	public String deleteCampaign(Campaignvo campaignvo) {
-		campaignService.deleteCampaign(campaignvo);
-		return "forward:getCampaignList";
-	}
+   // 캠페인 삭제
+   @GetMapping("/deleteCampaign")
+   public String deleteCampaign(Campaignvo campaignvo) {
+      campaignService.deleteCampaign(campaignvo);
+      return "forward:getCampaignList";
+   }
 }
