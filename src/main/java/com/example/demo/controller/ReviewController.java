@@ -4,19 +4,15 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.example.demo.domain.mypage.Uservo;
-import com.example.demo.domain.review.Commentvo;
 import com.example.demo.domain.review.ReviewImagevo;
 import com.example.demo.domain.review.ReviewRegistrationvo;
 import com.example.demo.service.review.CommentService;
@@ -28,109 +24,93 @@ import com.example.demo.service.user.UserService;
 
 @Controller
 public class ReviewController {
-   
-   private static final Logger logger = LoggerFactory.getLogger(ReviewController.class);
-   
-   @Autowired
-   ReviewService reviewService;
+
+	
+	@Autowired
+	ReviewService reviewService;
+
 
    @Autowired
    UserService userService;
 
-   @Autowired
-   CommentService commentService;
-   
-   @Autowired
-   ReviewImageService reviewImageService;
-   @Autowired
-   UserRepository userRepo;
-   @Autowired
-   ReviewRepository reviewRepo;
-   
-   
-   EntityManager em;   
 
-   @ModelAttribute("uservo")
-   public Uservo setUservo() {
-      return new Uservo();
-   }
-   
+	@Autowired
+	CommentService commentService;
+	
+	@Autowired
+	ReviewImageService reviewImageService;
+	
+	@Autowired
+	UserRepository userRepo;
+	
+	@Autowired
+	ReviewRepository reviewRepo;
+	
+	EntityManager em;	
 
-   @RequestMapping("/testhome")
-   public String getReviewImagevo(ReviewImagevo reviewImagevo, Model model) {
-      reviewImagevo.setImgId(1);
-      model.addAttribute("review", reviewImageService.getReviewImagevo(reviewImagevo));
-      return "th/main/homemain";
-   }
+	@RequestMapping("/testhome")
+	public String getReviewImagevo(ReviewImagevo reviewImagevo, Model model) {
+		reviewImagevo.setImgId(1);
+		model.addAttribute("review", reviewImageService.getReviewImagevo(reviewImagevo));
+		return "th/main/homemain";
+	}
+	
+	@RequestMapping("/doReviewList")
+	public String getReviewList(Model model) {
+		List<ReviewRegistrationvo> reviewList = reviewService.selectReviewList();
+		model.addAttribute("reviewList", reviewList);
+		return "th/review/reviewList";
+	}
 
-   @GetMapping("/insertReview")
-   public String insertReview(Uservo uservo) {
-      /*
-       * if (uservo.getUser_email() == null) { // nickname대신 userId로 조건을 줘야하나? return
-       * "redirect:login"; }
-       */
-      return "th/review/reviewWrite";
-   }
+	@GetMapping("/insertReview")
+	public String insertReview() {
+		return "th/review/reviewWrite";
+	}
 
-   @PostMapping("/insertReview")
-   public String insertReview(Uservo uservo, ReviewRegistrationvo reviewRegistrationvo, Model model) {
-      /*
-       * if (uservo.getNickname() == null) { // model.addAttribute("userId", uservo);
-       * // logger.info(uservo.toString()); return "redirect:login"; }
-       */
-      System.out.println(uservo.toString());
-      
-      reviewRegistrationvo.setUservo(uservo);
-      reviewService.insertReview(reviewRegistrationvo);
-      return "redirect:doReviewList";
-   }
+	@PostMapping("/insertReview")
+	public String insertReview(int userId, ReviewRegistrationvo reviewRegistrationvo) {
+		reviewRegistrationvo.setUservo(userRepo.findById(userId).get());
+		
+		reviewService.insertReview(reviewRegistrationvo);
+		
+		/*
+		 * int reviewId = reviewService.createReviewId(); System.err.println(reviewId);
+		 * List<AjaxReviewImagevo> ajaxReviewImgList =
+		 * reviewService.selectAjaxReviewImgList(reviewId);
+		 * System.out.println(ajaxReviewImgList.toString()); ReviewImagevo reviewImagevo
+		 * = new ReviewImagevo();
+		 * reviewImagevo.setImg(ajaxReviewImgList.get(ajaxReviewImgList.listIterator().
+		 * nextIndex()).getAjaxReviewImg());
+		 * reviewImageService.insertReviewImg(reviewImagevo);
+		 * System.out.println(reviewImagevo.getImg().toString());
+		 */		
+		
+		return "redirect:doReviewList";
+	}
 
-   @RequestMapping(value = "/doReviewView", method=RequestMethod.GET)
-      public String getReviewVIew(Model model, int reviewId) {
-         System.err.println(reviewId);
-//         model.addAttribute("reviewView", reviewRepo.findById(reviewId).get());
-         model.addAttribute("reviewView", reviewService.selectReviewView(reviewId));
-         model.addAttribute("reviewImgList", reviewService.selectAjaxReviewImgList(reviewId));
-         return "th/review/reviewView"; 
-      }
-   
-   @RequestMapping("/updateReviewView")
-   public String updateReview(Uservo uservo, ReviewRegistrationvo reviewRegistrationvo) {
-      /*
-       * if (uservo.getNickname() == null) { return "redirect:login"; }
-       */
-//      logger.info(uservo.toString());
-//      logger.info(reviewRegistrationvo.toString());
-      reviewService.updateReview(reviewRegistrationvo);      
-      return "forward:doReviewList";
-   }
-   @RequestMapping("/deleteReviewView")
-   public String deleteReview(Uservo uservo, ReviewRegistrationvo reviewRegistrationvo) {
-      /*
-       * if (uservo.getNickname() == null) { return "redirect:login"; }
-       */
-      System.out.println(reviewRegistrationvo.toString());      
-      
-      reviewService.deleteReview(reviewRegistrationvo);
-      return "forward:doReviewList";
-   }
-   
-   @RequestMapping("/doReviewList")
-   public String getReviewList(Uservo uservo,
-         Model model, ReviewRegistrationvo reviewRegistrationvo, Commentvo commentvo) {
-      /*
-       * if (uservo.getNickname()== null) { return "redirect:login"; }
-       */
-      List<ReviewRegistrationvo> reviewList = reviewService.selectReviewList(reviewRegistrationvo);
-
-      commentvo.setReviewRegistrationvo(reviewRegistrationvo);
-//      model.addAttribute("reviewAndNickName", reviewService.selectReviewJoinUserNickName(uservo, reviewRegistrationvo, commentvo));      
-      model.addAttribute("reviewList", reviewList);
-      
-//      logger.info(model.toString());
-      return "th/review/reviewList";
-
-   }
-   
-   
+	@RequestMapping(value = "/doReviewView", method=RequestMethod.GET)
+	public String getReviewVIew(Model model, int reviewId) {
+		System.err.println(reviewId);
+//		model.addAttribute("reviewView", reviewRepo.findById(reviewId).get());
+		model.addAttribute("reviewView", reviewService.selectReviewView(reviewId));
+		model.addAttribute("reviewImgList", reviewService.selectAjaxReviewImgList(reviewId));
+		return "th/review/reviewView"; 
+	}
+	
+	@RequestMapping("/deleteReviewView")
+	public String deleteReview(int reviewId) {
+		reviewService.deleteReview(reviewId);
+		return "forward:doReviewList";
+	}
+	
+	@RequestMapping("/updateReviewView")
+	public String updateReview(Uservo uservo, ReviewRegistrationvo reviewRegistrationvo) {
+		reviewService.updateReview(reviewRegistrationvo);		
+		return "forward:doReviewList";
+	}
+	
+	
+	
+	
 }
+

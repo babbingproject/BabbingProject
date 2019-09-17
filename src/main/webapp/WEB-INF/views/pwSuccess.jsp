@@ -164,6 +164,8 @@ audio
 
 
 
+
+
 :not
 
 
@@ -212,7 +214,9 @@ audio
 
 
 
+
  
+
 
 
 
@@ -311,7 +315,9 @@ controls
 
 
 
+
  
+
 
 
 
@@ -455,7 +461,10 @@ display
 
 
 
+
+
 :
+
 
 
 
@@ -551,7 +560,10 @@ display
 
 
 
+
 none
+
+
 
 
 
@@ -742,6 +754,8 @@ height
 
 
 
+
+
 :
 
 
@@ -790,7 +804,9 @@ height
 
 
 
+
  
+
 
 
 
@@ -1963,7 +1979,11 @@ transform
 
 
 
+
+
 :rotate(359deg)
+
+
 
 
 
@@ -2169,7 +2189,11 @@ opacity
 
 
 
+
+
 :
+
+
 
 
 
@@ -2366,7 +2390,11 @@ opacity
 
 
 
+
+
 :
+
+
 
 
 
@@ -3198,6 +3226,7 @@ to {
 
 .login_wrap .loginForm {
 	margin-top: 0;
+	position: relative;
 }
 
 .login_wrap .loginForm p {
@@ -3387,7 +3416,7 @@ to {
 						</p>
 
 						<button type="submit" id="modify"
-							style="position: absolute; top: 470px; left: 680px; width: 342px; height: 57px; border-radius: 28.5px; border: solid 1px #ff4d80;"
+							style="position: absolute; top: 400px; left: 50%; width: 342px; height: 57px; border-radius: 28.5px; border: solid 1px #ff4d80; margin-left: -171px;"
 							class="w3-button w3-block w3-pink w3-ripple w3-margin-top w3-round">비밀번호
 							변경</button>
 					</form>

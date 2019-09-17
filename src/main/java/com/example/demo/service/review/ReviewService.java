@@ -1,6 +1,7 @@
 package com.example.demo.service.review;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -8,6 +9,7 @@ import org.springframework.data.domain.Pageable;
 import com.example.demo.domain.mypage.Uservo;
 import com.example.demo.domain.review.AjaxReviewImagevo;
 import com.example.demo.domain.review.Commentvo;
+import com.example.demo.domain.review.ReviewImagevo;
 import com.example.demo.domain.review.ReviewRegistrationvo;
 
 public interface ReviewService {
@@ -51,9 +53,11 @@ public interface ReviewService {
 
 
 
-	List<ReviewRegistrationvo> selectReviewList();
+//	List<ReviewRegistrationvo> selectReviewList();
 	
-	List<ReviewRegistrationvo> selectReviewList(ReviewRegistrationvo reviewRegistrationvo);
+	
+	
+	List<ReviewRegistrationvo> selectReviewList();
 
 //	Tuple selectReviewIdJoinUserId(Uservo Uservo, ReviewRegistrationvo reviewRegistrationvo);
 
@@ -61,19 +65,23 @@ public interface ReviewService {
 
 
 
-	public ReviewRegistrationvo selectReviewView(ReviewRegistrationvo registrationvo); 
+	ReviewRegistrationvo selectReviewView(int reviewId); 
 	
 	List<Object> selectReviewJoinReviewAndComment(Uservo uservo, ReviewRegistrationvo reviewRegistrationvo, Commentvo commentvo);
 	
 	void updateReview(ReviewRegistrationvo reviewRegistrationvo);
 	
-	void deleteReview(ReviewRegistrationvo reviewRegistrationvo);
+	void deleteReview(int reviewId);
+	
+	int createReviewId();
 	
 	public Page<ReviewRegistrationvo> findAll(Pageable pageable);
 	public List<ReviewRegistrationvo> getNewestReviewList();
 	
-	ReviewRegistrationvo selectReviewView(int reviewId);
+
 	   
-	   List<AjaxReviewImagevo> selectAjaxReviewImgList(int reviewId);
+
+	List<AjaxReviewImagevo> selectAjaxReviewImgList(int reviewId);
+	
 
 }

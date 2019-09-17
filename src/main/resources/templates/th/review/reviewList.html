@@ -8,6 +8,7 @@
 </head>
 
 <body th:align="center">
+
    <div id="wrap" class="main">
    <div th:replace="/include/header.html :: header"></div>   
    <br><br><br><br><br><br><br><br><br>
@@ -43,5 +44,33 @@
    <a th:href="insertReview">리뷰 등록</a>
    </th:block>
    </div>
+<!-- ======= -->
+<!-- 	<h1>리뷰 목록</h1> -->
+<!-- <!-- 	<h3><font color="black" th:text="${session['member'].nickname}"></font>님 또 인생낭비하러 왔음?</h3> --> -->
+<!-- 	<h3><font color="black" th:text="${session['uservo'].nickname}"></font>님 또 인생낭비하러 왔음?</h3> -->
+<!-- 	<a th:href="@{logout}">LOG_OUT</a> -->
+<!-- 	<a th:href="insertReview">리뷰 등록</a> -->
+<!-- 	<br> -->
+<!-- 	<input type="hidden" id="hiddenUserId" th:value="${session['uservo'].userId}"> -->
+<!-- 	<table th:align="center" border="1" th:cellpqdding="0" th:cellspacing="0" th:width="70"> -->
+<!-- 		<tr> -->
+<!-- 			<th bgcolor="orange" width="100">번호</th> -->
+<!-- 			<th bgcolor="orange" width="200">제목</th> -->
+<!-- 			<th bgcolor="orange" width="150">작성자</th> -->
+<!-- 			<th bgcolor="orange" width="150">등록일</th> -->
+<!-- 			<th bgcolor="orange" width="100">조회수</th> -->
+<!-- 		</tr> -->
+<!-- 		<tr th:each="review, state : ${reviewList}"> -->
+			
+<!-- 			<td th:text="${review.reviewId}"></td>			 -->
+<!-- 			<td><a th:href="@{/doReviewView(reviewId=${review.reviewId})}" th:text="${review.title}"></a></td> -->
+<!-- 			<td th:text="${review.uservo.nickname}"></td> -->
+<!-- 			<td th:text="${#dates.format(review.writeDate,'yyyy-MM-dd')}"></td> -->
+					
+<!-- 		</tr> -->
+<!-- 	</table> -->
+<!-- 	<br> -->
+	
+<!-- >>>>>>> master -->
 </body>
 </html>

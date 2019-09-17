@@ -58,27 +58,28 @@ public class CommentServiceImp implements CommentService {
 
 	@Override
 	public List<Commentvo> selectCommentList(ReviewRegistrationvo reviewRegistrationvo) {
-
 		return commentRepo.findByReviewRegistrationvo(reviewRegistrationvo);
 	}
 
 	@Override
 	public void deleteComment(int commentId) {
-		System.err.println("serviceImp commentid : "+ commentId);
-		
-		
 		commentRepo.deleteComment(commentId);
 		System.out.println(commentRepo.findById(commentId).toString());
-		
 	}
 
 	@Override
-	public List<Commentvo> getCommentList(int reviewId) throws Exception {
-		
-		Commentvo commentvo = new Commentvo();
-		commentvo.setCommentId(reviewId);
-		return commentRepo.findByComment(reviewId);
-		
+	public List<Commentvo> getCommentList(ReviewRegistrationvo reviewRegistrationvo) {
+		return commentRepo.findByReviewRegistrationvo(reviewRegistrationvo);
+	}
+	
+	@Override
+	public void saveComment(Commentvo commentvo) throws Exception {
+		commentRepo.save(commentvo);
+	}
+
+	@Override
+	public void updateComment(Commentvo commentvo) {
+		commentRepo.save(commentvo);
 	}
 
 	/*

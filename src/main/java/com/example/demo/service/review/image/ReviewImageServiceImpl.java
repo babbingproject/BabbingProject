@@ -25,4 +25,10 @@ public class ReviewImageServiceImpl implements ReviewImageService  {
 		return reviewImageRepo.save(reviewImagevo);
 
 	}
+
+	@Override
+	public void insertReviewImg(ReviewImagevo reviewImagevo) {
+		reviewImageRepo.save(reviewImagevo);
+		
+	}
 }

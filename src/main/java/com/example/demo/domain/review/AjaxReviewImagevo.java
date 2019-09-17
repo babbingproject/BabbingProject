@@ -14,11 +14,12 @@ import lombok.ToString;
 @ToString
 @Entity
 public class AjaxReviewImagevo {
-   
-   @Id@GeneratedValue(strategy = GenerationType.IDENTITY)
-   private int ajaxReviewImgId;
-   private String ajaxReviewImg;
-//   @Column(name = "ajax_review_id")
-   private int reviewId;
-   
+	
+	@Id@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int ajaxReviewImgId;
+	private String ajaxReviewImg;
+//	@Column(name = "ajax_review_id")
+	private int reviewId;
+	
 }
+

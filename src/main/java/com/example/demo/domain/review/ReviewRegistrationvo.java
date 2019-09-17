@@ -16,7 +16,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import com.example.demo.domain.mypage.Uservo;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -29,7 +31,7 @@ import lombok.ToString;
 public class ReviewRegistrationvo {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int reviewId;
+	private Integer reviewId;
 	private String reviewPlace;
 	private String title;
 	private String advantages;
@@ -62,9 +64,11 @@ public class ReviewRegistrationvo {
 	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "userId", nullable = false)
+	@JsonManagedReference
 	private Uservo uservo;
 
 	@OneToMany(mappedBy = "reviewRegistrationvo", fetch = FetchType.EAGER, cascade = CascadeType.ALL )
+	@JsonBackReference
 	private List<Commentvo> commentList = new ArrayList<Commentvo>();
 
 	

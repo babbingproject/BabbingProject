@@ -27,12 +27,13 @@ public class ReviewServiceImpl implements ReviewService {
 
 	@Autowired
 	UserRepository userRepo;
-
+	
+	@Autowired
+	AjaxReviewImageRepository ajaxReviewImageRepo;
+	
 	@PersistenceContext
 	EntityManager em;
 
-	@Autowired
-	   AjaxReviewImageRepository ajaxReviewImageRepo;
 
 	@Override
 	public List<Object[]> getKoreanTopSix() {
@@ -132,16 +133,12 @@ public class ReviewServiceImpl implements ReviewService {
 //	}
 
 	@Override
-
 	public void insertReview(ReviewRegistrationvo reviewRegistrationvo) {
-
 		reviewRepo.save(reviewRegistrationvo);
 	}
 
-
-
 	@Override
-	public List<ReviewRegistrationvo> selectReviewList(ReviewRegistrationvo reviewRegistrationvo) {
+	public List<ReviewRegistrationvo> selectReviewList() {
 
 		JPAQueryFactory query = new JPAQueryFactory(em);
 
@@ -152,8 +149,8 @@ public class ReviewServiceImpl implements ReviewService {
 	}
 
 	@Override
-	public List<Object> selectReviewJoinReviewAndComment(Uservo uservo, 
-			ReviewRegistrationvo reviewRegistrationvo, Commentvo commentvo) {
+	public List<Object> selectReviewJoinReviewAndComment(Uservo uservo, ReviewRegistrationvo reviewRegistrationvo,
+			Commentvo commentvo) {
 		/*
 		 * JPAQueryFactory query = new JPAQueryFactory(em); // JPAQuery<Object> query =
 		 * new JPAQuery<Object>(em);
@@ -175,8 +172,8 @@ public class ReviewServiceImpl implements ReviewService {
 	}
 
 	@Override
-	public ReviewRegistrationvo selectReviewView(ReviewRegistrationvo reviewRegistrationvo) {
-		return reviewRepo.findById(reviewRegistrationvo.getReviewId()).get();
+	public ReviewRegistrationvo selectReviewView(int reviewId) {
+		return reviewRepo.getReviewView(reviewId);
 	}
 
 	@Override
@@ -191,12 +188,10 @@ public class ReviewServiceImpl implements ReviewService {
 	}
 
 	@Override
-	public void deleteReview(ReviewRegistrationvo reviewRegistrationvo) {
-		
-		reviewRepo.deleteById(reviewRegistrationvo.getReviewId());
-
-
+	public void deleteReview(int reviewId) {
+		reviewRepo.delete(reviewId);
 	}
+
 //	@Override
 //	public Tuple selectReviewIdJoinUserId(Uservo Uservo, ReviewRegistrationvo reviewRegistrationvo) {
 //		JPAQueryFactory query = new JPAQueryFactory(em);
@@ -209,41 +204,44 @@ public class ReviewServiceImpl implements ReviewService {
 //		
 //	}
 
-	@Override
-	public List<ReviewRegistrationvo> selectReviewList() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+
 	
 	public Page<ReviewRegistrationvo> getSearchKeywordPage(String searchKeyword, Pageable pageable){
 		return reviewRepo.getSearchKeywordPage(searchKeyword, pageable);
 	}
 	
 	public Page<ReviewRegistrationvo> findAll(Pageable pageable){
+
 		return reviewRepo.findAll(pageable);
 	}
-	
-	public List<ReviewRegistrationvo> findAll(){
+
+	public List<ReviewRegistrationvo> findAll() {
 		return reviewRepo.findAll();
 	}
-	
-	public List<ReviewRegistrationvo> getNewestReviewList(){
+
+	public List<ReviewRegistrationvo> getNewestReviewList() {
 		return reviewRepo.getNewestReviewList();
 	}
-	public List<ReviewRegistrationvo> getNewestReview(){
+
+	public List<ReviewRegistrationvo> getNewestReview() {
 		return (List<ReviewRegistrationvo>) reviewRepo.getNewestReview();
 	}
 
-	  @Override
-	   public ReviewRegistrationvo selectReviewView(int reviewId) {
-	      return reviewRepo.getReviewView(reviewId);
-	      
-	   }
 
-	   @Override
-	   public List<AjaxReviewImagevo> selectAjaxReviewImgList(int reviewId) {
-	      // TODO Auto-generated method stub
-	      return ajaxReviewImageRepo.getReviewImg(reviewId);
-	   }
+	@Override
+	public int createReviewId() {
+		
+		return (int) (reviewRepo.count()+2);
+	}
+
+	@Override
+	public List<AjaxReviewImagevo> selectAjaxReviewImgList(int reviewId) {
+		
+		
+		return ajaxReviewImageRepo.getReviewImg(reviewId);
+		
+	}
+
+
 
 }

@@ -1,6 +1,5 @@
 package com.example.demo.domain.mypage;
 
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -16,6 +15,7 @@ import javax.persistence.OneToMany;
 
 import com.example.demo.domain.review.Commentvo;
 import com.example.demo.domain.review.ReviewRegistrationvo;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -23,13 +23,13 @@ import lombok.ToString;
 
 @Getter
 @Setter
-@ToString(exclude = {"reviewRegistrationList", "commentList"})
+@ToString(exclude = { "reviewRegistrationList", "commentList" })
 @Entity
 public class Uservo {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int userId;
+	private Integer userId;
 	private String nickname;
 	private String password;
 	private String introduce;
@@ -69,15 +69,12 @@ public class Uservo {
 	// 세션 테스트용 임시컬럼
 	private String role;
 
-	@OneToMany(mappedBy = "uservo", fetch = FetchType.EAGER,  cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "uservo", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@JsonBackReference
 	private List<ReviewRegistrationvo> reviewRegistrationList = new ArrayList<ReviewRegistrationvo>();
 
-
-	/*
-	 * @OneToMany(mappedBy = "uservo", fetch = FetchType.EAGER, cascade =
-	 * CascadeType.ALL) public List<Commentvo> commentList = new
-	 * ArrayList<Commentvo>();
-	 */
-
+	@OneToMany(mappedBy = "uservo", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JsonBackReference
+	public List<Commentvo> commentList = new ArrayList<Commentvo>();
 
 }

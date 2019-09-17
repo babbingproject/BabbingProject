@@ -8,6 +8,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import com.example.demo.domain.review.AjaxReviewImagevo;
 import com.example.demo.domain.review.ReviewRegistrationvo;
 
 public interface ReviewRepository extends JpaRepository<ReviewRegistrationvo, Integer>{
@@ -287,8 +288,11 @@ public interface ReviewRepository extends JpaRepository<ReviewRegistrationvo, In
 //	Page<ReviewRegistrationvo> getSearchKeywordPage(String searchKeyword, Pageable pageable);
 
 //	Page<Object[]> getSearchKeyword(String searchKeyword, PageRequest pageRequest);
-	  @Query(value = "SELECT * FROM review_registrationvo WHERE review_id = ?", nativeQuery = true)
-      ReviewRegistrationvo getReviewView(int reviewId);
+
+	@Query(nativeQuery = true, value = "delete from review_registrationvo where review_id = ?")
+	void delete(int reviewId);
 
 	
+	@Query(value = "SELECT * FROM review_registrationvo WHERE review_id = ?", nativeQuery = true)
+	ReviewRegistrationvo getReviewView(int reviewId);
 }
