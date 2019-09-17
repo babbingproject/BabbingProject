@@ -11,12 +11,18 @@
 
 <div id="wrap" class="main">
 		<div th:replace="/include/header.html :: header"></div>
+		
+		<div id="teb">	정렬
+		<input type="radio" name="sort" value="recent" onclick="#"> 최신순
+		<input type="radio" name="sort" value="end_date" onclick="#">
+		마감 임박 순		<br><br><br><br><br><br><br><br>
+		<hr></div>
 		정렬
 		<input type="radio" name="sort" value="recent" onclick="#"> 최신순
 		<input type="radio" name="sort" value="end_date" onclick="#">
 		마감 임박 순		
 		<hr>
-
+</div>
 
 	<th:block th:if="${session['advertisementvo'] != null}">
 	<div align="right" >

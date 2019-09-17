@@ -152,7 +152,11 @@ a {text-decoration: none;color: inherit;cursor: pointer;}
 
 .footer-area{background:#e0e0e0;margin-top:80px;min-height:200px}
 .footer-area .footer{width:1135px;margin:0 auto; padding:20px 0 20px 20px;color:#999;position: relative; }
-.footer-area .top-btn{background:url('../../images/topbtn.png') no-repeat 0 bottom;    text-indent: -9999px;   position: absolute;    width: 75px;    height: 75px;    top: -75px;    right: 10px;}
+.footer-area .top-btn{background:url('../../images/topbtn.png') no-repeat 0 bottom;    text-indent: -9999px;   position: fixed;    width: 105px;
+    height: 97px;
+    top: 780px;
+    right: -2px;
+}}
 
 .mgtXS{margin-top:5px}
 .mgtS{margin-top:10px}
@@ -170,7 +174,7 @@ a {text-decoration: none;color: inherit;cursor: pointer;}
 .container.ranking .advertisementranking{width: 45%; float: left;  margin: 30px 0px 0px 40px;}
 .container.ranking .borderspace{margin-bottom:110px;}
 .container ranking li{width:100%; display: inline;}
-.container.ranking li img{float: left;width: 17%;  border-radius: 100px;border: 2px #bdbcbc solid; }
+.container.ranking li img{width: 17%;  border-radius: 100px;border: 2px #bdbcbc solid; }
 .container.ranking li:nth-child(2){width: 35%; float: left; margin-left: 10px;}
 .container.ranking li:nth-child(3){width: 35%; float: right;}
 .container.ranking li .userid{font-size: 20px; font-weight: bold;}

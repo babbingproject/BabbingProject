@@ -64,7 +64,7 @@
 	<div id="wrap" class="main">
 		<div th:replace="/include/header.html :: header"></div>
 		<!-- 본문 영역 Start -->
-		<div style="float: left; width: 70%">
+		<div style="float: left; width: 70% ;margin-top: 150px;">
 			<h4 th:text="${campaign.title}"></h4>
 			<th:block th:if="${session[advertisementvo] != null}">
 			<a th:if="${session['advertisementvo'].advertisementId} == ${campaign.advertisementvo.advertisementId}" th:href="@{updateCampaign(campaignId=${campaign.campaignId})}">수정하기 </a>
