@@ -64,15 +64,8 @@ public class UserController {
 
       return "regSuccess";
    }
-   @RequestMapping("/adJoinTeb")
-   public String adJoin() {
-      return "adJoin";
-   }
-   
-   @RequestMapping("/joinTeb")
-   public String Join() {
-      return "join";
-   }
+
+
 
 
 }

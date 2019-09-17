@@ -3387,7 +3387,7 @@ to {
 						</p>
 
 						<button type="submit" id="modify"
-							style="position: absolute; top: 470px; left: 596px; width: 342px; height: 57px; border-radius: 28.5px; border: solid 1px #ff4d80;"
+							style="position: absolute; top: 470px; left: 680px; width: 342px; height: 57px; border-radius: 28.5px; border: solid 1px #ff4d80;"
 							class="w3-button w3-block w3-pink w3-ripple w3-margin-top w3-round">비밀번호
 							변경</button>
 					</form>

@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>비밀번호즉시변경</title>
+<title>인증메일발송</title>
 <style>
 *:focus {
 	outline: none;

@@ -3459,8 +3459,8 @@ to {
 						<p>새로운 비밀번호를 입력해주세요</p>
 
 						<p>
-							<input type="hidden" value="${advertisement_email }"
-								name="user_email"> <input type="password"
+							<input type="hidden" value="${advertisement_email}"
+								name="advertisement_email"> <input type="password"
 								style="top: 572px; left: 560px;" class="w3-input"
 								name="password" id="pw" placeholder="새 비밀번호" required="required">
 						</p>
@@ -3471,7 +3471,7 @@ to {
 						</p>
 
 						<button type="submit" id="modify"
-							style="position: absolute; top: 470px; left: 596px; width: 342px; height: 57px; border-radius: 28.5px; border: solid 1px #ff4d80;"
+							style="position: absolute; top: 470px; left: 680px; width: 342px; height: 57px; border-radius: 28.5px; border: solid 1px #ff4d80;"
 							class="w3-button w3-block w3-pink w3-ripple w3-margin-top w3-round">비밀번호
 							변경</button>
 					</form>

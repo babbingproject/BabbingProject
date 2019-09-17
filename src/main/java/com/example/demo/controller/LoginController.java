@@ -28,13 +28,13 @@ public class LoginController {
 
 	@Autowired
 	private LoginServiceImpl loginService;
-	
+
 	@Autowired
 	private UserService userService;
 
 	@Autowired
 	private AdvertisementService adverService;
-	
+
 	@RequestMapping(value = "/logincon", method = RequestMethod.POST)
 	@ResponseBody
 	public int userLoingPass(Uservo Uservo, HttpSession httpSession, HttpServletRequest request,
@@ -61,7 +61,7 @@ public class LoginController {
 			// 세션 저장하기 전에 비밀번호 가리기
 			Uservo.setPassword("");
 
-			// 세션에 vo 객체 저장			
+			// 세션에 vo 객체 저장
 			httpSession.setAttribute("uservo", userService.findByUserEmail(Uservo.getUser_email()));
 			System.err.println("유저 세션 : " + userService.findByUserEmail(Uservo.getUser_email()));
 
@@ -135,10 +135,11 @@ public class LoginController {
 			// 세션 저장하기 전에 비밀번호 가리기
 			vo.setPassword("");
 
-			httpSession.setAttribute("advertisementvo", adverService.findAllByAdvertisementEmail(vo.getAdvertisement_email()));
-			System.err.println("광고주 세션 : " + adverService.findAllByAdvertisementEmail(vo.getAdvertisement_email()));			
+			httpSession.setAttribute("advertisementvo",
+					adverService.findAllByAdvertisementEmail(vo.getAdvertisement_email()));
+			System.err.println("광고주 세션 : " + adverService.findAllByAdvertisementEmail(vo.getAdvertisement_email()));
 		}
-		
+
 		return result;
 	}
 
@@ -190,6 +191,26 @@ public class LoginController {
 		model.addAttribute("url", naverAuthUrl); //
 
 		return "adJoin";
+	}
+
+	@RequestMapping("/adJoinTeb")
+	public String adJoin(Model model, HttpSession session) {
+		String naverAuthUrl = naverLoginBO.getAuthorizationUrl(session);
+
+		// 네이버
+		model.addAttribute("url", naverAuthUrl); //
+
+		return "adJoin";
+	}
+
+	@RequestMapping("/joinTeb")
+	public String Join(Model model, HttpSession session) {
+		String naverAuthUrl = naverLoginBO.getAuthorizationUrl(session);
+
+		// 네이버
+		model.addAttribute("url", naverAuthUrl); //
+
+		return "join";
 	}
 
 }
