@@ -315,14 +315,31 @@ public class HomeMainController {
 						SearchPaging searchPaging = new SearchPaging();
 						System.out.println("where is i at?" + i);
 						System.err.println("totalpages"+reviewRegistrationvoPage.getTotalPages());
-						System.out.println("reviewService get list" +reviewService.getSearchKeywordPage(searchKeyword.getSearchKeyword(), PageRequest.of(page, 4)).getContent().get(i));
-						
+						System.out.println("please...." +reviewRegistrationvoPage.getNumber());
+//						for(int j = 0; j < reviewRegistrationvoPage.getSize(); j++) {
+//							System.out.println("reviewService get list" +reviewService.getSearchKeywordPage(searchKeyword.getSearchKeyword(), PageRequest.of(page, 4)).getContent().get(j));
+//							searchPaging.setReviewRegistrationvo(reviewService.getSearchKeywordPage(searchKeyword.getSearchKeyword(), PageRequest.of(page, 4)).getContent().get(j));
+//							searchPaging.setReviewRegistrationvoPage(reviewService.getSearchKeywordPage(searchKeyword.getSearchKeyword(), PageRequest.of(page, 4)));
+//							searchPaging.setReviewImage(reviewService.getSearchKeywordPage(searchKeyword.getSearchKeyword(), PageRequest.of(page, 4)).getContent().get(j).getReviewImgList().get(0).getImg());
+//							
+//						}
 						searchPaging.setReviewRegistrationvo(reviewService.getSearchKeywordPage(searchKeyword.getSearchKeyword(), PageRequest.of(page, 4)).getContent().get(i));
 						searchPaging.setReviewRegistrationvoPage(reviewService.getSearchKeywordPage(searchKeyword.getSearchKeyword(), PageRequest.of(page, 4)));
 						searchPaging.setReviewImage(reviewService.getSearchKeywordPage(searchKeyword.getSearchKeyword(), PageRequest.of(page, 4)).getContent().get(i).getReviewImgList().get(0).getImg());
-//						searchPaging.setTotalPages(reviewService.getSearchKeywordPage(searchKeyword.getSearchKeyword(), PageRequest.of(page, 4)).getSize());
+						
+						System.out.println("ZERO" + reviewService.getSearchKeywordPage(searchKeyword.getSearchKeyword(), PageRequest.of(page, 4)).getContent().get(0).getReviewImgList().get(0).getImg());
+						System.out.println("ZERO" + reviewService.getSearchKeywordPage(searchKeyword.getSearchKeyword(), PageRequest.of(1, 4)).getContent().get(0).getReviewImgList().get(0).getImg());
+						System.out.println("ZERO" + reviewService.getSearchKeywordPage(searchKeyword.getSearchKeyword(), PageRequest.of(2, 4)).getContent().get(0).getReviewImgList().get(0).getImg());
+						System.out.println("FIRST"+reviewService.getSearchKeywordPage(searchKeyword.getSearchKeyword(), PageRequest.of(page, 4)).getContent().get(1).getReviewImgList().get(0).getImg());
+						System.out.println("SECOND"+reviewService.getSearchKeywordPage(searchKeyword.getSearchKeyword(), PageRequest.of(page, 4)).getContent().get(2).getReviewImgList().get(0).getImg());
+						System.out.println("THIRD" +reviewService.getSearchKeywordPage(searchKeyword.getSearchKeyword(), PageRequest.of(page, 4)).getContent().get(3).getReviewImgList().get(0).getImg());
+						if(i == 0) {
+							searchPaging.setReviewRegistrationvo(reviewService.getSearchKeywordPage(searchKeyword.getSearchKeyword(), PageRequest.of(page, 4)).getContent().get(i));
+							searchPaging.setReviewRegistrationvoPage(reviewService.getSearchKeywordPage(searchKeyword.getSearchKeyword(), PageRequest.of(page, 4)));
+							searchPaging.setReviewImage(reviewService.getSearchKeywordPage(searchKeyword.getSearchKeyword(), PageRequest.of(page, 4)).getContent().get(i).getReviewImgList().get(0).getImg());
+						}
 						System.out.println(reviewService.getSearchKeywordPage(searchKeyword.getSearchKeyword(), PageRequest.of(page, 4)).getNumber());
-//						searchPaging.setTotalPages(i);
+						searchPaging.setTotalPages(i);
 //						searchPaging.setTotalPages(Arrays.asList(i));
 						
 						searchingPaging.add(searchPaging);
