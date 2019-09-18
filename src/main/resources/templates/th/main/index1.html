@@ -51,9 +51,9 @@
 </head>
 <body>
 
+
+<span th:text="${session[username]}"></span><br>
 <span th:text="${session['uservo']}"></span><br>
-
-
 	<div id="wrap" class="main">
 		<div th:replace="/include/header.html :: header"></div>
 
@@ -88,11 +88,11 @@
 							</p>
 							<span th:if="${#lists.isEmpty(newestreview.scrapvo)}"> <span
 								class="button best02" id="scrapButton"> <input
-									type="hidden" id="followerMe" th:value="${username}">
+									type="hidden" id="followerMe" th:value="${session[username]}">
 							</span>
 							</span> <span th:if="!${#lists.isEmpty(newestreview.scrapvo)}"> <span
 								class="button best01" id="scrapButton"> <input
-									type="hidden" id="followerMe" th:value="${username}">
+									type="hidden" id="followerMe" th:value="${session[username]}">
 							</span>
 							</span>
 							<ul class="info">
@@ -147,11 +147,11 @@
 							</p>
 							<span th:if="${#lists.isEmpty(everything.scrapvo)}">
 								<span id="scrapButton" class="button best02"></span> 
-								<input type="hidden" id="followMe" th:value="${username}">
+								<input type="hidden" id="followMe" th:value="${session[username]}">
 							</span> 
 							<span th:if="!${#lists.isEmpty(everything.scrapvo)}"> 
 								<span id="scrapButton" class="button best01"></span> 
-								<input type="hidden" id="followMe" th:value="${username}">
+								<input type="hidden" id="followMe" th:value="${session[username]}">
 							</span>
 							<ul class="info">
 								<li>
@@ -177,11 +177,11 @@
 			<div class="bannerWrap">
 				<div class="cont-area">
 					<div class="cont-txtB">
-						인기 유저 <a th:href="@{/rank(followerMe=${username})}" class="more-btn">더보기</a>
+						인기 유저 <a th:href="@{/rank(followerMe=${session[username]})}" class="more-btn">더보기</a>
 					</div>
 					<ul class="list-style04-user" id="banner">
 						<li th:each="uservo:${uservo}"> 
-							<a th:href="@{/getUserMyPage(nickname=${uservo.uservo.nickname}, followerMe=${username})}">
+							<a th:href="@{/getUserMyPage(nickname=${uservo.uservo.nickname}, followerMe=${session[username]})}">
 							<img th:src="${uservo.uservo.profileImg}"> <span class="name">
 								<input type="hidden" id="followingYou" th:value="${uservo.uservo.nickname}"> 
 								<span th:text="${uservo.uservo.nickname}"></span><br>
@@ -191,7 +191,7 @@
 							</span></a>
 						<span class="emptyspace"> 
 							<input type="hidden" id="followingYou" th:value="${uservo.uservo.nickname}">
-							<input type="hidden" id="followerMe" th:value="${username}">
+							<input type="hidden" id="followerMe" th:value="${session[username]}">
 							<span th:if="${#lists.isEmpty(uservo.followvo)}"> <span
 									class="followbtn btn02">팔로우</span>
 							</span> 
@@ -211,7 +211,7 @@
 
 			<div class="cont-area">
 				<div class="cont-txtB">
-					인기 맛집 <a th:href="@{/rank(followerMe=${username})}" class="more-btn">더보기</a>
+					인기 맛집 <a th:href="@{/rank(followerMe=${session[username]})}" class="more-btn">더보기</a>
 				</div>
 				<ul class="list-style04-restaurant">
 					<li th:each="advvo:${advvo}" > 
@@ -219,7 +219,7 @@
 						<span th:text="${advvo.advvo.advertisementname}" class="name"></span><br>
 						리뷰수
 						<span class="emptyspace2">
-							<input type="hidden" id="followerMe" th:value="${username}"> 
+							<input type="hidden" id="followerMe" th:value="${session[username]}"> 
 							<input type="hidden" id="followingYou" th:value="${advvo.advvo.advertisementname}">
 							<span th:text="${advvo.advvo.putedCount}"></span> 
 							<span th:if="${#lists.isEmpty(advvo.putvo)}">

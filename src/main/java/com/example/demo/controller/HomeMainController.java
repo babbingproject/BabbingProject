@@ -55,14 +55,14 @@ public class HomeMainController {
 	}
 	//메인 홈페이지! 계속 추가추가 수정수정하자!
 	@RequestMapping("/")
-	public String goIndex1(Model model, String followerMe, HttpSession httpSession) {
+	public String goIndex1(Model model, String followerMe, HttpSession httpSession, Uservo uservo) {
 		
 		System.out.println("SESSION" + httpSession.getServletContext());
 //		List<Object[]> UservoList = userService.getUservoListOrderByFollowingCountDes();
 //		List<Object[]> advvoList = advService.getAdvertisementvoOrderByWeightAvg();
 //		model.addAttribute("newestreview", reviewService.getNewestReview());
 		model.addAttribute("everything", reviewService.getEverythingTopSix());
-	
+		System.err.println(uservo.getNickname());
 		List<CheckingRanking> checkingList = new ArrayList();
 		List<CheckingPut> checkingPutList = new ArrayList();
 		List<CheckingScrap> checkingScrapNewList = new ArrayList();
@@ -286,14 +286,10 @@ public class HomeMainController {
 			model.addAttribute("searchKeyword", searchKeyword);
 			List<CheckingScrap> checkingScrapList = new ArrayList();
 			List<ReviewRegistrationvo> reviewList = reviewService.findAll(); 
-			
-			Page<ReviewRegistrationvo> reviewRegistrationvoPage = reviewService.getSearchKeywordPage(searchKeyword.getSearchKeyword(), PageRequest.of(page, 4));
+			int returnReviewNum = 8;
+			Page<ReviewRegistrationvo> reviewRegistrationvoPage = reviewService.getSearchKeywordPage(searchKeyword.getSearchKeyword(), PageRequest.of(page, returnReviewNum));
 			List<Object[]> review = reviewService.getSearchKeyword(searchKeyword.getSearchKeyword());
 			List<SearchPaging> searchingPaging = new ArrayList();
-			System.out.println("2222222222222" + reviewRegistrationvoPage.getTotalPages());
-			System.out.println(reviewRegistrationvoPage);
-			System.out.println("review object list " + review.get(1));
-		
 			if(searchKeyword.getSearchKeyword()!="") {
 				
 				switch (searchKeyword.getTypes()) {
@@ -303,57 +299,26 @@ public class HomeMainController {
 						model.addAttribute("nothing", "리뷰 검색 결과가 없습니다");
 						break;
 					}
-					System.out.println("리뷰리뷰리뷰리뷰did it come in here?");
-//					for(int j = 0; j < reviewRegistrationvoPage.getTotalPages(); j++) {
-//						SearchPaging searchPaging = new SearchPaging();
-//						System.out.println(j);
-//						searchPaging.setTotalPages(j);
-//						searchingPaging.add(searchPaging);
-//					}
-//					System.out.println("sdfdsf" + searchPaging.getTotalPages());
-					for(int i = 0; i < reviewRegistrationvoPage.getTotalPages(); i++) {
+					for(int i = 0; i < reviewRegistrationvoPage.getSize(); i++) {
 						SearchPaging searchPaging = new SearchPaging();
-						System.out.println("where is i at?" + i);
-						System.err.println("totalpages"+reviewRegistrationvoPage.getTotalPages());
-						System.out.println("please...." +reviewRegistrationvoPage.getNumber());
-//						for(int j = 0; j < reviewRegistrationvoPage.getSize(); j++) {
-//							System.out.println("reviewService get list" +reviewService.getSearchKeywordPage(searchKeyword.getSearchKeyword(), PageRequest.of(page, 4)).getContent().get(j));
-//							searchPaging.setReviewRegistrationvo(reviewService.getSearchKeywordPage(searchKeyword.getSearchKeyword(), PageRequest.of(page, 4)).getContent().get(j));
-//							searchPaging.setReviewRegistrationvoPage(reviewService.getSearchKeywordPage(searchKeyword.getSearchKeyword(), PageRequest.of(page, 4)));
-//							searchPaging.setReviewImage(reviewService.getSearchKeywordPage(searchKeyword.getSearchKeyword(), PageRequest.of(page, 4)).getContent().get(j).getReviewImgList().get(0).getImg());
-//							
-//						}
-						searchPaging.setReviewRegistrationvo(reviewService.getSearchKeywordPage(searchKeyword.getSearchKeyword(), PageRequest.of(page, 4)).getContent().get(i));
-						searchPaging.setReviewRegistrationvoPage(reviewService.getSearchKeywordPage(searchKeyword.getSearchKeyword(), PageRequest.of(page, 4)));
-						searchPaging.setReviewImage(reviewService.getSearchKeywordPage(searchKeyword.getSearchKeyword(), PageRequest.of(page, 4)).getContent().get(i).getReviewImgList().get(0).getImg());
-						
-						System.out.println("ZERO" + reviewService.getSearchKeywordPage(searchKeyword.getSearchKeyword(), PageRequest.of(page, 4)).getContent().get(0).getReviewImgList().get(0).getImg());
-						System.out.println("ZERO" + reviewService.getSearchKeywordPage(searchKeyword.getSearchKeyword(), PageRequest.of(1, 4)).getContent().get(0).getReviewImgList().get(0).getImg());
-						System.out.println("ZERO" + reviewService.getSearchKeywordPage(searchKeyword.getSearchKeyword(), PageRequest.of(2, 4)).getContent().get(0).getReviewImgList().get(0).getImg());
-						System.out.println("FIRST"+reviewService.getSearchKeywordPage(searchKeyword.getSearchKeyword(), PageRequest.of(page, 4)).getContent().get(1).getReviewImgList().get(0).getImg());
-						System.out.println("SECOND"+reviewService.getSearchKeywordPage(searchKeyword.getSearchKeyword(), PageRequest.of(page, 4)).getContent().get(2).getReviewImgList().get(0).getImg());
-						System.out.println("THIRD" +reviewService.getSearchKeywordPage(searchKeyword.getSearchKeyword(), PageRequest.of(page, 4)).getContent().get(3).getReviewImgList().get(0).getImg());
-						if(i == 0) {
-							searchPaging.setReviewRegistrationvo(reviewService.getSearchKeywordPage(searchKeyword.getSearchKeyword(), PageRequest.of(page, 4)).getContent().get(i));
-							searchPaging.setReviewRegistrationvoPage(reviewService.getSearchKeywordPage(searchKeyword.getSearchKeyword(), PageRequest.of(page, 4)));
-							searchPaging.setReviewImage(reviewService.getSearchKeywordPage(searchKeyword.getSearchKeyword(), PageRequest.of(page, 4)).getContent().get(i).getReviewImgList().get(0).getImg());
-						}
-						System.out.println(reviewService.getSearchKeywordPage(searchKeyword.getSearchKeyword(), PageRequest.of(page, 4)).getNumber());
+						searchPaging.setReviewRegistrationvo(reviewService.getSearchKeywordPage(searchKeyword.getSearchKeyword(), PageRequest.of(page, returnReviewNum)).getContent().get(i));
+						searchPaging.setReviewRegistrationvoPage(reviewService.getSearchKeywordPage(searchKeyword.getSearchKeyword(), PageRequest.of(page, returnReviewNum)));
+						searchPaging.setReviewImage(reviewService.getSearchKeywordPage(searchKeyword.getSearchKeyword(), PageRequest.of(page, returnReviewNum)).getContent().get(i).getReviewImgList().get(0).getImg());
 						searchPaging.setTotalPages(i);
-//						searchPaging.setTotalPages(Arrays.asList(i));
-						
+
 						searchingPaging.add(searchPaging);
-						System.err.println(searchingPaging.get(i).getTotalPages());
+	
 					}
-//					System.out.println(searchingPaging.get(1).getReviewImage());
+					
 					model.addAttribute("review", searchingPaging);
-					model.addAttribute("total", reviewService.getSearchKeywordPage(searchKeyword.getSearchKeyword(), PageRequest.of(page, 4)));
+					model.addAttribute("total", reviewService.getSearchKeywordPage(searchKeyword.getSearchKeyword(), PageRequest.of(page, returnReviewNum)));
 					break;
 				case "user" :
 					if(userService.getSearchKeyword(searchKeyword.getSearchKeyword()).isEmpty()) {
 						model.addAttribute("nothing", "유저 검색 결과가 없습니다");
 						break;
 					}
+//					for(int i = 0; i <)
 					System.out.println("유저유저유저유저 왔나오?");
 					break;
 				case "campaign" :

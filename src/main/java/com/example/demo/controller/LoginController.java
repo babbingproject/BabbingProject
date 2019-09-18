@@ -63,8 +63,9 @@ public class LoginController {
 
 			// 세션에 vo 객체 저장
 			httpSession.setAttribute("uservo", userService.findByUserEmail(Uservo.getUser_email()));
+			httpSession.setAttribute("username", userService.findByUserEmail(Uservo.getUser_email()).getNickname());
 			System.err.println("유저 세션 : " + userService.findByUserEmail(Uservo.getUser_email()));
-
+			Uservo.setNickname(userService.findByUserEmail(Uservo.getUser_email()).getNickname());
 		}
 		return result;
 	}
