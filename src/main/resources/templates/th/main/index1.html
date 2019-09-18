@@ -15,6 +15,15 @@
 <script src="common/js/jquery.slides.js"></script>
 <script type="text/javascript" src="common/js/jquery.slideto.min.js"></script>
 <link href="common/css/wlogin2.css" rel="stylesheet">
+
+
+<link href="jquery.bxslider/jquery.bxslider.css" rel="stylesheet" />
+<script
+	src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
+
+
+
+
 <style>
 *:focus {
 	outline: none;
@@ -41,7 +50,7 @@
 			play : {
 				active : true,
 				auto : true,
-				interval : 4000,
+				interval : 3000,
 				swap : true
 			}
 		});
@@ -63,11 +72,8 @@
 				<div class="cont-txtB" style="margin-top: 10%;">캠페인</div>
 				<div id="slides">
 					<img src="images/Bobbing-m-visual.jpg" alt=""> <img
-						src="images/Bobbing-m-visual2.jpg" alt=""> <img
-						src="images/Bobbing-m-visual3.jpg" alt=""> <img
-						src="images/Bobbing-m-visual4.jpg" alt=""> <img
-						src="images/Bobbing-m-visual5.jpg" alt=""> <img
-						src="images/Bobbing-m-visual6.jpg" alt="">
+						src="images/여자친구.jpg" alt=""> <img
+						src="images/여자친구2.jpg" alt="">
 				</div>
 
 			</div>
@@ -181,7 +187,9 @@
 						인기 유저 <a th:href="@{/rank(followerMe=${username})}"
 							class="more-btn">더보기</a>
 					</div>
-					<ul class="list-style04-user" id="banner">
+					<ul class="list-style04-user slider" id="banner"
+						style="margin-top: -25px;">
+
 						<li th:each="uservo:${uservo}"><a
 							th:href="@{/getUserMyPage(nickname=${uservo.uservo.nickname}, followerMe=${username})}">
 								<img th:src="${uservo.uservo.profileImg}"> <span
@@ -195,16 +203,13 @@
 								id="followingYou" th:value="${uservo.uservo.nickname}">
 								<input type="hidden" id="followerMe" th:value="${username}">
 								<span th:if="${#lists.isEmpty(uservo.followvo)}"> <span
-									class="followbtn btn02">팔로우</span>
+									class="followbtn btn02" style="curser:pointer;">팔로우</span>
 							</span> <span th:if="!${#lists.isEmpty(uservo.followvo)}"> <span
-									class="followbtn btn01">팔로잉</span>
+									class="followbtn btn01" style="curser:pointer;">팔로잉</span>
 							</span>
 						</span></li>
 					</ul>
-					<div class="arr-area">
-						<span class="arr-btn-left" id="left"></span> <span
-							class="arr-btn-right on" id="right"></span>
-					</div>
+
 				</div>
 			</div>
 
@@ -214,7 +219,8 @@
 					인기 맛집 <a th:href="@{/rank(followerMe=${username})}"
 						class="more-btn">더보기</a>
 				</div>
-				<ul class="list-style04-restaurant">
+				<ul class="list-style04-restaurant slider2"
+					style="margin-top: -25px;">
 					<li th:each="advvo:${advvo}"><img
 						th:src="${advvo.advvo.profileImg}"> <span
 						th:text="${advvo.advvo.advertisementname}" class="name"></span><br>
@@ -224,15 +230,15 @@
 							th:value="${advvo.advvo.advertisementname}"> <span
 							th:text="${advvo.advvo.putedCount}"></span> <span
 							th:if="${#lists.isEmpty(advvo.putvo)}"> <span
-								class="followbtn btn02">담아두기</span>
+								class="followbtn btn02" style="curser:pointer;">담아두기</span>
 						</span> <span th:if="!${#lists.isEmpty(advvo.putvo)}"> <span
-								class="followbtn btn01">담기완료</span>
+								class="followbtn btn01" style="curser:pointer;">담기완료</span>
 						</span>
 					</span></li>
 				</ul>
 				<div class="arr-area">
-					<a href="#" class="arr-btn-left on" onclick="click"></a> <a
-						href="#" class="arr-btn-right"></a>
+					<a href="#" class="arr-btn-left on"></a> <a href="#"
+						class="arr-btn-right"></a>
 				</div>
 			</div>
 		</div>
@@ -254,6 +260,45 @@
 			var text = $(this).html();
 			$(".dropdown dt a span").html(text);
 			$(".dropdown dd ul").hide();
+		});
+		$(document).ready(function() {
+			$('.slider').bxSlider({
+				auto : true,
+				pager : false,
+				minSlides : 8,
+				maxSlides : 8,
+				moveSlides : 1,
+				slideWidth : 336,
+				slideMargin : 40,
+				autoHover : true,
+				// 				prevSelector : '#slider-prev',
+				// 				nextSelector : '#slider-next',
+				controls : true,
+				speed : 500,
+				pause : 1100,
+				touchEnabled : false
+
+			});
+		});
+
+		$(document).ready(function() {
+			$('.slider2').bxSlider({
+				auto : true,
+				pager : false,
+				minSlides : 8,
+				maxSlides : 8,
+				moveSlides : 1,
+				slideWidth : 336,
+				slideMargin : 40,
+				autoHover : true,
+				// 				prevSelector : '#slider-prev',
+				// 				nextSelector : '#slider-next',
+				controls : true,
+				speed : 500,
+				pause : 1100,
+				touchEnabled : false
+
+			});
 		});
 	</script>
 

@@ -76,7 +76,7 @@ a {text-decoration: none;color: inherit;cursor: pointer;}
 .cont-area .list-style02 li:last-child{margin-right:0px}
 .cont-area .list-style02 li a{display: block;width: 160px;height: 160px;border: 2px #ff4d80 solid;border-radius: 100px;text-align: center;line-height: 160px;font-size: 22px;}
 .cont-area .list-style02 li a.on{ color:#fff; background:#ff4d80;border:none}
-.cont-area .list-style02 li span{display: block;width: 160px;height: 160px;border: 2px #ff4d80 solid;border-radius: 100px;text-align: center;line-height: 160px;font-size: 22px;}
+.cont-area .list-style02 li span{display: block;width: 160px;height: 160px;border: 2px #ff4d80 solid;border-radius: 100px;text-align: center;line-height: 160px;font-size: 22px;cursor: pointer;}
 .cont-area .list-style02 li span.on{ color:#fff; background:#ff4d80;border:none}
 .cont-area .list-style03 {margin-top: 60px;}
 .cont-area .list-style03> li{width: 32%;position: relative;display:inline-block;margin-top:19px;margin-right:19px;}
@@ -104,7 +104,7 @@ a {text-decoration: none;color: inherit;cursor: pointer;}
 .cont-area .list-style04-user li img{width: 100%;  border-radius: 100px;border: 2px #bdbcbc solid; }
 .cont-area .list-style04-user li .name{font-size: 16px; font-weight: bold;margin-top:10px}
 .cont-area .list-style04-user li .btn01{color:#fff; background:#ff4d80; border: 2px #ff4d80 solid;padding: 10px 0px; text-align: center; width: 130px;display: inline-block;  border-radius: 5px;}
-.cont-area .list-style04-user li .btn02{color:#ff4d80;  border: 2px #ff4d80 solid; padding: 10px 0px; text-align: center; width: 130px; display: inline-block;  border-radius: 5px;}
+.cont-area .list-style04-user li .btn02{color:#ff4d80;  border: 2px #ff4d80 solid; padding: 10px 0px; text-align: center; width: 130px; display: inline-block;  border-radius: 5px;cursor: pointer;}
 .cont-area .list-style04-user li span{text-align: center;margin: 5px 0 10px;;}
 .cont-area .list-style04-user li:last-child{margin-right:0px}
 .cont-area .list-style04-restaurant{display: block; padding:30px ;}
@@ -113,7 +113,7 @@ a {text-decoration: none;color: inherit;cursor: pointer;}
 .cont-area .list-style04-restaurant li img{width: 100%;  border-radius: 100px;border: 2px #bdbcbc solid; }
 .cont-area .list-style04-restaurant li .name{font-size: 16px; font-weight: bold;margin-top:10px; align: center;}
 .cont-area .list-style04-restaurant li .btn01{color:#fff; background:#ff4d80; border: 2px #ff4d80 solid;padding: 10px 0px; text-align: center; width: 130px;display: inline-block;  border-radius: 5px;}
-.cont-area .list-style04-restaurant li .btn02{color:#ff4d80;  border: 2px #ff4d80 solid; padding: 10px 0px; text-align: center; width: 130px; display: inline-block;  border-radius: 5px;}
+.cont-area .list-style04-restaurant li .btn02{color:#ff4d80;  border: 2px #ff4d80 solid; padding: 10px 0px; text-align: center; width: 130px; display: inline-block;  border-radius: 5px;    cursor: pointer;}
 .cont-area .list-style04-restaurant li span{text-align: center;margin: 5px 0 10px;;}
 .cont-area .list-style04-restaurant li:last-child{margin-right:0px}
 .cont-area .arr-area{position: relative;}
