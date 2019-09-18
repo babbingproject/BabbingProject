@@ -69,6 +69,6 @@ public interface ReviewService {
 	public Page<ReviewRegistrationvo> findAll(Pageable pageable);
 	public List<ReviewRegistrationvo> getNewestReviewList();
 	
-	List<AjaxReviewImagevo> selectAjaxReviewImgList(int reviewId);
+	
 	
 }

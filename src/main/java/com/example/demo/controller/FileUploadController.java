@@ -28,6 +28,7 @@ import com.example.demo.domain.review.AjaxReviewImagevo;
 import com.example.demo.service.review.ReviewService;
 import com.example.demo.service.review.image.AjaxReviewImageRepository;
 import com.example.demo.service.review.image.ReviewImageRepository;
+import com.example.demo.service.review.image.ReviewImageService;
 import com.example.demo.utils.MediaUtils;
 import com.example.demo.utils.UploadFileUtils;
 
@@ -38,6 +39,8 @@ public class FileUploadController {
 
 	@Autowired
 	ReviewService reviewService;
+	@Autowired
+	ReviewImageService reviewImageService;
 
 	@Autowired
 	ReviewImageRepository reviewImgRepo;
@@ -156,7 +159,8 @@ public class FileUploadController {
 		
 		ajaxReviewImgvo.setAjaxReviewImg(ajaxReviewImg.toString().substring(idx1+1, idx2).replace("s_", ""));
 		System.err.println(ajaxReviewImgvo.toString());
-		ajaxReviewImgRepo.save(ajaxReviewImgvo);
+		reviewImageService.ajaxReviewImgUpdate(ajaxReviewImgvo);
+//		ajaxReviewImgRepo.save(ajaxReviewImgvo);
 		return ajaxReviewImg;
 		
 	}
@@ -211,6 +215,13 @@ public class FileUploadController {
 	@ResponseBody
 	@RequestMapping(value = "deleteFile", method = RequestMethod.POST)
 	public ResponseEntity<String> deleteFile(String fileName) {
+		System.out.println(fileName);
+		int index = fileName.lastIndexOf("s_");
+		String ajaxReviewImage=fileName.substring(index+2);
+		System.err.println(ajaxReviewImage);
+		
+		reviewImageService.deleteajaxReviewImg(ajaxReviewImage);
+		
 		// 파일의 확장자 추출
 		String formatName = fileName.substring(fileName.lastIndexOf(".") + 1);
 		// 이미지 파일 여부 검사

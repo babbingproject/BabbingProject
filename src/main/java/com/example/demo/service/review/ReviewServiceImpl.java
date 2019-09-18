@@ -30,8 +30,6 @@ public class ReviewServiceImpl implements ReviewService {
 	@Autowired
 	UserRepository userRepo;
 	
-	@Autowired
-	AjaxReviewImageRepository ajaxReviewImageRepo;
 	
 	@PersistenceContext
 	EntityManager em;
@@ -194,13 +192,7 @@ public class ReviewServiceImpl implements ReviewService {
 		return (int) (reviewRepo.count()+2);
 	}
 
-	@Override
-	public List<AjaxReviewImagevo> selectAjaxReviewImgList(int reviewId) {
-		
-		
-		return ajaxReviewImageRepo.getReviewImg(reviewId);
-		
-	}
+	
 
 
 }

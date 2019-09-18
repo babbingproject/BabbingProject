@@ -90,7 +90,7 @@ public class ReviewController {
 		System.err.println(reviewId);
 //		model.addAttribute("reviewView", reviewRepo.findById(reviewId).get());
 		model.addAttribute("reviewView", reviewService.selectReviewView(reviewId));
-		model.addAttribute("reviewImgList", reviewService.selectAjaxReviewImgList(reviewId));
+		model.addAttribute("reviewImgList", reviewImageService.selectAjaxReviewImgList(reviewId));
 		return "th/review/reviewView"; 
 	}
 	
