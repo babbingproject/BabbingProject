@@ -5,6 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <title>밥빙에 오신걸 환영합니다.</title>
 
+
 <!-- <link rel="stylesheet" th:href="@{common/css/styles.css}" type="text/css"> -->
 <script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script th:inline="javascript" src="common/js/index.js"></script>
@@ -74,7 +75,7 @@
 				<div id="slides">
 					<img src="images/Bobbing-m-visual.jpg" alt=""> 
 					<img src="images/여자친구.jpg" alt="">
-					<img src="images/여자친구2.jpg" alt="">
+					<img src="images/아이즈원1.jpg" alt="">
 				</div>
 
 			</div>
@@ -155,6 +156,7 @@
 
 							</p>
 
+
 							<span th:if="${#lists.isEmpty(everything.scrapvo)}">
 								<span id="scrapButton" class="button best02"></span> 
 								<input type="hidden" id="followMe" th:value="${session[username]}">
@@ -162,6 +164,7 @@
 							<span th:if="!${#lists.isEmpty(everything.scrapvo)}"> 
 								<span id="scrapButton" class="button best01"></span> 
 								<input type="hidden" id="followMe" th:value="${session[username]}">
+
 
 							</span>
 							<ul class="info">
@@ -189,11 +192,13 @@
 				<div class="cont-area">
 					<div class="cont-txtB">
 
+
 						인기 유저 <a th:href="@{/rank(followerMe=${username})}"
 							class="more-btn">더보기</a>
 					</div>
 					<ul class="list-style04-user slider" id="banner"
 						style="margin-top: -25px;">
+
 
 						<li th:each="uservo:${uservo}"><a
 							th:href="@{/getUserMyPage(nickname=${uservo.uservo.nickname}, followerMe=${username})}">
@@ -213,6 +218,7 @@
 							</span> <span th:if="!${#lists.isEmpty(uservo.followvo)}"> <span
 									class="followbtn btn01" style="curser:pointer;">팔로잉</span>
 							</span>
+
 						</span></li>
 					</ul>
 
@@ -223,11 +229,13 @@
 			<div class="cont-area">
 				<div class="cont-txtB">
 
+
 					인기 맛집 <a th:href="@{/rank(followerMe=${username})}"
 						class="more-btn">더보기</a>
 				</div>
 				<ul class="list-style04-restaurant slider2"
 					style="margin-top: -25px;">
+
 					<li th:each="advvo:${advvo}"><img
 						th:src="${advvo.advvo.profileImg}"> <span
 						th:text="${advvo.advvo.advertisementname}" class="name"></span><br>
@@ -237,9 +245,11 @@
 							th:value="${advvo.advvo.advertisementname}"> <span
 							th:text="${advvo.advvo.putedCount}"></span> <span
 							th:if="${#lists.isEmpty(advvo.putvo)}"> <span
+
 								class="followbtn btn02" style="curser:pointer;">담아두기</span>
 						</span> <span th:if="!${#lists.isEmpty(advvo.putvo)}"> <span
 								class="followbtn btn01" style="curser:pointer;">담기완료</span>
+
 
 						</span>
 					</span></li>
@@ -254,7 +264,9 @@
 			<div class="footer">
 
 				<button class="top-btn" id="top-btn"
-					style="position: fixed; margin-right: 1px; top: 94%; float: right; border: none; width: 50px; height: 49px; background-size: 100%;"></button>
+
+					style="position: fixed; left: 1637px; top: 779px; border: none; width: 50px; height: 55px; background-size: 100%;"></button>
+
 
 			</div>
 		</div>

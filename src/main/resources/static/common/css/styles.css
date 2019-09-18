@@ -76,7 +76,9 @@ a {text-decoration: none;color: inherit;cursor: pointer;}
 .cont-area .list-style02 li:last-child{margin-right:0px}
 .cont-area .list-style02 li a{display: block;width: 160px;height: 160px;border: 2px #ff4d80 solid;border-radius: 100px;text-align: center;line-height: 160px;font-size: 22px;}
 .cont-area .list-style02 li a.on{ color:#fff; background:#ff4d80;border:none}
+
 .cont-area .list-style02 li span{display: block;width: 160px;height: 160px;border: 2px #ff4d80 solid;border-radius: 100px;text-align: center;line-height: 160px;font-size: 22px;cursor: pointer;}
+
 .cont-area .list-style02 li span.on{ color:#fff; background:#ff4d80;border:none}
 .cont-area .list-style03 {margin-top: 60px;}
 .cont-area .list-style03> li{width: 32%;position: relative;display:inline-block;margin-top:19px;margin-right:19px;}

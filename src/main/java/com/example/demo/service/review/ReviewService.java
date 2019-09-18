@@ -65,7 +65,7 @@ public interface ReviewService {
 
 
 
-	ReviewRegistrationvo selectReviewView(int reviewId); 
+	
 	
 	List<Object> selectReviewJoinReviewAndComment(Uservo uservo, ReviewRegistrationvo reviewRegistrationvo, Commentvo commentvo);
 	
@@ -79,9 +79,8 @@ public interface ReviewService {
 	public List<ReviewRegistrationvo> getNewestReviewList();
 	
 
-	   
-
-	List<AjaxReviewImagevo> selectAjaxReviewImgList(int reviewId);
+	ReviewRegistrationvo selectReviewView(int reviewId);
 	
+	List<AjaxReviewImagevo> selectAjaxReviewImgList(int reviewId);
 
 }

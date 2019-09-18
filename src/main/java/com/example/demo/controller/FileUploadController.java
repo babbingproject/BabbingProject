@@ -28,6 +28,7 @@ import com.example.demo.domain.review.AjaxReviewImagevo;
 import com.example.demo.service.review.ReviewService;
 import com.example.demo.service.review.image.AjaxReviewImageRepository;
 import com.example.demo.service.review.image.ReviewImageRepository;
+import com.example.demo.service.review.image.ReviewImageService;
 import com.example.demo.utils.MediaUtils;
 import com.example.demo.utils.UploadFileUtils;
 
@@ -41,7 +42,10 @@ public class FileUploadController {
 
 	@Autowired
 	ReviewImageRepository reviewImgRepo;
-
+	
+	@Autowired
+	ReviewImageService reviewImageService;
+	
 	@Autowired
 	AjaxReviewImageRepository ajaxReviewImgRepo;
 
@@ -136,30 +140,30 @@ public class FileUploadController {
 	// ajax업로드 페이지 매핑
 	// 파일의 한글 처리 produces = "text/plain;charset=UTF-8"
 	@ResponseBody
-	@RequestMapping(value = "/uploadAjax", method = RequestMethod.POST, produces = "text/plain;charset=UTF-8")
-//	public ModelAndView fileUpload(MultipartFile file, ModelAndView mav) throws Exception {
-	public ResponseEntity<String> uploadAjax(MultipartFile file) throws Exception {
-		logger.info(file.toString());
-		logger.info("파일 이름 : " + file.getOriginalFilename().trim());
-		logger.info("파일 크기 : " + file.getSize());
-		logger.info("컨텐츠 타입 : " + file.getContentType());
-		System.out.println(uploadPath);
-		AjaxReviewImagevo ajaxReviewImgvo = new AjaxReviewImagevo();
-		int createReviewId = reviewService.createReviewId();
-		ajaxReviewImgvo.setReviewId(createReviewId);
+	   @RequestMapping(value = "/uploadAjax", method = RequestMethod.POST, produces = "text/plain;charset=UTF-8")
+	//   public ModelAndView fileUpload(MultipartFile file, ModelAndView mav) throws Exception {
+	   public ResponseEntity<String> uploadAjax(MultipartFile file) throws Exception {
+	      logger.info(file.toString());
+	      logger.info("파일 이름 : " + file.getOriginalFilename().trim());
+	      logger.info("파일 크기 : " + file.getSize());
+	      logger.info("컨텐츠 타입 : " + file.getContentType());
+	      System.out.println(uploadPath);
+	      AjaxReviewImagevo ajaxReviewImgvo = new AjaxReviewImagevo();
+	      int createReviewId = reviewService.createReviewId();
+	      ajaxReviewImgvo.setReviewId(createReviewId);
 
-		ResponseEntity<String> ajaxReviewImg = new ResponseEntity<String>( UploadFileUtils.uploadFile(uploadPath,
-				  file.getOriginalFilename(), file.getBytes()), HttpStatus.OK);
-		
-		int idx1 = ajaxReviewImg.toString().indexOf(",");
-		int idx2 = ajaxReviewImg.toString().lastIndexOf(",");
-		
-		ajaxReviewImgvo.setAjaxReviewImg(ajaxReviewImg.toString().substring(idx1+1, idx2).replace("s_", ""));
-		System.err.println(ajaxReviewImgvo.toString());
-		ajaxReviewImgRepo.save(ajaxReviewImgvo);
-		return ajaxReviewImg;
-		
-	}
+	      ResponseEntity<String> ajaxReviewImg = new ResponseEntity<String>( UploadFileUtils.uploadFile(uploadPath,
+	              file.getOriginalFilename(), file.getBytes()), HttpStatus.OK);
+	      
+	      int idx1 = ajaxReviewImg.toString().indexOf(",");
+	      int idx2 = ajaxReviewImg.toString().lastIndexOf(",");
+	      
+	      ajaxReviewImgvo.setAjaxReviewImg(ajaxReviewImg.toString().substring(idx1+1, idx2).replace("s_", ""));
+	      System.err.println(ajaxReviewImgvo.toString());
+	      reviewImageService.ajaxReviewImgUpdate(ajaxReviewImgvo);
+	      return ajaxReviewImg;
+	      
+	   }
 
 	@ResponseBody // view가 아닌 data리턴
 	@RequestMapping(value = "displayFile")
@@ -208,31 +212,39 @@ public class FileUploadController {
 	}
 
 	// 파일 삭제 매핑
-	@ResponseBody
-	@RequestMapping(value = "deleteFile", method = RequestMethod.POST)
-	public ResponseEntity<String> deleteFile(String fileName) {
-		// 파일의 확장자 추출
-		String formatName = fileName.substring(fileName.lastIndexOf(".") + 1);
-		// 이미지 파일 여부 검사
-		MediaType mType = MediaUtils.getMediaType(formatName);
-		// 이미지 의 경우(썸네일 + 원본파일 삭제 ), 이미지가 이니면 원본파일만 삭제
-		// 이미지 파일이면
-		if (mType != null) {
-			// 썸네일 이미지 파일 추출
-			String front = fileName.substring(0, 12);
-			String end = fileName.substring(14);
-			// 썸네일 이미지 삭제
-			new File(uploadPath + (front + end).replace('/', File.separatorChar)).delete();
-		}
-		// 원본 파일 삭제
-		new File(uploadPath + fileName.replace('/', File.separatorChar)).delete();
+	   @ResponseBody
+	   @RequestMapping(value = "deleteFile", method = RequestMethod.POST)
+	   public ResponseEntity<String> deleteFile(String fileName) {
+	      System.out.println(fileName);
+	      int index = fileName.lastIndexOf("s_");
+	      String ajaxReviewImage=fileName.substring(index+2);
+	      System.err.println(ajaxReviewImage);
+	      
+	      reviewImageService.deleteajaxReviewImg(ajaxReviewImage);
+	      
+	      // 파일의 확장자 추출
+	      String formatName = fileName.substring(fileName.lastIndexOf(".") + 1);
+	      // 이미지 파일 여부 검사
+	      MediaType mType = MediaUtils.getMediaType(formatName);
+	      // 이미지 의 경우(썸네일 + 원본파일 삭제 ), 이미지가 이니면 원본파일만 삭제
+	      // 이미지 파일이면
+	      if (mType != null) {
+	         // 썸네일 이미지 파일 추출
+	         String front = fileName.substring(0, 12);
+	         String end = fileName.substring(14);
+	         // 썸네일 이미지 삭제
+	         new File(uploadPath + (front + end).replace('/', File.separatorChar)).delete();
+	      }
+	      // 원본 파일 삭제
+	      new File(uploadPath + fileName.replace('/', File.separatorChar)).delete();
 
-		// 데이터와 http상태 코드 전송
-		return new ResponseEntity<String>("deleted", HttpStatus.OK);
-	}
+	      // 데이터와 http상태 코드 전송
+	      return new ResponseEntity<String>("deleted", HttpStatus.OK);
+	   }
 
-	// -----------------------------------ajax방식의 업로드
-	// 처리----------------------------------
+	   // -----------------------------------ajax방식의 업로드
+	   // 처리----------------------------------
+	   
 	
 	
 }

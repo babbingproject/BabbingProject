@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
+
 <meta charset="UTF-8">
 <title>밥빙에 오신걸 환영합니다.</title>
 <script
@@ -8,14 +9,34 @@
 <script type="text/javascript" src="common/js/jquery.slideto.min2.js"></script>
 <link href="common/css/wlogin2.css" rel="stylesheet">
 <link rel="stylesheet" href="common/css/stylesMain_sub.css">
+
 <script>
-	
+	$(function() {
+		$('#slides').slidesjs({
+			width : 1134,
+			height : 470,
+			play : {
+				active : true,
+				auto : true,
+				interval : 4000,
+				swap : true
+			}
+		});
+
+	});
 </script>
+<style>
+input:focus {
+	outline: none;
+}
+</style>
 </head>
 <body>
 	<div id="wrap" class="main">
+
 		<div class="header" th:fragment="header"
 			style="position: fixed; z-index: 999; background-color: white; top: 0%;">
+
 			<div class="top">
 				<div class="logo">
 					<a href="/"><img src="images/Bobbing-logo-sub.png"
@@ -29,6 +50,7 @@
 					</ul>
 				</div>
 				<div class="heaer-search">
+
 					<form action="search" enctype="multipart/form-data">
 						<div class="fl MainSearch">
 							<select th:name="types">
@@ -46,6 +68,13 @@
 
 					</form>
 				</div>
+
+
+						</select>
+						
+						
+
+					</div>
 
 
 				<th:block
@@ -71,12 +100,15 @@
 							href="/logout" class="join">로그아웃</a>
 					</div>
 				</th:block>
+
 			</div>
 		</div>
+
 		<div class="footer-area">
 			<div class="footer">
 
 				<button class="top-btn" id="top-btn"
+
 					style="position: fixed; margin-right: 1px; top: 94%; float: right; border: none; width: 50px; height: 49px; background-size: 100%;"></button>
 
 			</div>
@@ -92,6 +124,7 @@
 				$(".dropdown dd ul").hide();
 			});
 		</script>
-	</div>
+
+
 </body>
 </html>

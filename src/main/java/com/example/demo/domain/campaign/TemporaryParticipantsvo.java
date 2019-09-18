@@ -8,11 +8,13 @@ import lombok.ToString;
 @Setter
 @ToString
 public class TemporaryParticipantsvo {
-   
-   private int participantsId;
-   private int campaignId;
-   private int userId;
-   private char participation;
-   private String nickname;
+
+	
+	private int participantsId;
+	private int campaignId;
+	private int userId;
+	private char participation;
+	private String nickname;
 
 }
+

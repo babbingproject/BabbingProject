@@ -294,5 +294,7 @@ public interface ReviewRepository extends JpaRepository<ReviewRegistrationvo, In
 
 	
 	@Query(value = "SELECT * FROM review_registrationvo WHERE review_id = ?", nativeQuery = true)
-	ReviewRegistrationvo getReviewView(int reviewId);
+
+	   ReviewRegistrationvo getReviewView(int reviewId);
+
 }

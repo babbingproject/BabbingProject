@@ -8,6 +8,8 @@ import com.example.demo.domain.campaign.CampaignImgvo;
 
 public interface CampaignImgRepository extends JpaRepository<CampaignImgvo, Integer>{
 
-   List<CampaignImgvo> findByCampaignId(int campaignId);
+
+	List<CampaignImgvo> findByCampaignId(int campaignId);
 
 }
+

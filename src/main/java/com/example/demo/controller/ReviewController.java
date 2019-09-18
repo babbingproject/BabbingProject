@@ -89,26 +89,30 @@ public class ReviewController {
 	}
 
 	@RequestMapping(value = "/doReviewView", method=RequestMethod.GET)
-	public String getReviewVIew(Model model, int reviewId) {
-		System.err.println(reviewId);
-//		model.addAttribute("reviewView", reviewRepo.findById(reviewId).get());
-		model.addAttribute("reviewView", reviewService.selectReviewView(reviewId));
-		model.addAttribute("reviewImgList", reviewService.selectAjaxReviewImgList(reviewId));
-		return "th/review/reviewView"; 
-	}
-	
+
+	   public String getReviewVIew(Model model, int reviewId) {
+	      System.err.println(reviewId);
+//	      model.addAttribute("reviewView", reviewRepo.findById(reviewId).get());
+	      model.addAttribute("reviewView", reviewService.selectReviewView(reviewId));
+	      model.addAttribute("reviewImgList", reviewService.selectAjaxReviewImgList(reviewId));
+	      return "th/review/reviewView"; 
+	   }
+
 	@RequestMapping("/deleteReviewView")
 	public String deleteReview(int reviewId) {
 		reviewService.deleteReview(reviewId);
 		return "forward:doReviewList";
 	}
 	
-	@RequestMapping("/updateReviewView")
-	public String updateReview(Uservo uservo, ReviewRegistrationvo reviewRegistrationvo) {
-		reviewService.updateReview(reviewRegistrationvo);		
-		return "forward:doReviewList";
-	}
-	
+	@RequestMapping(value = "/doReviewViewUpdate", method=RequestMethod.GET)
+	   public String doUpdateReview (Model model, int reviewId) {
+	      System.err.println(reviewId);
+//	      model.addAttribute("reviewView", reviewRepo.findById(reviewId).get());
+	      model.addAttribute("reviewView", reviewService.selectReviewView(reviewId));
+	      model.addAttribute("reviewImgList", reviewImageService.selectAjaxReviewImgList(reviewId));
+	      return "th/review/reviewModify"; 
+	   }
+	   
 	
 	
 	

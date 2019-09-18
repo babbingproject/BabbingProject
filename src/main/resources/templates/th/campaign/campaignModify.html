@@ -12,58 +12,59 @@
 
 </head>
 <body>
-   <div id="wrap" class="main">
-      <div th:replace="/include/header.html :: header"></div>
-      <form th:action="@{updateCampaign}" method="post" onsubmit="return formValidation();">
-      <input name="campaignId" type="hidden" th:value="${campaign.campaignId}">
-      <input name="modifiedDate" type="hidden">
-      <table>
-         <tr>
-            <td colspan="6"><input type="text" id="title" name="title" th:value="${campaign.title}" size="95"></td>
-         </tr>
-         
-         <th:block th:each="campaignImg:${campaignImgList}">
-            <img th:src="${campaignImg.campaignImg}" width="100px" height="100px">
-            <a th:href="@{/deleteImg(campaignImgId=${campaignImg.campaignImgId})}">삭제</a>
-            <br><br>
-         </th:block>
-         <tr>
-            <td colspan="6">소개</td>
-         </tr>
-         <tr>
-            <td colspan="6"><textarea name="introduction" cols="85" rows="5" th:text="${campaign.introduction}"></textarea></td>
-         </tr>
-         <tr>
-            <td>모집인원</td>
-            <td><input id="recruitment" name="recruitment" type="number" th:value="${campaign.recruitment}"></td>
-            <td>시작일</td>
-            <td><input id="startDate" name="startDate" type="date"
-               th:value="${#dates.format(campaign.startDate,'yyyy-MM-dd')}"></td>
-            <td>종료일</td>
-            <td><input id="endDate" name="endDate" type="date"
-               th:value="${#dates.format(campaign.endDate,'yyyy-MM-dd')}"></td>
-         </tr>
-         <tr>
-            <td colspan="6">제공 내역</td>
-         </tr>
-         <tr>
-            <td colspan="6"><textarea id="offerHistory" name="offerHistory" cols="85"   rows="2" th:text="${campaign.offerHistory}"></textarea></td>
-         </tr>
-         <tr>
-            <td colspan="6">비고</td>
-         </tr>
-         <tr>
-            <td colspan="6"><textarea name="remarks" cols="85" rows="2"
-                  th:text="${campaign.remarks}"></textarea></td>
-         </tr>
-      </table>
-      <input type="submit" value="수정하기"><input type="button" value="취소하기" onclick="location.href='getCampaignList'">
-   </form>
+
+	<div id="wrap" class="main">
+		<div th:replace="/include/header.html :: header"></div>
+		<form th:action="@{updateCampaign}" method="post" onsubmit="return formValidation();">
+		<input name="campaignId" type="hidden" th:value="${campaign.campaignId}">
+		<input name="modifiedDate" type="hidden">
+		<table>
+			<tr>
+				<td colspan="6"><input type="text" id="title" name="title" th:value="${campaign.title}" size="95"></td>
+			</tr>
+			
+			<th:block th:each="campaignImg:${campaignImgList}">
+				<img th:src="${campaignImg.campaignImg}" width="100px" height="100px">
+				<a th:href="@{/deleteImg(campaignImgId=${campaignImg.campaignImgId})}">삭제</a>
+				<br><br>
+			</th:block>
+			<tr>
+				<td colspan="6">소개</td>
+			</tr>
+			<tr>
+				<td colspan="6"><textarea name="introduction" cols="85" rows="5" th:text="${campaign.introduction}"></textarea></td>
+			</tr>
+			<tr>
+				<td>모집인원</td>
+				<td><input id="recruitment" name="recruitment" type="number" th:value="${campaign.recruitment}"></td>
+				<td>시작일</td>
+				<td><input id="startDate" name="startDate" type="date"
+					th:value="${#dates.format(campaign.startDate,'yyyy-MM-dd')}"></td>
+				<td>종료일</td>
+				<td><input id="endDate" name="endDate" type="date"
+					th:value="${#dates.format(campaign.endDate,'yyyy-MM-dd')}"></td>
+			</tr>
+			<tr>
+				<td colspan="6">제공 내역</td>
+			</tr>
+			<tr>
+				<td colspan="6"><textarea id="offerHistory" name="offerHistory" cols="85"	rows="2" th:text="${campaign.offerHistory}"></textarea></td>
+			</tr>
+			<tr>
+				<td colspan="6">비고</td>
+			</tr>
+			<tr>
+				<td colspan="6"><textarea name="remarks" cols="85" rows="2"
+						th:text="${campaign.remarks}"></textarea></td>
+			</tr>
+		</table>
+		<input type="submit" value="수정하기"><input type="button" value="취소하기" onclick="location.href='getCampaignList'">
+	</form>
 </div>
 
-   <script>
+	<script>
     
-   function formValidation(){
+	function formValidation(){
         var title = $("#title").val();
         var recruitment = $("#recruitment").val();
         var startDate = $("#startDate").val();
@@ -129,7 +130,8 @@
             $("#startDate").focus();
             return false;
         }
-      
+
+
         if($.trim(offerHistory) == ""){
             alertify.set('notifier','delay',2);
             alertify.set('notifier','position', 'bottom-right');

@@ -3,6 +3,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>캠페인 홈</title>
 <link rel="stylesheet" href="/common/css/styles.css" th:href="@{/common/css/styles.css}" type="text/css">
+<link rel="stylesheet" href="/common/css/styles.css" th:href="@{/common/css/campaignPart.css}" type="text/css">
+
 
 <!-- Jquery 3.4.1 -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -12,75 +14,100 @@
 <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.11.4/build/css/themes/default.min.css"/> <!-- default theme -->
 </head>
 
+
 <body>
-      <div id="wrap" class="main">
-      <div th:replace="/include/header.html :: header"></div>
-      
-      <div id="teb">   정렬
-      <input type="radio" name="sort" value="recent"> 최신순
-      <input type="radio" name="sort" value="end_date">
-      마감 임박 순      <br><br><br><br><br><br><br><br>
-      <hr></div>
-      정렬
-      <input type="radio" name="sort" id="recent" value="recent" checked> 최신순
-      <input type="radio" name="sort" id="popluar" value="popular" > 인기순
-      <input type="radio" name="sort" id="end_date" value="end_date"> 마감 임박순
-      <hr>
-
-
-
-
-   <th:block th:if="${session['advertisementvo'] != null}">
-   <div align="right" >
-   <a th:href="insertCampaign">캠페인 등록</a>
-   </div>
-   </th:block>
-   <th:block th:if="${session['uservo'] != null}">
-   <div align="right" >
-   <a th:href="insertReview">리뷰 등록</a>
-   </div>
-   </th:block>
-   <div id="sortedData">
-      <table>
-         <tr th:each="campaign:${campaignList}">
-            <td><a th:href="@{getCampaign(campaignId=${campaign.campaignId})}" th:text="${campaign.title}"></a></td>
-            <td th:text="${#dates.format(campaign.startDate, 'yyyy-MM-dd')}"></td>
-            <td th:text="${#dates.format(campaign.endDate, 'yyyy-MM-dd')}"></td>
-            <td th:text="${campaign.participants}"></td>
-            <td th:text="${campaign.recruitment}"></td>
-         </tr>
-      </table>
-   </div>
+	
+	<div id="wrap" class="main">
+		<div th:replace="/include/header.html :: header"></div>
+		<div class="campaignTop">
+		정렬
+		<input type="radio" name="sort" id="recent" value="recent" checked> 최신순
+		<input type="radio" name="sort" id="popluar" value="popular" > 인기순
+		<input type="radio" name="sort" id="end_date" value="end_date"> 마감 임박순
+	
+		
+		<th:block th:if="${session['advertisementvo'] != null}">
+		<div style="float:right;">
+		<button class="campaignBtn" name="campaignWriteBtn">캠페인 등록</button>
+		<!-- <a th:href="insertCampaign">캠페인 등록</a> -->
+		</div>
+		
+		</th:block>
+		<th:block th:if="${session['uservo'] != null}">
+		<div style="float:right;">
+		<button class="campaignBtn" name="reviewWriteBtn">리뷰 등록</button>
+		<!-- <a th:href="insertReview">리뷰 등록</a> -->
+		</div>
+		</th:block>
+		</div>
+		<div class="campaignAllList" id="sortedData" style="float: left; width: 100%; ">
+			<table>
+				<tr th:each="campaign:${campaignList}">
+					<td><a th:href="@{getCampaign(campaignId=${campaign.campaignId})}" th:text="${campaign.title}"></a></td>
+					<td th:text="${#dates.format(campaign.startDate, 'yyyy-MM-dd')}"></td>
+					<td th:text="${#dates.format(campaign.endDate, 'yyyy-MM-dd')}"></td>
+					<td th:text="${campaign.participants}"></td>
+					<td th:text="${campaign.recruitment}"></td>
+				</tr>
+			</table>
+		</div>
 
 </div>
-   <script>
-    $(document).ready(function(){
-        $("input[name=sort]").click(function(){
-            var sortStyle = $(this).val(); 
-            $.ajax({
-                url:"/getCampaignListByRadio",
-                type:"GET",
-                data:{sort:sortStyle},
-                dataType : "html",
-                success : function(change){
-               $("#sortedData").html(change)
-                }
-            })   
-            
-            if(sortStyle == "recent"){
-            var alertText = "최신순"
-            } else if (sortStyle == "end_date"){
-                var alertText = "마감 임박순"
-            } else if (sortStyle == "popular"){
-                var alertText = "인기순"
-            }
-            
-            alertify.set('notifier','position', 'bottom-right');
-            alertify.set('notifier','delay', 2);
-            alertify.success(alertText + ' 정렬이 완료되었습니다.');
 
-        })
-    })  
-   </script>
+	<script>
+	$(document).ready(function(){
+		$("input[name=sort]").click(function(){
+			var sort = $(this).val();
+			$.ajax({
+				url : "/getListSortByRadio",
+				data : {sort : sort },
+				success : function(sortList){
+					
+					var str="";
+					str +="<table><tr>"
+					for(var i in sortList){					
+				
+					str +="<tr><td><a href='/getCampaign?campaignId="+sortList[i].campaignId+"'>" + sortList[i].title +"</a></td>"
+					str +="<td>"+ sortList[i].startDate.substring(0,10) +"<td>"
+					str +="<td>"+ sortList[i].endDate.substring(0,10) +"<td>"
+					str +="<td>"+ sortList[i].participants +"<td>"
+					str +="<td>"+ sortList[i].campaignId +"<td>"
+					str +="<td>"+ sortList[i].recruitment +"<td></tr>"
+					}
+				
+					str +="</table>";
+					
+					$("#sortedData table").remove;
+					$("#sortedData").html(str);
+					
+					  if(sort == "recent"){
+							var alertText = "최신순"
+			            } else if (sort == "end_date"){
+			                var alertText = "마감 임박순"
+			            } else if (sort == "popular"){
+			                var alertText = "인기순"
+			            }
+			            
+			            alertify.set('notifier','position', 'bottom-right');
+			            alertify.set('notifier','delay', 2);
+			            alertify.success(alertText + ' 정렬이 완료되었습니다.');				
+					
+				}
+			})
+		});
+	});
+	</script>
+	<script>
+	$(document).ready(function(){
+	    $("button[name=campaignWriteBtn]").click(function(){
+	       location.href="/insertCampaign"
+	    });
+	    $("button[name=reviewWriteBtn]").click(function(){	        
+	        location.href="insertReview"
+	    });
+	});
+	</script>
+	
+
 </body>
 </html>

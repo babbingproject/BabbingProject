@@ -13,6 +13,7 @@
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script type="text/javascript" src="common/js/jquery.slideto.min.js"></script>
+=
 <script th:inline="javascript">
 	jQuery(function($) {
 		//탑버튼
@@ -137,7 +138,7 @@
 				<h1 style="margin-top: 11%; margin-left: 2%;">맛집 랭킹</h1>
 			</div>
 		</div>
-		<div class="container ranking">
+		<div class="container ranking" style="margin-top: 35px;">
 
 			<div class="userranking">
 				<div class="borderspace" th:each="user : ${user}">
@@ -199,6 +200,7 @@
 
 				<button class="top-btn" id="top-btn"
 					style="position: fixed; margin-right: 1px; top: 94%; float: right; border: none; width: 50px; height: 49px; background-size: 100%;"></button>
+
 
 			</div>
 		</div>

@@ -1,9 +1,0 @@
-<table>
-   <tr th:each="campaign:${campaignList}">
-      <td><a th:href="@{getCampaign(campaignId=${campaign.campaignId})}" th:text="${campaign.title}"></a></td>
-      <td th:text="${#dates.format(campaign.startDate, 'yyyy-MM-dd')}"></td>
-      <td th:text="${#dates.format(campaign.endDate, 'yyyy-MM-dd')}"></td>
-      <td th:text="${campaign.participants}"></td>
-      <td th:text="${campaign.recruitment}"></td>
-   </tr>
-</table>

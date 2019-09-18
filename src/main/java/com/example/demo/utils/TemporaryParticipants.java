@@ -9,7 +9,8 @@ import lombok.ToString;
 @ToString
 public class TemporaryParticipants {
 
-   public int participants;
-   public int recruitment;   
-   
+	public int participants;
+	public int recruitment;	
+	
 }
+

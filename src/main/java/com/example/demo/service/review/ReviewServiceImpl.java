@@ -171,10 +171,7 @@ public class ReviewServiceImpl implements ReviewService {
 
 	}
 
-	@Override
-	public ReviewRegistrationvo selectReviewView(int reviewId) {
-		return reviewRepo.getReviewView(reviewId);
-	}
+
 
 	@Override
 	public void updateReview(ReviewRegistrationvo reviewRegistrationvo) {
@@ -228,20 +225,24 @@ public class ReviewServiceImpl implements ReviewService {
 	}
 
 
+
 	@Override
 	public int createReviewId() {
 		
 		return (int) (reviewRepo.count()+2);
+}
+	@Override
+	public ReviewRegistrationvo selectReviewView(int reviewId) {
+		return reviewRepo.getReviewView(reviewId);
+		
+
 	}
 
 	@Override
 	public List<AjaxReviewImagevo> selectAjaxReviewImgList(int reviewId) {
-		
-		
+
+		// TODO Auto-generated method stub
 		return ajaxReviewImageRepo.getReviewImg(reviewId);
-		
 	}
-
-
 
 }

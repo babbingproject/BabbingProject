@@ -4,47 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="/common/css/styles.css" th:href="@{/common/css/styles.css}" type="text/css">
+<link rel="stylesheet" href="/common/css/styles.css" th:href="@{/common/css/campaignPart.css}" type="text/css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-
-<style>
-    /* The Modal (background) */
-   .modal {
-      display: none; /* Hidden by default */
-       position: fixed; /* Stay in place */
-       z-index: 9999; /* Sit on top */
-       left: 0;
-       top: 0;
-       width: 100%; /* Full width */
-       height: 100%; /* Full height */
-       overflow: auto; /* Enable scroll if needed */
-       background-color: rgb(0,0,0); /* Fallback color */
-       background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-   }
-    
-    /* Modal Content/Box */
-    .modal-content {
-       background-color: #fefefe;
-        margin: 15% auto; /* 15% from the top and centered */
-        padding: 20px;
-        border: 1px solid #888;
-        width: 50%; /* Could be more or less, depending on screen size */                          
-    }
-    
-    /* The Close Button */
-    .close {
-       color: #aaa;
-       float: right;
-       font-size: 28px;
-       font-weight: bold;
-    }
-    
-    .close:hover,
-    .close:focus {
-       color: black;
-        text-decoration: none;
-        cursor: pointer;
-    }    
-</style>
 
 <!-- Alertyfy.js -->
 <script   src="//cdn.jsdelivr.net/npm/alertifyjs@1.11.4/build/alertify.min.js"></script>
@@ -55,35 +16,35 @@
 
 <body>
    <div id="wrap" class="main">
-      <div th:replace="/include/header.html :: header"></div>
-      <!-- 본문 영역 Start -->
-
-      <div style="float: left; width: 70%">
+      <div th:replace="/include/header.html :: header"></div>      
+         <!-- 본문 영역 Start -->
+         <div class="campaignViewLeft">
          <input type="hidden" id="campaignId" th:value="${campaign.campaignId}">
-         <h4 th:text="${campaign.title}" style="margin-top: 11%;"></h4>
+         <table>
+         <tr>
+         <td class="campaignViewTitle" th:text="${campaign.title}"></td>
          <th:block th:if="${session[advertisementvo] != null}">
-         <a th:if="${session['advertisementvo'].advertisementId} == ${campaign.advertisementvo.advertisementId}" th:href="@{updateCampaign(campaignId=${campaign.campaignId})}">수정하기 </a>
-         <p th:if="${session['advertisementvo'].advertisementId} == ${campaign.advertisementvo.advertisementId}" id="deleteTxt">삭제하기</p>
-
+         <td th:if="${session['advertisementvo'].advertisementId} == ${campaign.advertisementvo.advertisementId}"><a th:href="@{updateCampaign(campaignId=${campaign.campaignId})}">수정하기</a></td>
+         <td th:if="${session['advertisementvo'].advertisementId} == ${campaign.advertisementvo.advertisementId}"><a href="#" id="deleteTxt">삭제하기</a></td>
          </th:block>
+         </tr>
+         </table>
+         
          <th:block th:each="campaignImg:${campaignImgList}">
-            <img th:src="${campaignImg.campaignImg}" width="50%" height="50%">
-            <br><br>
+         <img th:src="${campaignImg.campaignImg}" style="  width: 1054px; height: 437px;">            
          </th:block>
-         <textarea cols="60" rows="5" readonly="readonly"
-            th:text="${campaign.introduction}"></textarea>
-         <h4>제공 내역</h4>
-         <textarea cols="60" rows="2" readonly="readonly"
-            th:text="${campaign.offerHistory}"></textarea>
-         <h4>비고</h4>
-         <textarea cols="60" rows="2" readonly="readonly"
-            th:text="${campaign.remarks}"></textarea>
+         <p class="campaignViewContents" th:text="${campaign.introduction}"></p>
+         <p class="campaignViewOptionTitle">제공내역</p>
+         <p class="campaignViewSubContents" th:text="${campaign.offerHistory}"></p>
+         <p class="campaignViewOptionTitle">비고</p>
+         <p class="campaignViewSubContents" th:text="${campaign.remarks}"></p>
          <br> <a th:href=@{getCampaignList}>목록으로</a>
-      </div>
+         </div>
       <!-- 본문 영역 End -->
 
       <!-- 프로필 영역 Start -->
-      <div style="float: left; width: 25% ;margin-top: 8%;">
+      <div class="campaignViewRight">
+          <div class="campaignViewInnerSquare">
          <p th:text="${campaign.advertisementvo.advertisementname}" />
          <br>신청 기간<br>
          <p th:text="|${#dates.format(campaign.startDate, 'yyyy-MM-dd')} ~ ${#dates.format(campaign.endDate, 'yyyy-MM-dd')}|"></p>
@@ -91,9 +52,9 @@
          <div id="campaignParticipants">
             <p th:text="|${campaign.participants} / ${campaign.recruitment}|"></p>
          </div> 
-      
+         </div>
       <th:block th:if="${session[advertisementvo] != null}">
-      <input th:if="${session['advertisementvo'].advertisementId} == ${campaign.advertisementvo.advertisementId}" type="button" id="applyBtn" value="응모자 보기">
+      <input class="campaignViewButton" th:if="${session['advertisementvo'].advertisementId} == ${campaign.advertisementvo.advertisementId}" type="button" id="applyBtn" value="응모자 보기">
       </th:block>
       
       <th:block th:if="${session[uservo] != null}">
@@ -102,15 +63,15 @@
       <input type="hidden" id="campaignId" th:value="${campaign.campaignId}">
       
       <div id="participantPlus">      
-      <input type="button" id="participantPlusBtn" value="응모하기">   
+      <input class="campaignViewButton" type="button" id="participantPlusBtn" value="응모하기">   
       </div>
       
       <div id="participantMinus">
-      <input type="button" id="participantMinusBtn" value="취소하기">
+      <input class="campaignViewButton"  type="button" id="participantMinusBtn" value="취소하기">
       </div>
       
       </th:block>
-
+      </div>
        <!-- The Modal -->
        <div id="applyModal" class="modal" >
          <!-- Modal content -->
@@ -119,9 +80,9 @@
               <div id="modalParticipants"></div>                                                            
             </div> 
        </div>   
-         
-       </div> <!-- 프로필 영역 END -->   
+
    </div>
+
 
 
    <!-- 모달 스크립트 -->
