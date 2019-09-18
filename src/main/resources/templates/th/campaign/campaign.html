@@ -26,14 +26,14 @@
 		
 		<th:block th:if="${session['advertisementvo'] != null}">
 		<div style="float:right;">
-		<button class="campaignBtn">캠페인 등록</button>
+		<button class="campaignBtn" name="campaignWriteBtn">캠페인 등록</button>
 		<!-- <a th:href="insertCampaign">캠페인 등록</a> -->
 		</div>
 		
 		</th:block>
 		<th:block th:if="${session['uservo'] != null}">
 		<div style="float:right;">
-		<button class="campaignBtn">리뷰 등록</button>
+		<button class="campaignBtn" name="reviewWriteBtn">리뷰 등록</button>
 		<!-- <a th:href="insertReview">리뷰 등록</a> -->
 		</div>
 		</th:block>
@@ -52,35 +52,6 @@
 
 </div>
 
-<!-- 	<script>
-    $(document).ready(function(){
-        $("input[name=sort]").click(function(){
-            var sortStyle = $(this).val(); 
-            $.ajax({
-                url:"/getCampaignListByRadio",
-                type:"GET",
-                data:{sort:sortStyle},
-                dataType : "html",
-                success : function(change){
-					$("#sortedData").html(change)
-                }
-            })	
-            
-            if(sortStyle == "recent"){
-				var alertText = "최신순"
-            } else if (sortStyle == "end_date"){
-                var alertText = "마감 임박순"
-            } else if (sortStyle == "popular"){
-                var alertText = "인기순"
-            }
-            
-            alertify.set('notifier','position', 'bottom-right');
-            alertify.set('notifier','delay', 2);
-            alertify.success(alertText + ' 정렬이 완료되었습니다.');
-
-        })
-    })  
-	</script> -->
 	<script>
 	$(document).ready(function(){
 		$("input[name=sort]").click(function(){
@@ -125,9 +96,14 @@
 	});
 	</script>
 	<script>
-	$(documnet).ready(function(){
-		
-	})
+	$(document).ready(function(){
+	    $("button[name=campaignWriteBtn]").click(function(){
+	       location.href="/insertCampaign"
+	    });
+	    $("button[name=reviewWriteBtn]").click(function(){	        
+	        location.href="insertReview"
+	    });
+	});
 	</script>
 	
 </body>
