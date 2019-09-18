@@ -6,18 +6,16 @@
 <title>밥빙에 오신걸 환영합니다.</title>
 
 
-<!-- <link rel="stylesheet" th:href="@{common/css/styles.css}" type="text/css"> -->
-<script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script th:inline="javascript" src="common/js/index.js"></script>
-<link rel="stylesheet" href="/common/css/styles.css" th:href="@{/common/css/styles.css}" type="text/css">
-
+<link rel="stylesheet" href="/common/css/styles.css"
+	th:href="@{/common/css/styles.css}" type="text/css">
+<script src="common/js/jquery.bxslider.js"></script>
 <script src="common/js/jquery.slides.js"></script>
 <script type="text/javascript" src="common/js/jquery.slideto.min.js"></script>
 <link href="common/css/wlogin2.css" rel="stylesheet">
 
-
-<link href="jquery.bxslider/jquery.bxslider.css" rel="stylesheet" />
-<script	src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
 
 
 
@@ -64,8 +62,10 @@
 
 
 
-<span th:text="${session[username]}"></span><br>
-<span th:text="${session['uservo']}"></span><br>
+	<span th:text="${session[username]}"></span>
+	<br>
+	<span th:text="${session['uservo']}"></span>
+	<br>
 	<div id="wrap" class="main">
 		<div th:replace="/include/header.html :: header"></div>
 
@@ -73,9 +73,9 @@
 			<div class="cont-area content" data-role="content">
 				<div class="cont-txtB" style="margin-top: 10%;">캠페인</div>
 				<div id="slides">
-					<img src="images/Bobbing-m-visual.jpg" alt=""> 
-					<img src="images/여자친구.jpg" alt="">
-					<img src="images/아이즈원1.jpg" alt="">
+					<img src="images/Bobbing-m-visual.jpg" alt=""> <img
+						src="images/여자친구.jpg" alt=""> <img src="images/아이즈원1.jpg"
+						alt="">
 				</div>
 
 			</div>
@@ -157,13 +157,12 @@
 							</p>
 
 
-							<span th:if="${#lists.isEmpty(everything.scrapvo)}">
-								<span id="scrapButton" class="button best02"></span> 
-								<input type="hidden" id="followMe" th:value="${session[username]}">
-							</span> 
-							<span th:if="!${#lists.isEmpty(everything.scrapvo)}"> 
-								<span id="scrapButton" class="button best01"></span> 
-								<input type="hidden" id="followMe" th:value="${session[username]}">
+							<span th:if="${#lists.isEmpty(everything.scrapvo)}"> <span
+								id="scrapButton" class="button best02"></span> <input
+								type="hidden" id="followMe" th:value="${session[username]}">
+							</span> <span th:if="!${#lists.isEmpty(everything.scrapvo)}"> <span
+								id="scrapButton" class="button best01"></span> <input
+								type="hidden" id="followMe" th:value="${session[username]}">
 
 
 							</span>
@@ -214,9 +213,9 @@
 								id="followingYou" th:value="${uservo.uservo.nickname}">
 								<input type="hidden" id="followerMe" th:value="${username}">
 								<span th:if="${#lists.isEmpty(uservo.followvo)}"> <span
-									class="followbtn btn02" style="curser:pointer;">팔로우</span>
+									class="followbtn btn02" style="curser: pointer;">팔로우</span>
 							</span> <span th:if="!${#lists.isEmpty(uservo.followvo)}"> <span
-									class="followbtn btn01" style="curser:pointer;">팔로잉</span>
+									class="followbtn btn01" style="curser: pointer;">팔로잉</span>
 							</span>
 
 						</span></li>
@@ -245,10 +244,9 @@
 							th:value="${advvo.advvo.advertisementname}"> <span
 							th:text="${advvo.advvo.putedCount}"></span> <span
 							th:if="${#lists.isEmpty(advvo.putvo)}"> <span
-
-								class="followbtn btn02" style="curser:pointer;">담아두기</span>
+								class="followbtn btn02" style="curser: pointer;">담아두기</span>
 						</span> <span th:if="!${#lists.isEmpty(advvo.putvo)}"> <span
-								class="followbtn btn01" style="curser:pointer;">담기완료</span>
+								class="followbtn btn01" style="curser: pointer;">담기완료</span>
 
 
 						</span>
@@ -264,8 +262,7 @@
 			<div class="footer">
 
 				<button class="top-btn" id="top-btn"
-
-					style="position: fixed; left: 1637px; top: 779px; border: none; width: 50px; height: 55px; background-size: 100%;"></button>
+					style="position: fixed; float: right; top: 94%; border: none; width: 50px; height: 55px; background-size: 100%;"></button>
 
 
 			</div>
@@ -293,7 +290,6 @@
 				autoHover : true,
 				// 				prevSelector : '#slider-prev',
 				// 				nextSelector : '#slider-next',
-				controls : true,
 				speed : 500,
 				pause : 1100,
 				touchEnabled : false
@@ -313,12 +309,17 @@
 				autoHover : true,
 				// 				prevSelector : '#slider-prev',
 				// 				nextSelector : '#slider-next',
-				controls : true,
 				speed : 500,
 				pause : 1100,
 				touchEnabled : false
 
 			});
+		});
+		
+		
+		$(document).on('click','.bx-next, .bx-prev',function() {
+		    slider.stopAuto();
+		    slider.startAuto();
 		});
 	</script>
 

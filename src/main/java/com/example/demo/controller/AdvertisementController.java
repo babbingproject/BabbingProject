@@ -47,6 +47,7 @@ public class AdvertisementController {
 	@RequestMapping("/ademailCheck")
 	public int emailCheck(@RequestBody Advertisementvo vo) {
 		return advertisementService.ademailCheck(vo, vo.getAdvertisement_email());
+		
 	}
 
 	// e-mail 인증 컨트롤러

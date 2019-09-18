@@ -44,6 +44,7 @@ public class UserController {
    @ResponseBody
    @RequestMapping("/emailCheck")
    public int emailCheck(@RequestBody Uservo vo) {
+	   System.out.println("이메일체크");
       return userService.emailCheck(vo, vo.getUser_email());
    }
 
