@@ -15,6 +15,7 @@ import javax.persistence.TemporalType;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import com.example.demo.domain.mypage.Advertisementvo;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -58,6 +59,7 @@ public class Campaignvo {
 
 	@ManyToOne
 	@JoinColumn(name = "advertisement_id", nullable = false)
+	@JsonBackReference
 	private Advertisementvo advertisementvo;
 
 }

@@ -99,7 +99,7 @@ public class HomeMainController {
 		CheckingScrap checkingScrap = new CheckingScrap();
 		System.out.println(checkingScrap.getScrapvo());
 		System.out.println(reviewNewestList);
-		System.out.println("checkingchecking" +reviewNewestList.get(1).getUservo().getUserId());
+		//System.out.println("checkingchecking" +reviewNewestList.get(1).getUservo().getUserId());
 		System.out.println("CHECKING PUT LIST 9/12 19:35" + checkingPutList);
 		System.out.println("CHECKING ADVERTISEMENT NICKNAME" + checkingPutList.get(1).getAdvvo().getAdvertisementname());
 

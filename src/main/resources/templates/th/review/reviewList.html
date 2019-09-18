@@ -3,16 +3,21 @@
 <head>
 <title>리뷰 목록</title>
 <meta http-equiv="Content-type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="/common/css/styles.css" th:href="@{/common/css/styles.css}" type="text/css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-
 </head>
+
 <body th:align="center">
+	<div id="wrap" class="main">
+	<div th:replace="/include/header.html :: header"></div>	
+	<br><br><br><br><br><br><br><br><br>
 	<h1>리뷰 목록</h1>
-<!-- 	<h3><font color="black" th:text="${session['member'].nickname}"></font>님 또 인생낭비하러 왔음?</h3> -->
+	<th:block th:if="${session['uservo'] != null}">
 	<h3><font color="black" th:text="${session['uservo'].nickname}"></font>님 또 인생낭비하러 왔음?</h3>
 	<a th:href="@{logout}">LOG_OUT</a>
 	<br>
 	<input type="hidden" id="hiddenUserId" th:value="${session['uservo'].userId}">
+	</th:block>
 	<table th:align="center" border="1" th:cellpqdding="0"
 		th:cellspacing="0" th:width="70">
 		<tr>
@@ -34,6 +39,9 @@
 		</tr>
 	</table>
 	<br>
+	<th:block th:if="${session['uservo'] != null}">
 	<a th:href="insertReview">리뷰 등록</a>
+	</th:block>
+	</div>
 </body>
 </html>

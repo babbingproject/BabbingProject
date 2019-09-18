@@ -283,4 +283,7 @@ public interface ReviewRepository extends JpaRepository<ReviewRegistrationvo, In
 
 //	Page<Object[]> getSearchKeyword(String searchKeyword, PageRequest pageRequest);
 	
+	@Query(value = "SELECT * FROM review_registrationvo WHERE review_id = ?", nativeQuery = true)
+	   ReviewRegistrationvo getReviewView(int reviewId);
+	
 }

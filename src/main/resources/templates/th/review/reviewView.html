@@ -3,8 +3,9 @@
 <head>
 <title>리뷰 상세보기</title>
 <meta http-equiv="Content-type" content="text/html; charset=UTF-8">
-<link rel="stylesheet"
-	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="/common/css/styles.css" th:href="@{/common/css/styles.css}" type="text/css">
+
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 
 <!-- <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script> -->
@@ -12,14 +13,14 @@
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 </head>
 <body th:align="center">
-<span th:text="${session['uservo'].nickname}"></span>
+	<div id="wrap" class="main">
+	<div th:replace="/include/header.html :: header"></div>	
+	<br><br><br><br><br><br><br><br>
 	<h1>리뷰 글 상세</h1>
 	<form th:action="@{updateReviewView}" method="post">
-		<input id="reviewId" name="reviewId" type="hidden"
-			th:value="${reviewView.reviewId}"> <input id="userId"
-			name="userId" type="hidden" th:value="${reviewView.uservo.userId}">
-		<table th:align="center" border="1" th:cellpadding="0"
-			th:cellspacing="0">
+		<input id="reviewId" name="reviewId" type="hidden" th:value="${reviewView.reviewId}">
+		<input id="userId" name="userId" type="hidden" th:value="${reviewView.uservo.userId}">
+		<table th:align="center" border="1" th:cellpadding="0" th:cellspacing="0">
 			<tr>
 				<td bgcolor="oange" th:text="제목" width="80"></td>
 				<!-- <td th:value="${joinReviewList.reviewRegistration.title}"></td> -->
@@ -51,8 +52,9 @@
 				<td colspan="2" align="right"><input type="submit"
 					value="리뷰 수정"></td>
 				<td colspan="2" align="right"><a th:href="@{/doReviewList}">리뷰 목록</a></td>
-				<td colspan="2" align="right"><a th:href="@{/deleteReviewView(reviewId=(${reviewView.reviewId}))}">리뷰 삭제</a></td>
-
+				<th:block th:if="${session['uservo'] != null}">
+				<td th:if="${reviewView.uservo.userId} == ${session['uservo'].userId}" colspan="2"  align="right"><a th:href="@{/deleteReviewView(reviewId=(${reviewView.reviewId}))}">리뷰 삭제</a></td>
+				</th:block>	
 			</tr>
 		</table>
 	</form>
@@ -87,7 +89,7 @@
 	<!-- <script th:inline="javascript"></script>
 	var nickName=[[${session.nickName}]]; -->
 	
-
+			<th:block th:if="${session['uservo'] != null}">
 			<div class="my-3 p-3 bg-white rounded shadow-sm" style="padding-top: 10px">
 
 				<form name="form" id="form" role="form" modelAttribute="replyVO" method="post">
@@ -115,6 +117,9 @@
 				</form>
 
 			</div>
+			</th:block>
+
+	
 
 			<!-- Reply Form {e} -->
 
@@ -129,7 +134,7 @@
 				<div id="commentList"></div>
 
 			</div> 
-
+	</div>
 
 	<!-- <script th:inline="javascript">
 		$(function commentList() {
@@ -213,8 +218,7 @@
 // 		var url = "${pageContext.request.contextPath}/restBoard/getReqlyList";
 
 		var paramData = {"reviewId" : "${reviewView.reviewId}"};
-		alert("췤0");
-		alert(paramData);
+		
 		$.ajax({
 
             type: 'GET',

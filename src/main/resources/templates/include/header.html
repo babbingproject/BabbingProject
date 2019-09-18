@@ -5,8 +5,10 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <title>밥빙에 오신걸 환영합니다.</title>
 <link rel="stylesheet" href="common/css/stylesMain_sub.css">
+
 <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
 <script src="common/js/jquery.slides.js"></script>
+
 <script>
 	$(function() {
 		$('#slides').slidesjs({
@@ -30,9 +32,7 @@ input:focus {
 </head>
 <body>
 	<div id="wrap" class="main">
-		<div class="header" th:fragment="header"
-
-			style="position: fixed; z-index: 999; background-color: white;">
+		<div class="header" th:fragment="header" style="position: fixed; z-index: 999; background-color: white;">
 
 			<div class="top">
 				<div class="logo">
@@ -96,7 +96,7 @@ input:focus {
 			<div class="footer">
 
 				<button class="top-btn" id="top-btn"
-					style="position: fixed; left: 1466px; top: 740px; border: none; width: 50px; height: 50px; background-size: 100%;"></button>
+					style="position: fixed; left: 1466px; top: 740px; border: none; width: 50px; height: 50px; background-size: 100%; z-index:9999;"></button>
 
 			</div>
 		</div>
@@ -115,54 +115,3 @@ input:focus {
 	</script>
 </body>
 </html>
-
-
-
-<!-- 
-				<th:block
-					th:if="${session['uservo']} == null and ${session['advertisementvo'] == null}">
-					<a th:href="login">로그인 </a> | <a th:href="joinForm">회원가입</a>
-				</th:block>
-				
-				<th:block th:if="${session['advertisementvo'] != null}">
-					<div class="heaer-btnR">
-						<div class="selectbox">
-							<dl class="dropdown">
-								<dt>
-									<a href="#" style="padding-top: 4px;"><span><img
-											src="images/Bobbing-main-Circle-member.gif" /></span></a>
-								</dt>
-								<dd>
-									<ul class="dropdown2">
-										<li><a href="getAdvertisementMyPage"><img
-												src="images/Bobbing-main-Circle-shop.gif" /> 마이페이지</a></li>
-										<li><a href="logout"><img
-												src="images/Bobbing-main-Circle-member.gif" />로그아웃</a></li>
-									</ul>
-								</dd>
-							</dl>
-						</div>
-					</div>
-				</th:block>
-				<th:block th:if="${session['uservo'] != null}">
-
-					<div class="heaer-btnR">
-						<div class="selectbox">
-							<dl class="dropdown">
-								<dt>
-									<a href="#" style="padding-top: 4px;"><span><img
-											src="images/Bobbing-main-Circle-member.gif" /></span></a>
-								</dt>
-								<dd>
-									<ul class="dropdown2">
-										<li><a href="getUserMyPage"><img
-												src="images/Bobbing-main-Circle-shop.gif" /> 마이페이지</a></li>
-										<li><a href="logout"><img
-												src="images/Bobbing-main-Circle-member.gif" />로그아웃</a></li>
-									</ul>
-								</dd>
-							</dl>
-						</div>
-					</div>
-
-				</th:block> -->

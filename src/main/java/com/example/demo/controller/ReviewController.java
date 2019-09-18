@@ -88,22 +88,13 @@ public class ReviewController {
 	}
 
 	@RequestMapping(value = "/doReviewView", method=RequestMethod.GET)
-	public String getReviewVIew(Uservo uservo, 
-			ReviewRegistrationvo reviewRegistrationvo, 
-			HttpSession session, Model model) {
-		/*
-		 * if (uservo.getNickname() == null) { return "redirect:login"; }
-		 */
-		uservo=(Uservo)session.getAttribute("uservo");
-		
-		System.out.println(reviewRegistrationvo.getReviewId());
-		reviewRepo.findById(reviewRegistrationvo.getReviewId()).get();
-		System.err.println(uservo.toString());
-		reviewRegistrationvo.setUservo(uservo);
-		model.addAttribute("reviewView", reviewService.selectReviewView(reviewRegistrationvo));
-		model.addAttribute("commentList", commentService.selectCommentList(reviewRegistrationvo));
-		return "th/review/reviewView"; 
-	}
+	   public String getReviewVIew(Model model, int reviewId) {
+	      System.err.println(reviewId);
+//	      model.addAttribute("reviewView", reviewRepo.findById(reviewId).get());
+	      model.addAttribute("reviewView", reviewService.selectReviewView(reviewId));
+	      model.addAttribute("reviewImgList", reviewService.selectAjaxReviewImgList(reviewId));
+	      return "th/review/reviewView"; 
+	   }
 	
 	@RequestMapping("/updateReviewView")
 	public String updateReview(Uservo uservo, ReviewRegistrationvo reviewRegistrationvo) {

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
@@ -38,6 +39,9 @@ public class CampaignController {
 		
 		List<Campaignvo> campaignList = campaignService.getListByActive(campaignvo);
 		model.addAttribute("campaignList", campaignList);
+		for(Campaignvo camp : campaignList) {
+			System.err.println(camp);
+		}
 		return "th/campaign/campaign";
 	}
 	
@@ -66,6 +70,44 @@ public class CampaignController {
 		}
 
 	}	
+	
+	@RequestMapping("/getListSortByRadio")
+	@ResponseBody
+	List<Campaignvo> getListSortByRadio(String sort, Model model, Campaignvo campaignvo){
+		
+		List<Campaignvo> campaignList;
+		System.err.println(sort);
+		
+		switch(sort) {
+			case "recent" :		campaignList = campaignService.getListByActive(campaignvo);
+								model.addAttribute("campaignList", campaignList);
+								System.out.println("최신순 출력");
+								for(Campaignvo camp : campaignList) {
+									System.out.println(camp);
+								}
+				
+								return campaignList;
+								
+			case "end_date" :	campaignList = campaignService.getListByEndDate(campaignvo);
+								model.addAttribute("campaignList", campaignList);
+								System.out.println("마감일순 출력");	
+								for(Campaignvo camp : campaignList) {
+								System.out.println(camp);
+								}
+			
+								return campaignList;
+								
+			case "popular" :	campaignList = campaignService.getListByPopular(campaignvo);
+								model.addAttribute("campaignList", campaignList);
+								System.out.println("인기순 출력");
+								for(Campaignvo camp : campaignList) {
+								System.out.println(camp);
+								}
+								
+								return campaignList;
+			}
+			return null;
+		}
 	
 	// 캠페인 조회
 	@GetMapping("/getCampaign")
