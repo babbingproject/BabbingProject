@@ -73,7 +73,7 @@ public class ReviewRegistrationvo {
 
 	
 	@JsonIgnore
-	@OneToMany(mappedBy = "reviewRegistrationvo", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "reviewRegistrationvo", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
 	private List<ReviewImagevo> reviewImgList = new ArrayList<ReviewImagevo>();
 	
 	

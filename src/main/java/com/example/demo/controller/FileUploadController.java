@@ -149,8 +149,10 @@ public class FileUploadController {
 	      logger.info("컨텐츠 타입 : " + file.getContentType());
 	      System.out.println(uploadPath);
 	      AjaxReviewImagevo ajaxReviewImgvo = new AjaxReviewImagevo();
-	      int createReviewId = reviewService.createReviewId();
-	      ajaxReviewImgvo.setReviewId(createReviewId);
+		
+		  int createReviewId = reviewService.createReviewId();
+		  ajaxReviewImgvo.setReviewId(createReviewId);
+		 
 
 	      ResponseEntity<String> ajaxReviewImg = new ResponseEntity<String>( UploadFileUtils.uploadFile(uploadPath,
 	              file.getOriginalFilename(), file.getBytes()), HttpStatus.OK);

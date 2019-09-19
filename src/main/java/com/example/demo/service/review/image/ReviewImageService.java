@@ -14,9 +14,17 @@ public interface ReviewImageService {
 
    void insertReviewImg(ReviewImagevo reviewImagevo);
    
-   List<AjaxReviewImagevo> selectAjaxReviewImgList(int reviewId);
+   List<AjaxReviewImagevo> getAjaxReviewImgList(int reviewId);
 
    void deleteajaxReviewImg(String ajaxReviewImage);
    
    void ajaxReviewImgUpdate(AjaxReviewImagevo ajaxReviewImagevo);
+
+   void updateReviewImg(ReviewImagevo reviewImagevo);
+
+   List<ReviewImagevo> getReviewImgList(int reviewId);
+
+   void deleteAjaxImgUploadFinished(int deleteUploadedAjaxReviewId);
+
+//   ReviewImagevo getReviewImgCheakOne(int reviewId);
 }

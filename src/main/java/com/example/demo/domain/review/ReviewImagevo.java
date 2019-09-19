@@ -34,14 +34,8 @@ public class ReviewImagevo {
 	private String imgReview;
 	
 
-	/*
-	 * @ManyToOne
-	 * 
-	 * @JoinColumn(name="reviewId", nullable=false, insertable=false,
-	 * updatable=false) private ReviewRegistrationvo reviewId;
-	 */	
-	@ManyToOne
-	@JoinColumn(name = "reviewId", nullable = false)
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "reviewId", nullable = true)
 	private ReviewRegistrationvo reviewRegistrationvo;
 	
 	@OneToMany(mappedBy = "reviewImagevo",  cascade = CascadeType.ALL)

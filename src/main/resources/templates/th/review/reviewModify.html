@@ -75,7 +75,7 @@ small {
          th:cellspacing="0">
          <tr>
             <td bgcolor="orange" th:text="제목" width="80"></td>
-            <td><input name="title" type="text" th:value="${reviewView.title}"></td>
+            <td><input style="width: 99%;" name="title" type="text" width="100%" th:value="${reviewView.title}"></td>
          </tr>
          <tr>
             <td bgcolor="orange" th:text="작성자"></td>
@@ -88,9 +88,10 @@ small {
                <div class="fileDrop">여기에 그림파일을 드래그해주세요</div> 
                업로드된 파일 목록
                <div style="overflow: scroll" class="uploadedList" ></div>
-               <div>
+               <div style="overflow: scroll">
                   <th:block th:each="reviewImg:${reviewImgList}">
-                        <img th:src="${reviewImg.ajaxReviewImg}" width="50%" height="50%">
+                        <img th:src="${reviewImg.img}" width="50%" height="50%">
+                        <span style='cursor: pointer;' data-src="+data+">[삭제]</span>
                      <br><br>
                      </th:block>
                </div>
