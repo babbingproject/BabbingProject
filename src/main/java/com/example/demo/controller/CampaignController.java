@@ -37,7 +37,14 @@ public class CampaignController {
 		
 		List<Campaignvo> campaignList = campaignService.getListByActive(campaignvo);
 		model.addAttribute("campaignList", campaignList);
-
+		List<Object[]> campaignListWithImg = campaignService.getListByActiveWithImg(campaignvo);
+		
+		for(Object camp : campaignListWithImg) {
+			System.err.println("이미지와 함께 출력? : " + camp.toString());
+		}
+		
+		model.addAttribute("campaignListWithImg", campaignListWithImg);
+		
 		return "th/campaign/campaign";
 	}
 	

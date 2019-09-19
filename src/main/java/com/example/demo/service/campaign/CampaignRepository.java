@@ -28,4 +28,19 @@ public interface CampaignRepository extends JpaRepository<Campaignvo, Integer>{
 	@Query(value="select max(campaign_id) from campaignvo", nativeQuery = true)
 	int selectCampaignId();
 	
+	@Query(nativeQuery=true, value=
+		  "select c.campaign_id,c.title,c.start_date,c.end_date,c.write_date,c.participants,c.recruitment,c.advertisement_id ,ci.campaign_img_id,ci.campaign_img "
+		+ "from campaignvo c inner join campaign_imgvo ci on c.campaign_id = ci.campaign_id "
+		+ "where c.end_date > now() group by c.campaign_id order by c.write_date DESC")
+	List<Object[]> findAllByActiveWithImg();
+	
+	@Query(nativeQuery=true, value=
+		  "select * from campaignvo c inner join campaign_imgvo ci on c.campaign_id = ci.campaign_id " 
+		+ "where c.end_date > now() group by c.campaign_id order by c.participants DESC")
+	List<Object[]> findAllByPopularByActiveWithImg();
+	
+	@Query(nativeQuery=true, value= 
+		  "select * from campaignvo c inner join campaign_imgvo ci on c.campaign_id = ci.campaign_id "
+		+ "where c.end_date > now() group by c.campaign_id order by c.end_date ASC")
+	List<Object[]> findAllByOrderByEndDateAscWithImg();
 }

@@ -18,6 +18,10 @@ public interface CampaignService {
 	// 인기순 정렬
 	List<Campaignvo> getListByPopular(Campaignvo campaignvo);
 	
+	List<Object[]> getListByActiveWithImg(Campaignvo campaignvo);
+	List<Object[]> getListByEndDateWithImg(Campaignvo campaignvo);
+	List<Object[]> getListByPopularWithImg(Campaignvo campaignvo);	
+	
 	// 캠페인 작성
  	void insertCampaign(Campaignvo campaignvo);
 	
