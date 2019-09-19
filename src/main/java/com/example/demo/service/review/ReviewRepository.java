@@ -298,12 +298,13 @@ public interface ReviewRepository extends JpaRepository<ReviewRegistrationvo, In
 
 //	Page<Object[]> getSearchKeyword(String searchKeyword, PageRequest pageRequest);
 
-	@Query(nativeQuery = true, value = "delete from review_registrationvo where review_id = ?")
+	@Query(value = "DELETE FROM review_registrationvo WHERE review_id = ?", nativeQuery = true)
 	void delete(int reviewId);
 
 	
 	@Query(value = "SELECT * FROM review_registrationvo WHERE review_id = ?", nativeQuery = true)
-
-	   ReviewRegistrationvo getReviewView(int reviewId);
-
+	ReviewRegistrationvo getReviewView(int reviewId);
+	
+	@Query(value = "SELECT review_id FROM review_registrationvo ORDER BY review_id DESC  LIMIT 1", nativeQuery = true)
+	int reviewCount();
 }

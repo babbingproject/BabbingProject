@@ -5,8 +5,6 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,7 +14,6 @@ import com.example.demo.service.scrap.ScrapRepository;
 
 @Service
 public class CommentServiceImp implements CommentService {
-	private static final Logger logger = LoggerFactory.getLogger(CommentServiceImp.class);
 
 	@Autowired
 	CommentRepository commentRepo;

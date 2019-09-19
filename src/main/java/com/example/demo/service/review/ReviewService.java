@@ -1,7 +1,6 @@
 package com.example.demo.service.review;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -9,7 +8,6 @@ import org.springframework.data.domain.Pageable;
 import com.example.demo.domain.mypage.Uservo;
 import com.example.demo.domain.review.AjaxReviewImagevo;
 import com.example.demo.domain.review.Commentvo;
-import com.example.demo.domain.review.ReviewImagevo;
 import com.example.demo.domain.review.ReviewRegistrationvo;
 
 public interface ReviewService {
@@ -79,8 +77,10 @@ public interface ReviewService {
 	public List<ReviewRegistrationvo> getNewestReviewList();
 	
 
-	ReviewRegistrationvo selectReviewView(int reviewId);
+	ReviewRegistrationvo getReviewView(int reviewId);
 	
-	List<AjaxReviewImagevo> selectAjaxReviewImgList(int reviewId);
+
+//	List<AjaxReviewImagevo> selectAjaxReviewImgList(int reviewId);
 	List<ReviewRegistrationvo> getSearchKeywordSearchPage(String searchKeyword);
+
 }
