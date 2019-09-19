@@ -3,6 +3,7 @@
 <title>캠페인 수정</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="/common/css/styles.css" th:href="@{/common/css/styles.css}" type="text/css">
+<link rel="stylesheet" href="/common/css/styles.css" th:href="@{/common/css/campaignPart.css}" type="text/css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
 <!-- Alertyfy.js -->
@@ -15,51 +16,39 @@
 
 	<div id="wrap" class="main">
 		<div th:replace="/include/header.html :: header"></div>
+		<div class="campaignWriteDiv">
 		<form th:action="@{updateCampaign}" method="post" onsubmit="return formValidation();">
 		<input name="campaignId" type="hidden" th:value="${campaign.campaignId}">
 		<input name="modifiedDate" type="hidden">
 		<table>
 			<tr>
-				<td colspan="6"><input type="text" id="title" name="title" th:value="${campaign.title}" size="95"></td>
-			</tr>
-			
-			<th:block th:each="campaignImg:${campaignImgList}">
-				<img th:src="${campaignImg.campaignImg}" width="100px" height="100px">
-				<a th:href="@{/deleteImg(campaignImgId=${campaignImg.campaignImgId})}">삭제</a>
-				<br><br>
-			</th:block>
-			<tr>
-				<td colspan="6">소개</td>
+				<td colspan="6"><input class="campaignModifyTitle" type="text" id="title" name="title" th:value="${campaign.title}" size="95"></td>
 			</tr>
 			<tr>
-				<td colspan="6"><textarea name="introduction" cols="85" rows="5" th:text="${campaign.introduction}"></textarea></td>
+				<td colspan="6"><textarea class="campaignModifyIntroduction" name="introduction" cols="85" rows="5" th:text="${campaign.introduction}"></textarea></td>
 			</tr>
-			<tr>
-				<td>모집인원</td>
-				<td><input id="recruitment" name="recruitment" type="number" th:value="${campaign.recruitment}"></td>
-				<td>시작일</td>
-				<td><input id="startDate" name="startDate" type="date"
-					th:value="${#dates.format(campaign.startDate,'yyyy-MM-dd')}"></td>
-				<td>종료일</td>
-				<td><input id="endDate" name="endDate" type="date"
-					th:value="${#dates.format(campaign.endDate,'yyyy-MM-dd')}"></td>
+			<tr>		
+				<td><input class="campaignModifyRecruitment" id="recruitment" name="recruitment" type="number" th:value="${campaign.recruitment}"></td>
+				<td><input class="campaignModifyStartDate" id="startDate" name="startDate" type="date" th:value="${#dates.format(campaign.startDate,'yyyy-MM-dd')}"></td>
+				<td><input class="campaignModifyEndDate" id="endDate" name="endDate" type="date" th:value="${#dates.format(campaign.endDate,'yyyy-MM-dd')}"></td>
 			</tr>
 			<tr>
 				<td colspan="6">제공 내역</td>
 			</tr>
 			<tr>
-				<td colspan="6"><textarea id="offerHistory" name="offerHistory" cols="85"	rows="2" th:text="${campaign.offerHistory}"></textarea></td>
+				<td colspan="6"><input type="text" class="campaignModifyOfferHistory" id="offerHistory" name="offerHistory" th:value="${campaign.offerHistory}"></td>
 			</tr>
 			<tr>
 				<td colspan="6">비고</td>
 			</tr>
 			<tr>
-				<td colspan="6"><textarea name="remarks" cols="85" rows="2"
-						th:text="${campaign.remarks}"></textarea></td>
+				<td colspan="6"><input type="text" class="campaignModifyRemarks" name="remarks" th:value="${campaign.remarks}"></td>
 			</tr>
-		</table>
-		<input type="submit" value="수정하기"><input type="button" value="취소하기" onclick="location.href='getCampaignList'">
-	</form>
+		</table>		
+		<input class="campaignModifySubmit" type="submit" value="수정하기">
+		<input class="campaignModifyCancleBtn" type="button" value="취소하기" onclick="location.href='getCampaignList'">
+		</form>
+	</div>
 </div>
 
 	<script>

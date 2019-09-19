@@ -12,6 +12,16 @@
 <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.11.4/build/css/alertify.min.css" />
 <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.11.4/build/css/themes/default.min.css" />
 
+<!-- bxSlider -->
+<link rel="stylesheet" href="/common/css/styles.css" th:href="@{/common/css/jquery.bxslider.css}" type="text/css">
+<script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
+
+ <script>
+    $(document).ready(function(){
+      $('.slider').bxSlider();
+    });
+  </script>
+
 </head>
 
 <body>
@@ -29,11 +39,24 @@
          </th:block>
          </tr>
          </table>
-         
-         <th:block th:each="campaignImg:${campaignImgList}">
-         <img th:src="${campaignImg.campaignImg}" style="  width: 1054px; height: 437px;">            
+		
+		<th:block th:each="campaignImg:${campaignSingleImg}">
+		<img th:src="${campaignImg.campaignImg}" style="width: 1054px; height: 437px;">
+		</th:block>	
+		
+		<th:block th:if="${campaignImgList}">
+		 <div class="slider">	
+         	<th:block th:each="campaignImg:${campaignImgList}">
+				<div>
+	         	<img th:src="${campaignImg.campaignImg}" style="  width: 1054px; height: 437px;">
+	        	</div>
+         	</th:block>
+         </div>
          </th:block>
-         <p class="campaignViewContents" th:text="${campaign.introduction}"></p>
+         <p>
+		<textarea class="campaignViewContents" th:text="${campaign.introduction}" readonly="readonly"></textarea>
+		</p>
+      <!-- <!--    <p class="" th:text="${campaign.introduction}"></p> -->
          <p class="campaignViewOptionTitle">제공내역</p>
          <p class="campaignViewSubContents" th:text="${campaign.offerHistory}"></p>
          <p class="campaignViewOptionTitle">비고</p>
@@ -48,7 +71,7 @@
          <p th:text="${campaign.advertisementvo.advertisementname}" />
          <br>신청 기간<br>
          <p th:text="|${#dates.format(campaign.startDate, 'yyyy-MM-dd')} ~ ${#dates.format(campaign.endDate, 'yyyy-MM-dd')}|"></p>
-         모집 인원<br>
+          	모집 인원<br>
          <div id="campaignParticipants">
             <p th:text="|${campaign.participants} / ${campaign.recruitment}|"></p>
          </div> 
@@ -142,8 +165,8 @@
                $("#participantMinus").show();
                
                 alertify.set('notifier', 'delay', 2);
-                 alertify.set('notifier', 'position', 'bottom-right');
-                 alertify.success('응모가 완료되었습니다.');
+                alertify.set('notifier', 'position', 'bottom-right');
+                alertify.success('응모가 완료되었습니다.');
             }
          });
       });
@@ -192,8 +215,8 @@
                participant();
                
                 alertify.set('notifier', 'delay', 2);
-                 alertify.set('notifier', 'position', 'bottom-right');
-                 alertify.success('선정이 완료되었습니다.');
+                alertify.set('notifier', 'position', 'bottom-right');
+                alertify.success('선정이 완료되었습니다.');
             }
          });
       });
@@ -257,5 +280,6 @@
       });      
    })   
    </script>
+   
 </body>
 </html>

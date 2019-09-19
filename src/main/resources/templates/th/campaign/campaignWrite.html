@@ -3,6 +3,7 @@
 <title>캠페인 등록</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="/common/css/styles.css" th:href="@{/common/css/styles.css}" type="text/css">
+<link rel="stylesheet" href="/common/css/styles.css" th:href="@{/common/css/campaignPart.css}" type="text/css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
 <!-- Alertyfy.js-->
@@ -15,51 +16,44 @@
 
 	<div id="wrap" class="main">
 		<div th:replace="/include/header.html :: header"></div>
+		<div class="campaignWriteDiv">    
 		<form th:action="@{insertCampaign}" method="post" enctype="multipart/form-data" onsubmit="return formValidation();">
 			<input type="hidden" name="advertisementId"	th:value="${session['advertisementvo'].advertisementId}">
-			<br><br><br><br><br><br><br><br>
 			<table>
 				<tr>
-					<td colspan="6"><input type="text" id="title" name="title" placeholder="제목을 입력 해주세요" size="95"></td>
+					<td colspan="6"><input class="campaignWriteTitle" type="text" id="title" name="title" placeholder="제목을 입력 해주세요"></td>
 				</tr>
 				<tr>
-					<td colspan="6"><input id="file" multiple="multiple" type="file" name="file"></td>
+					<td colspan="1"><input class="campaignWriteFile" id="file" multiple="multiple" type="file" name="file"></td>
+					<td colspan="2"><textarea class="campaignWriteIntroduction" name="introduction"th:text="${session['advertisementvo'].introduce}"></textarea></td>
 				</tr>
 				<tr>
-					<td colspan="6">소개</td>
+					<td><input class="campaignWriteRecruitment" id="recruitment" name="recruitment" type="number"></td>
+					<td><input class="campaignWriteStartDate" id="startDate" name="startDate" type="date"></td>
+					<td><input class="campaignWriteEndDate" id="endDate" name="endDate" type="date"></td>
 				</tr>
 				<tr>
-					<td colspan="6"><textarea name="introduction" cols="85"	rows="5" th:text="${session['advertisementvo'].introduce}"></textarea></td>
+					<td>제공 내역</td>
 				</tr>
 				<tr>
-					<td>모집인원</td>
-					<td><input id="recruitment" name="recruitment" type="number"></td>
-					<td>시작일</td>
-					<td><input id="startDate" name="startDate" type="date"></td>
-					<td>종료일</td>
-					<td><input id="endDate" name="endDate" type="date"></td>
+					<td><input type="text" class="campaignWriteOfferHistory" id="offerHistory" name="offerHistory"> </td>
 				</tr>
 				<tr>
-					<td colspan="6">제공 내역</td>
+					<td>비고</td>
 				</tr>
 				<tr>
-					<td colspan="6"><textarea id="offerHistory" name="offerHistory" cols="85" rows="2"></textarea></td>
-				</tr>
-				<tr>
-					<td colspan="6">비고</td>
-				</tr>
-				<tr>
-					<td colspan="6"><textarea name="remarks" cols="85" rows="2"></textarea></td>
+					<td><input type="text" class="campaignWriteRemarks" name="remarks"></td>
 				</tr>
 			</table>
-			<input type="submit" value="등록하기">
-			<input type="button" value="취소하기" onclick="location.href='getCampaignList'">
+			
+			<input class="campaignWriteInsertBtn" type="submit" value="등록하기">
+			<input class="campaignWriteCancelBtn" type="button" value="취소하기" onclick="location.href='getCampaignList'">
 		</form>
+		</div>
 	</div>
 	
-	
 	<script>
-    
+	
 	function formValidation(){
 
         var title = $("#title").val();

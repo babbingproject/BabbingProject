@@ -114,7 +114,10 @@ public class CampaignController {
 		model.addAttribute("participantsList", participantsService.getParticipantsList(campInfo.getCampaignId()));
 		
 		List<CampaignImgvo> campaignImgList = campaignService.selectCampaignImgList(campInfo.getCampaignId());
-		model.addAttribute("campaignImgList",campaignImgList);
+				
+		if(campaignImgList.size() == 1) {
+			model.addAttribute("campaignSingleImg", campaignImgList);
+		} else model.addAttribute("campaignImgList",campaignImgList);		
 		
 		return "th/campaign/campaignView";
 	}
