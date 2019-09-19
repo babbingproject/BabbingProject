@@ -46,6 +46,7 @@ public class AdvertisementController {
 	@ResponseBody
 	@RequestMapping("/ademailCheck")
 	public int emailCheck(@RequestBody Advertisementvo vo) {
+		System.out.println("기업 이멜체크");
 		return advertisementService.ademailCheck(vo, vo.getAdvertisement_email());
 	}
 

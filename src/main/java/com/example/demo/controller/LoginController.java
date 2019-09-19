@@ -212,5 +212,6 @@ public class LoginController {
 
 		return "join";
 	}
+	
 
 }

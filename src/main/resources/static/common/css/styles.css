@@ -103,11 +103,11 @@ a {text-decoration: none;color: inherit;cursor: pointer;}
 .cont-area .list-style04-user li{float: left;    margin-right: 12px;    width: 165px;}
 .cont-area .list-style04-user #banner{float: left;  margin-top: 100px;    width: 165px;}
 .cont-area .list-style04-user li a{display: block; text-align: center;}
-.cont-area .list-style04-user li img{width: 100%;  border-radius: 100px;border: 2px #bdbcbc solid; }
+.cont-area .list-style04-user li img{width: 100%;  border-radius: 100px;border: 2px #bdbcbc solid; margin-bottom: 10%;}
 .cont-area .list-style04-user li .name{font-size: 16px; font-weight: bold;margin-top:10px}
 .cont-area .list-style04-user li .btn01{color:#fff; background:#ff4d80; border: 2px #ff4d80 solid;padding: 10px 0px; text-align: center; width: 130px;display: inline-block;  border-radius: 5px;}
-.cont-area .list-style04-user li .btn02{color:#ff4d80;  border: 2px #ff4d80 solid; padding: 10px 0px; text-align: center; width: 130px; display: inline-block;  border-radius: 5px;cursor: pointer;}
-.cont-area .list-style04-user li span{text-align: center;margin: 5px 0 10px;;}
+.cont-area .list-style04-user li .btn02{color:#ff4d80;  border: 2px #ff4d80 solid; padding: 10px 0px; text-align: center; width: 130px; display: inline-block;  border-radius: 5px;cursor: pointer;margin: 4%;}
+.cont-area .list-style04-user li span{text-align: center;margin: 5px 2px 10px;}
 .cont-area .list-style04-user li:last-child{margin-right:0px}
 .cont-area .list-style04-restaurant{display: block; padding:30px ;}
 .cont-area .list-style04-restaurant li{float: left;    margin-right: 12px;    width: 165px;}
