@@ -28,4 +28,13 @@ public interface CampaignRepository extends JpaRepository<Campaignvo, Integer>{
 	@Query(value="select max(campaign_id) from campaignvo", nativeQuery = true)
 	int selectCampaignId();
 	
+	//캠페인 검색
+	@Query(nativeQuery=true, value=""
+			+ "SELECT a.profile_img, a.advertisementname, c.end_date, ci.campaign_img, c.title, c.campaign_id "
+			+ "FROM campaignvo c INNER JOIN campaign_imgvo ci "
+			+ "ON c.campaign_id = ci.campaign_id "
+			+ "INNER JOIN advertisementvo a "
+			+ "ON c.advertisement_id = a.advertisement_id "
+			+ "WHERE c.title LIKE %?1% ")
+	List<Object[]> getCampaignSearchKeyword(String searchKeyword);
 }

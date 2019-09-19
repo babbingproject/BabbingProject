@@ -148,7 +148,6 @@ $(function(){
 		var current = $(this);
 		var followerMe = $(this).parent().parent().siblings('#followerMe').val();
 		
-		alert(followerMe);
 		$.ajax({
 			url: "tabMenu",
 			dataType: "JSON",

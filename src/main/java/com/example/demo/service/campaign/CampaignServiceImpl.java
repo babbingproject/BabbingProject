@@ -102,5 +102,9 @@ public class CampaignServiceImpl implements CampaignService {
    public List<CampaignImgvo> selectCampaignImgList(int campaignId) {
       return campaignImgRepo.findByCampaignId(campaignId);
    }
+   
+   public List<Object[]> getCampaignSearchKeyword(String searchKeyword){
+	   return campaignRepo.getCampaignSearchKeyword(searchKeyword);
+   }
 
 }

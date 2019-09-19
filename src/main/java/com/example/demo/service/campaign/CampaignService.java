@@ -42,5 +42,7 @@ public interface CampaignService {
 	
 	List<CampaignImgvo> selectCampaignImgList(int campaignId);
 	
+	List<Object[]> getCampaignSearchKeyword(String searchKeyword);
+	
 
 }

@@ -5,7 +5,7 @@
 <title>Insert title here</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <link rel="stylesheet" href="common/css/styles.css">
-
+<link rel="stylesheet" href="common/css/search.css">
 <script type="text/javascript" th:inline="javascript">
 	
 $(function(){
@@ -31,6 +31,8 @@ $(function(){
 		$('#userdiv').show();
 	} else if([[${advertisementSearch}]] != null){
 		$('#advertisementdiv').show();
+	} else if([[${campaign}]] != null){
+		$('#campaigndiv').show();
 	}
 });
 </script>
@@ -51,59 +53,80 @@ $(function(){
 	<div id="wrap" class="main">
 		<div th:replace="/include/header.html :: header"></div>
 		<br><br><br><br><br><br><br><br>
-		<p th:text="${nothing}" th:align="center">
-		
-		<div class="cont-area info" id="reviewdiv">
-		<h3>리뷰</h3>
-			<ul class="list-style03">
-				<li id="reviewlist" th:each="review:${review}">
-					<div class="cont-txt">
-						<p class="photo">
-							<img th:src="${review.reviewImage}">
-						</p>
-						<a href="#" class="best02">베스트</a>
-						<ul class="info">
-							<li><span th:text="${review.reviewRegistrationvo.reviewPlace}"></span>|</li> 
-							<li><span th:text="${review.reviewRegistrationvo.title}"></span></li>
-							<li><img th:src="${review.reviewRegistrationvo.uservo.profileImg}"/> <span th:text="${review.reviewRegistrationvo.uservo.nickname}"></span></li>
-						</ul>
-					</div>
-				</li>
-
-			</ul>
-		</div>
-		<div class="cont-area" id="userdiv">
-			<div class="cont-txtB">
-				인기 유저 <a href="#" class="more-btn">더보기</a>
-			</div>
-			<ul class="list-style04-user">
-				<li th:each="userSearch:${userSearch}"><a href="#"><img th:src="${userSearch[2]}"><span class="name"><span th:text="${userSearch[1]}"></span><span>팔로워</span>|<span th:text="${userSearch[3]}"></span>리뷰수<span th:text="${userSearch[4]}"></span></span><span class="btn02">팔로우</span></a></li>
-			</ul>
-			<div class="arr-area">
-				<a href="#" class="arr-btn-left" onclick="click"></a> 
-				<a href="#" class="arr-btn-right on"></a>
-			</div>
-		</div>
-		
-		<div id="campaigndiv">
-			<h3>캠페인</h3>
-			<hr>
-		</div>
-		
-		<div class="cont-area" id="advertisementdiv">
-		<h3>맛집</h3>
-			<div class="cont-txtB">
-				인기 맛집 <a href="#" class="more-btn">더보기</a>
-			</div>
-			<ul class="list-style04-restaurant">
-				<li th:each="advvo:${advertisementSearch}"><a href="#"><img th:src="${advvo[2]}"><span th:text="${advvo[1]}" class="name"></span>리뷰수<span th:text="${advvo[3]}"></span><span class="btn02">담아두기</span></a></li>
-			</ul>
-			<div class="arr-area">
-				<a href="#" class="arr-btn-left on" onclick="click"></a> 
-				<a href="#" class="arr-btn-right"></a>
-			</div>
-		</div>
 	</div>
+		<p th:text="${nothing}" th:align="center">
+		<div class="testmain">
+			<div class="cont-area info" id="reviewdiv">
+				<h3>리뷰</h3>
+					<ul class="list-style03">
+						<li id="reviewlist" th:each="review:${review}">
+							<div class="cont-txt">
+								<p class="photo">
+									<img th:src="${review.reviewImage}">
+								</p>
+								<a href="#" class="best02">베스트</a>
+								<ul class="info">
+									<li><span th:text="${review.reviewRegistrationvo.reviewPlace}"></span>|</li> 
+									<li><span th:text="${review.reviewRegistrationvo.title}"></span></li>
+									<li><img th:src="${review.reviewRegistrationvo.uservo.profileImg}"/> <span th:text="${review.reviewRegistrationvo.uservo.nickname}"></span></li>
+								</ul>
+							</div>
+						</li>
+		
+					</ul>
+			</div>
+			
+<!-- 			<span th:text="${searchKeyword.types}"></span> -->
+<!-- 					<ul class="page"> -->
+<!-- 						<li th:each="i : ${review}"> -->
+<!-- 					<span th:text="${searchKeyword.searchKeyword}"></span> -->
+<!-- 							<a th:href="@{/search(page=${i.totalPages},types=${searchKeyword.types}, searchKeyword=${searchKeyword.searchKeyword})}" th:text="${i.totalPages}" -->
+<!-- 							th:classappend="${currentPage}==${i.totalPages}?'active' : 'none'"></a> -->
+<!-- 						</li> -->
+<!-- 					</ul> -->
+					
+					
+			<div class="cont-area" id="userdiv">
+				<div class="cont-txtB">
+					인기 유저 <a th:href="@{/rank(followerMe=${session[username]})}"
+								class="more-btn">더보기</a>
+				</div>
+				<ul class="list-style04-user">
+					<li th:each="userSearch:${userSearch}"><a href="#"><img th:src="${userSearch.uservo.profileImg}"><span class="name"><span th:text="${userSearch.uservo.nickname}"></span><span>팔로워</span><span th:text="${userSearch.uservo.followingCount}"></span>|리뷰수<span th:text="${userSearch.uservo.postCount}"></span></span><span class="btn02">팔로우</span></a></li>
+				</ul>
+				
+			</div>
+			
+			<div id="campaigndiv">
+				<div class="cont-txtB">
+					캠페인 <a th:href="@{/getCampaignList}"
+								class="more-btn">더보기</a>
+				</div>
+				<ul class="list-style03">
+					<li th:each="campaign:${campaign}">
+						<span>
+							<a th:href="@{/getAdvertisementMyPage(advertisementName=${campaign[1]})}"><img th:src="${campaign[0]}" class="campaignWriterImg">&nbsp;&nbsp;&nbsp;<span th:text="${campaign[1]}" class="campaignWriterName"></span></a>
+							<span th:text="${#dates.format(campaign[2], 'yyyy-MM-dd')}" class="campaignDate"></span><span class="campaignDate">~</span>
+						</span>
+						<a th:href="@{/getCampaign(campaignId=${campaign[5]})}"><img th:src="${campaign[3]}" class="campaignimg"></a>
+						<span th:text="${campaign[4]}" class="campaignTitle"></span>
+					</li>
+				</ul>
+				<hr>
+			</div>
+			
+			<div class="cont-area" id="advertisementdiv">
+				<div class="cont-txtB">
+					인기 맛집 <a th:href="@{/rank(followerMe=${session[username]})}"
+							class="more-btn">더보기</a>
+				</div>
+				<ul class="list-style04-restaurant">
+					<li th:each="advvo:${advertisementSearch}"><a href="#"><img th:src="${advvo.advertisementvo.profileImg}"><span th:text="${advvo.advertisementvo.advertisementname}" class="name"></span>리뷰수<span th:text="${advvo.advertisementvo.putedCount}"></span><span class="btn02">담아두기</span></a></li>
+				</ul>
+				
+			</div>
+		</div>
+	
 		
 
 
@@ -142,14 +165,7 @@ $(function(){
 <!-- 		</ul> -->
 <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-		<span th:text="${searchKeyword.types}"></span>
-		<ul>
-			<li th:each="i : ${review}">
-		<span th:text="${searchKeyword.searchKeyword}"></span>
-				<a th:href="@{/search(page=${i.totalPages},types=${searchKeyword.types}, searchKeyword=${searchKeyword.searchKeyword})}" th:text="${i.totalPages}"
-				th:classappend="${currentPage}==${i.totalPages}?'active' : 'none'"></a>
-			</li>
-		</ul>
+	
 
 
 <!-- 	</div> -->
