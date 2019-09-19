@@ -43,16 +43,18 @@ public class UserController {
 
    @ResponseBody
    @RequestMapping("/emailCheck")
-   public int emailCheck(@RequestBody Uservo vo) {
-	   System.out.println("이메일체크");
+   public int emailCheck(@RequestBody String userEmail) {
+	   Uservo vo = new Uservo();
       return userService.emailCheck(vo, vo.getUser_email());
+      
    }
 
    // 입력 받을때 vo 통째로 파라메터로 받고 get 메소드를 이용해서 값을 가져다가 넣어주고 ajax에서 data type 를 json으로
    // 해줄때 JSON.stringify({})를 추가해준다.
    @ResponseBody
    @RequestMapping("/nickCheck")
-   public int nickCheck(@RequestBody Uservo vo) {
+   public int nickCheck(@RequestBody String nickname) {
+	   Uservo vo = new Uservo();
       return userService.nickCheck(vo, vo.getNickname());
    }
 
@@ -60,9 +62,7 @@ public class UserController {
    @RequestMapping(value = "/user/key_alter", method = RequestMethod.GET)
    public String key_alterConfirm(@RequestParam("user_email") String user_email,
          @RequestParam("userKey") String key) {
-
       mailsender.alter_userKey_service(user_email, key);
-
       return "regSuccess";
    }
 

@@ -11,6 +11,8 @@
 <script th:inline="javascript" src="common/js/index.js"></script>
 <link rel="stylesheet" href="/common/css/styles.css"
 	th:href="@{/common/css/styles.css}" type="text/css">
+	<link rel="stylesheet" href="/common/css/jquery.bxslider.css"
+	th:href="@{/common/css/jquery.bxslider.css}" type="text/css">
 <script src="common/js/jquery.bxslider.js"></script>
 <script src="common/js/jquery.slides.js"></script>
 <script type="text/javascript" src="common/js/jquery.slideto.min.js"></script>
@@ -291,8 +293,10 @@
 				// 				prevSelector : '#slider-prev',
 				// 				nextSelector : '#slider-next',
 				speed : 500,
+				controls : true,
 				pause : 1100,
 				touchEnabled : false
+				
 
 			});
 		});
@@ -310,6 +314,7 @@
 				// 				prevSelector : '#slider-prev',
 				// 				nextSelector : '#slider-next',
 				speed : 500,
+				controls : true,
 				pause : 1100,
 				touchEnabled : false
 
