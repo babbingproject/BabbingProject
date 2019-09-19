@@ -292,34 +292,36 @@ small {
                });
                //event :JQeury의 이벤트
                //originalEvent :javascript의 이벤트
-               $(".fileDrop").on("drop", function(event) {
-                  event.preventDefault(); //기본효과를 막음
-//                   alert("jj");
-                  //드래그된 파일의 정보
-                  var files = event.originalEvent.dataTransfer.files;
-                  //첫번째 파일
-                  var file = files[0];
-                  //콘솔에서 파일 정보 확인
-                  console.log(file);
+				$(".fileDrop").on("drop", function(event) {
+					event.preventDefault(); //기본효과를 막음
+				alert("jj");
+				//드래그된 파일의 정보
+				var files = event.originalEvent.dataTransfer.files;
+                //첫번째 파일
+				var file = files[0];
+				//콘솔에서 파일 정보 확인
+				console.log(file);
 
-                  //ajax로 전달할 폼 객체
-                  var formData = new FormData();
-                  //폼 객체에 파일 추가, append("변수명", 값)
-                  formData.append("file", file);
-//                   alert("안유진");
-               
-
-               $.ajax({
-                  type : "post",
-                  url : "/uploadAjax", // 매핑주소
-                  data : formData,
-                  //prosessData: true=>get방식, false=> post방식
-                  dataType : "text",
-                  // contentType : true => application/x-www-form-urlencoded,
-                  //      false => multipart/form-data
-                  processData : false,
-                  contentType : false,
-                  success : function(data) {
+				//ajax로 전달할 폼 객체
+				var formData = new FormData();
+				//폼 객체에 파일 추가, append("변수명", 값)
+				formData.append("file", file);
+               	var reviewId = $('#reviewId').val();	
+				alert(reviewId);
+			$.ajax({
+				type : "post",
+				url : "/uploadAjax", // 매핑주소
+				data : {formData,
+						reviewId:reviewId
+                	  
+				},
+				//prosessData: true=>get방식, false=> post방식
+				dataType : "text",
+				// contentType : true => application/x-www-form-urlencoded,
+				//      false => multipart/form-data
+				processData : false,
+				contentType : false,
+				success : function(data) {
                      var srt = "";
                      //이미지 파일이면 썸네일 이미지 출력
                      if (checkImageType(data)) {
