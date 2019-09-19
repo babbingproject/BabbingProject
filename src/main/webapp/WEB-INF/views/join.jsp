@@ -46,21 +46,12 @@
 		//input에 입력된 값이 변화가 있을때 alert 을 띄운다.
 		$("input[name='user_email']").on("change", function() {
 			var user_email = $('#user_email').val();
-
-			//ajax 호출
-
+			var userInfo = {"user_email" : user_email};
 			$.ajax({
-				//Default datatype : JS ON
 				async : true,
 				type : 'POST',
-				data : JSON.stringify({
-					// 좌항 - 변수 , 우항 - 입력된 데이터 의미
-					'user_email' : user_email
-				}),
-				//요청 url
+				data : userInfo,
 				url : "/emailCheck",
-				//controller에서 성공적으로 return 받을시 실행되는 메소드를 입력합니다.
-				dataType : "json",
 				contentType : "application/json; charset=UTF-8",
 				success : function(cnt) {
 					if (user_email == "") {
@@ -80,13 +71,6 @@
 						$("#joinBtn").attr("disabled", "disabled");
 
 					}
-
-				},
-				//에러 발생 시 실행되는 메소드
-				error : function(error) {
-
-					alert("error :" + error);
-
 				}
 			});
 		});
@@ -98,21 +82,15 @@
 		//input에 입력된 값이 변화가 있을때 alert 을 띄운다.
 		$("input[name='nickname']").on("change", function() {
 			var nickname = $('#nickname').val();
-
+			var userInfo = {"nickname" : nickname};
 			//ajax 호출
 
 			$.ajax({
-				//Default datatype : JS ON
 				async : true,
 				type : 'POST',
-				data : JSON.stringify({
-					// 좌항 - 변수 , 우항 - 입력된 데이터 의미
-					'nickname' : nickname
-				}),
-				//요청 url
+				data : userInfo,
 				url : "/nickCheck",
 				//controller에서 성공적으로 return 받을시 실행되는 메소드를 입력합니다.
-				dataType : "json",
 				contentType : "application/json; charset=UTF-8",
 				success : function(cnt) {
 					if (nickname == "") {

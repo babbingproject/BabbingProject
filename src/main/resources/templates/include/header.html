@@ -45,7 +45,7 @@ input:focus {
 				<div class="heaer-gnb">
 					<ul>
 						<li><a th:href="@{/doReviewList}">리뷰</a></li>
-						<li><a th:href="@{/rank(followerMe=${username})}">랭킹</a></li>
+						<li><a th:href="@{/rank(followerMe=${session[username]})}">랭킹</a></li>
 						<li><a th:href="@{/getCampaignList}">캠페인</a></li>
 					</ul>
 				</div>
@@ -70,7 +70,6 @@ input:focus {
 				</div>
 
 
-						</select>
 						
 						
 
@@ -96,7 +95,7 @@ input:focus {
 				<!-- 일반 회원일 때 -->
 				<th:block th:if="${session['uservo'] != null}">
 					<div class="login-btnR">
-						<a href="/getUserMyPage" class="login">마이 페이지</a> ㅣ <a
+						<a th:href="@{/getUserMyPage(nickname=${session[username]}, followerMe=${session[username]})}" class="login">마이 페이지</a> ㅣ <a
 							href="/logout" class="join">로그아웃</a>
 					</div>
 				</th:block>

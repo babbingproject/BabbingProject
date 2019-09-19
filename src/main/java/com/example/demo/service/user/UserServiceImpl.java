@@ -5,6 +5,8 @@ import java.util.Optional;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.dao.UserMapper;
@@ -136,5 +138,9 @@ public class UserServiceImpl implements UserService {
 	public Uservo findByUserEmail(String user_email) {
 		
 		return userRepo.findByUserEmail(user_email);
+	}
+	
+	public Page<Uservo> getSearchKeywordPage(String searchKeyword, Pageable pageable){
+		return userRepo.getSearchKeywordPage(searchKeyword, pageable);
 	}
 }

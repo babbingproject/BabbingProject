@@ -6,6 +6,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 import com.example.demo.domain.mypage.Uservo;
+import com.example.demo.domain.review.AjaxReviewImagevo;
 import com.example.demo.domain.review.Commentvo;
 import com.example.demo.domain.review.ReviewRegistrationvo;
 
@@ -78,5 +79,8 @@ public interface ReviewService {
 
 	ReviewRegistrationvo getReviewView(int reviewId);
 	
+
+//	List<AjaxReviewImagevo> selectAjaxReviewImgList(int reviewId);
+	List<ReviewRegistrationvo> getSearchKeywordSearchPage(String searchKeyword);
 
 }

@@ -3,6 +3,9 @@ package com.example.demo.service.user;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+
 import com.example.demo.domain.mypage.Uservo;
 
 public interface UserService {
@@ -47,5 +50,7 @@ public interface UserService {
 	 void scrapFactorDecrease(Integer reviewUserId);
 	 
 	 Uservo findByUserEmail(String user_email);
+	 
+	 Page<Uservo> getSearchKeywordPage(String searchKeyword, Pageable pageable);
 
 }

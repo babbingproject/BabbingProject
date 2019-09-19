@@ -46,7 +46,8 @@ public class MyPageController {
 		model.addAttribute("uservo", userService.findByNickname(nickname));
 		model.addAttribute("followCheck", rankService.checkFollowing(followerMe, nickname));
 		model.addAttribute("username", followerMe);
-		System.out.println(nickname.equals(followerMe));
+		System.out.println(nickname);
+		System.out.println(followerMe);
 		//자기 페이지는 팔로우 버튼 없음, 대신 수정 버튼 생김
 		if(nickname.equals(followerMe)) {
 			model.addAttribute("sameuser","its same");
@@ -120,7 +121,7 @@ public class MyPageController {
 	}
 	
 	@RequestMapping("/getAdvertisementMyPage")
-	public String getAdvertisementMyPage(Advertisementvo advertisementvo, Model model) {		
+	public String getAdvertisementMyPage(Advertisementvo advertisementvo, Model model, String advertisementName) {		
 		
 		
 		return "th/mypage/advertisementMyPage";

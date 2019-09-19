@@ -1,16 +1,19 @@
 /* Campaign.html CSS */
-
-.campaignTop{
-	float: left; width: 100%; margin: ; margin-top: 7%;
+.campaignTop {
+	float: left;
+	width: 100%;
+	margin:;
+	margin-top: 7%;
 }
-.campaignBtn{
+
+.campaignBtn {
 	width: 105px;
-   		height: 35px;
-	    border-radius: 22.7px;
-	    border: solid 1px #ff4d80;
-	    background-color: #ff4d80;
-	    color: white;
-	    margin-left: -15%;
+	height: 35px;
+	border-radius: 22.7px;
+	border: solid 1px #ff4d80;
+	background-color: #ff4d80;
+	color: white;
+	margin-left: -15%;
 }
 /* CampaignView.html CSS */
 .campaignViewLeft {
@@ -52,18 +55,14 @@
 }
 
 .campaignViewContents {
-	width: 1040px;
-	height: 80px;
+	width: 1055;
+	height: 170px;
+	margin-top: 1%;
+	resize: none;
+	font-size: larger;
+	border: 0px solid white;
+	outline: none;
 	font-family: AppleSDGothicNeo;
-	font-size: 18px;
-	font-weight: normal;
-	font-style: normal;
-	font-stretch: normal;
-	line-height: 1.61;
-	letter-spacing: normal;
-	text-align: left;
-	color: #000000;
-	margin-top: 2%;
 }
 
 .campaignViewSubContents {
@@ -138,4 +137,200 @@
 	color: black;
 	text-decoration: none;
 	cursor: pointer;
+}
+
+/* CampaignWrite CSS */
+.campaignWriteDiv {
+	margin-left: 22%;
+	margin-right: 15%;
+	margin-top: 8%;
+}
+
+.campaignWriteTitle {
+	width: 1025;
+	height: 60;
+	border-radius: 30px;
+	border: solid 1px #b5b5b5;
+	margin-bottom: 2%;
+	font-size: large;
+	font-family: AppleSDGothicNeo;
+}
+
+.campaignWriteFile {
+	width: 250;
+	height: 202px;
+	border-radius: 10px;
+	border: solid 1px #eeeeee;
+	background-color: #eeeeee;
+	margin-bottom: 3%;
+	padding: .5em .75em;
+	color: #fff;
+}
+
+.campaignWriteIntroduction {
+	width: 750px;
+	height: 200px;
+	border-radius: 10px;
+	border: solid 1px #a7a7a7;
+	float: left;
+	margin-bottom: 4%;
+	font-size: large;
+	margin-left: -101%;
+}
+
+.campaignWriteRecruitment {
+	width: 300px;
+	height: 50;
+	border-radius: 30px;
+	border: solid 1px #b5b5b5;
+	margin-bottom: 2%;
+}
+
+.campaignWriteStartDate {
+	width: 300px;
+	height: 50;
+	border-radius: 30px;
+	border: solid 1px #b5b5b5;
+	margin-left: -180%;
+	margin-bottom: 4%;
+}
+
+.campaignWriteEndDate {
+	width: 300px;
+	height: 50;
+	border-radius: 30px;
+	border: solid 1px #b5b5b5;
+	margin-bottom: 4%;
+	margin-left: -182%;
+}
+
+.campaignWriteOfferHistory {
+	width: 1025;
+	height: 55;
+	border-radius: 30px;
+	border: solid 1px #b5b5b5;
+	margin-bottom: 2%;
+	font-size: large;
+	font-family: AppleSDGothicNeo;
+}
+
+.campaignWriteRemarks {
+	width: 1025;
+	height: 55;
+	border-radius: 30px;
+	border: solid 1px #b5b5b5;
+	margin-bottom: 2%;
+	font-size: large;
+	font-family: AppleSDGothicNeo;
+}
+
+.campaignWriteInsertBtn {
+	width: 100px;
+	height: 40px;
+	border-radius: 22.7px;
+	border: solid 1px #ff4d80;
+	background-color: #ff4d80;
+	color: white;
+	font-size: small;
+	margin-left: 68%;
+}
+
+.campaignWriteCancelBtn {
+	width: 100px;
+	height: 40px;
+	border-radius: 22.7px;
+	border: solid 1px #ff4d80;
+	background-color: #ffffff;
+	color: #000;
+	font-size: small;
+}
+
+/* CampaignModify CSS */
+.campaignModifyTitle {
+	width: 1025;
+	height: 60;
+	border-radius: 30px;
+	border: solid 1px #b5b5b5;
+	margin-bottom: 2%;
+	font-size: large;
+	font-family: AppleSDGothicNeo;
+}
+
+.campaignModifyIntroduction {
+	width: 1025;
+	height: 200px;
+	border-radius: 10px;
+	border: solid 1px #a7a7a7;
+	float: left;
+	margin-bottom: 4%;
+	font-size: large;
+	margin-left: 0;
+}
+
+.campaignModifyRecruitment {
+	width: 300px;
+	height: 50;
+	border-radius: 30px;
+	border: solid 1px #b5b5b5;
+	margin-bottom: 2%;
+}
+
+.campaignModifyStartDate {
+	width: 300px;
+	height: 50;
+	border-radius: 30px;
+	border: solid 1px #b5b5b5;
+	margin-left: 7%;
+	margin-bottom: 1%;
+}
+
+.campaignModifyEndDate {
+	width: 300px;
+	height: 50;
+	border-radius: 30px;
+	border: solid 1px #b5b5b5;
+	margin-left: 13%;
+	margin-bottom: 1%;
+}
+
+.campaignModifyOfferHistory {
+	width: 1025;
+	height: 55;
+	border-radius: 30px;
+	border: solid 1px #b5b5b5;
+	margin-bottom: 2%;
+	font-size: large;
+	font-family: AppleSDGothicNeo;
+}
+
+.campaignModifyRemarks {
+	width: 1025;
+	height: 55;
+	border-radius: 30px;
+	border: solid 1px #b5b5b5;
+	margin-bottom: 2%;
+	font-size: large;
+	font-family: AppleSDGothicNeo;
+}
+
+.campaignModifySubmit {
+	width: 100px;
+	height: 40px;
+	border-radius: 22.7px;
+	border: solid 1px #ff4d80;
+	background-color: #ff4d80;
+	color: white;
+	font-size: small;
+	margin-left: 68%;
+}
+
+.campaignModifyCancleBtn {
+	width: 100px;
+	height: 40px;
+	border-radius: 22.7px;
+	border: solid 1px #ff4d80;
+	background-color: #ffffff;
+	color: #000;
+	margin-left: 5px;
+	font-size: small;
 }

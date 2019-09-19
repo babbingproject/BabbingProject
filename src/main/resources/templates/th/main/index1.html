@@ -5,22 +5,15 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <title>밥빙에 오신걸 환영합니다.</title>
 
-
-<!-- <link rel="stylesheet" th:href="@{common/css/styles.css}" type="text/css"> -->
 <script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script th:inline="javascript" src="common/js/index.js"></script>
 <link rel="stylesheet" href="/common/css/styles.css" th:href="@{/common/css/styles.css}" type="text/css">
 
+<link rel="stylesheet" href="/common/css/jquery.bxslider.css" th:href="@{/common/css/jquery.bxslider2.css}" type="text/css">
+<script src="common/js/jquery.bxslider.js"></script>
 <script src="common/js/jquery.slides.js"></script>
 <script type="text/javascript" src="common/js/jquery.slideto.min.js"></script>
 <link href="common/css/wlogin2.css" rel="stylesheet">
-
-
-<link href="jquery.bxslider/jquery.bxslider.css" rel="stylesheet" />
-<script	src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
-
-
-
 
 <style>
 *:focus {
@@ -59,13 +52,10 @@
 <body>
 
 
-	<span th:text="${session['uservo']}"></span>
-	<br>
 
 
 
-<span th:text="${session[username]}"></span><br>
-<span th:text="${session['uservo']}"></span><br>
+
 	<div id="wrap" class="main">
 		<div th:replace="/include/header.html :: header"></div>
 
@@ -73,9 +63,11 @@
 			<div class="cont-area content" data-role="content">
 				<div class="cont-txtB" style="margin-top: 10%;">캠페인</div>
 				<div id="slides">
-					<img src="images/Bobbing-m-visual.jpg" alt=""> 
-					<img src="images/여자친구.jpg" alt="">
-					<img src="images/아이즈원1.jpg" alt="">
+
+					<img src="images/1stCampaign.png" alt=""> 
+					<img src="images/2ndCampaign.png" alt=""> 
+					<img src="images/3rdCampaign.png" alt="">
+
 				</div>
 
 			</div>
@@ -95,15 +87,7 @@
 									<img th:src='${check.img}'></img>
 								</span>
 							</p>
-							<span th:if="${#lists.isEmpty(newestreview.scrapvo)}"> <span
-								class="button best02" id="scrapButton"> <input
-									type="hidden" id="followerMe" th:value="${session[username]}">
-							</span>
-							</span> <span th:if="!${#lists.isEmpty(newestreview.scrapvo)}"> <span
-								class="button best01" id="scrapButton"> <input
-									type="hidden" id="followerMe" th:value="${session[username]}">
-							</span>
-							</span>
+							
 							<ul class="info">
 								<li><span
 									th:text="${newestreview.reviewRegistrationvo.reviewPlace}"></span>
@@ -121,12 +105,23 @@
 								</span></li>
 								<!-- 								</p><li th:text="${newestreview[0].reviewRegistrationvo.reviewPlace}"></li> -->
 							</ul>
+							<span th:if="${#lists.isEmpty(newestreview.scrapvo)}"> <span
+								class="button best02" id="scrapButton"> <input
+									type="hidden" id="followerMe" th:value="${session[username]}">
+							</span>
+							</span> <span th:if="!${#lists.isEmpty(newestreview.scrapvo)}"> <span
+								class="button best01" id="scrapButton"> <input
+									type="hidden" id="followerMe" th:value="${session[username]}">
+							</span>
+							</span>
 						</div>
 					</li>
 					<!-- 					</option> -->
 
 				</ul>
 			</div>
+
+
 			<div class="cont-area">
 				<div class="cont-txtB">
 					BEST 리뷰 <a href="#" class="more-btn">더보기</a>
@@ -142,7 +137,7 @@
 					<li class="buttons"><span id="caf">카페</span></li>
 				</ul>
 			</div>
-			<input type="hidden" th:value="${username}" id="followerMe">
+			<input type="hidden" th:value="${session[username]}" id="followerMe">
 			<div class="cont-area info" id="list1">
 				<ul class="list-style03">
 
@@ -155,18 +150,6 @@
 								</span>
 
 							</p>
-
-
-							<span th:if="${#lists.isEmpty(everything.scrapvo)}">
-								<span id="scrapButton" class="button best02"></span> 
-								<input type="hidden" id="followMe" th:value="${session[username]}">
-							</span> 
-							<span th:if="!${#lists.isEmpty(everything.scrapvo)}"> 
-								<span id="scrapButton" class="button best01"></span> 
-								<input type="hidden" id="followMe" th:value="${session[username]}">
-
-
-							</span>
 							<ul class="info">
 								<li><span
 									th:text="${everything.reviewRegistrationvo.reviewPlace}"
@@ -183,6 +166,15 @@
 										<span th:text="${check.nickname}" id="userNickname"></span>
 								</span></li>
 							</ul>
+							<span th:if="${#lists.isEmpty(everything.scrapvo)}"> <span
+								id="scrapButton" class="button best02"></span> <input
+								type="hidden" id="followMe" th:value="${session[username]}">
+							</span> <span th:if="!${#lists.isEmpty(everything.scrapvo)}"> <span
+								id="scrapButton" class="button best01"></span> <input
+								type="hidden" id="followMe" th:value="${session[username]}">
+
+
+							</span>
 						</div>
 					</li>
 				</ul>
@@ -193,7 +185,7 @@
 					<div class="cont-txtB">
 
 
-						인기 유저 <a th:href="@{/rank(followerMe=${username})}"
+						인기 유저 <a th:href="@{/rank(followerMe=${session[username]})}"
 							class="more-btn">더보기</a>
 					</div>
 					<ul class="list-style04-user slider" id="banner"
@@ -201,22 +193,25 @@
 
 
 						<li th:each="uservo:${uservo}"><a
-							th:href="@{/getUserMyPage(nickname=${uservo.uservo.nickname}, followerMe=${username})}">
+							th:href="@{/getUserMyPage(nickname=${uservo.uservo.nickname}, followerMe=${session[username]})}">
 								<img th:src="${uservo.uservo.profileImg}"> <span
 								class="name"> <input type="hidden" id="followingYou"
 									th:value="${uservo.uservo.nickname}"> <span
 									th:text="${uservo.uservo.nickname}"></span><br> <span>팔로워&nbsp;
-								</span><span th:text="${uservo.uservo.followingCount}"> </span>&nbsp; |
-									&nbsp;리뷰수 <span th:text="${uservo.uservo.postCount}"> </span>
+								</span><span th:text="${uservo.uservo.followingCount}"> </span> |
+								&nbsp;&nbsp;리뷰수 <span th:text="${uservo.uservo.postCount}"> </span>
 
 							</span>
 						</a> <span class="emptyspace"> <input type="hidden"
 								id="followingYou" th:value="${uservo.uservo.nickname}">
-								<input type="hidden" id="followerMe" th:value="${username}">
-								<span th:if="${#lists.isEmpty(uservo.followvo)}"> <span
-									class="followbtn btn02" style="curser:pointer;">팔로우</span>
+
+								<input type="hidden" id="followerMe"
+								th:value="${session[username]}"> <span
+								th:if="${#lists.isEmpty(uservo.followvo)}"> <span
+
+									class="followbtn btn02" style="curser: pointer;">팔로우</span>
 							</span> <span th:if="!${#lists.isEmpty(uservo.followvo)}"> <span
-									class="followbtn btn01" style="curser:pointer;">팔로잉</span>
+									class="followbtn btn01" style="curser: pointer;">팔로잉</span>
 							</span>
 
 						</span></li>
@@ -230,7 +225,7 @@
 				<div class="cont-txtB">
 
 
-					인기 맛집 <a th:href="@{/rank(followerMe=${username})}"
+					인기 맛집 <a th:href="@{/rank(followerMe=${session[username]})}"
 						class="more-btn">더보기</a>
 				</div>
 				<ul class="list-style04-restaurant slider2"
@@ -240,15 +235,14 @@
 						th:src="${advvo.advvo.profileImg}"> <span
 						th:text="${advvo.advvo.advertisementname}" class="name"></span><br>
 						리뷰수 <span class="emptyspace2"> <input type="hidden"
-							id="followerMe" th:value="${username}"> <input
+							id="followerMe" th:value="${session[username]}"> <input
 							type="hidden" id="followingYou"
 							th:value="${advvo.advvo.advertisementname}"> <span
 							th:text="${advvo.advvo.putedCount}"></span> <span
 							th:if="${#lists.isEmpty(advvo.putvo)}"> <span
-
-								class="followbtn btn02" style="curser:pointer;">담아두기</span>
+								class="followbtn btn02" style="curser: pointer;">담아두기</span>
 						</span> <span th:if="!${#lists.isEmpty(advvo.putvo)}"> <span
-								class="followbtn btn01" style="curser:pointer;">담기완료</span>
+								class="followbtn btn01" style="curser: pointer;">담기완료</span>
 
 
 						</span>
@@ -264,12 +258,10 @@
 			<div class="footer">
 
 				<button class="top-btn" id="top-btn"
-
-					style="position: fixed; left: 1637px; top: 779px; border: none; width: 50px; height: 55px; background-size: 100%;"></button>
-
-
+					style="position: fixed; float: right; top: 94%; border: none; width: 50px; height: 55px; background-size: 100%;"></button>
 			</div>
 		</div>
+	</div>
 	</div>
 	<script type="text/javascript">
 		$(".dropdown dt a").click(function() {
@@ -293,10 +285,11 @@
 				autoHover : true,
 				// 				prevSelector : '#slider-prev',
 				// 				nextSelector : '#slider-next',
-				controls : true,
 				speed : 500,
+				controls : true,
 				pause : 1100,
 				touchEnabled : false
+				
 
 			});
 		});
@@ -313,12 +306,18 @@
 				autoHover : true,
 				// 				prevSelector : '#slider-prev',
 				// 				nextSelector : '#slider-next',
-				controls : true,
 				speed : 500,
+				controls : true,
 				pause : 1100,
 				touchEnabled : false
 
 			});
+		});
+		
+		
+		$(document).on('click','.bx-next, .bx-prev',function() {
+		    slider.stopAuto();
+		    slider.startAuto();
 		});
 	</script>
 

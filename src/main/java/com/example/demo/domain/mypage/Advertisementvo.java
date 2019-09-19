@@ -14,6 +14,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 import com.example.demo.domain.campaign.Campaignvo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -55,9 +56,11 @@ public class Advertisementvo {
 	@Column( columnDefinition="float default 0")
 	private float evaluation_avg;			// 업체 평점	
 	
+	@JsonIgnore
 	@OneToMany(mappedBy = "advertisementvo", fetch=FetchType.EAGER, cascade=CascadeType.ALL)
 	private List<Campaignvo> campaignList = new ArrayList<Campaignvo>();
 	
+	@JsonIgnore
 	@OneToOne(mappedBy ="advertisementvo")
 	private AdvertisementEvaluationvo advertisementEvaluationvo;
 

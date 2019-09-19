@@ -263,6 +263,15 @@ public interface ReviewRepository extends JpaRepository<ReviewRegistrationvo, In
 			+ "ON r.user_id = user.user_id "
 			+ "AND r.title LIKE %:searchKeyword% ")
 	List<Object[]> getSearchKeyword(String searchKeyword);
+	//리뷰 서치
+	@Query(nativeQuery=true, value=""
+			+ "SELECT *  "
+			+ "FROM review_registrationvo AS r INNER JOIN review_imagevo AS ri "
+			+ "ON r.review_id = ri.review_id "
+			+ "INNER JOIN uservo AS user "
+			+ "ON r.user_id = user.user_id "
+			+ "AND r.title LIKE %:searchKeyword% ")
+	List<ReviewRegistrationvo> getSearchKeywordSearchPage(String searchKeyword);
 	@Query(nativeQuery=true, value=""
 			+ "SELECT r.review_id, r.review_place, r.title, r.business_field_id, ri.img, user.profile_img, user.nickname "
 			+ "FROM review_registrationvo as r INNER JOIN review_imagevo as ri "

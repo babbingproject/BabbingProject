@@ -28,7 +28,9 @@ public class ParticipantsController {
    @RequestMapping("/participantsCheck")
    @ResponseBody
    public int participantsCheck(Uservo uservo, Campaignvo campaignvo) {
-      return participantsService.getParticipants(uservo.getUserId(), campaignvo.getCampaignId());
+	   
+	   return participantsService.getParticipants(uservo.getUserId(), campaignvo.getCampaignId());
+      
    }
    
    @RequestMapping("/participants")

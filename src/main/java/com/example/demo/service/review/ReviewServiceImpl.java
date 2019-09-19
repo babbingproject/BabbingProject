@@ -141,6 +141,7 @@ public class ReviewServiceImpl implements ReviewService {
 	@Override
 	public void insertReview(ReviewRegistrationvo reviewRegistrationvo) {
 		reviewRepo.save(reviewRegistrationvo);
+		
 	}
 
 	@Override
@@ -153,7 +154,7 @@ public class ReviewServiceImpl implements ReviewService {
 		return query.selectFrom(qReviewRegistrationvo).orderBy(qReviewRegistrationvo.reviewId.desc()).fetch();
 
 	}
-
+	
 	@Override
 	public List<Object> selectReviewJoinReviewAndComment(Uservo uservo, ReviewRegistrationvo reviewRegistrationvo,
 			Commentvo commentvo) {
@@ -237,5 +238,8 @@ public class ReviewServiceImpl implements ReviewService {
 		return reviewRepo.getReviewView(reviewId);
 
 	}
-
+	
+	public List<ReviewRegistrationvo> getSearchKeywordSearchPage(String searchKeyword){
+		return reviewRepo.getSearchKeywordSearchPage(searchKeyword);
+	}
 }
