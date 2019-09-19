@@ -107,4 +107,22 @@ public class CampaignServiceImpl implements CampaignService {
 	   return campaignRepo.getCampaignSearchKeyword(searchKeyword);
    }
 
+	@Override
+	public List<Object[]> getListByActiveWithImg(Campaignvo campaignvo) {
+		 
+		return (List<Object[]>) campaignRepo.findAllByActiveWithImg();
+	}
+	
+	@Override
+	public List<Object[]> getListByEndDateWithImg(Campaignvo campaignvo) {
+		 
+		return (List<Object[]>) campaignRepo.findAllByOrderByEndDateAscWithImg();
+	}
+	
+	@Override
+	public List<Object[]> getListByPopularWithImg(Campaignvo campaignvo) {
+		 
+		return (List<Object[]>) campaignRepo.findAllByPopularByActiveWithImg();
+	}
+
 }

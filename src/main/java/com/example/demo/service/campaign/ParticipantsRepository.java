@@ -16,7 +16,7 @@ public interface ParticipantsRepository extends JpaRepository<Participantsvo, In
 	
 	// 응모자 단일 객체 호출
 	@Query(value="select count(*) from participantsvo where user_id = ?1 and campaign_id = ?2", nativeQuery = true)
-	int getParticipant(int advertisementId, int campaignId);
+	int getParticipant(int userId, int campaignId);
 	
 	// 응모 취소
 	@Query(value="delete from participantsvo where user_id = ?1 and campaign_id = ?2", nativeQuery = true)
