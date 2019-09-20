@@ -82,5 +82,7 @@ public interface ReviewService {
 
 //	List<AjaxReviewImagevo> selectAjaxReviewImgList(int reviewId);
 	List<ReviewRegistrationvo> getSearchKeywordSearchPage(String searchKeyword);
+	
+	int checkReviewId(int reviewId);
 
 }

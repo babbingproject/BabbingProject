@@ -18,6 +18,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.FileCopyUtils;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -140,20 +141,25 @@ public class FileUploadController {
 	// ajax업로드 페이지 매핑
 	// 파일의 한글 처리 produces = "text/plain;charset=UTF-8"
 	@ResponseBody
-	   @RequestMapping(value = "/uploadAjax", method = RequestMethod.POST, produces = "text/plain;charset=UTF-8")
+	   @RequestMapping(value = "/uploadAjax/{reviewId}", method = RequestMethod.POST, produces = "text/plain;charset=UTF-8")
 	//   public ModelAndView fileUpload(MultipartFile file, ModelAndView mav) throws Exception {
-	   public ResponseEntity<String> uploadAjax(MultipartFile file) throws Exception {
-	      logger.info(file.toString());
+//	   public String uploadAjax(MultipartFile file, @PathVariable String reviewId) throws Exception {
+		public ResponseEntity<String> uploadAjax(MultipartFile file, @PathVariable Integer reviewId) throws Exception {
 	      logger.info("파일 이름 : " + file.getOriginalFilename().trim());
 	      logger.info("파일 크기 : " + file.getSize());
 	      logger.info("컨텐츠 타입 : " + file.getContentType());
 	      System.out.println(uploadPath);
 	      AjaxReviewImagevo ajaxReviewImgvo = new AjaxReviewImagevo();
+	      int checkReviewId =reviewService.checkReviewId(reviewId);
+	     System.out.println("리뷰 아이디 체크"+checkReviewId); 
 		
-		  int createReviewId = reviewService.createReviewId();
-		  ajaxReviewImgvo.setReviewId(createReviewId);
-		 
-
+		/*
+		 * if (checkReviewId==reviewId || checkReviewId !=null) {
+		 * ajaxReviewImgvo.setReviewId(reviewId); }else { int createReviewId =
+		 * reviewService.createReviewId(); ajaxReviewImgvo.setReviewId(createReviewId);
+		 * 
+		 * }
+		 */
 	      ResponseEntity<String> ajaxReviewImg = new ResponseEntity<String>( UploadFileUtils.uploadFile(uploadPath,
 	              file.getOriginalFilename(), file.getBytes()), HttpStatus.OK);
 	      
@@ -163,6 +169,7 @@ public class FileUploadController {
 	      ajaxReviewImgvo.setAjaxReviewImg(ajaxReviewImg.toString().substring(idx1+1, idx2).replace("s_", ""));
 	      System.err.println(ajaxReviewImgvo.toString());
 	      reviewImageService.ajaxReviewImgUpdate(ajaxReviewImgvo);
+	      System.out.println("파일 들어왔다 : 서버 : " + file.toString());
 	      return ajaxReviewImg;
 	      
 	   }

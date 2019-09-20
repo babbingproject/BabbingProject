@@ -304,25 +304,26 @@ small {
 
 				//ajax로 전달할 폼 객체
 				var formData = new FormData();
+// 				var formDataReviewId = new FormData(); 
 				//폼 객체에 파일 추가, append("변수명", 값)
-				formData.append("file", file);
                	var reviewId = $('#reviewId').val();	
+				formData.append("file", file);
+// 				formData.append("reviewId", reviewId);
+// 				formDataReviewId.append("reviewId", reviewId);
 				alert(reviewId);
 			$.ajax({
 				type : "post",
-				url : "/uploadAjax", // 매핑주소
-				data : {formData,
-						reviewId:reviewId
-                	  
-				},
+				url : "/uploadAjax/"+reviewId, // 매핑주소
+				data : formData,
 				//prosessData: true=>get방식, false=> post방식
-				dataType : "text",
+				/* dataType : "text", */
 				// contentType : true => application/x-www-form-urlencoded,
 				//      false => multipart/form-data
 				processData : false,
 				contentType : false,
 				success : function(data) {
-                     var srt = "";
+					console.log('들어갓음 : '+data);
+                    var srt = "";
                      //이미지 파일이면 썸네일 이미지 출력
                      if (checkImageType(data)) {
                         str = "<div id='ajaxImgId'><a href='/displayFile?fileName="

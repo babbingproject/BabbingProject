@@ -307,4 +307,7 @@ public interface ReviewRepository extends JpaRepository<ReviewRegistrationvo, In
 	
 	@Query(value = "SELECT review_id FROM review_registrationvo ORDER BY review_id DESC  LIMIT 1", nativeQuery = true)
 	int reviewCount();
+	
+	@Query(value = "SELECT review_id FROM review_registrationvo WHERE review_id = ?", nativeQuery = true)
+	int selectCheckReviewId(int reviewId);
 }
