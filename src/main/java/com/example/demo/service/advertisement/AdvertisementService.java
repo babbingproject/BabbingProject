@@ -28,5 +28,5 @@ public interface AdvertisementService {
 	void decreasePut(String followerYou);
 	
 	Advertisementvo findAllByAdvertisementEmail(String advertisement_email);
-	
+	List<Advertisementvo> getSearchKeywordSearchpage(String searchKeyword);
 }

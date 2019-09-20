@@ -16,10 +16,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.demo.domain.main.Searchvo;
 import com.example.demo.domain.mypage.Advertisementvo;
+import com.example.demo.domain.mypage.Putvo;
 import com.example.demo.domain.mypage.Uservo;
 import com.example.demo.domain.review.ReviewRegistrationvo;
 import com.example.demo.service.advertisement.AdvertisementService;
-import com.example.demo.service.campaign.CampaignService;
 import com.example.demo.service.campaign.CampaignService;
 import com.example.demo.service.rank.RankService;
 import com.example.demo.service.review.ReviewService;
@@ -81,7 +81,7 @@ public class HomeMainController {
 		}
 		for(int i = 0; i < advList.size(); i++) {
 			CheckingPut checkingPut = new CheckingPut();
-			checkingPut.setAdvvo(advList.get(i));
+			checkingPut.setAdvertisementvo(advList.get(i));
 			checkingPut.setPutvo(rankService.checkPut(followerMe, advList.get(i).getAdvertisementname()));
 			checkingPutList.add(checkingPut);
 		}
@@ -242,6 +242,7 @@ public class HomeMainController {
 		}
 		return testing;
 	}
+	
 		@RequestMapping("/search")
 		public String goToSearch(HttpSession httpSession, Searchvo searchKeyword, Model model, @RequestParam(defaultValue = "0")int page) {
 
@@ -254,8 +255,7 @@ public class HomeMainController {
 			System.err.println("???" +followerMe);
 			List<CheckingScrap> checkingScrapList = new ArrayList();
 //			List<ReviewRegistrationvo> reviewList = reviewService.findAll(); 
-			int returnReviewNum = 4;
-			int returnCampaignNum = 4;
+
 			int returnUserNum = 2;
 			int returnAdvertisementNum = 4;
 			System.out.println(searchKeyword.getTypes());
@@ -266,16 +266,25 @@ public class HomeMainController {
 			
 			
 			
-			List<Object[]> review = reviewService.getSearchKeyword(searchKeyword.getSearchKeyword());
 			
 			List<SearchPaging> searchingPaging = new ArrayList();
 			
 			Page<Uservo> uservoPage = userService.getSearchKeywordPage(searchKeyword.getSearchKeyword(), PageRequest.of(page, returnUserNum));
-			Page<Advertisementvo> advertisementList = advService.getSearchKeyword(searchKeyword.getSearchKeyword(), PageRequest.of(page, returnAdvertisementNum));
 			
 			
+			
+			
+			
+			//여기가 마지막 서치 수정이길.........................................................................
 			List<ReviewRegistrationvo> searchReview = reviewService.getSearchKeywordSearchPage(searchKeyword.getSearchKeyword());
 			List<CheckingScrap> searchReviewScrapCheck = new ArrayList();
+			
+			List<Uservo> searchUser = userService.getSearchKeywordSearchPage(searchKeyword.getSearchKeyword());
+			List<CheckingRanking> searchUserFollowerList = new ArrayList(); 
+			
+			List<Advertisementvo> advertisementList = advService.getSearchKeywordSearchpage(searchKeyword.getSearchKeyword());
+			List<CheckingPut> searchAdvertisement = new ArrayList();
+//			List<Uservo> userFollowerList = userService.gets
 			if(searchKeyword.getSearchKeyword()!="") {
 				
 				switch (searchKeyword.getTypes()) {
@@ -290,52 +299,26 @@ public class HomeMainController {
 						checkingScrap.setReviewRegistrationvo(searchReview.get(i));
 						checkingScrap.setScrapvo(scrapService.checkScrap(searchReview.get(i).getReviewId(), followerMe));
 						searchReviewScrapCheck.add(checkingScrap);
-//					for(int i = 0; i < reviewRegistrationvoPage.getSize(); i++) {
-//
-//
-//					
-//					model.addAttribute("reviewSearch", reviewService.getSearchKeyword(searchKeyword.getSearchKeyword()));
-//
-//					System.out.println("리뷰리뷰리뷰리뷰did it come in here?");
-//					}
-//					for(int i = 0; i < reviewRegistrationvoPage.getSize(); i++) {
-//
-//						SearchPaging searchPaging = new SearchPaging();
-//						searchPaging.setReviewRegistrationvo(reviewService.getSearchKeywordPage(searchKeyword.getSearchKeyword(), PageRequest.of(page, returnReviewNum)).getContent().get(i));
-//						searchPaging.setReviewRegistrationvoPage(reviewService.getSearchKeywordPage(searchKeyword.getSearchKeyword(), PageRequest.of(page, returnReviewNum)));
-//						searchPaging.setReviewImage(reviewService.getSearchKeywordPage(searchKeyword.getSearchKeyword(), PageRequest.of(page, returnReviewNum)).getContent().get(i).getReviewImgList().get(0).getImg());
-//						searchPaging.setTotalPages(i);
-//
-//						searchingPaging.add(searchPaging);
-//	
-//					}
-//					
-//					model.addAttribute("review", searchingPaging);
-//
-//					model.addAttribute("total", reviewService.getSearchKeywordPage(searchKeyword.getSearchKeyword(), PageRequest.of(page, returnReviewNum)));
+
 					model.addAttribute("review", searchReviewScrapCheck);	
 					}
 					break;
+					
 				case "user" :
 					if(userService.getSearchKeyword(searchKeyword.getSearchKeyword()).isEmpty()) {
 						model.addAttribute("nothing", "유저 검색 결과가 없습니다");
 						break;
 					}
-//					for(int i = 0; i < uservoPage.getSize(); i++) {
-//						SearchPaging searchPaging = new SearchPaging();
-//						searchPaging.setUservo(userService.getSearchKeywordPage(searchKeyword.getSearchKeyword(), PageRequest.of(page, returnUserNum)).getContent().get(i));
-//						System.err.println(userService.getSearchKeywordPage(searchKeyword.getSearchKeyword(), PageRequest.of(page, returnUserNum)).getContent().get(i));
-//						
-//						searchPaging.setTotalPages(i);
-//						searchingPaging.add(searchPaging);
-//					}
-//					System.out.println("유저유저유저유저 왔나오?");
-//
-//					
-//					model.addAttribute("userSearch", searchingPaging);
-//					model.addAttribute("total", userService.getSearchKeywordPage(searchKeyword.getSearchKeyword(), PageRequest.of(page, returnUserNum)));
-					
+					for(int i = 0; i < searchUser.size(); i++) {
+						CheckingRanking checkingRanking = new CheckingRanking();
+						System.err.println(searchUser.get(i));
+						checkingRanking.setUservo(searchUser.get(i));
+						checkingRanking.setFollowvo(rankService.checkFollowing(followerMe, searchUser.get(i).getNickname()));
+						searchUserFollowerList.add(checkingRanking);
+					}
+					model.addAttribute("userSearch", searchUserFollowerList);
 					break;
+					
 				case "campaign" :
 					if(campaignService.getCampaignSearchKeyword(searchKeyword.getSearchKeyword()).isEmpty()) {
 						model.addAttribute("nothing", "캠페인 검색 결과가 없습니다");
@@ -348,15 +331,15 @@ public class HomeMainController {
 						model.addAttribute("nothing", "맛집 검색 결과가 없습니다");
 						break;
 					}
-					for(int i = 0; i < advertisementList.getSize(); i++) {
-						SearchPaging searchPaging = new SearchPaging();
-						searchPaging.setAdvertisementvo(advService.getSearchKeyword(searchKeyword.getSearchKeyword(), PageRequest.of(page, returnAdvertisementNum)).getContent().get(i));
-						searchPaging.setTotalPages(i);
-						searchingPaging.add(searchPaging);
+					for(int i = 0; i < advertisementList.size(); i++) {
+						CheckingPut checkingPut = new CheckingPut();
+						checkingPut.setAdvertisementvo(advService.getSearchKeywordSearchpage(searchKeyword.getSearchKeyword()).get(i));
+						checkingPut.setPutvo(rankService.checkPut(followerMe, advService.getSearchKeywordSearchpage(searchKeyword.getSearchKeyword()).get(i).getAdvertisementname()));
+						searchAdvertisement.add(checkingPut);
 						
 					}
 					System.out.println("DID IT COME HERE IN ADVERTISEMENT?");
-					model.addAttribute("advertisementSearch", searchingPaging);
+					model.addAttribute("advertisementSearch", searchAdvertisement);
 					break;
 				}
 			} else {

@@ -75,5 +75,8 @@ public class AdvertisementServiceImpl implements AdvertisementService  {
 		return advertiseRepo.findByAdvertisementEmail(advertisement_email);
 	}
 	
+	public List<Advertisementvo> getSearchKeywordSearchpage(String searchKeyword){
+		return advertiseRepo.getSearchKeywordSearchPage(searchKeyword);
+	}
 	
 }

@@ -22,6 +22,7 @@ public class CheckingScrap {
 	
 	public ReviewRegistrationvo reviewRegistrationvo;
 	public List<Object> scrapvo;
+	public List<Object> followvo;
 	public Uservo uservo;
 	public List<Object[]> img;
 

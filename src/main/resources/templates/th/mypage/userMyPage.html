@@ -93,15 +93,7 @@
 											<img th:src='${check.img}'></img>
 										</span>
 									</p>
-									<span th:if="${#lists.isEmpty(newestreview.scrapvo)}"> <span
-										class="button best02" id="scrapButton"> <input
-											type="hidden" id="followerMe" th:value="${username}">
-									</span>
-									</span> <span th:if="!${#lists.isEmpty(newestreview.scrapvo)}"> <span
-										class="button best01" id="scrapButton"> <input
-											type="hidden" id="followerMe" th:value="${username}">
-									</span>
-									</span>
+									
 									<ul class="info">
 										<li><span
 											th:text="${newestreview.reviewRegistrationvo.reviewPlace}"></span>
@@ -117,6 +109,15 @@
 										</span></li>
 										<!-- 								</p><li th:text="${newestreview[0].reviewRegistrationvo.reviewPlace}"></li> -->
 									</ul>
+									<span th:if="${#lists.isEmpty(newestreview.scrapvo)}"> <span
+										class="button best02" id="scrapButton"> <input
+											type="hidden" id="followerMe" th:value="${username}">
+									</span>
+									</span> <span th:if="!${#lists.isEmpty(newestreview.scrapvo)}"> <span
+										class="button best01" id="scrapButton"> <input
+											type="hidden" id="followerMe" th:value="${username}">
+									</span>
+									</span>
 								</div>
 							</li>
 						</ul>
@@ -152,12 +153,12 @@
 										<input type="hidden" th:value="${newestreview.reviewRegistrationvo.reviewId}" id="get">
 										<li><span
 											th:text="${newestreview.reviewRegistrationvo.title}"></span></li>
-										<li><span
-											th:each="check:${newestreview.reviewRegistrationvo.uservo}">
-												<img th:src="${check.profileImg}" /> <input type="hidden"
-												id="reviewUserId" th:value="${check.userId}"> <span
-												th:text="${check.nickname}"></span>
-										</span></li>
+										<li><span th:each="check:${newestreview.reviewRegistrationvo.uservo}">
+												<img th:src="${check.profileImg}" /> 
+												<input type="hidden"id="reviewUserId" th:value="${check.userId}">
+												 <span th:text="${check.nickname}"></span>
+											</span>
+										</li>
 										<!-- 								</p><li th:text="${newestreview[0].reviewRegistrationvo.reviewPlace}"></li> -->
 									</ul>
 								</div>

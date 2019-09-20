@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,16 +14,18 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.example.demo.domain.mypage.Uservo;
 import com.example.demo.domain.review.AjaxReviewImagevo;
 import com.example.demo.domain.review.ReviewImagevo;
 import com.example.demo.domain.review.ReviewRegistrationvo;
+import com.example.demo.service.rank.RankService;
 import com.example.demo.service.review.CommentService;
 import com.example.demo.service.review.ReviewRepository;
 import com.example.demo.service.review.ReviewService;
 import com.example.demo.service.review.image.ReviewImageService;
+import com.example.demo.service.scrap.ScrapService;
 import com.example.demo.service.user.UserRepository;
 import com.example.demo.service.user.UserService;
+import com.example.demo.utils.CheckingScrap;
 
 @Controller
 public class ReviewController {
@@ -44,6 +47,12 @@ public class ReviewController {
 
 	@Autowired
 	ReviewRepository reviewRepo;
+	
+	@Autowired
+	ScrapService scrapService;
+	
+	@Autowired
+	RankService rankService;
 
 	EntityManager em;
 
@@ -53,14 +62,33 @@ public class ReviewController {
 		model.addAttribute("review", reviewImageService.getReviewImagevo(reviewImagevo));
 		return "th/main/homemain";
 	}
+	
+	
 
+//	@RequestMapping("/doReviewList")
+//	public String getReviewList(Model model) {
+//		List<ReviewRegistrationvo> reviewList = reviewService.selectReviewList();
+//		model.addAttribute("reviewList", reviewList);
+//		return "th/review/reviewList";
+//	}
+	
 	@RequestMapping("/doReviewList")
-	public String getReviewList(Model model) {
-		List<ReviewRegistrationvo> reviewList = reviewService.selectReviewList();
-		model.addAttribute("reviewList", reviewList);
+	public String getReviewList(HttpSession httpSession, Model model) {
+		String loggedInID = (String) httpSession.getAttribute("username");
+		List<ReviewRegistrationvo> reviewList = reviewService.getEverythingWOLimit();
+		List<CheckingScrap> reviewListCheckScrap = new ArrayList();
+		for(int i = 0; i < reviewList.size(); i++) {
+			CheckingScrap checkingScrap = new CheckingScrap();
+			checkingScrap.setReviewRegistrationvo(reviewList.get(i));
+			checkingScrap.setScrapvo(scrapService.checkScrap(reviewList.get(i).getReviewId(), loggedInID));
+			checkingScrap.setFollowvo(rankService.checkFollowing(loggedInID, reviewList.get(i).getUservo().getNickname()));
+			reviewListCheckScrap.add(checkingScrap);
+			
+			
+		}
+		model.addAttribute("reviewList", reviewListCheckScrap);
 		return "th/review/reviewList";
 	}
-
 	@GetMapping("/insertReview")
 	public String insertReview() {
 		return "th/review/reviewWrite";

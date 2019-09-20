@@ -111,7 +111,7 @@ public class MyPageController {
 		
 		for(int i = 0; i < advertisementList.size(); i++) {
 			CheckingPut checkingPut = new CheckingPut();
-			checkingPut.setAdvvo(advertisementList.get(i));
+			checkingPut.setAdvertisementvo(advertisementList.get(i));
 			checkingPut.setPutvo(rankService.checkPut(followerMe, advertisementList.get(i).getAdvertisementname()));
 			advertisementPutCheckList.add(checkingPut);
 		}
