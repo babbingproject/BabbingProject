@@ -334,3 +334,4 @@
 	margin-left: 5px;
 	font-size: small;
 }
+#wrap .footer-area .top-btn { background: url(../../images/Bobbing-icon.png) no-repeat 0 bottom;    text-indent: -9999px;    position: fixed;    width: 75px;    height: 75px;   bottom: 0%;right: 0%;border: none;}

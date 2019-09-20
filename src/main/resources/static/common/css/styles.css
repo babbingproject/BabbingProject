@@ -154,11 +154,7 @@ a {text-decoration: none;color: inherit;cursor: pointer;}
 
 .footer-area{background:#e0e0e0;margin-top:80px;min-height:200px}
 .footer-area .footer{width:1135px;margin:0 auto; padding:20px 0 20px 20px;color:#999;position: relative; }
-.footer-area .top-btn{background:url('../../images/topbtn.png') no-repeat 0 bottom;    text-indent: -9999px;   position: fixed;    width: 105px;
-    height: 97px;
-    top: 780px;
-    right: -2px;
-}}
+.footer-area .top-btn{background: url(../../images/Bobbing-icon.png) no-repeat 0 bottom;    text-indent: -9999px;    position: fixed;    width: 75px;    height: 75px;    bottom: 0%;right: 0%;border: none;}
 
 .mgtXS{margin-top:5px}
 .mgtS{margin-top:10px}

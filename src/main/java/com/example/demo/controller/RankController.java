@@ -50,7 +50,7 @@ public class RankController {
 		model.addAttribute("adv", checkingPutList);
 		System.out.println(userList);
 		System.out.println(advList);
-		return "th/rank/rank";
+		return "th/rank/sub";
 	}
 	
 	@ResponseBody
