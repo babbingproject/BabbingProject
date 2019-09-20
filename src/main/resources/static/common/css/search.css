@@ -1,4 +1,29 @@
 @charset "UTF-8";
+#reviewdiv{display:none; }
+#userdiv{display:none;} 
+#advertisementdiv{display:none;}
+.active{background-color:blue; color: white;}
+.cont-area .info{overflow:hidden; align:center;}
+
+.cont-area .list-style02 li span.on{ color:#fff; background:#ff4d80;border:none}
+.cont-area .list-style03 {margin-top: 60px;}
+.cont-area .list-style03> ul {display: inline-block;margin-right: 20px;}
+.cont-area .list-style03> li{width: 32%;position: relative;display:inline-block;margin-top:19px;margin-right:19px;}
+.cont-area .list-style03> li:nth-child(3n){margin-right:0;}
+.cont-area .list-style03> li #reviewlist {margin-right:100px; }
+.cont-area .list-style03 .cont-txt img{width: 100%; }
+.cont-area .list-style03 .cont-txt .best01{background:url('../../images/Bobbing-icon.png') no-repeat left 0;text-indent: -9999px;position:absolute;width:22px; height:35px;top:10px;right:10px}
+.cont-area .list-style03 .cont-txt .best02{background:url('../../images/Bobbing-icon.png') no-repeat right 0;text-indent: -9999px;position:absolute;width:22px; height:35px;top:10px;right:10px}
+.cont-area .list-style03 .cont-txt .info{background:url('../../images/Bobbing-thumbnail-bg.png') no-repeat 0 bottom;position: absolute;width: 399px;left: 0;top: 0;padding: 192px 0 0 15px;height: 293px;background-size: 490px;}
+.cont-area .list-style03 .cont-txt .info li{padding:5px 0 3px;color:#fff}
+.cont-area .list-style03 .cont-txt .info li:nth-child(1){}
+.cont-area .list-style03 .cont-txt .info li:nth-child(2){font-size: 24px;font-weight: bold;}
+.cont-area .list-style03 .cont-txt .info li:nth-child(3){}
+.cont-area .list-style03 .cont-txt .info li  img {width: 25px;  border-radius: 100px;margin-right:10px;margin-bottom: -8px;}
+
+
+.taewon{width: 100%}
+@charset "UTF-8";
 
 body, table, div, p {font-family: 'NanumBarunGothic';}
 * {margin: 0;padding: 0;box-sizing: border-box;}
@@ -43,6 +68,7 @@ a {text-decoration: none;color: inherit;cursor: pointer;}
 .header .heaer-btnR .selectbox .flagvisibility { display:none;}
 .header .heaer-btnR .selectbox{float: right;}
 
+.cont-area .list-style03 #reviewlist{float: left; width: 21%; margin-right: 15px; margin-left: 50px;padding-right: 0px}
 #reviewWrite{ width: 104px;height: 46px;border-radius: 22.7px;border: solid 1px #ff4d80;background-color: #ff4d80;font-family: AppleSDGothicNeo;font-size: 18.5px;font-weight: bold;font-style: normal;font-stretch: normal;line-height: 3.46;letter-spacing: normal;text-align: left;color: #ffffff;}
 .cont-area .list-style03 {margin-top: 60px;}
 .cont-area .list-style03> li{width: 32%;position: relative;display:inline-block;margin-top:19px;margin-right:19px;}
@@ -55,11 +81,22 @@ a {text-decoration: none;color: inherit;cursor: pointer;}
 .cont-area .list-style03 .cont-txt .reviewTitle{width: 319px;height: 30px;font-family: AppleSDGothicNeo;font-size: 32px;font-weight: bold;font-style: normal;font-stretch: normal;line-height: 2;letter-spacing: normal;text-align: left;color: #000000;}
 .cont-area .list-style03 .cont-txt .reviewUsername{width: 79px;height: 22px;font-family: AppleSDGothicNeo;font-size: 24.5px;font-weight: normal;font-style: normal;font-stretch: normal;line-height: 4.33;letter-spacing: normal;text-align: left;color: #000000;}
 .cont-area .list-style03 .cont-txt .reviewUserImg{ width: 47px; height: 47px; border-radius: 50%;}
-.cont-area .list-style03 .cont-txt .best01{background:url('../../images/Bobbing-icon.png') no-repeat left 0;text-indent: -9999px;position:absolute;width:22px; height:35px;top:120px;right:10px}
-.cont-area .list-style03 .cont-txt .best02{background:url('../../images/Bobbing-icon.png') no-repeat right 0;text-indent: -9999px;position:absolute;width:22px; height:35px;top:120px;right:10px;cursor: pointer;}
+.cont-area .list-style03 .cont-txt .best01{background:url('../../images/Bobbing-icon.png') no-repeat left 0;text-indent: -9999px;position:absolute;width:22px; height:35px;top:11px;right:10px}
+.cont-area .list-style03 .cont-txt .best02{background:url('../../images/Bobbing-icon.png') no-repeat right 0;text-indent: -9999px;position:absolute;width:22px; height:35px;top:11px;right:10px;cursor: pointer;}
 .cont-area .list-style03 .cont-txt .info{background:url('../../images/Bobbing-thumbnail-bg.png') no-repeat 0 bottom;position: absolute;width: 400px;left: 0;top: 0;padding: 190px 0 0 15px;height: 292px;background-size: 490px;}
 .cont-area .list-style03 .cont-txt .info li{padding:5px 0 3px;color:#fff}
 .cont-area .list-style03 .cont-txt .info li:nth-child(1){}
 .cont-area .list-style03 .cont-txt .info li:nth-child(2){font-size: 24px;font-weight: bold;}
 .cont-area .list-style03 .cont-txt .info li:nth-child(3){}
 .cont-area .list-style03 .cont-txt .info li  img {width: 25px;  border-radius: 100px;margin-right:10px;margin-bottom: -8px;}
+
+
+#testmain{align:center; width: 500px;}
+#campaigndiv .list-style03{overflow:hidden;}
+#campaigndiv .list-style03 >li{width: 32%;position: relative;display:inline-block;margin-top:19px;margin-right:19px;}
+#campaigndiv .campaignWriterImg{width: 46px; height: 46px; align:center; border-radius: 50%;}
+#campaigndiv .campaignWriterName{width: 81px;height: 22px;font-family: AppleSDGothicNeo;font-size: 24px;font-weight: normal;font-style: normal;font-stretch: normal;line-height: 4.4;letter-spacing: normal;text-align: left;color: #000000;}
+#campaigndiv .campaignDate{float:right;width: 127px;height: 18px;font-family: AppleSDGothicNeo;font-size: 24px;font-weight: bold;font-style: normal;font-stretch: normal;line-height: 4.4;letter-spacing: normal;text-align: left;color: #ff4d80;}
+#campaigndiv .campaignTitle{ width: 381px;height: 29px;font-family: AppleSDGothicNeo;font-size: 32px;font-weight: bold;font-style: normal;font-stretch: normal;line-height: 2;letter-spacing: normal;text-align: center;color: #000000; display: inline-block;}
+#campaigndiv .list-style03 .campaignimg{width: 100%;}
+

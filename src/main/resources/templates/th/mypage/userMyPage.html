@@ -2,7 +2,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>유저 마이 페이지</title>
-<link rel="stylesheet" href="/common/css/styles.css" th:href="@{/common/css/styles.css}" type="text/css">
+<!-- <link rel="stylesheet" href="/common/css/styles.css" th:href="@{/common/css/styles.css}" type="text/css"> -->
+<link rel="stylesheet" href="/common/css/userMyPage.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="/common/js/index.js"></script>
 <style>
@@ -17,6 +18,8 @@
         padding: 14px 16px;
         font-size: 17px;
         width: 20%;
+        border-bottom: thick;
+        border-bottom-color: black;
     }
    
    
@@ -31,7 +34,7 @@
   .list-style04-user li:nth-child(0){margin-top: 100px;}
   .work {margin: 100px 0 0 100px;}
   .work li .name span{font-weight:normal;}
-  
+ 
 </style>
 </head>
 <body>
@@ -218,11 +221,11 @@
 					<div class="cont-area">
 						<ul class="list-style04-restaurant">
 							<li th:each="advvo:${advertisement}">
-								<img th:src="${advvo.advvo.profileImg}">
-								<span th:text="${advvo.advvo.advertisementname}" class="name"></span>
+								<img th:src="${advvo.advertisementvo.profileImg}">
+								<span th:text="${advvo.advertisementvo.advertisementname}" class="name"></span>
 								<span class="emptyspace2">
 									<input type="hidden" id="followerMe" th:value="${username}">
-									<input type="hidden" id="followingYou" th:value="${advvo.advvo.advertisementname}">
+									<input type="hidden" id="followingYou" th:value="${advvo.advertisementvo.advertisementname}">
 									<span th:if="${#lists.isEmpty(advvo.putvo)}">
 										<span class="followbtn btn02">담아두기</span>
 									</span>

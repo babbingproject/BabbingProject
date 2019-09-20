@@ -58,14 +58,20 @@ public interface ReviewRepository extends JpaRepository<ReviewRegistrationvo, In
 			+ "ORDER BY r.write_date DESC LIMIT 6")
 	Iterable<ReviewRegistrationvo> getEverything();
 	
+//	@Query(nativeQuery=true, value=""
+//			+ "SELECT * , ri.img, user.profile_img, user.nickname "
+//			+ "FROM review_registrationvo AS r "
+//			+ "INNER JOIN review_imagevo AS ri "
+//			+ "ON r.review_id = ri.review_id "
+//			+ "INNER JOIN uservo AS user "
+//			+ "ON r.user_id = user.user_id "
+//			+ "GROUP BY ri.review_id ")
+//	Iterable<ReviewRegistrationvo> getEverythingWOLimit();
 	@Query(nativeQuery=true, value=""
 			+ "SELECT * , ri.img, user.profile_img, user.nickname "
-			+ "FROM review_registrationvo AS r "
-			+ "INNER JOIN review_imagevo AS ri "
-			+ "ON r.review_id = ri.review_id "
-			+ "INNER JOIN uservo AS user "
-			+ "ON r.user_id = user.user_id "
-			+ "GROUP BY ri.review_id ")
+			+ "FROM review_registrationvo AS r, review_imagevo AS ri, uservo AS user "
+			+ "WHERE r.review_id = ri.review_id AND r.user_id = user.user_id "
+			+ "GROUP BY r.review_id ")
 	Iterable<ReviewRegistrationvo> getEverythingWOLimit();
 	
 	@Query(nativeQuery=true, value=""
