@@ -1,12 +1,15 @@
 package com.example.demo.controller;
 
 import java.io.IOException;
+import java.text.ParseException;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -65,6 +68,7 @@ public class LoginController {
 			httpSession.setAttribute("uservo", userService.findByUserEmail(Uservo.getUser_email()));
 			httpSession.setAttribute("username", userService.findByUserEmail(Uservo.getUser_email()).getNickname());
 			System.err.println("유저 세션 : " + userService.findByUserEmail(Uservo.getUser_email()));
+			Uservo.setNickname(userService.findByUserEmail(Uservo.getUser_email()).getNickname());
 		}
 		return result;
 	}
@@ -160,12 +164,39 @@ public class LoginController {
 
 	// 네이버 로그인 성공시 callback호출 메소드
 	@RequestMapping(value = "/callback", method = { RequestMethod.GET, RequestMethod.POST })
-	public String callback(Model model, @RequestParam String code, @RequestParam String state, HttpSession session)
-			throws IOException {
+	public String callback(Model model, @RequestParam String code, @RequestParam String state, HttpSession session, Uservo vo, Advertisementvo advo)
+			throws IOException, ParseException, org.json.simple.parser.ParseException {
 		OAuth2AccessToken oauthToken;
 		oauthToken = naverLoginBO.getAccessToken(session, code, state);
-		// 로그인 사용자 정보를 읽어온다.
 		apiResult = naverLoginBO.getUserProfile(oauthToken);
+		JSONParser parser = new JSONParser();
+		Object obj = parser.parse(apiResult);
+		JSONObject jsonObj = (JSONObject) obj;
+		//3. 데이터 파싱
+		//Top레벨 단계 _response 파싱
+		JSONObject response_obj = (JSONObject)jsonObj.get("response");
+		//response의 nickname값 파싱
+		String email = (String)response_obj.get("email");
+		String nickname = (String)response_obj.get("nickname");
+		String id = (String)response_obj.get("id").toString();
+		
+		System.out.println(email);
+		System.out.println(nickname);
+		System.out.println(id);
+		//4.파싱 닉네임 세션으로 저장
+		vo.setNickname(nickname);
+		vo.setUser_email(email);
+		vo.setUserId(Integer.parseInt(id));
+		
+		advo.setAdvertisementname(nickname);
+		advo.setAdvertisement_email(email);
+		
+		session.setAttribute("uservo",vo);
+		session.setAttribute("advertisementvo",advo);
+		
+
+		
+		// 로그인 사용자 정보를 읽어온다.
 		model.addAttribute("result", apiResult);
 
 		/* 네이버 로그인 성공 페이지 View 호출 */
@@ -212,6 +243,5 @@ public class LoginController {
 
 		return "join";
 	}
-	
 
 }

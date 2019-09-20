@@ -1,6 +1,5 @@
 package com.example.demo.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -13,7 +12,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.example.demo.domain.mypage.Uservo;
 import com.example.demo.domain.review.AjaxReviewImagevo;
 import com.example.demo.domain.review.ReviewImagevo;
 import com.example.demo.domain.review.ReviewRegistrationvo;
