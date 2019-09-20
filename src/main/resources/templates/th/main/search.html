@@ -62,8 +62,7 @@ $(function(){
 						<li id="reviewlist" th:each="review:${review}">
 							<div class="cont-txt">
 								<p class="photo">
-									<span th:each="check:${review.reviewRegistrationvo.reviewImgList}">
-									<img th:src="${check.img}"></span>
+									<img th:src="${review.reviewRegistrationvo.reviewImgList[0].img}"></span>
 								</p>
 								
 								

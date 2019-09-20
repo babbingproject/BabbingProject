@@ -45,7 +45,7 @@
    
    <div id="wrap" class="main">
       <div th:replace="/include/header.html :: header"></div>
-      	<th:block th:if="${session['advertisementvo'] != null}">
+         <th:block th:if="${session['advertisementvo'] != null}">
         <div class="camapignBtnDiv">
             <button class="campaignBtn" name="campaignWriteBtn">캠페인 등록</button>
         </div>
@@ -53,20 +53,20 @@
       
       <div class="contact">
          <div class="campaignTop">
-			정렬 <input type="radio" name="sort" id="recent" value="recent" checked> 최신순
-			<input type="radio" name="sort" id="popluar" value="popular"> 인기순 
-			<input type="radio" name="sort" id="end_date" value="end_date"> 마감 임박순
+         정렬 <input type="radio" name="sort" id="recent" value="recent" checked> 최신순
+         <input type="radio" name="sort" id="popluar" value="popular"> 인기순 
+         <input type="radio" name="sort" id="end_date" value="end_date"> 마감 임박순
          </div>
 
          <div class="campaignlistDiv">
             <ul class="campaignUl" th:each="campaign:${campaignListWithImg}">
                <li class="campaignLi">
-               		<img class="campaignProfileImg" th:src="${campaign[6]}">
-			   		<span class="campaignProfileName" th:text="${campaign[7]}"></span>
-					<span class="campaignEndDate" th:text="|~ ${#dates.format(campaign[2], 'yyyy-MM-dd')}|"></span><br>
-                  	<a th:href="@{getCampaign(campaignId=${campaign[0]})}"> <img class="campaignThumImg" th:src="${campaign[5]}"></a><br>
-					<a class="campaignThumTitle" th:href="@{getCampaign(campaignId=${campaign[0]})}" th:text="${campaign[1]}"></a>
-				</li>
+                     <img class="campaignProfileImg" th:src="${campaign[6]}">
+                  <span class="campaignProfileName" th:text="${campaign[7]}"></span>
+               <span class="campaignEndDate" th:text="|~ ${#dates.format(campaign[2], 'yyyy-MM-dd')}|"></span><br>
+                     <a th:href="@{getCampaign(campaignId=${campaign[0]})}"> <img class="campaignThumImg" th:src="${campaign[5]}"></a><br>
+               <a class="campaignThumTitle" th:href="@{getCampaign(campaignId=${campaign[0]})}" th:text="${campaign[1]}"></a>
+            </li>
             </ul>
          </div>
       </div>

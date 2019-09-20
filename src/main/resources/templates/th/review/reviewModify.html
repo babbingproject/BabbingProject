@@ -67,7 +67,7 @@ small {
 <body th:align="center">
    <!-- <span th:text="${session['uservo'].nickname}"></span> -->
    <h1>리뷰 글 상세-수정</h1>
-<!--    <form th:action="@{updateReviewView}" method="post"> -->
+   <form th:action="@{ReviewViewUpdate}" method="post">
       <div>
       <input id="reviewId" name="reviewId" type="hidden" th:value="${reviewView.reviewId}">
       <input id="userId" name="userId" type="hidden" th:value="${reviewView.uservo.userId}">
@@ -84,14 +84,14 @@ small {
          <tr>
             <td th:text="이미지"></td>
             <td>
-               파일을 업로드할 영역
+               	파일을 업로드할 영역
                <div class="fileDrop">여기에 그림파일을 드래그해주세요</div> 
-               업로드된 파일 목록
+              	 업로드된 파일 목록
                <div style="overflow: scroll" class="uploadedList" ></div>
-               <div style="overflow: scroll">
+               <div style="overflow: scroll" class="beforeUploadedList">
                   <th:block th:each="reviewImg:${reviewImgList}">
                         <img th:src="${reviewImg.img}" width="50%" height="50%">
-                        <span style='cursor: pointer;' data-src="+data+">[삭제]</span>
+                        <span style='cursor: pointer;' th:data-src="${reviewImg.img}">[삭제]</span>
                      <br><br>
                      </th:block>
                </div>
@@ -110,18 +110,22 @@ small {
             <!-- <td th:text="${reviewView.writeDate}"></td> -->
             <td th:text="${#dates.format(reviewView.writeDate,'yyyy-MM-dd')}"></td>
          </tr>
+         
          <tr>
+			<th colspan="2" align="center"></th>
+			<td><input type="submit" value="수정 완료"></td>
+		</tr>
             <!-- <td colspan="2" align="right"><a th:href="@{/doReviewViewUpdate(reviewId=(${reviewView.reviewId}))}">리뷰 수정</a><br></td>
             <td colspan="2" align="right"><a th:href="@{/doReviewList}">리뷰 목록</a><br></td>
             <td colspan="2" align="right"><a th:href="@{/deleteReviewView(reviewId=(${reviewView.reviewId}))}">리뷰 삭제</a><br></td>
  -->
-         </tr>
+         
       </table>
-      <span><a th:href="@{/doReviewViewUpdate(reviewId=(${reviewView.reviewId}))}">수정 완료</a><br></span>
+      <!-- <span><a th:href="@{/ReviewViewUpdate(reviewId=(${reviewView.reviewId}))}">수정 완료</a><br></span> -->
       <span><a th:href="@{/doReviewList}">리뷰 목록</a><br></span>
       <span><a th:href="@{/deleteReviewView(reviewId=(${reviewView.reviewId}))}">리뷰 삭제</a><br></span>
       </div>
-<!--    </form> -->
+    </form> 
    <br>
    <div>
    <th:block th:if="${session['uservo']} != null">
@@ -284,7 +288,6 @@ small {
    </script>
    <script   src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>
    <script>
-      
       $(document).ready(
             function() {
                $(".fileDrop").on("dragenter dragover", function(event) {
@@ -292,35 +295,38 @@ small {
                });
                //event :JQeury의 이벤트
                //originalEvent :javascript의 이벤트
-               $(".fileDrop").on("drop", function(event) {
-                  event.preventDefault(); //기본효과를 막음
-//                   alert("jj");
-                  //드래그된 파일의 정보
-                  var files = event.originalEvent.dataTransfer.files;
-                  //첫번째 파일
-                  var file = files[0];
-                  //콘솔에서 파일 정보 확인
-                  console.log(file);
+				$(".fileDrop").on("drop", function(event) {
+					event.preventDefault(); //기본효과를 막음
+				alert("jj");
+				//드래그된 파일의 정보
+				var files = event.originalEvent.dataTransfer.files;
+                //첫번째 파일
+				var file = files[0];
+				//콘솔에서 파일 정보 확인
+				console.log(file);
 
-                  //ajax로 전달할 폼 객체
-                  var formData = new FormData();
-                  //폼 객체에 파일 추가, append("변수명", 값)
-                  formData.append("file", file);
-//                   alert("안유진");
-               
-
-               $.ajax({
-                  type : "post",
-                  url : "/uploadAjax", // 매핑주소
-                  data : formData,
-                  //prosessData: true=>get방식, false=> post방식
-                  dataType : "text",
-                  // contentType : true => application/x-www-form-urlencoded,
-                  //      false => multipart/form-data
-                  processData : false,
-                  contentType : false,
-                  success : function(data) {
-                     var srt = "";
+				//ajax로 전달할 폼 객체
+				var formData = new FormData();
+// 				var formDataReviewId = new FormData(); 
+				//폼 객체에 파일 추가, append("변수명", 값)
+               	var reviewId = $('#reviewId').val();	
+				formData.append("file", file);
+// 				formData.append("reviewId", reviewId);
+// 				formDataReviewId.append("reviewId", reviewId);
+				alert(reviewId);
+			$.ajax({
+				type : "post",
+				url : "/uploadAjax/"+reviewId, // 매핑주소
+				data : formData,
+				//prosessData: true=>get방식, false=> post방식
+				/* dataType : "text", */
+				// contentType : true => application/x-www-form-urlencoded,
+				//      false => multipart/form-data
+				processData : false,
+				contentType : false,
+				success : function(data) {
+					console.log('들어갓음 : '+data);
+                    var srt = "";
                      //이미지 파일이면 썸네일 이미지 출력
                      if (checkImageType(data)) {
                         str = "<div id='ajaxImgId'><a href='/displayFile?fileName="
@@ -337,19 +343,23 @@ small {
                      //삭제버튼
                      str += "<span style='cursor: pointer;' data-src="+data+">[삭제]</span></div>";
                      $(".uploadedList").append(str);
+//                      <span style='cursor: pointer;' data-src="+data+">[삭제]</span>
                   }
+				
                });
 
             });
 
       $(".uploadedList").on("click", "span", function(event) {
-         alert("이미지 삭제")
-         var that = $(this); // 여시거 this는 클릭한 span태그
-         /* $("#ajaxImgId").find('img').each(function(){
-            var ajaxImgId = $(this).attr('src');
-            alert(ajaxImgId);
-            }); */
-         $.ajax({
+		alert("이미지 삭제")
+		var that = $(this); // 여시거 this는 클릭한 span태그
+		/* $("#ajaxImgId").find('img').each(function(){
+		var ajaxImgId = $(this).attr('src');
+		alert(ajaxImgId);
+		}); */
+		alert(that);
+			
+		$.ajax({
             url : "/deleteFile",
             type : "post",
             //data:"fileName="+$(this).attr("data-src") = {fileName:$(this).attr("data-src")}
@@ -370,38 +380,71 @@ small {
 
       });
 
-      function getOriginalName(fileName) {
-         //이미지 파일이면
-         if (checkImageType(fileName)) {
-            return; //함수 종료         
-         }
-         //uuid를 제외한 원래 파일 이름을 리턴
-         var idx = fileName.insexOf("_") + 1;
-         return fileName.substr(idx);
+	function getOriginalName(fileName) {
+		//이미지 파일이면
+		if (checkImageType(fileName)) {
+		return; //함수 종료         
+		}
+		//uuid를 제외한 원래 파일 이름을 리턴
+		var idx = fileName.insexOf("_") + 1;
+		return fileName.substr(idx);
+	}
+
+	function getImageLink(fileName) {
+	//이미지 파일이 아니면
+    if (!checkImageType(fileName)) {
+    	return; //함수 종료
+		}
+		//이미지 파일이면 (썸네일이 아닌 원본 이미지를 가져오기 위해)
+		//썸네일 이미지 파일명 - 파일경로+파일명
+		var front = fileName.substr(0, 12); //년 원 일 경로 추출
+		var end = fileName.substr(14); // 년 월 일 뎡로와 s_를 제거한 원본 파일명을 추출
+        console.log(front); // 2019/09/01
+        console.log(end);
+        //원본 파일명
+        return front + end; //디렉토리를 포함한 원본 파일명을 리턴
+
       }
 
-      function getImageLink(fileName) {
-         //이미지 파일이 아니면
-         if (!checkImageType(fileName)) {
-            return; //함수 종료
-         }
-         //이미지 파일이면 (썸네일이 아닌 원본 이미지를 가져오기 위해)
-         //썸네일 이미지 파일명 - 파일경로+파일명
-         var front = fileName.substr(0, 12); //년 원 일 경로 추출
-         var end = fileName.substr(14); // 년 월 일 뎡로와 s_를 제거한 원본 파일명을 추출
-         console.log(front); // 2019/09/01
-         console.log(end);
-         //원본 파일명
-         return front + end; //디렉토리를 포함한 원본 파일명을 리턴
-
-      }
-
-      function checkImageType(fileName) {
-         // i: ignore case(대소문자 무관)
-         var pattern = /jpg|gif|png|jpeg/i; //정규식 표현
-         return fileName.match(pattern); //규칙이 맞으면  true      
-      }
-            });
+	function checkImageType(fileName) {
+        // i: ignore case(대소문자 무관)
+        var pattern = /jpg|gif|png|jpeg/i; //정규식 표현
+        return fileName.match(pattern); //규칙이 맞으면  true      
+		}
+	});
+   </script>
+   <script>
+// 	$(document).ready(function(){
+	//업로드 했던 원본 이미지 삭제 메소드
+		$(".beforeUploadedList").on("click", "span", function(event) {
+			alert("업로드 했던 이미지 삭제")
+			var that = $(this); // 여기서 this는 클릭한 span태그
+			
+			alert(that);
+			
+				$.ajax({
+					url : "/uploadedDeleteFile",
+					type : "post",
+					//data:"fileName="+$(this).attr("data-src") = {fileName:$(this).attr("data-src")}
+					//태그 .attr("속성")
+					data : {
+						fileName : $(this).attr("data-src")
+					}, //json방식
+					dataType : "text",
+					success : function(result) {
+						alert("성공");
+						if (result == "modifyDeleted") {
+							//클릭한 span태그가 속한 div제거
+							that.parent("div").remove();
+						}
+					},
+		            error : function(error){
+		                console.log("에러 : " + error);
+		             }
+	
+			});
+	
+	});
    </script>
 </body>
 </html>
