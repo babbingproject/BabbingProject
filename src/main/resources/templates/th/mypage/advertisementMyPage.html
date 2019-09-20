@@ -34,21 +34,34 @@
 
 <div id="wrap" class="main">
 	<div th:replace="/include/header.html :: header"></div>
+	<div class="middle">
+		<div class="bannerWrap" >
+	
+		</div>
 
-	<span style="margin-top: 6%; position: absolute; width: 100%;">
-	 <button class="tablink" onclick="openPage('campaignList', this)" id="defaultOpen">캠페인</button>
-     <button class="tablink" onclick="openPage('reviewedList', this)">리뷰 보기</button>
-     <button class="tablink" onclick="openPage('evaluatedList', this)">평가 보기</button>
-     <button class="tablink" onclick="openPage('puttedList', this)">담아둔 유저</button>  
-     </span>
 	
-	
-</div>
-	<div id="campaignList" class="tabcontent">캠페인 리스트</div>                          
-	<div id="reviewedList" class="tabcontent">리뷰 당한 리스트</div>
-	<div id="evaluatedList" class="tabcontent">평가 보기</div>
-    <div id="puttedList" class="tabcontent">담아둔 유저 보기</div>
+		<div class="rightSection">
+			<span style="margin-top: 6%; position: absolute; width: 100%;">
+			 <button class="tablink" onclick="openPage('campaignList', this)" id="defaultOpen">캠페인</button>
+		     <button class="tablink" onclick="openPage('reviewedList', this)">리뷰 보기</button>
+		     <button class="tablink" onclick="openPage('evaluatedList', this)">평가 보기</button>
+		     <button class="tablink" onclick="openPage('puttedList', this)">담아둔 유저</button>  
+		     </span>
+			
+		
+			
+				<div id="campaignList" class="tabcontent">캠페인 리스트</div>                          
+				<div id="reviewedList" class="tabcontent">리뷰 당한 리스트</div>
+				<div id="evaluatedList" class="tabcontent">평가 보기</div>
+			    <div id="puttedList" class="tabcontent">담아둔 유저 보기</div>
+	 
+	 	</div>
  
+ 
+ 
+	 </div>
+ 
+</div>
  <script>
             function openPage(pageName,elmnt,color) {
               var i, tabcontent, tablinks;

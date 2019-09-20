@@ -6,7 +6,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <link rel="stylesheet" href="common/css/styles.css">
 <link rel="stylesheet" href="common/css/search.css">
-<script src="/common/js/index.js"></script>
+<script src="common/js/index.js"></script>
 <script type="text/javascript" th:inline="javascript">
 	
 $(function(){
@@ -46,7 +46,6 @@ $(function(){
 
 /* .cont-area .list-style03 .cont-txt .photo{float: left; width: 20%} */
 /* .cont-area .list-style03 .cont-txt .info{float: left; width: 20%} */
-.cont-area .list-style03 #reviewlist{float: left; width: 21%; margin-right: 10px; padding-right: 0px}
 .taewon{width: 100%}
 </style>
 </head>
@@ -68,20 +67,18 @@ $(function(){
 								</p>
 								
 								
-								<a href="#" class="best02">베스트</a>
 								<ul class="info">
 									<input type="hidden" th:value="${review.reviewRegistrationvo.reviewId}" id="get">
 									<li><span th:text="${review.reviewRegistrationvo.reviewPlace}"></span>|</li> 
 									<li><span th:text="${review.reviewRegistrationvo.title}"></span></li>
 									<li>
 										<img th:src="${review.reviewRegistrationvo.uservo.profileImg}"/>
-										<input type="hidden" id="reviewUserId" th:value="${review.reviewRegistrationvo.uservo.userId}">
 										 <span th:text="${review.reviewRegistrationvo.uservo.nickname}">
 												
 									 	</span>
+										<p><input type="hidden" id="reviewUserId" th:value="${review.reviewRegistrationvo.uservo.userId}"></p>
 									 </li>
 								</ul>
-								<span th:text="${review.reviewRegistrationvo.uservo.userId}"></span>
 								<span th:if="${#lists.isEmpty(review.scrapvo)}"> 
 									<span class="button best02" id="scrapButton"> 
 										<input type="hidden" id="followerMe" th:value="${session[username]}">
@@ -117,7 +114,7 @@ $(function(){
 					<li th:each="userSearch:${userSearch}"><a href="#"><img th:src="${userSearch.uservo.profileImg}"><span class="name"><span th:text="${userSearch.uservo.nickname}"></span><span>팔로워</span><span th:text="${userSearch.uservo.followingCount}"></span>|리뷰수<span th:text="${userSearch.uservo.postCount}"></span></span>
 						<span class="emptyspace">
 							<input type="hidden" id="followingYou" th:value="${userSearch.uservo.nickname}">
-								<input type="hidden" id="followerMe" th:value="${nickname}">
+								<input type="hidden" id="followerMe" th:value="${session[username]}">
 								<span th:if="${#lists.isEmpty(userSearch.followvo)}">
 									<span class="followbtn btn02">팔로우</span>
 								</span>
@@ -155,7 +152,20 @@ $(function(){
 							class="more-btn">더보기</a>
 				</div>
 				<ul class="list-style04-restaurant">
-					<li th:each="advvo:${advertisementSearch}"><a href="#"><img th:src="${advvo.advertisementvo.profileImg}"><span th:text="${advvo.advertisementvo.advertisementname}" class="name"></span>리뷰수<span th:text="${advvo.advertisementvo.putedCount}"></span><span class="btn02">담아두기</span></a></li>
+					<li th:each="advvo:${advertisementSearch}"><a href="#"><img th:src="${advvo.advertisementvo.profileImg}"><span th:text="${advvo.advertisementvo.advertisementname}" class="name"></span>리뷰수<span th:text="${advvo.advertisementvo.putedCount}"></span>
+					
+					</a>
+					<span class="emptyspace2"> 
+						<input type="hidden" id="followerMe" th:value="${session[username]}"> 
+						<input type="hidden" id="followingYou" th:value="${advvo.advertisementvo.advertisementname}"> 
+						<span th:if="${#lists.isEmpty(advvo.putvo)}"> 
+							<span class="followbtn btn02" style="curser: pointer;">담아두기</span>
+						</span> 
+						<span th:if="!${#lists.isEmpty(advvo.putvo)}"> 
+							<span class="followbtn btn01" style="curser: pointer;">담기완료</span>
+						</span>
+					</span>
+					</li>
 				</ul>
 				
 			</div>
