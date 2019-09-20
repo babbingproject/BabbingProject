@@ -233,12 +233,12 @@
 
 					<li th:each="advvo:${advvo}"><img
 						th:src="${advvo.advertisementvo.profileImg}"> <span
-						th:text="${advvo.advertisementvo.advertisementname}" class="name"></span><br>
-						리뷰수 <span class="emptyspace2"> <input type="hidden"
+						th:text="${advvo.advertisementvo.advertisementname}" class="name"></span><br><span id="r1">리뷰수</span>
+						 <span class="emptyspace2"> <input type="hidden"
 							id="followerMe" th:value="${session[username]}"> <input
 							type="hidden" id="followingYou"
 							th:value="${advvo.advertisementvo.advertisementname}"> <span
-							th:text="${advvo.advertisementvo.putedCount}"></span> <span
+							th:text="${advvo.advertisementvo.putedCount}" id="put1"></span> <span
 							th:if="${#lists.isEmpty(advvo.putvo)}"> <span
 								class="followbtn btn02" style="curser: pointer;">담아두기</span>
 						</span> <span th:if="!${#lists.isEmpty(advvo.putvo)}"> <span
