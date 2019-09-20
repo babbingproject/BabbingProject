@@ -256,5 +256,32 @@ public class FileUploadController {
 
 	// -----------------------------------ajax방식의 업로드
 	// 처리----------------------------------
+	
+	@ResponseBody
+	@RequestMapping(value = "uploadedDeleteFile", method = RequestMethod.POST)
+	public ResponseEntity<String> uploadedDeleteFile(String fileName) {
+		System.out.println(fileName);
+		
+		String reviewViewImgName = fileName;
+		reviewImageService.deleteModifyReviewImg(reviewViewImgName);
+		
+		// 파일의 확장자 추출
+		String formatName = fileName.substring(fileName.lastIndexOf(".") + 1);
+		// 이미지 파일 여부 검사
+		MediaType mType = MediaUtils.getMediaType(formatName);
+		// 이미지 의 경우(썸네일 + 원본파일 삭제 ), 이미지가 이니면 원본파일만 삭제
+		// 이미지 파일이면
+		if (mType != null) {
+		// 썸네일 이미지 파일 추출
+		String front = fileName.substring(0, 12);
+		String end = fileName.substring(14);
+		// 썸네일 이미지 삭제
+		new File(uploadPath + (front + end).replace('/', File.separatorChar)).delete();
+		}
+		// 원본 파일 삭제
+		new File(uploadPath + fileName.replace('/', File.separatorChar)).delete();
 
+		// 데이터와 http상태 코드 전송
+		return new ResponseEntity<String>("modifyDeleted", HttpStatus.OK);
+	}
 }

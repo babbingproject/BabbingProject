@@ -86,5 +86,7 @@ public interface ReviewService {
 	int checkReviewId(int reviewId);
 	
 	void modifyReviewView(ReviewRegistrationvo reviewRegistrationvo);
+	
+	
 
 }

@@ -72,7 +72,7 @@ public interface ReviewRepository extends JpaRepository<ReviewRegistrationvo, In
 
 			+ "FROM review_registrationvo AS r, review_imagevo AS ri, uservo AS user "
 			+ "WHERE r.review_id = ri.review_id AND r.user_id = user.user_id "
-			+ "GROUP BY r.review_id ")
+			+ "GROUP BY r.review_id ORDER BY r.review_id DESC ")
 	
 	Iterable<ReviewRegistrationvo> getEverythingWOLimit();
 	
