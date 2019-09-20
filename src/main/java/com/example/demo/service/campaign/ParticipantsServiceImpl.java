@@ -52,5 +52,10 @@ public class ParticipantsServiceImpl implements ParticipantsService {
 	public String applyCheck(int participantsId) {
 		return participantsRepo.applyCheck(participantsId);
 	}
+
+	@Override
+	public String getAdvertisementProfileImg(int advertisement_id) {
+		return participantsRepo.getAdvertisementProfileImg(advertisement_id);
+	}
 }
 

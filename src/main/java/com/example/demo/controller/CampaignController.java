@@ -38,80 +38,37 @@ public class CampaignController {
 		List<Campaignvo> campaignList = campaignService.getListByActive(campaignvo);
 		model.addAttribute("campaignList", campaignList);
 		List<Object[]> campaignListWithImg = campaignService.getListByActiveWithImg(campaignvo);
-		
-		for(Object camp : campaignListWithImg) {
-			System.err.println("이미지와 함께 출력? : " + camp.toString());
-		}
-		
 		model.addAttribute("campaignListWithImg", campaignListWithImg);
 		
 		return "th/campaign/campaign";
 	}
 	
 	// 라디오 버튼 값 선택에 따른 정렬
-	@RequestMapping("/getCampaignListByRadio")
+	@RequestMapping("/getCampaignListWithImageByRadio")
 	public String getCampaignListByRadio(@RequestParam(value = "sort") String sort, Model model, Campaignvo campaignvo) {
-	
-		List<Campaignvo> campaignList;
+		
+		List<Object[]> campaignList;
 		
 		switch(sort) {
 		case "recent" : 	
-			campaignList = campaignService.getListByActive(campaignvo);
-			model.addAttribute("campaignList", campaignList);
-			return "th/campaign/campaignSort";
+			campaignList = campaignService.getListByActiveWithImg(campaignvo);
+			model.addAttribute("campaignListWithImg", campaignList);
+			return "th/campaign/campaignSortList";
 			
 		case "end_date" : 	
-			campaignList = campaignService.getListByEndDate(campaignvo);
-			model.addAttribute("campaignList", campaignList);
-			return "th/campaign/campaignSort";
+			campaignList = campaignService.getListByEndDateWithImg(campaignvo);
+			model.addAttribute("campaignListWithImg", campaignList);
+			return "th/campaign/campaignSortList";
 			
 		case "popular" :
-			campaignList = campaignService.getListByPopular(campaignvo);
-			model.addAttribute("campaignList", campaignList); 
-			return "th/campaign/campaignSort";		
-		default : return "th/campaign/campaignSort";
+			campaignList = campaignService.getListByPopularWithImg(campaignvo);
+			model.addAttribute("campaignListWithImg", campaignList); 
+			return "th/campaign/campaignSortList";		
+		default : return "th/campaign/campaignSortList";
 		}
 
 	}	
-	
-	@RequestMapping("/getListSortByRadio")
-	@ResponseBody
-	List<Campaignvo> getListSortByRadio(String sort, Model model, Campaignvo campaignvo){
-		
-		List<Campaignvo> campaignList;
-		System.err.println(sort);
-		
-		switch(sort) {
-			case "recent" :		campaignList = campaignService.getListByActive(campaignvo);
-								model.addAttribute("campaignList", campaignList);
-								System.out.println("최신순 출력");
-								for(Campaignvo camp : campaignList) {
-									System.out.println(camp);
-								}
-				
-								return campaignList;
-								
-			case "end_date" :	campaignList = campaignService.getListByEndDate(campaignvo);
-								model.addAttribute("campaignList", campaignList);
-								System.out.println("마감일순 출력");	
-								for(Campaignvo camp : campaignList) {
-								System.out.println(camp);
-								}
-			
-								return campaignList;
-								
-			case "popular" :	campaignList = campaignService.getListByPopular(campaignvo);
-								model.addAttribute("campaignList", campaignList);
-								System.out.println("인기순 출력");
-								for(Campaignvo camp : campaignList) {
-								System.out.println(camp);
-								}
-								
-								return campaignList;
-			}
-			return null;
-		}
-	
+
 	// 캠페인 조회
 	@GetMapping("/getCampaign")
 	public String getCampaign(Model model, Campaignvo campaignvo) {
@@ -119,6 +76,7 @@ public class CampaignController {
 		Campaignvo campInfo = campaignService.getCampaign(campaignvo);
 		model.addAttribute("campaign", campInfo);
 		model.addAttribute("participantsList", participantsService.getParticipantsList(campInfo.getCampaignId()));
+		model.addAttribute("profileImg", participantsService.getAdvertisementProfileImg(campInfo.getAdvertisementvo().getAdvertisementId()));
 		
 		List<CampaignImgvo> campaignImgList = campaignService.selectCampaignImgList(campInfo.getCampaignId());
 				
