@@ -171,17 +171,22 @@
 			<div class="advertisementranking">
 				<div class="borderspace" th:each="advertisement : ${adv}">
 					<ul>
-						<li><img th:src="${advertisement.advvo.profileImg}"></li>
+					<a th:href="@{/getAdvertisementMyPage(advertisementName=${advertisement.advertisementvo.advertisementname})}">
+						<li><img th:src="${advertisement.advertisementvo.profileImg}"></li>
 						<li><br> <br> <br> <span
-							th:text="${advertisement.advvo.advertisementname}" class="userid"></span>
+							th:text="${advertisement.advertisementvo.advertisementname}" class="userid"></span>
 							<br> <br> <span>평점</span><span
-							th:text="${advertisement.advvo.evaluation_avg}"></span> | <span>담은유저
+							th:text="${advertisement.advertisementvo.evaluation_avg}"></span> | <span>담은유저
 						</span><span id="appenduse"><span
-								th:text="${advertisement.advvo.putedCount}"
-								th:value="${advertisement.advvo.putedCount}" id="putedCount"></span></span></li>
+								th:text="${advertisement.advertisementvo.putedCount}"
+								th:value="${advertisement.advertisementvo.putedCount}" id="putedCount"></span></span>
+								
+								</li>
+								
+						</a>
 						<li><br> <br> <br> <span class="emptyspace2">
 								<input type="hidden"
-								th:value="${advertisement.advvo.advertisementname}"
+								th:value="${advertisement.advertisementvo.advertisementname}"
 								id="followingYou"> <span
 								th:if="${#lists.isEmpty(advertisement.putvo)}"> <span
 									class="followbtn btn02" id="btn02">담아두기</span>

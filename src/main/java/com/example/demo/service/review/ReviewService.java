@@ -12,7 +12,7 @@ import com.example.demo.domain.review.ReviewRegistrationvo;
 
 public interface ReviewService {
 
-
+	List<ReviewRegistrationvo> getEverythingWOLimit();
 //	List<Uservo> selectUservoInfo();
 	List<ReviewRegistrationvo> getUserSelfWroteReview(Integer username);
 	List<ReviewRegistrationvo> getScrappedReview(String username);

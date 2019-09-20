@@ -21,7 +21,9 @@ public class UserServiceImpl implements UserService {
 	private SqlSessionTemplate userSqlSessin;
 	@Autowired
 	private UserMapper userMapper;
-
+	public List<Uservo> getSearchKeywordSearchPage(String searchKeyword){
+		return userRepo.getSearchKeywordSearchPage(searchKeyword);
+	}
 	public List<Uservo> getAllFollowers(String followingYou){
 		return userRepo.getAllFollowers(followingYou);
 	}

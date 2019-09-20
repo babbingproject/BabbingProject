@@ -9,7 +9,7 @@ import org.springframework.data.domain.Pageable;
 import com.example.demo.domain.mypage.Uservo;
 
 public interface UserService {
-
+	List<Uservo> getSearchKeywordSearchPage(String searchKeyword);
 	
 	List<Uservo> findByNickname(String nickname);
 	

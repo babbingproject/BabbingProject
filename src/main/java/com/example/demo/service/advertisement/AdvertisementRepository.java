@@ -26,6 +26,11 @@ public interface AdvertisementRepository extends JpaRepository<Advertisementvo, 
 			countQuery="SELECT COUNT(*) FROM advertisementvo WHERE advertisement_name LIKE %?1%")
 	Page<Advertisementvo> getSearchKeyword(String searchKeyword, Pageable pageable);
 	
+	@Query(nativeQuery=true, value = ""
+			+ "SELECT * "
+			+ "FROM advertisementvo WHERE advertisementname LIKE %?1% ")
+	List<Advertisementvo> getSearchKeywordSearchPage(String searchKeyword);
+	
 	List<Advertisementvo> findByAdvertisementname(String advertisementName);
 	
 	@Query(nativeQuery=true, value=""

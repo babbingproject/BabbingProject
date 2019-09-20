@@ -33,6 +33,9 @@ public class ReviewServiceImpl implements ReviewService {
 	@PersistenceContext
 	EntityManager em;
 
+	public List<ReviewRegistrationvo> getEverythingWOLimit(){
+		return (List<ReviewRegistrationvo>) reviewRepo.getEverythingWOLimit();
+	}
 	@Override
 	public List<Object[]> getKoreanTopSix() {
 		return reviewRepo.getKoreanFoodTopSix();

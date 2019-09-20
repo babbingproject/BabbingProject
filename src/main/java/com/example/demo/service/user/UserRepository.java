@@ -44,6 +44,11 @@ public interface UserRepository extends CrudRepository<Uservo, Integer>{
 	@Query(nativeQuery = true, value=""
 			+ "SELECT * "
 			+ "FROM Uservo WHERE nickname LIKE %?1% "
+			+ "ORDER BY following_count DESC ")
+	List<Uservo> getSearchKeywordSearchPage(String searchKeyword);
+	@Query(nativeQuery = true, value=""
+			+ "SELECT * "
+			+ "FROM Uservo WHERE nickname LIKE %?1% "
 			+ "ORDER BY following_count DESC ", 
 			countQuery = "SELECT COUNT(user_id) FROM uservo "
 					+ "WHERE nickname LIKE %?1% ")

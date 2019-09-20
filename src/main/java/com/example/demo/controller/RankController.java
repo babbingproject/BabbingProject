@@ -41,7 +41,7 @@ public class RankController {
 		}
 		for(int i = 0; i < advList.size(); i++) {
 			CheckingPut checkingPut = new CheckingPut();
-			checkingPut.setAdvvo(advList.get(i));
+			checkingPut.setAdvertisementvo(advList.get(i));
 			checkingPut.setPutvo(rankService.checkPut(followerMe, advList.get(i).getAdvertisementname()));
 			checkingPutList.add(checkingPut);
 		}

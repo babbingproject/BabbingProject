@@ -59,6 +59,16 @@ public interface ReviewRepository extends JpaRepository<ReviewRegistrationvo, In
 	Iterable<ReviewRegistrationvo> getEverything();
 	
 	@Query(nativeQuery=true, value=""
+			+ "SELECT * , ri.img, user.profile_img, user.nickname "
+			+ "FROM review_registrationvo AS r "
+			+ "INNER JOIN review_imagevo AS ri "
+			+ "ON r.review_id = ri.review_id "
+			+ "INNER JOIN uservo AS user "
+			+ "ON r.user_id = user.user_id "
+			+ "GROUP BY ri.review_id ")
+	Iterable<ReviewRegistrationvo> getEverythingWOLimit();
+	
+	@Query(nativeQuery=true, value=""
 			+ "SELECT r.review_id, r.review_place, r.title, r.business_field_id, ri.img, user.profile_img, user.nickname, user.user_id "
 			+ "FROM review_registrationvo AS r INNER JOIN review_imagevo AS ri "
 			+ "ON r.review_id = ri.review_id "
