@@ -222,17 +222,17 @@
 				<div class="cont-txtB">인기맛집</div>
 				<ul class="ranking s2" th:each="advertisement : ${adv}">
 					<li><div class="rapbox">
-							<img th:src="${advertisement.advvo.profileImg}"><span
+							<img th:src="${advertisement.advertisementvo.profileImg}"><span
 								class="num"></span><span
-								th:text="${advertisement.advvo.advertisementname}" class="name"></span><span
+								th:text="${advertisement.advertisementvo.advertisementname}" class="name"></span><span
 								id="point1">평점 <span
-								th:text="${advertisement.advvo.evaluation_avg}" id="point2"></span>
+								th:text="${advertisement.advertisementvo.evaluation_avg}" id="point2"></span>
 							</span><span id="wow2">|</span><span id="putCount1">담아두기 </span><span
-								th:text="${advertisement.advvo.putedCount}"
-								th:value="${advertisement.advvo.putedCount}" id="putedCount2"></span>
+								th:text="${advertisement.advertisementvo.putedCount}"
+								th:value="${advertisement.advertisementvo.putedCount}" id="putedCount2"></span>
 
 							<span class="emptyspace2"> <input type="hidden"
-								th:value="${advertisement.advvo.advertisementname}"
+								th:value="${advertisement.advertisementvo.advertisementname}"
 								id="followingYou"> <span
 								th:if="${#lists.isEmpty(advertisement.putvo)}"> <span
 									class="area btn02" id="btn02">담아두기</span>

@@ -163,7 +163,7 @@ a:hover {}
 #putedCount2{position: absolute;top: 65%;left: 38%;}
 
 
-#wrap.sub .cont-area .ranking.s2{display: block;padding: 0px 0 20px;overflow: hidden;min-height:600px}
+#wrap.sub .cont-area .ranking.s2{display: block;padding: 0px 0 20px;overflow: hidden;}
 #wrap.sub .cont-area .ranking li{float: left;margin-right: 12px;width: 100%;margin-bottom:40px}
 #wrap.sub .cont-area .ranking li .rapbox{display: block;padding: 0 0 20px 130px;position: relative;font-size: 18px;}
 #wrap.sub .cont-area .ranking li img{width: 100px;border-radius: 100px;border: 2px #dedede solid;position: absolute;top: 5px;left: 10px;}
