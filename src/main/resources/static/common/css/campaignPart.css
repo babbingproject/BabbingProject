@@ -16,12 +16,18 @@
 }
 
 .campaignTop {
-	font-family: AppleSDGothicNeo;
+	font-family: NanumGothic;
 	font-size: 18px;
 	margin-bottom: 1%;
 	float: left;
 	width: 100%;
-	margin-top: 9%;
+	margin-top: 10%;
+    margin-left: 6%;
+}
+
+.campaignListDiv{
+	margin-left: 5%;
+
 }
 
 .campaignUl {
@@ -31,7 +37,7 @@
 }
 
 .campaignLi {
-	margin: 40 10 5 13;
+	margin: 30 10 5 13;
 	padding: 0 0 0 0;
 	border: 0;
 	float: left;
@@ -45,13 +51,13 @@
 
 .campaignProfileName {
 	font-size: 20px;
-	font-family: AppleSDGothicNeo;
+	font-family: NanumGothic;
 	margin-left: 2%;
 }
 
 .campaignEndDate {
 	font-size: 20px;
-	font-family: AppleSDGothicNeo;
+	font-family: NanumGothic;
 	color: #ff4d80;
 	line-height: 2;
 	font-size: 20;
@@ -67,7 +73,7 @@
 
 .campaignThumTitle {
 	font-size: 20px;
-	font-family: AppleSDGothicNeo;
+	font-family: NanumGothic;
 }
 
 /* CampaignView.html CSS */
@@ -142,7 +148,7 @@
 }
 
 .campaignViewInnerSquare {
-	margin-top: 47%;
+	margin-top: 49%;
 	width: 350px;
 	height: 300;
 	border: solid 1px #e8e8e8;
@@ -159,6 +165,42 @@
 	border: none;
 }
 
+.campaignViewRecruitment{
+	color: #ff4d80;
+	margin-left: 2%;
+	margin-top: 2%;
+	font-family: 'NanumBarunGothic';
+	font-size: medium;
+}
+
+.campaignViewProfileImg{
+	width: 35%;
+	border-radius: 100%;
+	margin-left: 33%;
+	margin-top: 5%;"	
+}
+
+.campaignViewProfileName{
+	font-size: large;
+	font-weight: bold;
+	text-align: center;
+	margin-top: 5%;
+	font-family: 'NanumBarunGothic';
+}
+
+.campaignViewProfileSubTitle{
+	font-family: 'NanumBarunGothic';
+	font-size: medium;
+	margin-left: 9%;	
+}
+
+.campaignViewProfileSubContents{
+	color: #ff4d80;
+	margin-left: 2%;
+	margin-top: 2%;
+	font-family: 'NanumBarunGothic';
+	font-size: medium; 	
+}
 /* CampaignView Modal CSS */
 .modal {
 	display: none; /* Hidden by default */
