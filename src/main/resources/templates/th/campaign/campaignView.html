@@ -68,15 +68,17 @@
       <!-- 프로필 영역 Start -->
       <div class="campaignViewRight">
           <div class="campaignViewInnerSquare">
-         <img th:src="${profileImg}">
-         <p th:text="${campaign.advertisementvo.advertisementname}" />
-         <br>신청 기간<br>
-         <p th:text="|${#dates.format(campaign.startDate, 'yyyy-MM-dd')} ~ ${#dates.format(campaign.endDate, 'yyyy-MM-dd')}|"></p>
-          	모집 인원<br>
-         <div id="campaignParticipants">
-            <p th:text="|${campaign.participants} / ${campaign.recruitment}|"></p>
-         </div> 
+         <img class="campaignViewProfileImg" th:src="${profileImg}">
+         <p class="campaignViewProfileName" th:text="${campaign.advertisementvo.advertisementname}" />
+         <br><br>
+         <span class="campaignViewProfileSubTitle">신청 기간</span>
+         <span class="campaignViewProfileSubContents" th:text="|${#dates.format(campaign.startDate, 'yyyy-MM-dd')} ~ ${#dates.format(campaign.endDate, 'yyyy-MM-dd')}|"></span><br><br>
+    	 <span class="campaignViewProfileSubTitle">모집 인원</span>
+         <span id="campaignParticipants">
+            <span class="campaignViewRecruitment" th:text="|${campaign.participants} / ${campaign.recruitment}|"></span>    
+         </span> 
          </div>
+ 
       <th:block th:if="${session[advertisementvo] != null}">
       <input class="campaignViewButton" th:if="${session['advertisementvo'].advertisementId} == ${campaign.advertisementvo.advertisementId}" type="button" id="applyBtn" value="응모자 보기">
       </th:block>
@@ -159,8 +161,8 @@
                campaignId:campaignId
             },
             success:function(participants){
-               var str="<p>"+participants.participants+"/"+participants.recruitment+"</p>";
-               $("#campaignParticipants p").remove();
+               var str="<span class='campaignViewRecruitment'>"+participants.participants+"/"+participants.recruitment+"</span>";
+               $("#campaignParticipants span").remove();
                $("#campaignParticipants").html(str);
                $("#participantPlus").hide();
                $("#participantMinus").show();
@@ -182,8 +184,8 @@
                campaignId:campaignId
             },
             success:function(participants){
-               var str="<p>"+participants.participants+"/"+participants.recruitment+"</p>";
-               $("#campaignParticipants p").remove();
+               var str="<span class='campaignViewRecruitment'>"+participants.participants+"/"+participants.recruitment+"</span>";
+               $("#campaignParticipants span").remove();
                $("#campaignParticipants").html(str);
                $("#participantMinus").hide();
                $("#participantPlus").show();
