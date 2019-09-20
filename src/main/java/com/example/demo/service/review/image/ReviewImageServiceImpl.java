@@ -76,6 +76,11 @@ public class ReviewImageServiceImpl implements ReviewImageService {
 	 * return null; }
 	 */
 
+	@Override
+	public void deleteModifyReviewImg(String reviewViewImgName) {
+		reviewImageRepo.deleteReviewViewImg(reviewViewImgName);
+	}
+
 
 	/*
 	 * @Override public Optional<ReviewImagevo> getReviewImgCheakOne(int reviewId) {

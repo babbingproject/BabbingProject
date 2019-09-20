@@ -34,7 +34,7 @@ public class ReviewImagevo {
 	private String imgReview;
 	
 
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne
 	@JoinColumn(name = "reviewId", nullable = true)
 	private ReviewRegistrationvo reviewRegistrationvo;
 	

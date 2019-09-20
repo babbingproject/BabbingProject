@@ -245,4 +245,14 @@ public class ReviewServiceImpl implements ReviewService {
 	public List<ReviewRegistrationvo> getSearchKeywordSearchPage(String searchKeyword){
 		return reviewRepo.getSearchKeywordSearchPage(searchKeyword);
 	}
+
+	@Override
+	public int checkReviewId(int reviewId) {
+		
+		return reviewRepo.selectCheckReviewId(reviewId);
+	}
+	@Override
+	public void modifyReviewView(ReviewRegistrationvo reviewRegistrationvo) {
+		reviewRepo.save(reviewRegistrationvo);
+	}
 }

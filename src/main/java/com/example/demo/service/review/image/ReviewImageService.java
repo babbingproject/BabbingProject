@@ -27,4 +27,6 @@ public interface ReviewImageService {
    void deleteAjaxImgUploadFinished(int deleteUploadedAjaxReviewId);
 
 //   ReviewImagevo getReviewImgCheakOne(int reviewId);
+   
+   void deleteModifyReviewImg(String reviewViewImgName);
 }

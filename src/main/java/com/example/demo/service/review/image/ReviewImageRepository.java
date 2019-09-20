@@ -11,4 +11,8 @@ public interface ReviewImageRepository extends JpaRepository<ReviewImagevo, Inte
 	
 	@Query(value = "SELECT * FROM review_imagevo WHERE review_id = ?", nativeQuery = true)
 	List<ReviewImagevo> selectReviewImgList(int reviewId);
+
+	@Query(value = "DELETE FROM review_imagevo WHERE img LIKE %?%", nativeQuery = true)
+	void deleteReviewViewImg(String reviewViewImgName);
+	
 }
