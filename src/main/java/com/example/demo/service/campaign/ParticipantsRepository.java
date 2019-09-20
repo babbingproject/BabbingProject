@@ -24,5 +24,8 @@ public interface ParticipantsRepository extends JpaRepository<Participantsvo, In
 
 	@Query(value="select participation from participantsvo where participants_id = ?", nativeQuery = true)
 	String applyCheck(int participantsId);
+	
+	@Query(value="SELECT profile_img FROM advertisementvo WHERE advertisement_id = ?", nativeQuery=true)
+	String getAdvertisementProfileImg(int advertisement_id); 
 }
 

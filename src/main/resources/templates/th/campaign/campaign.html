@@ -18,104 +18,61 @@
 <body>
 	
 	<div id="wrap" class="main">
-		<div th:replace="/include/header.html :: header"></div>zz
+		<div th:replace="/include/header.html :: header"></div>
+		
+		<th:block th:if="${session['advertisementvo'] != null}">
+		<div class="camapignBtnDiv">
+		<button class="campaignBtn" name="campaignWriteBtn">캠페인 등록</button>
+		</div>		
+		</th:block>
+		
+		<th:block th:if="${session['uservo'] != null}">
+		<div class="camapignBtnDiv">		
+		<button class="campaignBtn" name="reviewWriteBtn">리뷰 등록</button>
+		</div>
+		</th:block>
+				
 		<div class="campaignTop">
 		정렬
 		<input type="radio" name="sort" id="recent" value="recent" checked> 최신순
 		<input type="radio" name="sort" id="popluar" value="popular" > 인기순
 		<input type="radio" name="sort" id="end_date" value="end_date"> 마감 임박순
-	
-		
-		<th:block th:if="${session['advertisementvo'] != null}">
-		<div style="float:right;">
-		<button class="campaignBtn" name="campaignWriteBtn">캠페인 등록</button>
-		<!-- <a th:href="insertCampaign">캠페인 등록</a> -->
 		</div>
 		
-		</th:block>
-		<th:block th:if="${session['uservo'] != null}">
-		<div style="float:right;">
-		<button class="campaignBtn" name="reviewWriteBtn">리뷰 등록</button>
-		<!-- <a th:href="insertReview">리뷰 등록</a> -->
-		</div>
-		</th:block>
-		</div>
-		<div class="campaignAllList" id="sortedData" style="float: left; width: 100%; ">
-			<table>
-				<tr th:each="campaign:${campaignList}">
-					<td><a th:href="@{getCampaign(campaignId=${campaign.campaignId})}" th:text="${campaign.title}"></a></td>
-					<td th:text="${#dates.format(campaign.startDate, 'yyyy-MM-dd')}"></td>
-					<td th:text="${#dates.format(campaign.endDate, 'yyyy-MM-dd')}"></td>
-					<td th:text="${campaign.participants}"></td>
-					<td th:text="${campaign.recruitment}"></td>
-				</tr>
-			</table>
-		</div>
-<!-- 	리스트 출력 파트
-		<div >
-			<table>
-				<tr th:each="campaign:${campaignListWithImg}">
-					<td th:text="${campaign[0]}"></td>
-					<td th:text="${campaign[1]}"></td>
-					<td th:text="${campaign[2]}"></td>
-					<td th:text="${campaign[3]}"></td>
-					<td th:text="${campaign[4]}"></td>
-					<td th:text="${campaign[5]}"></td>
-					<td th:text="${campaign[6]}"></td>
-					<td th:text="${campaign[7]}"></td>
-					<td th:text="${campaign[8]}"></td>
-					<td><img th:src="${campaign[9]}"></td>
-				</tr>
-			</table>
-		</div> -->
-	<!-- 	
-		<ul class="list-style03">
-               <li th:each="campaign:${campaign}">
-                  <span>
-                     <a th:href="@{/getAdvertisementMyPage(advertisementName=${campaign[1]})}"><img th:src="${campaign[0]}" class="campaignWriterImg">&nbsp;&nbsp;&nbsp;<span th:text="${campaign[1]}" class="campaignWriterName"></span></a>
-                     <span th:text="${#dates.format(campaign[2], 'yyyy-MM-dd')}" class="campaignDate"></span><span class="campaignDate">~</span>
-                  </span>
-                  <a th:href="@{/getCampaign(campaignId=${campaign[5]})}"><img th:src="${campaign[3]}" class="campaignimg"></a>
-                  <span th:text="${campaign[4]}" class="campaignTitle"></span>
-               </li>
-            </ul> -->
-		
-</div>
+		<div id="listDiv">
+		<ul class="campaignUl" th:each="campaign:${campaignListWithImg}">
+			<li class="campaignLi">
+			<img class="campaignProfileImg" th:src="${campaign[6]}"> 
+			<span class="campaignProfileName" th:text="${campaign[7]}"></span> 
+			<span class= "campaignEndDate" th:text="|~ ${#dates.format(campaign[2], 'yyyy-MM-dd')}|"></span><br>
+			<a th:href="@{getCampaign(campaignId=${campaign[0]})}">
+			<img class="campaignThumImg" th:src="${campaign[5]}"></a><br>			
+			<a class="campaignThumTitle" th:href="@{getCampaign(campaignId=${campaign[0]})}" th:text="${campaign[1]}"> </a>
+			</li>						
+		</ul>		
+		</div> 
+	</div>
+
 
 	<script>
 	$(document).ready(function(){
-		$("input[name=sort]").click(function(){
+		$("input[name=sort]").click(function(e){
 			var sort = $(this).val();
 			$.ajax({
-				url : "/getListSortByRadio",
+				url : "/getCampaignListWithImageByRadio",
 				data : {sort : sort },
+				dataType : "html",
 				success : function(sortList){
-					
-					var str="";
-					str +="<table><tr>"
-					for(var i in sortList){					
-				
-					str +="<tr><td><a href='/getCampaign?campaignId="+sortList[i].campaignId+"'>" + sortList[i].title +"</a></td>"
-					str +="<td>"+ sortList[i].startDate.substring(0,10) +"<td>"
-					str +="<td>"+ sortList[i].endDate.substring(0,10) +"<td>"
-					str +="<td>"+ sortList[i].participants +"<td>"
-					str +="<td>"+ sortList[i].campaignId +"<td>"
-					str +="<td>"+ sortList[i].recruitment +"<td></tr>"
-					}
-				
-					str +="</table>";
-					
-					$("#sortedData table").remove;
-					$("#sortedData").html(str);
-					
-					  if(sort == "recent"){
+					$("#listDiv").html(sortList)
+						 					
+					  	if(sort == "recent"){
 							var alertText = "최신순"
 			            } else if (sort == "end_date"){
 			                var alertText = "마감 임박순"
 			            } else if (sort == "popular"){
 			                var alertText = "인기순"
 			            }
-			            
+					
 			            alertify.set('notifier','position', 'bottom-right');
 			            alertify.set('notifier','delay', 2);
 			            alertify.success(alertText + ' 정렬이 완료되었습니다.');				
@@ -136,6 +93,5 @@
 	});
 	</script>
 	
-
 </body>
 </html>

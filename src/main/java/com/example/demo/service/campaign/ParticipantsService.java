@@ -19,6 +19,8 @@ public interface ParticipantsService {
 	// 선정취소
 	void cancleParticipants(int participantsId);
 
-	String applyCheck(int participantsId);	
+	String applyCheck(int participantsId);
+	
+	String getAdvertisementProfileImg(int advertisement_id);
 	
 }

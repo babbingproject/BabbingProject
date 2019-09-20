@@ -68,6 +68,7 @@
       <!-- 프로필 영역 Start -->
       <div class="campaignViewRight">
           <div class="campaignViewInnerSquare">
+         <img th:src="${profileImg}">
          <p th:text="${campaign.advertisementvo.advertisementname}" />
          <br>신청 기간<br>
          <p th:text="|${#dates.format(campaign.startDate, 'yyyy-MM-dd')} ~ ${#dates.format(campaign.endDate, 'yyyy-MM-dd')}|"></p>
