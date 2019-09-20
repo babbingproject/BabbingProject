@@ -112,10 +112,10 @@ a {text-decoration: none;color: inherit;cursor: pointer;}
 .cont-area .list-style04-restaurant{display: block; padding:30px ;}
 .cont-area .list-style04-restaurant li{float: left;    margin-right: 12px;    width: 165px;}
 .cont-area .list-style04-restaurant li a{display: block; text-align: center;}
-.cont-area .list-style04-restaurant li img{width: 100%;  border-radius: 100px;border: 2px #bdbcbc solid; }
-.cont-area .list-style04-restaurant li .name{font-size: 16px; font-weight: bold;margin-top:10px; align: center;}
+.cont-area .list-style04-restaurant li img{width: 100%;  border-radius: 100px;border: 2px #bdbcbc solid;margin-bottom: 10%; }
+.cont-area .list-style04-restaurant li .name{font-size: 16px; font-weight: bold;margin-top:10px; align: center;margin-left: 28%;}
 .cont-area .list-style04-restaurant li .btn01{color:#fff; background:#ff4d80; border: 2px #ff4d80 solid;padding: 10px 0px; text-align: center; width: 130px;display: inline-block;  border-radius: 5px;}
-.cont-area .list-style04-restaurant li .btn02{color:#ff4d80;  border: 2px #ff4d80 solid; padding: 10px 0px; text-align: center; width: 130px; display: inline-block;  border-radius: 5px;    cursor: pointer;}
+.cont-area .list-style04-restaurant li .btn02{color:#ff4d80;  border: 2px #ff4d80 solid; padding: 10px 0px; text-align: center; width: 130px; display: inline-block;  border-radius: 5px;    cursor: pointer;margin-left: 8%;margin-top: 18%;}
 .cont-area .list-style04-restaurant li span{text-align: center;margin: 5px 0 10px;;}
 .cont-area .list-style04-restaurant li:last-child{margin-right:0px}
 .cont-area .arr-area{position: relative;}
@@ -123,6 +123,10 @@ a {text-decoration: none;color: inherit;cursor: pointer;}
 .cont-area .arr-area .arr-btn-left.on{background:url('../../images/Bobbing-icon.png') no-repeat left  -190px;    text-indent: -9999px;    position: absolute;    width: 35px;    height: 45px;    top: 35px;    left: -2px;}
 .cont-area .arr-area .arr-btn-right{background:url('../../images/Bobbing-icon.png') no-repeat right -120px;    text-indent: -9999px;    position: absolute;    width: 35px;    height: 45px;    top: 35px;    rigtht: -2px;}
 .cont-area .arr-area .arr-btn-right.on{background:url('../../images/Bobbing-icon.png') no-repeat right -190px;    text-indent: -9999px;    position: absolute;    width: 35px;    height: 45px;    top: 35px;    rigtht: -2px;}
+
+#r1{position: absolute; left:34%;}
+#put1{position: absolute;margin-left: 68%;}
+
 
 .main #slides { display: none; z-index:1  }
 .main #slides .slidesjs-navigation {margin-top:-15px;position: absolute; top: 50%; z-index: 10;}
