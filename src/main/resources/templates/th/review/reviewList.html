@@ -43,7 +43,7 @@
 <!--       </tr> -->
 <!--    </table> -->
    <br>
-   <th:block th:if="${session[username] != null}" >
+   <th:block th:if="${session['uservo'] != null}" >
    <a th:href="insertReview" id="reviewWrite">등록</a>
    </th:block>
    </div>
@@ -78,8 +78,8 @@
 					</span>
 					<p class="photo">
 						<a th:href="@{/doReviewView(reviewId=${reviewList.reviewRegistrationvo.reviewId})}">
-							<span th:each="check:${reviewList.reviewRegistrationvo.reviewImgList}">
-							<img th:src="${check.img}"></span>
+<!-- 							<span th:each="check:${reviewList.reviewRegistrationvo.reviewImgList}"> -->
+							<img th:src="${reviewList.reviewRegistrationvo.reviewImgList[0].img}"></span>
 						</a>
 					</p>
 					<span th:if="${#lists.isEmpty(reviewList.scrapvo)}"> 

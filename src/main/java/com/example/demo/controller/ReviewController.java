@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.example.demo.domain.mypage.Uservo;
 import com.example.demo.domain.review.AjaxReviewImagevo;
 import com.example.demo.domain.review.ReviewImagevo;
 import com.example.demo.domain.review.ReviewRegistrationvo;
@@ -143,6 +144,29 @@ public class ReviewController {
 		model.addAttribute("reviewImgList", reviewImageService.getReviewImgList(reviewId));
 		
 	return "th/review/reviewModify";		
+	}
+	
+	@PostMapping("/ReviewViewUpdate")
+	public String ReviewViewUpdate(int userId, ReviewRegistrationvo reviewRegistrationvo) {
+		System.out.println(userId);
+		System.out.println(reviewRegistrationvo.toString());
+//		reviewRegistrationvo.setUservo(userRepo.findById(userId).get());
+		Uservo uservo = new Uservo();
+		uservo.setUserId(userId);
+		reviewRegistrationvo.setUservo(uservo);
+		reviewService.modifyReviewView(reviewRegistrationvo);
+		
+		List<AjaxReviewImagevo> ajaxReviewImgList = reviewImageService.getAjaxReviewImgList(reviewRegistrationvo.getReviewId());
+		for (int i = 0; i <= (ajaxReviewImgList.size()-1); i++) {
+			ReviewImagevo reviewImagevo = new ReviewImagevo();
+			reviewImagevo.setImg(ajaxReviewImgList.get(i).getAjaxReviewImg());
+			reviewImagevo.setReviewRegistrationvo(reviewRegistrationvo);
+			reviewImageService.updateReviewImg(reviewImagevo);
+		}
+		int deleteUploadedAjaxReviewId = ajaxReviewImgList.get(0).getReviewId();
+		reviewImageService.deleteAjaxImgUploadFinished(deleteUploadedAjaxReviewId);
+		return "redirect:doReviewList";
+		
 	}
 
 }

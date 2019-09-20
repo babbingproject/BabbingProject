@@ -67,7 +67,7 @@ small {
 <body th:align="center">
    <!-- <span th:text="${session['uservo'].nickname}"></span> -->
    <h1>리뷰 글 상세-수정</h1>
-<!--    <form th:action="@{updateReviewView}" method="post"> -->
+   <form th:action="@{ReviewViewUpdate}" method="post">
       <div>
       <input id="reviewId" name="reviewId" type="hidden" th:value="${reviewView.reviewId}">
       <input id="userId" name="userId" type="hidden" th:value="${reviewView.uservo.userId}">
@@ -84,11 +84,11 @@ small {
          <tr>
             <td th:text="이미지"></td>
             <td>
-               파일을 업로드할 영역
+               	파일을 업로드할 영역
                <div class="fileDrop">여기에 그림파일을 드래그해주세요</div> 
-               업로드된 파일 목록
+              	 업로드된 파일 목록
                <div style="overflow: scroll" class="uploadedList" ></div>
-               <div style="overflow: scroll">
+               <div style="overflow: scroll" class="beforeUploadedList">
                   <th:block th:each="reviewImg:${reviewImgList}">
                         <img th:src="${reviewImg.img}" width="50%" height="50%">
                         <span style='cursor: pointer;' data-src="+data+">[삭제]</span>
@@ -110,18 +110,22 @@ small {
             <!-- <td th:text="${reviewView.writeDate}"></td> -->
             <td th:text="${#dates.format(reviewView.writeDate,'yyyy-MM-dd')}"></td>
          </tr>
+         
          <tr>
+			<th colspan="2" align="center"></th>
+			<td><input type="submit" value="수정 완료"></td>
+		</tr>
             <!-- <td colspan="2" align="right"><a th:href="@{/doReviewViewUpdate(reviewId=(${reviewView.reviewId}))}">리뷰 수정</a><br></td>
             <td colspan="2" align="right"><a th:href="@{/doReviewList}">리뷰 목록</a><br></td>
             <td colspan="2" align="right"><a th:href="@{/deleteReviewView(reviewId=(${reviewView.reviewId}))}">리뷰 삭제</a><br></td>
  -->
-         </tr>
+         
       </table>
-      <span><a th:href="@{/doReviewViewUpdate(reviewId=(${reviewView.reviewId}))}">수정 완료</a><br></span>
+      <!-- <span><a th:href="@{/ReviewViewUpdate(reviewId=(${reviewView.reviewId}))}">수정 완료</a><br></span> -->
       <span><a th:href="@{/doReviewList}">리뷰 목록</a><br></span>
       <span><a th:href="@{/deleteReviewView(reviewId=(${reviewView.reviewId}))}">리뷰 삭제</a><br></span>
       </div>
-<!--    </form> -->
+    </form> 
    <br>
    <div>
    <th:block th:if="${session['uservo']} != null">
@@ -346,13 +350,15 @@ small {
             });
 
       $(".uploadedList").on("click", "span", function(event) {
-         alert("이미지 삭제")
-         var that = $(this); // 여시거 this는 클릭한 span태그
-         /* $("#ajaxImgId").find('img').each(function(){
-            var ajaxImgId = $(this).attr('src');
-            alert(ajaxImgId);
-            }); */
-         $.ajax({
+		alert("이미지 삭제")
+		var that = $(this); // 여시거 this는 클릭한 span태그
+		/* $("#ajaxImgId").find('img').each(function(){
+		var ajaxImgId = $(this).attr('src');
+		alert(ajaxImgId);
+		}); */
+		alert(that);
+			
+		$.ajax({
             url : "/deleteFile",
             type : "post",
             //data:"fileName="+$(this).attr("data-src") = {fileName:$(this).attr("data-src")}
@@ -372,6 +378,34 @@ small {
          });
 
       });
+      
+// 		//업로드 했던 원본 이미지 삭제 메소드
+// 		$(".beforeUploadedList").on("click", "span", function(event) {
+// 			alert("업로드 했던 이미지 삭제")
+// 			var that = $(this); // 여기서 this는 클릭한 span태그
+// 			var ajaxImgId = $(this).attr('src');
+// 			alert(ajaxImgId);
+// 			});
+// 			alert(that);
+// // 			$.ajax({
+// // 				url : "deleteFile",
+// // 				type : "post",
+// // 				//data:"fileName="+$(this).attr("data-src") = {fileName:$(this).attr("data-src")}
+// // 				//태그 .attr("속성")
+// // 				data : {
+// // 					fileName : $(this).attr("data-src")
+// // 				}, //json방식
+// // 				dataType : "text",
+// // 				success : function(result) {
+// // 					if (result == "deleted") {
+// // 						//클릭한 span태그가 속한 div제거
+// // 						that.parent("div").remove();
+// // 					}
+// // 				}
+
+// // 			});
+
+// 		});
 
       function getOriginalName(fileName) {
          //이미지 파일이면

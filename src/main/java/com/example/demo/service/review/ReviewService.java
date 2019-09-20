@@ -84,5 +84,7 @@ public interface ReviewService {
 	List<ReviewRegistrationvo> getSearchKeywordSearchPage(String searchKeyword);
 	
 	int checkReviewId(int reviewId);
+	
+	void modifyReviewView(ReviewRegistrationvo reviewRegistrationvo);
 
 }

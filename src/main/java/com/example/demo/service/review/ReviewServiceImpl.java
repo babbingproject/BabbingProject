@@ -251,4 +251,8 @@ public class ReviewServiceImpl implements ReviewService {
 		
 		return reviewRepo.selectCheckReviewId(reviewId);
 	}
+	@Override
+	public void modifyReviewView(ReviewRegistrationvo reviewRegistrationvo) {
+		reviewRepo.save(reviewRegistrationvo);
+	}
 }

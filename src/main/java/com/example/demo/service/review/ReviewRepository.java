@@ -65,7 +65,7 @@ public interface ReviewRepository extends JpaRepository<ReviewRegistrationvo, In
 			+ "ON r.review_id = ri.review_id "
 			+ "INNER JOIN uservo AS user "
 			+ "ON r.user_id = user.user_id "
-			+ "GROUP BY ri.review_id ")
+			+ "GROUP BY r.review_id ORDER BY r.review_id DESC")
 	Iterable<ReviewRegistrationvo> getEverythingWOLimit();
 	
 	@Query(nativeQuery=true, value=""
