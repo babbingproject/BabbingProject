@@ -2,20 +2,24 @@ package com.example.demo.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import javax.persistence.EntityManager;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.demo.domain.mypage.Uservo;
 import com.example.demo.domain.review.AjaxReviewImagevo;
+import com.example.demo.domain.review.Commentvo;
 import com.example.demo.domain.review.ReviewImagevo;
 import com.example.demo.domain.review.ReviewRegistrationvo;
 import com.example.demo.service.rank.RankService;
@@ -96,24 +100,26 @@ public class ReviewController {
 	}
 
 	@PostMapping("/insertReview")
-	public String insertReview(int userId, ReviewRegistrationvo reviewRegistrationvo) {
+	public String insertReview(int userId, ReviewRegistrationvo reviewRegistrationvo, String imgSrc) {
 		reviewRegistrationvo.setUservo(userRepo.findById(userId).get());
+//		System.out.println("리뷰이미지가 여러개 들어왔나?"+imgSrc.toString());
 		reviewService.insertReview(reviewRegistrationvo);
-		
-		System.out.println("리뷰vo에 리뷰 아이디 확인 : "+reviewRegistrationvo.getReviewId());
-		
-		List<AjaxReviewImagevo> ajaxReviewImgList = reviewImageService.getAjaxReviewImgList(reviewRegistrationvo.getReviewId());
-		for (int i = 0; i <= (ajaxReviewImgList.size()-1); i++) {
-			ReviewImagevo reviewImagevo = new ReviewImagevo();
-			reviewImagevo.setImg(ajaxReviewImgList.get(i).getAjaxReviewImg());
-			reviewImagevo.setReviewRegistrationvo(reviewRegistrationvo);
-			reviewImageService.updateReviewImg(reviewImagevo);
+//		reviewImagevo.setReviewRegistrationvo(reviewRegistrationvo);
+		if (imgSrc.isEmpty()) {
+			return "redirect:doReviewList";
+		}else {
+			String[] array = imgSrc.split(",");
+			
+			for (int i = 0; i < array.length; i++) {
+				String replaceSrc = array[i].replace("s_", "").trim();
+				ReviewImagevo reviewImagevo = new ReviewImagevo();
+				reviewImagevo.setImg(replaceSrc);
+				reviewImagevo.setReviewRegistrationvo(reviewRegistrationvo);
+				reviewImageService.updateReviewImg(reviewImagevo);
+				System.out.println("array ["+i+"]"+ replaceSrc);
+			}
 		}
-		
-//		System.out.println("리뷰이미지테이블에 아젝스이미지 테이블의 이미지가 들어갔는가? "+reviewImagevo.toString());
-//		System.out.println("리뷰이미지테이블에 리뷰아이디가 들어갔는가?? "+reviewImagevo.getReviewRegistrationvo().getReviewId().toString());
-		int deleteUploadedAjaxReviewId = ajaxReviewImgList.get(0).getReviewId();
-		reviewImageService.deleteAjaxImgUploadFinished(deleteUploadedAjaxReviewId);
+	
 		return "redirect:doReviewList";
 	}
 
@@ -147,26 +153,56 @@ public class ReviewController {
 	}
 	
 	@PostMapping("/ReviewViewUpdate")
-	public String ReviewViewUpdate(int userId, ReviewRegistrationvo reviewRegistrationvo) {
-		System.out.println(userId);
-		System.out.println(reviewRegistrationvo.toString());
+	public String ReviewViewUpdate(int userId, ReviewRegistrationvo reviewRegistrationvo, Optional<String> imgSrc) {
+		System.out.println("리뷰 업데이트 userId : "+userId);
+		System.out.println("리뷰 업데이트 reviewRegistrationvo : " +reviewRegistrationvo.toString());
 //		reviewRegistrationvo.setUservo(userRepo.findById(userId).get());
 		Uservo uservo = new Uservo();
 		uservo.setUserId(userId);
 		reviewRegistrationvo.setUservo(uservo);
-		reviewService.modifyReviewView(reviewRegistrationvo);
-		
-		List<AjaxReviewImagevo> ajaxReviewImgList = reviewImageService.getAjaxReviewImgList(reviewRegistrationvo.getReviewId());
-		for (int i = 0; i <= (ajaxReviewImgList.size()-1); i++) {
-			ReviewImagevo reviewImagevo = new ReviewImagevo();
-			reviewImagevo.setImg(ajaxReviewImgList.get(i).getAjaxReviewImg());
-			reviewImagevo.setReviewRegistrationvo(reviewRegistrationvo);
-			reviewImageService.updateReviewImg(reviewImagevo);
+		int reviewId = reviewRegistrationvo.getReviewId();
+		System.out.println(reviewId);
+//		reviewService.modifyReviewView(reviewRegistrationvo);
+		reviewImageService.getReviewImgList(reviewId);
+//		System.out.println(imgSrc.isEmpty());
+		Optional<Optional<String>> checkImgSrc = Optional.ofNullable(imgSrc);
+		System.out.println(checkImgSrc.toString());
+		if (checkImgSrc.get().isPresent()) {
+			System.out.println("imgSrc값이 존재할때");
+			
+			String[] array = imgSrc.get().toString().split(",");
+			for (int i = 0; i < array.length; i++) {
+				String replaceSrc = array[i].replace("s_", "").trim();
+				ReviewImagevo reviewImagevo = new ReviewImagevo();
+				reviewImagevo.setImg(replaceSrc);
+				reviewImagevo.setReviewRegistrationvo(reviewRegistrationvo);
+				reviewImageService.updateReviewImg(reviewImagevo);
+				System.out.println("array ["+i+"]"+ replaceSrc);
+			}
+		}else {
+			System.out.println("imgSrc값이 존재하지 않을 때");
+			return "redirect:doReviewList";
 		}
-		int deleteUploadedAjaxReviewId = ajaxReviewImgList.get(0).getReviewId();
-		reviewImageService.deleteAjaxImgUploadFinished(deleteUploadedAjaxReviewId);
+		
 		return "redirect:doReviewList";
 		
+	}
+	
+	@RequestMapping("imageList")
+	@ResponseBody
+	public List<ReviewImagevo> imageList(int reviewId) throws Exception {
+		System.err.println("showImageList ajax : "+reviewId);
+		
+//		ReviewRegistrationvo reviewRegistrationvo = new ReviewRegistrationvo();
+//		reviewRegistrationvo.setReviewId(reviewId);
+//		
+//		List<Commentvo> commentList = commentService.getCommentList(reviewRegistrationvo);
+//		return commentList;
+		
+		List<ReviewImagevo> imagetList =  reviewImageService.getReviewImgList(reviewId);
+		
+		System.out.println(imagetList.toString());
+		return imagetList;
 	}
 
 }

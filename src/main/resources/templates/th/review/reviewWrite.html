@@ -130,6 +130,8 @@ small {
 										+ getImageLink(data) + "'>";
 								str += "<img src='/displayFile?fileName="
 										+ data + "'></a>";
+								str += "<input name='imgSrc' type='hidden' value="
+										+ data + ">";
 								//일반 파일이면 다운로드 링크					
 							} else {
 								str = "<div><a href='/displayFile?FileName="

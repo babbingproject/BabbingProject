@@ -14,7 +14,6 @@ import com.example.demo.domain.mypage.Uservo;
 import com.example.demo.domain.review.Commentvo;
 import com.example.demo.domain.review.QReviewRegistrationvo;
 import com.example.demo.domain.review.ReviewRegistrationvo;
-import com.example.demo.service.review.image.AjaxReviewImageRepository;
 import com.example.demo.service.user.UserRepository;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 
@@ -26,9 +25,6 @@ public class ReviewServiceImpl implements ReviewService {
 
 	@Autowired
 	UserRepository userRepo;
-
-	@Autowired
-	AjaxReviewImageRepository ajaxReviewImageRepo;
 
 	@PersistenceContext
 	EntityManager em;
