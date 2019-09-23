@@ -22,47 +22,54 @@
 	float: left;
 	width: 100%;
 	margin-top: 10%;
-    margin-left: 6%;
+	margin-left: 5.5%;
 }
 
-.campaignListDiv{
-	margin-left: 5%;
-
+.campaignListDiv {
+	margin-left: 4.5%;
 }
 
 .campaignUl {
 	list-style: none;
 	margin: 0;
 	padding: 0;
+	float: left;
 }
 
 .campaignLi {
-	margin: 30 10 5 13;
+	margin: 20 10 20 10;
 	padding: 0 0 0 0;
 	border: 0;
 	float: left;
 }
 
+.campaignProfileImgSpan {
+	display: inline-block;
+}
+
 .campaignProfileImg {
-	width: 40px;
-	height: 40px;
-	border-radius: 50px;
+	height: 5%;
+	border-radius: 100%;
 }
 
 .campaignProfileName {
 	font-size: 20px;
 	font-family: NanumGothic;
-	margin-left: 2%;
+	display: inline-block;
+	line-height: 2;
+	width: 40%;
+	text-align: center;
 }
 
 .campaignEndDate {
-	font-size: 20px;
 	font-family: NanumGothic;
 	color: #ff4d80;
 	line-height: 2;
 	font-size: 20;
 	font-weight: bold;
-	margin-left: 30%;
+	text-align: end;
+	display: inline-block;
+	width: 40%;
 }
 
 .campaignThumImg {
@@ -165,7 +172,7 @@
 	border: none;
 }
 
-.campaignViewRecruitment{
+.campaignViewRecruitment {
 	color: #ff4d80;
 	margin-left: 2%;
 	margin-top: 2%;
@@ -173,14 +180,15 @@
 	font-size: medium;
 }
 
-.campaignViewProfileImg{
+.campaignViewProfileImg {
 	width: 35%;
 	border-radius: 100%;
 	margin-left: 33%;
-	margin-top: 5%;"	
+	margin-top: 5%;
+	"
 }
 
-.campaignViewProfileName{
+.campaignViewProfileName {
 	font-size: large;
 	font-weight: bold;
 	text-align: center;
@@ -188,18 +196,18 @@
 	font-family: 'NanumBarunGothic';
 }
 
-.campaignViewProfileSubTitle{
+.campaignViewProfileSubTitle {
 	font-family: 'NanumBarunGothic';
 	font-size: medium;
-	margin-left: 9%;	
+	margin-left: 9%;
 }
 
-.campaignViewProfileSubContents{
+.campaignViewProfileSubContents {
 	color: #ff4d80;
 	margin-left: 2%;
 	margin-top: 2%;
 	font-family: 'NanumBarunGothic';
-	font-size: medium; 	
+	font-size: medium;
 }
 /* CampaignView Modal CSS */
 .modal {
@@ -236,89 +244,144 @@
 	cursor: pointer;
 }
 
-/* CampaignWrite CSS */
-.campaignWriteDiv {
-	margin-left: 22%;
-	margin-right: 15%;
-	margin-top: 8%;
+/* ParticipantsList Table Css */
+.participantTable {
+	width: 900px;
 }
 
+.participantTableTd {
+	width: 100px;
+}
+
+.participantTableProfile {
+	border-radius: 100%;
+	width: 60%;
+}
+
+.participantTableFont {
+	font-size: 20px;
+	font-family: NanumGothic;
+}
+
+.selectParticipantBtn {
+	float: right;
+	width: 100px;
+	height: 45px;
+	border-radius: 30px;
+	border: solid 1px #ff4d80;
+	background-color: #ff4d80;
+	color: white;
+}
+
+.cancelParticipantBtn {
+	float: right;
+	width: 100px;
+	height: 45px;
+	border-radius: 30px;
+	border: solid 1px #ff4d80;
+	background-color: #ffffff;
+	color: #ff4d80;
+}
+/* CampaignWrite CSS */
+.campaignWriteDiv {
+	margin-top: 9%;
+}
+
+.campaignWriteTable{
+	margin-left:auto;
+	margin-right:auto;
+}
 .campaignWriteTitle {
-	width: 1025;
-	height: 60;
+	width: 1000px;
+	height: 60px;
 	border-radius: 30px;
 	border: solid 1px #b5b5b5;
-	margin-bottom: 2%;
+	margin-bottom: 4%;
 	font-size: large;
 	font-family: AppleSDGothicNeo;
+	outline:none;
 }
 
 .campaignWriteFile {
-	width: 250;
-	height: 202px;
+	width: 320px;
+	height: 250px;
 	border-radius: 10px;
 	border: solid 1px #eeeeee;
 	background-color: #eeeeee;
-	margin-bottom: 3%;
 	padding: .5em .75em;
 	color: #fff;
+	margin-bottom : 8%;	
+	outline:none;
 }
 
 .campaignWriteIntroduction {
-	width: 750px;
-	height: 200px;
+	width: 660px;
+	height: 250px;
 	border-radius: 10px;
 	border: solid 1px #a7a7a7;
-	float: left;
-	margin-bottom: 4%;
+	margin-left:1%;
 	font-size: large;
-	margin-left: -101%;
+	outline:none;
+	resize:none;
+	margin-bottom : 3%;
+
 }
 
 .campaignWriteRecruitment {
-	width: 300px;
-	height: 50;
+	width: 320px;
+	height: 50px;
 	border-radius: 30px;
 	border: solid 1px #b5b5b5;
-	margin-bottom: 2%;
+	margin-top:4%;
+	margin-bottom:7%;
+	text-align: center;
+	outline:none;
 }
 
 .campaignWriteStartDate {
-	width: 300px;
-	height: 50;
+	width: 330px;
+	height: 50px;
 	border-radius: 30px;
 	border: solid 1px #b5b5b5;
-	margin-left: -180%;
-	margin-bottom: 4%;
+	margin-top:4%;
+	margin-bottom:7%;
+	margin-left:2%;
+	outline:none;
 }
 
 .campaignWriteEndDate {
-	width: 300px;
-	height: 50;
+	width: 330px;
+	height: 50px;
 	border-radius: 30px;
 	border: solid 1px #b5b5b5;
-	margin-bottom: 4%;
-	margin-left: -182%;
+	margin-top:4%;
+	margin-bottom:7%;
+	margin-left:2%;
+	outline:none;
 }
 
 .campaignWriteOfferHistory {
-	width: 1025;
-	height: 55;
+	width: 1000px;
+	height: 55px;
 	border-radius: 30px;
 	border: solid 1px #b5b5b5;
-	margin-bottom: 2%;
+	margin-top:2%;
+	margin-bottom:3%;
 	font-size: large;
 	font-family: AppleSDGothicNeo;
+	outline:none;
 }
 
 .campaignWriteRemarks {
-	width: 1025;
-	height: 55;
+	width: 1000px;
+	height: 55px;
 	border-radius: 30px;
 	border: solid 1px #b5b5b5;
-	margin-bottom: 2%;
+	margin-top:2%;
+	margin-bottom:3%;
 	font-size: large;
 	font-family: AppleSDGothicNeo;
+	outline:none;
 }
 
 .campaignWriteInsertBtn {
@@ -329,7 +392,8 @@
 	background-color: #ff4d80;
 	color: white;
 	font-size: small;
-	margin-left: 68%;
+	outline:none;
+
 }
 
 .campaignWriteCancelBtn {
@@ -340,28 +404,20 @@
 	background-color: #ffffff;
 	color: #000;
 	font-size: small;
+	outline:none;
 }
 
 /* CampaignModify CSS */
-.campaignModifyTitle {
-	width: 1025;
-	height: 60;
-	border-radius: 30px;
-	border: solid 1px #b5b5b5;
-	margin-bottom: 2%;
-	font-size: large;
-	font-family: AppleSDGothicNeo;
-}
 
 .campaignModifyIntroduction {
-	width: 1025;
-	height: 200px;
+	width: 1000px;
+	height: 250px;
 	border-radius: 10px;
-	border: solid 1px #a7a7a7;
-	float: left;
+	border: solid 1px #a7a7a7;	
 	margin-bottom: 4%;
 	font-size: large;
-	margin-left: 0;
+	outline:none;
+	resize:none;	
 }
 
 .campaignModifyRecruitment {
@@ -418,7 +474,7 @@
 	background-color: #ff4d80;
 	color: white;
 	font-size: small;
-	margin-left: 68%;
+	outline:none;
 }
 
 .campaignModifyCancleBtn {
@@ -427,9 +483,9 @@
 	border-radius: 22.7px;
 	border: solid 1px #ff4d80;
 	background-color: #ffffff;
-	color: #000;
-	margin-left: 5px;
+	color: #000;	
 	font-size: small;
+	outline:none;
 }
 
 #wrap .footer-area .top-btn {

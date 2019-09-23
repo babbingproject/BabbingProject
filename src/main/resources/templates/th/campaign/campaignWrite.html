@@ -19,35 +19,32 @@
 		<div class="campaignWriteDiv">    
 		<form th:action="@{insertCampaign}" method="post" enctype="multipart/form-data" onsubmit="return formValidation();">
 			<input type="hidden" name="advertisementId"	th:value="${session['advertisementvo'].advertisementId}">
-			<table>
+			<table class="campaignWriteTable">
 				<tr>
-					<td colspan="6"><input class="campaignWriteTitle" type="text" id="title" name="title" placeholder="제목을 입력 해주세요"></td>
+					<td colspan="3"><input class="campaignWriteTitle" type="text" id="title" name="title" placeholder="제목을 입력 해주세요"></td>
 				</tr>
 				<tr>
 					<td colspan="1"><input class="campaignWriteFile" id="file" multiple="multiple" type="file" name="file"></td>
 					<td colspan="2"><textarea class="campaignWriteIntroduction" name="introduction"th:text="${session['advertisementvo'].introduce}"></textarea></td>
 				</tr>
 				<tr>
-					<td><input class="campaignWriteRecruitment" id="recruitment" name="recruitment" type="number"></td>
-					<td><input class="campaignWriteStartDate" id="startDate" name="startDate" type="date"></td>
-					<td><input class="campaignWriteEndDate" id="endDate" name="endDate" type="date"></td>
+				<td>모집인원</td>
+				<td>시작일</td>
+				<td>종료일</td>
 				</tr>
 				<tr>
-					<td>제공 내역</td>
+				<td><input class="campaignWriteRecruitment" id="recruitment" name="recruitment" type="number"></td>
+				<td><input class="campaignWriteStartDate" id="startDate" name="startDate" type="date"></td>
+				<td><input class="campaignWriteEndDate" id="endDate" name="endDate" type="date"></td>
 				</tr>
-				<tr>
-					<td><input type="text" class="campaignWriteOfferHistory" id="offerHistory" name="offerHistory"> </td>
-				</tr>
-				<tr>
-					<td>비고</td>
-				</tr>
-				<tr>
-					<td><input type="text" class="campaignWriteRemarks" name="remarks"></td>
-				</tr>
-			</table>
-			
-			<input class="campaignWriteInsertBtn" type="submit" value="등록하기">
-			<input class="campaignWriteCancelBtn" type="button" value="취소하기" onclick="location.href='getCampaignList'">
+				<tr><td colspan="3">제공내역</td></tr>
+				<tr><td colspan="3"><input type="text" class="campaignWriteOfferHistory" id="offerHistory" name="offerHistory"></td></tr>
+				<tr><td colspan="3">비고</td></tr>
+				<tr><td colspan="3"><input type="text" class="campaignWriteRemarks" id="remarks" name="remarks"></td></tr>
+				<tr><td colspan="3" style="text-align: right;"><span><input class="campaignWriteInsertBtn" type="submit" value="등록하기"></span>
+				<span><input class="campaignWriteCancelBtn" type="button" value="취소하기" onclick="location.href='getCampaignList'"></span></td></tr>
+			</table>			
+
 		</form>
 		</div>
 	</div>

@@ -20,33 +20,39 @@
 		<form th:action="@{updateCampaign}" method="post" onsubmit="return formValidation();">
 		<input name="campaignId" type="hidden" th:value="${campaign.campaignId}">
 		<input name="modifiedDate" type="hidden">
-		<table>
+		<table class="campaignWriteTable">
 			<tr>
-				<td colspan="6"><input class="campaignModifyTitle" type="text" id="title" name="title" th:value="${campaign.title}" size="95"></td>
+				<td colspan="3"><input class="campaignWriteTitle" type="text" id="title" name="title" th:value="${campaign.title}"></td>
+			</tr>	
+			<tr>
+				<td colspan="3"><textarea class="campaignModifyIntroduction" name="introduction" th:text="${campaign.introduction}"></textarea></td>
 			</tr>
 			<tr>
-				<td colspan="6"><textarea class="campaignModifyIntroduction" name="introduction" cols="85" rows="5" th:text="${campaign.introduction}"></textarea></td>
+				<td>모집인원</td>
+				<td>시작일</td>
+				<td>종료일</td>
 			</tr>
 			<tr>		
-				<td><input class="campaignModifyRecruitment" id="recruitment" name="recruitment" type="number" th:value="${campaign.recruitment}"></td>
-				<td><input class="campaignModifyStartDate" id="startDate" name="startDate" type="date" th:value="${#dates.format(campaign.startDate,'yyyy-MM-dd')}"></td>
-				<td><input class="campaignModifyEndDate" id="endDate" name="endDate" type="date" th:value="${#dates.format(campaign.endDate,'yyyy-MM-dd')}"></td>
+				<td><input class="campaignWriteRecruitment" id="recruitment" name="recruitment" type="number" th:value="${campaign.recruitment}"></td>
+				<td><input class="campaignWriteStartDate" id="startDate" name="startDate" type="date" th:value="${#dates.format(campaign.startDate,'yyyy-MM-dd')}"></td>
+				<td><input class="campaignWriteEndDate" id="endDate" name="endDate" type="date" th:value="${#dates.format(campaign.endDate,'yyyy-MM-dd')}"></td>
 			</tr>
 			<tr>
-				<td colspan="6">제공 내역</td>
+				<td colspan="3">제공 내역</td>
 			</tr>
 			<tr>
-				<td colspan="6"><input type="text" class="campaignModifyOfferHistory" id="offerHistory" name="offerHistory" th:value="${campaign.offerHistory}"></td>
+				<td colspan="3"><input type="text" class="campaignWriteOfferHistory" id="offerHistory" name="offerHistory" th:value="${campaign.offerHistory}"></td>
 			</tr>
 			<tr>
-				<td colspan="6">비고</td>
+				<td colspan="3">비고</td>
 			</tr>
 			<tr>
-				<td colspan="6"><input type="text" class="campaignModifyRemarks" name="remarks" th:value="${campaign.remarks}"></td>
+				<td colspan="3"><input type="text" class="campaignWriteRemarks" name="remarks" th:value="${campaign.remarks}"></td>
 			</tr>
+			<tr><td colspan="3" style="text-align: right;"><span><input class="campaignModifySubmit" type="submit" value="수정하기"></span>
+		<span><input class="campaignModifyCancleBtn" type="button" value="취소하기" onclick="location.href='getCampaignList'"></span></td></tr>
 		</table>		
-		<input class="campaignModifySubmit" type="submit" value="수정하기">
-		<input class="campaignModifyCancleBtn" type="button" value="취소하기" onclick="location.href='getCampaignList'">
+		
 		</form>
 	</div>
 </div>

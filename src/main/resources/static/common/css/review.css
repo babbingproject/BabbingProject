@@ -136,7 +136,7 @@ a {text-decoration: none;color: inherit;cursor: pointer;}
 }
 
 .reviewImgTextare {
-	border-radius: 10px;
+   border-radius: 10px;
     border: solid 1px #a7a7a7;
     resize: none;
     outline: none;

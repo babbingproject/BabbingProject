@@ -106,13 +106,9 @@ public class ParticipantsController {
          temporaryParticipantsvo.setParticipation(participantsvo.getParticipation());
          temporaryParticipantsvo.setUserId(participantsvo.getUservo().getUserId());
          temporaryParticipantsvo.setNickname(participantsvo.getUservo().getNickname());
+         temporaryParticipantsvo.setProfileImg(participantsvo.getUservo().getProfileImg());
          TemporaryParticipantsList.add(temporaryParticipantsvo);
       }
       return TemporaryParticipantsList;
-   }
-   
-
-   
-   
-   
+   }   
 }
