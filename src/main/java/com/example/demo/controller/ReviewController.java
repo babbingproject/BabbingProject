@@ -201,21 +201,28 @@ public class ReviewController {
 			if (showImgSrc.isEmpty()!=true) {	// show이미지주소가 있다면 
 				System.out.println("show이미지주소가 있는가? "+showImgSrc);
 				String[] arrayShowImgSrc = showImgSrc.split(",");
-				for (int i = 0, j = 0; i < arrayShowImgSrc.length || j < arrayShowImgReview.length; i++) {
+				for (int i = 0, j = 0; i < arrayShowImgSrc.length || j < arrayShowImgReview.length; i++, j++) {
 					ReviewImagevo reviewImagevo = new ReviewImagevo();
 					System.out.println("for문체크");
+					String splitShowImgSrc = arrayShowImgSrc[i];
+					System.out.println("for문안에 스플릿 이미지주소"+splitShowImgSrc.toString());
+					reviewImagevo = reviewImageService.getReviewImagevoByImgName(splitShowImgSrc);
+					System.out.println("스플릿이미지vo로 해당 이미지주소가 찾아졌나? "+reviewImagevo.getImg().toString());
 					try {
-						String splitShowImgSrc = arrayShowImgSrc[i];
-						System.out.println("for문안에 스플릿 이미지주소"+splitShowImgSrc.toString());
-						reviewImagevo = reviewImageService.getReviewImagevoByImgName(splitShowImgSrc);
-						System.out.println("스플릿이미지vo로 해당 이미지주소가 찾아졌나? "+reviewImagevo.getImg().toString());
-						reviewImagevo.setImgReview(arrayShowImgReview[j]);
-						System.out.println("showImg주소체크 : "+reviewImagevo.toString());
-						reviewImageService.updateShowImgReview(reviewImagevo);
-					
-						} catch (Exception e) {
-							reviewImagevo.setImgReview(null);
+						if (arrayShowImgReview[j].trim().isEmpty()!=true) {
+							String splitShowImgReview = arrayShowImgReview[j].trim();
+							reviewImagevo.setImgReview(splitShowImgReview);
+							reviewImageService.updateShowImgReview(reviewImagevo);
 						}
+					} catch (Exception e) {
+							reviewImagevo.setImgReview(null);
+					}
+//					reviewImagevo.setImgReview(arrayShowImgReview[j]);
+//					System.out.println(reviewImagevo.getImgReview().toString());
+//					String splitShowImgReview = arrayShowImgReview[j];
+//					System.out.println("이미지에 대한 리뷰내용 "+splitShowImgReview);
+					System.out.println("showImg주소체크 : "+reviewImagevo.toString());
+					
 					}
 			} else {	//show이미지 주소가 없다면(이미지가 없다면) 
 				System.out.println("imgSrc값이 존재하지 않을 때");
