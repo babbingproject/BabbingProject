@@ -94,20 +94,19 @@ small {
                   var formData = new FormData();
                   //폼 객체에 파일 추가, append("변수명", 값)
                   formData.append("file", file);
-//                   alert("안유진");
                
 
-               $.ajax({
-                  type : "post",
-                  url : "/uploadAjax", // 매핑주소
-                  data : formData,
-                  //prosessData: true=>get방식, false=> post방식
-                  dataType : "text",
-                  // contentType : true => application/x-www-form-urlencoded,
-                  //      false => multipart/form-data
-                  processData : false,
-                  contentType : false,
-                  success : function(data) {
+			$.ajax({
+                type : "post",
+                url : "/uploadAjax", // 매핑주소
+                data : formData,
+                //prosessData: true=>get방식, false=> post방식
+                dataType : "text",
+                // contentType : true => application/x-www-form-urlencoded,
+                //      false => multipart/form-data
+                processData : false,
+				contentType : false,
+                success : function(data) {
                      var srt = "";
                      //이미지 파일이면 썸네일 이미지 출력
                      if (checkImageType(data)) {
@@ -116,20 +115,22 @@ small {
                         str += "<img src='/displayFile?fileName="
                               + data + "'></a>";
                         str += "<input name='imgSrc' type='hidden' value="
-                              + data + ">";
-                        //일반 파일이면 다운로드 링크               
-                     } else {
-                        str = "<div><a href='/displayFile?FileName="
+                    		+ data + ">";
+                    //일반 파일이면 다운로드 링크               
+                    } else {
+                    str = "<div><a href='/displayFile?FileName="
                               + data + "'>" + getOriginalName(data)
                               + "</a>";
                         
 
-                     }
-                     //삭제버튼
-                     str += "<span style='cursor: pointer;' data-src="+data+">[삭제]</span>";
-                     str += "<br>";
-                     str += "<textarea class='reviewImgTextare' rows='3' cols='10' name='imgReview'></textarea>";
-                     str += "</div>"
+                    }
+                    //삭제버튼
+                    str += "&nbsp;&nbsp;"
+                    str += "<textarea class='reviewImgTextare' rows='6' cols='10' name='imgReview'></textarea>";
+                    str += "<span style='cursor: pointer;' data-src="+data+">[삭제]</span>";
+                    str += "<br>";
+					str += "</div>"
+					str += "<br>";
                         
                      $(".uploadedList").append(str);
                   }

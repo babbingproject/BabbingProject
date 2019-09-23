@@ -201,7 +201,7 @@ small {
 							+ data[i].img + ">";
                     	str += "<span style='cursor: pointer;' data-src="+data[i].img+">[삭제]</span>";
 	                	str += "<br>";
-						str += "<textarea rows='3' cols='40' name='imgReview' text="+data[i].imgReview+">"+data[i].imgReview+"</textarea>";
+						str += "<textarea rows='3' cols='40' name='showImgReview' text="+data[i].imgReview+">"+data[i].imgReview+"</textarea>";
 						str += "</textarea>";
 						str += "<br><br>";
 						str += "</div>"             	
@@ -427,6 +427,8 @@ small {
 
                     }
                     //삭제버튼
+                    str += "&nbsp;&nbsp;"
+                    str += "<textarea class='reviewImgTextare' rows='6' cols='10' name='imgReview'></textarea>";
 					str += "<span style='cursor: pointer;' data-src="+data+">[삭제]</span></div>";
 					$(".uploadedList").append(str);
 //                      <span style='cursor: pointer;' data-src="+data+">[삭제]</span>

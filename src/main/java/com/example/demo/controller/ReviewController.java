@@ -100,16 +100,16 @@ public class ReviewController {
 	}
 
 	@PostMapping("/insertReview")
-	public String insertReview(int userId, ReviewRegistrationvo reviewRegistrationvo, String imgSrc, Optional<String> imgReview) {
+	public String insertReview(int userId, ReviewRegistrationvo reviewRegistrationvo, Optional<String> imgSrc, Optional<String> imgReview) {
 		reviewRegistrationvo.setUservo(userRepo.findById(userId).get());
 		reviewService.insertReview(reviewRegistrationvo);
 		System.out.println("리뷰 이미지에 대한 내용 : " + imgReview);
 		System.out.println("리뷰 이미지 주소 : " + imgSrc);
 
-		if (imgSrc.isEmpty()) { // 이미지 주소값이 비어 있다면
-			return "redirect:doReviewList";	// 리뷰작성을 하지 않고 리스트로 보냄
+		if (imgSrc.get().isEmpty()) { // 이미지 주소값이 비어 있다면
+			return "redirect:doReviewList";	// 리뷰작성을 리스트로 보냄
 		} else {	// 이미지 주소값이 있다면
-			String[] arrayImgSrc = imgSrc.split(",");	// 이미지값을 ,를 기준으로 나눠서 배열에 넣음
+			String[] arrayImgSrc = imgSrc.get().split(",");	// 이미지값을 ,를 기준으로 나눠서 배열에 넣음
 			if (imgReview.get().isEmpty()) {	// 만약 해당 이미지에 대한 리뷰값이 비어 있다면  
 				for (int i = 0; i < arrayImgSrc.length; i++) {	// 나눠진 이미지 값의 배열을 리뷰 이미지값에 넣음
 					ReviewImagevo reviewImagevo = new ReviewImagevo();
@@ -142,6 +142,104 @@ public class ReviewController {
 		return "redirect:doReviewList";
 		}
 	}
+	
+	@PostMapping("/ReviewViewUpdate")
+	public String ReviewViewUpdate(int userId, ReviewRegistrationvo reviewRegistrationvo, String showImgSrc, Optional<String> imgSrc, Optional<String> imgReview, Optional<String> showImgReview) {
+		System.out.println("리뷰 업데이트 userId : " + userId);
+		System.out.println("리뷰 업데이트 reviewRegistrationvo : " + reviewRegistrationvo.toString());
+		System.out.println("리뷰 업데이트 imgReview : "+imgReview.toString());
+		System.out.println("리뷰 업데이트 showImgReview : "+showImgReview.toString());
+		System.out.println("리뷰 업데이트 showImgSrc : "+showImgSrc.toString());
+		Uservo uservo = new Uservo();
+		uservo.setUserId(userId);
+		reviewRegistrationvo.setUservo(uservo);
+		int reviewId = reviewRegistrationvo.getReviewId();
+		System.out.println("리뷰 수정시 리뷰 아이디가 있는가? "+reviewId);
+		reviewImageService.getReviewImgList(reviewId);
+		Optional<Optional<String>> checkImgSrc = Optional.ofNullable(imgSrc);
+		Optional<Optional<String>> checkShowImgReview = Optional.ofNullable(showImgReview);
+		System.out.println("리뷰 이미지 업데이트 이미지 주소가 있는가? "+checkImgSrc.toString());
+		if (checkImgSrc.get().isPresent()) {
+			System.out.println("imgSrc값이 있음");
+
+			String[] arrayImgSrc = imgSrc.get().toString().split(",");
+			if (imgReview.get().isEmpty()) {	//해당 이미지에 대한 리뷰값이 비어있다면
+				
+				for (int i = 0; i < arrayImgSrc.length; i++) {
+					ReviewImagevo reviewImagevo = new ReviewImagevo();
+					String replaceSrc = arrayImgSrc[i].replace("s_", "").trim();
+					reviewImagevo.setImg(replaceSrc);
+					reviewImagevo.setReviewRegistrationvo(reviewRegistrationvo);
+					reviewImageService.updateReviewImg(reviewImagevo);
+					System.out.println("array [" + i + "]" + replaceSrc);
+				}	// 이미지만 업데이트
+			} else {	// 만약 해당 이미지에 대한 리뷰값이 들어있다면
+				String[] arrayImgReview = imgReview.get().split(",");	// 이미지에 대한 리뷰값을 ,를 기준으로 나눠서 배열에 넣음
+				for (int i = 0, j = 0; i < arrayImgSrc.length || j < arrayImgReview.length; i++, j++) {	// 이미지 주소 배열의 수만큼
+					ReviewImagevo reviewImagevo = new ReviewImagevo();
+					String replaceSrc = arrayImgSrc[i].replace("s_", "").trim();	// 이미지 주소에 있는 섬네일을 나타내는 s_를 제거
+					reviewImagevo.setImg(replaceSrc);
+					try {
+						if (arrayImgReview[j].trim().isEmpty()!=true) {	// 이미지에 대한 리뷰가 들어있다면
+							String splitImgReview = arrayImgReview[j].trim();	// 이미지에 대한 리뷰를 ,를 기준으로 잘라서 배열에 넣는다
+							reviewImagevo.setImgReview(splitImgReview);	// 잘라낸 이미지리뷰를 리뷰이미지 객체에 넣는다
+							System.out.println("array [" + j + "]" + splitImgReview);
+						}
+					} catch (Exception e) {
+						reviewImagevo.setImgReview(null);	// 만약 이미지에 대한 리뷰가 없을때는 이미지배열과 이미지리뷰의 배열이 달라서 예외가 발생하는데 이미지
+					}										// 입력 되지 않은 이미지에 대한것은 널로 처리 된다
+					reviewImagevo.setReviewRegistrationvo(reviewRegistrationvo);
+					reviewImageService.updateReviewImg(reviewImagevo);	// 리뷰 이미지 주소와 이미지에 대한 리뷰를 저장
+					System.out.println("array [" + i + "]" + replaceSrc);
+				}
+			}
+			
+		}
+		if (checkShowImgReview.get().isPresent()) {	// show이미지에 대한 리뷰가 있다면
+			System.out.println("show리뷰 이미지가 있는가? "+checkShowImgReview);
+			String[] arrayShowImgReview = showImgReview.get().split(",");
+			if (showImgSrc.isEmpty()!=true) {	// show이미지주소가 있다면 
+				System.out.println("show이미지주소가 있는가? "+showImgSrc);
+				String[] arrayShowImgSrc = showImgSrc.split(",");
+				for (int i = 0, j = 0; i < arrayShowImgSrc.length || j < arrayShowImgReview.length; i++) {
+					ReviewImagevo reviewImagevo = new ReviewImagevo();
+					System.out.println("for문체크");
+					try {
+						String splitShowImgSrc = arrayShowImgSrc[i];
+						System.out.println("for문안에 스플릿 이미지주소"+splitShowImgSrc.toString());
+						reviewImagevo = reviewImageService.getReviewImagevoByImgName(splitShowImgSrc);
+						System.out.println("스플릿이미지vo로 해당 이미지주소가 찾아졌나? "+reviewImagevo.getImg().toString());
+						reviewImagevo.setImgReview(arrayShowImgReview[j]);
+						System.out.println("showImg주소체크 : "+reviewImagevo.toString());
+						reviewImageService.updateShowImgReview(reviewImagevo);
+					
+						} catch (Exception e) {
+							reviewImagevo.setImgReview(null);
+						}
+					}
+			} else {	//show이미지 주소가 없다면(이미지가 없다면) 
+				System.out.println("imgSrc값이 존재하지 않을 때");
+				reviewRegistrationvo.setUservo(userRepo.findById(userId).get());
+				reviewService.insertReview(reviewRegistrationvo);
+				return "redirect:doReviewList";
+			}
+		} else {	// show이미지에 대한 리뷰가 없다면
+			if (showImgReview.get().isEmpty()) {	// 만약 해당 이미지에 대한 리뷰값이 비어 있다면  
+				String[] arrayShowImgSrc = showImgSrc.split(",");
+//				String[] arrayShowImgReview = showImgReview.get().split(",");
+				for (int i = 0; i < arrayShowImgSrc.length; i++) {	// 나눠진 이미지 값의 배열을 리뷰 이미지값에 넣음
+					ReviewImagevo reviewImagevo = new ReviewImagevo();
+					String replaceSrc = arrayShowImgSrc[i].replace("s_", "").trim();
+					reviewImagevo.setImg(replaceSrc);
+					reviewImagevo.setReviewRegistrationvo(reviewRegistrationvo);
+					reviewImageService.updateReviewImg(reviewImagevo);
+					System.out.println("array [" + i + "]" + replaceSrc);
+				}
+			}
+		}
+		return "redirect:doReviewList";
+	}
+	
 	@RequestMapping(value = "/doReviewView", method = RequestMethod.GET)
 	public String getReviewVIew(Model model, int reviewId) {
 		System.err.println(reviewId);
@@ -171,39 +269,7 @@ public class ReviewController {
 		return "th/review/reviewModify";
 	}
 
-	@PostMapping("/ReviewViewUpdate")
-	public String ReviewViewUpdate(int userId, ReviewRegistrationvo reviewRegistrationvo, Optional<String> imgSrc, Optional<String> imgReview) {
-		System.out.println("리뷰 업데이트 userId : " + userId);
-		System.out.println("리뷰 업데이트 reviewRegistrationvo : " + reviewRegistrationvo.toString());
-		System.out.println("리뷰 업데이트 imgReview : "+imgReview.toString());
-		Uservo uservo = new Uservo();
-		uservo.setUserId(userId);
-		reviewRegistrationvo.setUservo(uservo);
-		int reviewId = reviewRegistrationvo.getReviewId();
-		System.out.println("리뷰 수정시 리뷰 아이디가 있는가? "+reviewId);
-		reviewImageService.getReviewImgList(reviewId);
-		Optional<Optional<String>> checkImgSrc = Optional.ofNullable(imgSrc);
-		System.out.println("리뷰 이미지 업데이트 이미지 주소가 있는가? "+checkImgSrc.toString());
-		if (checkImgSrc.get().isPresent()) {
-			System.out.println("imgSrc값이 존재할때");
-
-			String[] array = imgSrc.get().toString().split(",");
-			for (int i = 0; i < array.length; i++) {
-				String replaceSrc = array[i].replace("s_", "").trim();
-				ReviewImagevo reviewImagevo = new ReviewImagevo();
-				reviewImagevo.setImg(replaceSrc);
-				reviewImagevo.setReviewRegistrationvo(reviewRegistrationvo);
-				reviewImageService.updateReviewImg(reviewImagevo);
-				System.out.println("array [" + i + "]" + replaceSrc);
-			}
-		} else {
-			System.out.println("imgSrc값이 존재하지 않을 때");
-			return "redirect:doReviewList";
-		}
-
-		return "redirect:doReviewList";
-
-	}
+	
 
 	@RequestMapping("imageList")
 	@ResponseBody
