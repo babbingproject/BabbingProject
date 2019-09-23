@@ -180,37 +180,6 @@ small {
    $(document).ready(function(){
       showCommentList();
       showImageList();
-//       function getOriginalName(img) {
-//   		//이미지 파일이면
-//   		if (checkImageType(img)) {
-//   		return; //함수 종료         
-//   		}
-//   		//uuid를 제외한 원래 파일 이름을 리턴
-//   		var idx = fileName.insexOf("_") + 1;
-//   		return fileName.substr(idx);
-//   	}
-
-//   	function getImageLink(img) {
-//   	//이미지 파일이 아니면
-//       if (!checkImageType(img)) {
-//       	return; //함수 종료
-//   		}
-//   		//이미지 파일이면 (썸네일이 아닌 원본 이미지를 가져오기 위해)
-//   		//썸네일 이미지 파일명 - 파일경로+파일명
-//   		var front = img.substr(0, 12); //년 원 일 경로 추출
-//   		var end = img.substr(14); // 년 월 일 뎡로와 s_를 제거한 원본 파일명을 추출
-//           console.log(front); // 2019/09/01
-//           console.log(end);
-//           //원본 파일명
-//           return front + end; //디렉토리를 포함한 원본 파일명을 리턴
-
-//         }
-
-//   	function checkImageType(img) {
-//           // i: ignore case(대소문자 무관)
-//           var pattern = /jpg|gif|png|jpeg/i; //정규식 표현
-//           return img.match(pattern); //규칙이 맞으면  true      
-//   		}
   	
   	function showImageList(){
 		var reviewId = $('#reviewId').val();
@@ -230,10 +199,13 @@ small {
                     	str += "<img src='/displayFile?fileName=" + data[i].img + "' width='50%' height='50%'></a>";
                     	str += "<input name='showImgSrc' type='hidden' value="
 							+ data[i].img + ">";
-                    	str += "<span style='cursor: pointer;' data-src="+data[i].img+">[삭제]</span>"
-                    	str += "</div>";	
+                    	str += "<span style='cursor: pointer;' data-src="+data[i].img+">[삭제]</span>";
+	                	str += "<br>";
+						str += "<textarea rows='3' cols='40' name='imgReview' text="+data[i].imgReview+">"+data[i].imgReview+"</textarea>";
+						str += "</textarea>";
+						str += "<br><br>";
+						str += "</div>"             	
                 	 }
-                	
                     //일반 파일이면 다운로드 링크               
 // 				} else {
 //                 	for(var i in data){
@@ -242,31 +214,12 @@ small {
 //                           + "</a>";
 //                 	}
 //                  }
-                 //삭제버튼
-//                  str += "<span style='cursor: pointer;' data-src="+data.img+">[삭제]</span></div>";
-//                  $(".uploadedList").append(str);
                  $("#imageListArea div").remove();
                  $("#imageListArea").html(str);
               	},
               	error : function(error){
 	                console.log("에러 : " + error);
               	}	
-// 	       	var a = "<table align='center' border='1' cellpadding='0' cellspacing='0'>"
-// 	            a += "<tr><td>번호</td><td>내용</td><td>닉네임</td><td>댓글 수정</td><td>댓글 삭제</td></tr>";
-// 	            for(var i in result){					
-// 	               a += "<tr>"
-// 	               a += "<td>"+commentList[i].commentId+"</td>";
-// 	               a += "<td>"+commentList[i].contents+"</td>";
-// 	               a += "<td>"+commentList[i].uservo.nickname+"</td>";
-// 	               a += "<td><input type='button' class='updateComment' value='댓글 수정'>";
-// 	               a += "<input type='hidden' value='"+commentList[i].contents+"'><input type='hidden' value='"+commentList[i].commentId+"'></td>";
-// 	               a += "<td><input type='button' class='deleteComment' value='댓글 삭제'>";
-// 	               a += "<input type='hidden' value='"+commentList[i].commentId+"'></td>";
-// 	               a += "</tr>";
-// 	            }
-// 	            a += "</table>";
-// 	            $("#commentArea table").remove();
-// 	            $("#commentArea").html(a);
 	         
 		});
 	}
@@ -545,9 +498,6 @@ small {
         return fileName.match(pattern); //규칙이 맞으면  true      
 		}
 	});
-   </script>
-   <script>
-
    </script>
 </body>
 </html>

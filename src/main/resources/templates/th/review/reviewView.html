@@ -77,8 +77,9 @@
             <td>
                <div>
                   <th:block th:each="reviewImg:${reviewImgList}">
-                        <img th:src="${reviewImg.img}" width="50%" height="50%">
-                     <br><br>
+                        <img th:src="${reviewImg.img}" width="50%" height="50%"><br>
+                        <textarea rows='3' cols='30' name='imgReview' th:text="${reviewImg.imgReview}"></textarea>;
+                     <br><br><br>
                      </th:block>
                </div>
                

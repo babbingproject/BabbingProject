@@ -3,7 +3,10 @@
 <head>
 <title>리뷰 목록</title>
 <meta http-equiv="Content-type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="/common/css/styles.css" th:href="@{/common/css/styles.css}" type="text/css">
+<link rel="stylesheet" href="/common/css/styles.css" th:href="@{/common/css/review.css}" type="text/css">
 
+<!-- 
 <style type="text/css">
 /* iframe {
 	width: 600px;
@@ -28,7 +31,7 @@ small {
 	font-weight: bold;
 	color: gray;
 }
-</style>
+</style> -->
 <link rel="stylesheet"
 	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <!-- <script src="//code.jquery.com/jquery-1.11.3.min.js"></script> -->
@@ -36,52 +39,34 @@ small {
 <!-- <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script> -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
-<body th:align="left">
-	<h1>새 리뷰 등록</h1>
+<body>
+	<div id="wrap" class="main">
+		<div th:replace="/include/header.html :: header"></div>
+			  <div class="reviewWriteForm">   
 	<form action="insertReview" method="post">
-		<table th:align="center" border="1" th:cellpqdding="0"
-			th:cellspacing="0">
-			<!-- <tr>
-				<th bgcolor="orange" th:text="유저아이디" width="80"></th>
-				<td><input name="userId" type="text" size="50" value="1"></td>
-			</tr> -->
-			<tr>
-				<th bgcolor="orange" width="70">제목</th>
-				<td align="left"><input name="title" type="text"></td>
-			</tr>
-			<tr>
-				<th bgcolor="orange">작성자</th>
-				<td align="left"><input name="nickName" size="20" type="text" th:value="${session['uservo'].nickname}"></input>
-					<input type="hidden" name="userId" th:value="${session['uservo'].userId}">
-				</td>
-				
-			</tr>
-			<tr>
-				<td th:text="이미지"></td>
-				<td>
-					파일을 업로드할 영역
-					<div class="fileDrop">여기에 그림파일을 드래그해주세요</div> 
-					업로드된 파일 목록
-					<div style="overflow: scroll" class="uploadedList" ></div>
-				</td>
-			</tr>
-			<tr>
-				<th bgcolor="orange" th:text="단점"></th>
-				<td align="left"><textarea name="disadvantages" cols="50" rows="10"></textarea></td>
-			</tr>
-			<tr>
-				<th bgcolor="orange" th:text="장점"></th>
-				<td align="left"><textarea name="advantages" cols="50" rows="10"></textarea></td>
-			</tr>
-			<tr>
-				<th colspan="2" align="center"></th>
-				<td><input type="submit" value="리뷰 등록"></td>
-			</tr>
-
+		<input type="hidden" name="userId" th:value="${session['uservo'].userId}">
+   		<input type="hidden" name="nickName" th:value="${session['uservo'].nickname}">
+		<table class="reviewWriteTable">
+    	  <tr>   
+            <td style="width:950px;" colspan="3"><input class="reviewWriteTitle" name="title" type="text"></td>
+         </tr>
+         
+         <tr>         
+            <td style="width:350px;" colspan="1"><div class="fileDrop">여기에 그림파일을 드래그해주세요</div></td>               
+            <td style="width:600px;" colspan="2"><div class="uploadedList" ></div></td>
+         </tr>
+         <tr><td colspan="3"><textarea class="reviewWriteTextarea" name="advantages" placeholder="장점을 입력해주세요"></textarea></td><tr>
+         <tr><td colspan="3"><textarea class="reviewWriteTextarea" name="disadvantages" placeholder="단점을 입력해주세요"></textarea></td><tr>
+         <tr>
+         <td></td><td style="text-align:right;">
+         <span><input class="reviewWriteSubmitBtn" type="submit" value="리뷰 등록"></span><span>
+         <input class="reviewWriteCancleBtn" type="button" th:value="취소하기" onclick="location.href='/doReviewList'"></span>      
+         </td>
+         </tr>
 		</table>
-		<span><a th:href="@{/doReviewList}">리뷰 목록</a><br></span>
-		<br>
+		<textarea class="reviewImgTextare" rows="20" cols="5" id="imgReview" ></textarea>
 	</form>
+</div>
 	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
@@ -137,10 +122,15 @@ small {
 								str = "<div><a href='/displayFile?FileName="
 										+ data + "'>" + getOriginalName(data)
 										+ "</a>";
+								
 
 							}
 							//삭제버튼
-							str += "<span style='cursor: pointer;' data-src="+data+">[삭제]</span></div>";
+							str += "<span style='cursor: pointer;' data-src="+data+">[삭제]</span>";
+							str += "<br>";
+							str += "<textarea class='reviewImgTextare' rows='3' cols='10' name='imgReview'></textarea>";
+							str += "</div>"
+								
 							$(".uploadedList").append(str);
 						}
 					});
@@ -205,5 +195,6 @@ small {
 		}
 				});
 	</script>
+   </div>
 </body>
 </html>
