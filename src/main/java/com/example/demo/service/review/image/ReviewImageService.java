@@ -19,4 +19,9 @@ public interface ReviewImageService {
    List<ReviewImagevo> getReviewImgList(int reviewId);
 
    void deleteModifyReviewImg(String reviewViewImgName);
+   
+   ReviewImagevo getReviewImagevoByImgName(String arrayshowImgSrc);
+
+   void updateShowImgReview(ReviewImagevo reviewImagevo);
+
 }
