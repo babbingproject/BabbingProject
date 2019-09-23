@@ -86,7 +86,7 @@ public class CommentController {
 		commentvo.setContents(contents);
 		commentvo.setNickname(nickname);
 		commentService.saveComment(commentvo);
-		System.out.println(commentvo.toString());
+		System.out.println("댓글 추가"+commentvo.toString());
 		
 		return commentvo;
 

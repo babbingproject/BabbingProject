@@ -1,12 +1,15 @@
 package com.example.demo.service.review.image;
 
 import java.util.List;
-import java.util.Optional;
+
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.PersistenceContext;
+import javax.persistence.PersistenceUnit;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.demo.domain.review.AjaxReviewImagevo;
 import com.example.demo.domain.review.ReviewImagevo;
 
 @Service
@@ -16,7 +19,12 @@ public class ReviewImageServiceImpl implements ReviewImageService {
 	ReviewImageRepository reviewImageRepo;
 
 	@Autowired
-	AjaxReviewImageRepository ajaxReviewImageRepo;
+	
+	@PersistenceUnit
+    EntityManagerFactory emf;
+	
+	@PersistenceContext
+	EntityManager em;
 
 	@Override
 	public ReviewImagevo getImgById(ReviewImagevo reviewImagevo) {
@@ -39,23 +47,6 @@ public class ReviewImageServiceImpl implements ReviewImageService {
 
 	}
 
-	@Override
-	public List<AjaxReviewImagevo> getAjaxReviewImgList(int reviewId) {
-
-		return ajaxReviewImageRepo.selectReviewImgList(reviewId);
-
-	}
-
-	@Override
-	public void deleteajaxReviewImg(String ajaxReviewImage) {
-		ajaxReviewImageRepo.deleteAjaxReviewImg(ajaxReviewImage);
-	}
-
-	@Override
-	public void ajaxReviewImgUpdate(AjaxReviewImagevo ajaxReviewImagevo) {
-
-		ajaxReviewImageRepo.save(ajaxReviewImagevo);
-	}
 
 	@Override
 	public void updateReviewImg(ReviewImagevo reviewImagevo) {
@@ -66,10 +57,7 @@ public class ReviewImageServiceImpl implements ReviewImageService {
 	public List<ReviewImagevo> getReviewImgList(int reviewId) {
 		return reviewImageRepo.selectReviewImgList(reviewId);
 	}
-	@Override
-	public void deleteAjaxImgUploadFinished(int deleteUploadedAjaxReviewId) {
-		ajaxReviewImageRepo.deleteUploadedAjaxReviewImgId(deleteUploadedAjaxReviewId);
-	}
+	
 	/*
 	 * @Override public List<ReviewImagevo> getAjaxReviewImgList(int reviewId) {
 	 * 

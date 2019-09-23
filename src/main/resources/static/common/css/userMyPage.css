@@ -86,7 +86,7 @@ a {text-decoration: none;color: inherit;cursor: pointer;}
 .cont-area .list-style03 .cont-txt img{width: 100%; }
 .cont-area .list-style03 .cont-txt .best01{background:url('../../images/Bobbing-icon.png') no-repeat left 0;text-indent: -9999px;position:absolute;width:22px; height:35px;top:10px;right:10px}
 .cont-area .list-style03 .cont-txt .best02{background:url('../../images/Bobbing-icon.png') no-repeat right 0;text-indent: -9999px;position:absolute;width:22px; height:35px;top:10px;right:10px;cursor: pointer;}
-.cont-area .list-style03 .cont-txt .info{background:url('../../images/Bobbing-thumbnail-bg.png') no-repeat 0 bottom;position: absolute;width: 490px;left: 0;top: 0;padding: 245px 0 0 15px;height: 359px;background-size: 490px;}
+.cont-area .list-style03 .cont-txt .info{background:url('../../images/Bobbing-thumbnail-bg.png') no-repeat 0 bottom;position: absolute;width: 415px;left: 0;top: 0;padding: 215px 0 0 15px;height: 304px;background-size: 490px;}
 .cont-area .list-style03 .cont-txt .info li{padding:5px 0 3px;color:#fff}
 .cont-area .list-style03 .cont-txt .info li:nth-child(1){}
 .cont-area .list-style03 .cont-txt .info li:nth-child(2){font-size: 24px;font-weight: bold;}

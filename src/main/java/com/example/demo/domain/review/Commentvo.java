@@ -33,7 +33,7 @@ public class Commentvo {
 	@Column(insertable = false, updatable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP")
 	private Date modifiedDate;
 
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne
 	@JoinColumn(name = "reviewId")
 	@JsonManagedReference
 	private ReviewRegistrationvo reviewRegistrationvo;
