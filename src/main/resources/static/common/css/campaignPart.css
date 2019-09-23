@@ -16,7 +16,7 @@
 }
 
 .campaignTop {
-	font-family: NanumGothic;
+	font-family: NanumBarunGothic;
 	font-size: 18px;
 	margin-bottom: 1%;
 	float: left;
@@ -54,7 +54,7 @@
 
 .campaignProfileName {
 	font-size: 20px;
-	font-family: NanumGothic;
+	font-family: NanumBarunGothic;
 	display: inline-block;
 	line-height: 2;
 	width: 40%;
@@ -62,7 +62,7 @@
 }
 
 .campaignEndDate {
-	font-family: NanumGothic;
+	font-family: NanumBarunGothic;
 	color: #ff4d80;
 	line-height: 2;
 	font-size: 20;
@@ -80,7 +80,7 @@
 
 .campaignThumTitle {
 	font-size: 20px;
-	font-family: NanumGothic;
+	font-family: NanumBarunGothic;
 }
 
 /* CampaignView.html CSS */
@@ -94,7 +94,7 @@
 .campaignViewTitle {
 	width: 514px;
 	height: 37px;
-	font-family: AppleSDGothicNeo;
+	font-family: NanumBarunGothic;
 	font-size: 40px;
 	font-weight: bold;
 	font-style: normal;
@@ -110,7 +110,7 @@
 .campaignViewOptionTitle {
 	width: 108px;
 	height: 28px;
-	font-family: AppleSDGothicNeo;
+	font-family: NanumBarunGothic;
 	font-size: 20px;
 	font-weight: bold;
 	font-style: normal;
@@ -130,13 +130,13 @@
 	font-size: larger;
 	border: 0px solid white;
 	outline: none;
-	font-family: AppleSDGothicNeo;
+	font-family: NanumBarunGothic;
 }
 
 .campaignViewSubContents {
 	width: 1040px;
 	height: 30px;
-	font-family: AppleSDGothicNeo;
+	font-family: NanumBarunGothic;
 	font-size: 16px;
 	font-weight: normal;
 	font-style: normal;
@@ -260,7 +260,7 @@
 
 .participantTableFont {
 	font-size: 20px;
-	font-family: NanumGothic;
+	font-family: NanumBarunGothic;
 }
 
 .selectParticipantBtn {
@@ -298,7 +298,7 @@
 	border: solid 1px #b5b5b5;
 	margin-bottom: 4%;
 	font-size: large;
-	font-family: AppleSDGothicNeo;
+	font-family: NanumBarunGothic;
 	outline:none;
 }
 
@@ -368,7 +368,7 @@
 	margin-top:2%;
 	margin-bottom:3%;
 	font-size: large;
-	font-family: AppleSDGothicNeo;
+	font-family: NanumBarunGothic;
 	outline:none;
 }
 
@@ -380,7 +380,7 @@
 	margin-top:2%;
 	margin-bottom:3%;
 	font-size: large;
-	font-family: AppleSDGothicNeo;
+	font-family: NanumBarunGothic;
 	outline:none;
 }
 
