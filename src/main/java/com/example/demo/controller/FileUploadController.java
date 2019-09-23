@@ -25,9 +25,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.example.demo.domain.review.AjaxReviewImagevo;
 import com.example.demo.service.review.ReviewService;
-import com.example.demo.service.review.image.AjaxReviewImageRepository;
 import com.example.demo.service.review.image.ReviewImageRepository;
 import com.example.demo.service.review.image.ReviewImageService;
 import com.example.demo.utils.MediaUtils;
@@ -45,11 +43,8 @@ public class FileUploadController {
 	ReviewImageRepository reviewImgRepo;
 
 	@Autowired
-	ReviewImageService reviewImageService;
-
-	@Autowired
-	AjaxReviewImageRepository ajaxReviewImgRepo;
-
+	ReviewImageService reviewImageService;	
+	
 	@Autowired
 	ServletContext context;
 
@@ -69,31 +64,7 @@ public class FileUploadController {
 
 		return "th/review/testImgUpload";
 	}
-	/*
-	 * @RequestMapping("/fileUpload") public String
-	 * fileUpload(MultipartHttpServletRequest multipartHttpServletRequest, Model
-	 * model) throws IOException { String
-	 * filePath="C:\\Users\\adminA\\Pictures\\uploadImg";
-	 * 
-	 * List<MultipartFile> files = multipartHttpServletRequest.getFiles("files");
-	 * 
-	 * File file = new File(filePath); if (file.exists()==false) { file.mkdir(); }
-	 * for (int i = 0; i < files.size(); i++) {
-	 * System.out.println(files.get(i).getOriginalFilename()+" 업로드 ");
-	 * 
-	 * file = new File(filePath+files.get(i).getOriginalFilename());
-	 * files.get(i).transferTo(file); } model.addAttribute("fileUpload", file);
-	 * 
-	 * return "th/review/testImgUpload"; }
-	 */
 
-	/*
-	 * @RequestMapping(value = "fileUpload", method = RequestMethod.GET) public void
-	 * fileUpload() {
-	 * 
-	 * 
-	 * }
-	 */
 	@RequestMapping(value = "uploadForm", method = RequestMethod.POST)
 	public ModelAndView uploadForm(MultipartFile file, ModelAndView mav) throws Exception {
 		// 파일의 원본이름 저장
@@ -140,43 +111,48 @@ public class FileUploadController {
 	// ajax업로드 페이지 매핑
 	// 파일의 한글 처리 produces = "text/plain;charset=UTF-8"
 	@ResponseBody
-	@RequestMapping(value = "/uploadAjax/{reviewId}", method = RequestMethod.POST, produces = "text/plain;charset=UTF-8")
-	// public ModelAndView fileUpload(MultipartFile file, ModelAndView mav) throws
-	// Exception {
-//	   public String uploadAjax(MultipartFile file, @PathVariable String reviewId) throws Exception {
-	public ResponseEntity<String> uploadAjax(MultipartFile file, @PathVariable Integer reviewId) throws Exception {
+	@RequestMapping(value = "/modifyUploadAjax/{reviewId}", method = RequestMethod.POST, produces = "text/plain;charset=UTF-8")
+	public ResponseEntity<String> modifyUploadAjax(MultipartFile file, @PathVariable Integer reviewId) throws Exception {
 		logger.info("파일 이름 : " + file.getOriginalFilename().trim());
 		logger.info("파일 크기 : " + file.getSize());
 		logger.info("컨텐츠 타입 : " + file.getContentType());
 		System.out.println(uploadPath);
-		AjaxReviewImagevo ajaxReviewImgvo = new AjaxReviewImagevo();
-		int checkReviewId = reviewService.checkReviewId(reviewId);
-		
-		System.out.println("리뷰 아이디 체크" + checkReviewId);
 
-		if (Long.valueOf(checkReviewId) != null) {
-			
-			ajaxReviewImgvo.setReviewId(reviewId);
-		} else {
-			int createReviewId = reviewService.createReviewId();
-			ajaxReviewImgvo.setReviewId(createReviewId);
-
-		}
-
-		ResponseEntity<String> ajaxReviewImg = new ResponseEntity<String>(
+		ResponseEntity<String> fileName = new ResponseEntity<String>(
 				UploadFileUtils.uploadFile(uploadPath, file.getOriginalFilename(), file.getBytes()), HttpStatus.OK);
 
-		int idx1 = ajaxReviewImg.toString().indexOf(",");
-		int idx2 = ajaxReviewImg.toString().lastIndexOf(",");
+		int idx1 = fileName.toString().indexOf(",");
+		int idx2 = fileName.toString().lastIndexOf(",");
 
-		ajaxReviewImgvo.setAjaxReviewImg(ajaxReviewImg.toString().substring(idx1 + 1, idx2).replace("s_", ""));
-		System.err.println(ajaxReviewImgvo.toString());
-		reviewImageService.ajaxReviewImgUpdate(ajaxReviewImgvo);
+		fileName.toString().substring(idx1 + 1, idx2).replace("s_", "");
+		System.err.println(fileName.toString());
 		System.out.println("파일 들어왔다 : 서버 : " + file.toString());
-		return ajaxReviewImg;
+		return fileName;
 
 	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/uploadAjax", method = RequestMethod.POST, produces = "text/plain;charset=UTF-8")
+	public ResponseEntity<String> uploadAjax(MultipartFile file) throws Exception {
+		logger.info("파일 이름 : " + file.getOriginalFilename().trim());
+		logger.info("파일 크기 : " + file.getSize());
+		logger.info("컨텐츠 타입 : " + file.getContentType());
+		System.out.println(uploadPath);
+		
 
+		ResponseEntity<String> fileName = new ResponseEntity<String>(
+				UploadFileUtils.uploadFile(uploadPath, file.getOriginalFilename(), file.getBytes()), HttpStatus.OK);
+
+		int idx1 = fileName.toString().indexOf(",");
+		int idx2 = fileName.toString().lastIndexOf(",");
+
+		fileName.toString().substring(idx1 + 1, idx2).replace("s_", "");
+		System.err.println(fileName.toString());
+		System.out.println("파일 들어왔다 : 서버 : " + file.toString());
+		return fileName;
+
+	}
+	
 	@ResponseBody // view가 아닌 data리턴
 	@RequestMapping(value = "displayFile")
 	public ResponseEntity<byte[]> displayFile(String fileName) throws Exception {
@@ -229,10 +205,9 @@ public class FileUploadController {
 	public ResponseEntity<String> deleteFile(String fileName) {
 		System.out.println(fileName);
 		int index = fileName.lastIndexOf("s_");
-		String ajaxReviewImage = fileName.substring(index + 2);
-		System.err.println(ajaxReviewImage);
+		fileName.substring(index + 2);
+		System.err.println(fileName);
 
-		reviewImageService.deleteajaxReviewImg(ajaxReviewImage);
 
 		// 파일의 확장자 추출
 		String formatName = fileName.substring(fileName.lastIndexOf(".") + 1);

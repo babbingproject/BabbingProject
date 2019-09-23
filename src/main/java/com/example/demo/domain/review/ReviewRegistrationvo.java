@@ -67,7 +67,7 @@ public class ReviewRegistrationvo {
 	@JsonManagedReference
 	private Uservo uservo;
 
-	@OneToMany(mappedBy = "reviewRegistrationvo", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "reviewRegistrationvo", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
 	@JsonBackReference
 	private List<Commentvo> commentList = new ArrayList<Commentvo>();
 

@@ -29,6 +29,7 @@ public class ReviewImagevo {
 	@Id 
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int imgId;
+	@Column(nullable = true)
 	private String img;
 	@Column(nullable = true)
 	private String imgReview;
