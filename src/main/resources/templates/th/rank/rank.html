@@ -32,7 +32,8 @@
 			var followingYou = $(this).children("#followingYou").val();
 			var closestATTR = $(this).find('.followbtn');
 			var followingCount = parseInt($('#followingCount').val(), 10);
-
+			alert(followerMe);
+			alert(followingYou);
 			$.ajax({
 				url : "ajaxfollow",
 				dataType : "JSON",
@@ -144,8 +145,8 @@
 				<div class="borderspace" th:each="user : ${user}">
 					<ul>
 						<a
-							th:href="@{/getUserMyPage(nickname=${user.uservo.nickname}, followerMe=${followerMe})}"><li><img
-								th:src="${user.uservo.profileImg}"></li>
+							th:href="@{/getUserMyPage(nickname=${user.uservo.nickname}, followerMe=${session[username]})}"><li><img
+								th:src="${user.uservo.profileImg}" style="width:100px;height:100px;"></li>
 							<li><br> <br> <br> <span
 								th:text="${user.uservo.nickname}" class="userid"></span> <br>
 								<br> <span>팔로워</span><span id="appenduse"><span
@@ -154,6 +155,7 @@
 								| <span>리뷰수 </span><span th:text="${user.uservo.postCount}"></span></li></a>
 
 						<li><br> <br> <br> <span class="emptyspace">
+						<input type="hidden" th:value="${session[username]}" id="followerMe">
 								<input type="hidden" th:value="${user.uservo.nickname}"
 								id="followingYou"> <input type="hidden"
 								th:value="${user.uservo.followingCount}" id="followingCount">
@@ -179,7 +181,7 @@
 				<div class="borderspace" th:each="advertisement : ${adv}">
 					<ul>
 					<a th:href="@{/getAdvertisementMyPage(advertisementName=${advertisement.advertisementvo.advertisementname})}">
-						<li><img th:src="${advertisement.advertisementvo.profileImg}"></li>
+						<li><img th:src="${advertisement.advertisementvo.profileImg}" style="width:100px;height:100px;"></li>
 						<li><br> <br> <br> <span
 							th:text="${advertisement.advertisementvo.advertisementname}" class="userid"></span>
 							<br> <br> <span>평점</span><span
@@ -192,6 +194,7 @@
 								
 						</a>
 						<li><br> <br> <br> <span class="emptyspace2">
+						<input type="hidden" th:value="${session[username]}" id="followerMe">
 								<input type="hidden"
 								th:value="${advertisement.advertisementvo.advertisementname}"
 								id="followingYou"> <span

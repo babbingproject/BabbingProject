@@ -50,7 +50,7 @@
 					<ul class="list-style04-user" id="banner" >
 						<div class="work">
 							<li th:each="uservo:${uservo}" > 
-								<img th:src="${uservo.profileImg}"> <span class="name">
+								<img th:src="${uservo.profileImg}" style="width:200px;height:200px;"> <span class="name">
 									<input type="hidden" id="followingYou"
 									th:value="${uservo.nickname}"> 
 									<span th:text="${uservo.nickname}"></span><br> <span>팔로워</span>&nbsp;<span
@@ -91,10 +91,7 @@
 							<li th:each="newestreview:${review}" class="eachList">
 								<div class="cont-txt">
 									<p class="photo">
-										<span
-											th:each="check:${newestreview.reviewRegistrationvo.reviewImgList}">
-											<img th:src='${check.img}'></img>
-										</span>
+											<img th:src='${newestreview.reviewRegistrationvo.reviewImgList[0].img}'></img>
 									</p>
 									
 									<ul class="info">
@@ -106,7 +103,7 @@
 											th:text="${newestreview.reviewRegistrationvo.title}"></span></li>
 										<li><span
 											th:each="check:${newestreview.reviewRegistrationvo.uservo}">
-												<img th:src="${check.profileImg}" /> <input type="hidden"
+												<img th:src="${check.profileImg}" style="width:25px;height:25px;"/> <input type="hidden"
 												id="reviewUserId" th:value="${check.userId}"> <span
 												th:text="${check.nickname}"></span>
 										</span></li>
@@ -135,10 +132,7 @@
 							<li th:each="newestreview:${scrap}">
 								<div class="cont-txt">
 									<p class="photo">
-										<span
-											th:each="check:${newestreview.reviewRegistrationvo.reviewImgList}">
-											<img th:src='${check.img}'></img>
-										</span>
+											<img th:src='${newestreview.reviewRegistrationvo.reviewImgList[0].img}'></img>
 									</p>
 									<span th:if="${#lists.isEmpty(newestreview.scrapvo)}"> <span
 										class="button best02" id="scrapButton"> <input
@@ -157,7 +151,7 @@
 										<li><span
 											th:text="${newestreview.reviewRegistrationvo.title}"></span></li>
 										<li><span th:each="check:${newestreview.reviewRegistrationvo.uservo}">
-												<img th:src="${check.profileImg}" /> 
+												<img th:src="${check.profileImg}" style="width:25px;height:25px;"/> 
 												<input type="hidden"id="reviewUserId" th:value="${check.userId}">
 												 <span th:text="${check.nickname}"></span>
 											</span>
@@ -174,7 +168,7 @@
 					<ul class="list-style04-user" id="banner">
 						<li th:each=" followerUser : ${followerUser}">
 							<a th:href="@{/getUserMyPage(nickname=${followerUser.uservo.nickname}, followerMe=${username})}">
-							<img th:src="${followerUser.uservo.profileImg}">
+							<img th:src="${followerUser.uservo.profileImg}" style="width:165px;height:165px;">
 							<span th:text="${followerUser.uservo.nickname}"></span>
 							</a>
 							<span class="emptyspace">
@@ -198,7 +192,7 @@
 					<ul class="list-style04-user" id="banner">
 						<li th:each=" followerUser : ${followingUser}">
 							<a th:href="@{/getUserMyPage(nickname=${followerUser.uservo.nickname}, followerMe=${username})}">
-							<img th:src="${followerUser.uservo.profileImg}">
+							<img th:src="${followerUser.uservo.profileImg}" style="width:165px;height:165px;">
 							<span th:text="${followerUser.uservo.nickname}"></span>
 							</a>
 							<span class="emptyspace">
@@ -221,7 +215,7 @@
 					<div class="cont-area">
 						<ul class="list-style04-restaurant">
 							<li th:each="advvo:${advertisement}">
-								<img th:src="${advvo.advertisementvo.profileImg}">
+								<img th:src="${advvo.advertisementvo.profileImg}" style="width:165px;height:165px;">
 								<span th:text="${advvo.advertisementvo.advertisementname}" class="name"></span>
 								<span class="emptyspace2">
 									<input type="hidden" id="followerMe" th:value="${username}">

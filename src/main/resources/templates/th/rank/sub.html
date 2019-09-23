@@ -139,7 +139,7 @@
 					<ul>
 						<li><a th:href="@{/doReviewList}">리뷰</a></li>
 						<li><a th:href="@{/rank(followerMe=${session[username]})}"
-							class="on">랭킹</a></li>
+							>랭킹</a></li>
 						<li><a th:href="@{/getCampaignList}">캠페인</a></li>
 					</ul>
 				</div>
@@ -197,7 +197,7 @@
 					<li><div class="rapbox">
 							<a
 								th:href="@{/getUserMyPage(nickname=${user.uservo.nickname}, followerMe=${followerMe})}"><img
-								th:src="${user.uservo.profileImg}"></a><span class="num">
+								th:src="${user.uservo.profileImg}" style="width:100px;height:100px;"></a><span class="num">
 							</span><span th:text="${user.uservo.nickname}" class="name"></span> <span>팔로워
 									<span th:text="${user.uservo.followingCount}"
 									th:value="${user.uservo.followingCount}" id="fllow1"></span>
@@ -222,7 +222,7 @@
 				<div class="cont-txtB">인기 맛집</div>
 				<ul class="ranking s2" th:each="advertisement : ${adv}">
 					<li><div class="rapbox">
-							<img th:src="${advertisement.advertisementvo.profileImg}"><span
+							<img th:src="${advertisement.advertisementvo.profileImg}" style="width:100px;height:100px;"><span
 								class="num"></span><span
 								th:text="${advertisement.advertisementvo.advertisementname}" class="name"></span><span
 								id="point1">평점 <span

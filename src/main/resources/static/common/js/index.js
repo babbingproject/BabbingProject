@@ -11,6 +11,7 @@ $(function(){
 		var followerMe = $('#followerMe').val();
 		var followingYou = $(this).children("#followingYou").val();
 		var closestATTR = $(this).find('.followbtn');
+		
 		$.ajax({
 			url:"ajaxfollow",
 			dataType: "JSON",
@@ -100,7 +101,7 @@ $(function(){
 					var box = $(insideDiv).children().find('#box'+i);
 					
 					//리뷰의 이미지
-					$(box).children().children('.photos').children().find("#img1").attr("src", testing[i].img[i][4]);
+					$(box).children().children('.photos').find("#img1").attr("src", testing[i].img[i][4]);
 					//리뷰의 북마크 버튼 여부
 					if(testing[i].scrapvo!=''){
 						
