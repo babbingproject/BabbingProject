@@ -105,7 +105,7 @@ a:hover {}
 .cont-area .arr-area .arr-btn-left{background:url('../../images/Bobbing-icon.png') no-repeat left  -120px;    text-indent: -9999px;    position: absolute;    width: 35px;    height: 45px;    top: 35px;    left: -2px;}
 .cont-area .arr-area .arr-btn-left.on{background:url('../../images/Bobbing-icon.png') no-repeat left  -190px;    text-indent: -9999px;    position: absolute;    width: 35px;    height: 45px;    top: 35px;    left: -2px;}
 .cont-area .arr-area .arr-btn-right{background:url('../../images/Bobbing-icon.png') no-repeat right -120px;    text-indent: -9999px;    position: absolute;    width: 35px;    height: 45px;    top: 35px;    rigtht: -2px;}
-.cont-area .arr-area .arr-btn-right.on{background:url('../../images/Bobbing-icon.png') no-repeat right -190px;    text-indent: -9999px;    position: absolute;    width: 35px;    height: 45px;    top: 35px;    rigtht: -2px;}
+.cont-area .arr-area .arr-btn-right.on{background:url('../../images/Bobbing-icon.png') no-repeat right -190px; cursor: pointer;   text-indent: -9999px;    position: absolute;    width: 35px;    height: 45px;    top: 35px;    rigtht: -2px;}
 
 .main #slides { display: none; z-index:1  }
 .main #slides .slidesjs-navigation {margin-top:-15px;position: absolute; top: 50%; z-index: 10;}
@@ -137,7 +137,7 @@ a:hover {}
 
 .footer-area{background:#e0e0e0;margin-top:80px;min-height:200px}
 #wrap .footer-area .footer { width: 1525px;    margin: 0 auto;    padding: 20px 0 20px 20px;    color: #999;    position: relative;}
-#wrap .footer-area .top-btn { background: url(../../images/Bobbing-icon.png) no-repeat 0 bottom;    text-indent: -9999px;    position: fixed;    width: 75px;    height: 75px;   bottom: 0%;right: 0%;border: none;}
+#wrap .footer-area .top-btn { background: url(../../images/Bobbing-icon.png) no-repeat 0 bottom;    text-indent: -9999px; cursor: pointer;   position: fixed;    width: 75px;    height: 75px;   bottom: 0%;right: 0%;border: none;}
 .mgtXS{margin-top:5px}
 .mgtS{margin-top:10px}
 .mgtM{margin-top:20px}
@@ -169,7 +169,7 @@ a:hover {}
 #wrap.sub .cont-area .ranking li img{width: 100px;border-radius: 100px;border: 2px #dedede solid;position: absolute;top: 5px;left: 10px;}
 #wrap.sub .cont-area .ranking li .num{font-size: 22px;font-weight: bold;color: #ff4d80;padding-top: 15px;}
 #wrap.sub .cont-area .ranking li .name{font-size: 22px;font-weight: bold;}
-#wrap.sub .cont-area .ranking li .btn01{color:#fff;background:#ff4d80;border: 2px #ff4d80 solid;padding: 10px 0px;text-align: center;width: 120px;display: inline-block;border-radius: 5px;position: absolute;top: 50%;right: 30px;margin-top: -15px;}
-#wrap.sub .cont-area .ranking li .btn02{color:#ff4d80;  border: 2px #ff4d80 solid; padding: 10px 0px; text-align: center; width: 120px; display: inline-block;  border-radius: 5px;position: absolute;top: 50%;right: 30px;margin-top: -15px;}
+#wrap.sub .cont-area .ranking li .btn01{color:#fff;background:#ff4d80;border: 2px #ff4d80 solid;padding: 10px 0px;text-align: center;width: 120px;display: inline-block;border-radius: 5px;position: absolute;top: 50%;right: 30px;margin-top: -15px;cursor: pointer;}
+#wrap.sub .cont-area .ranking li .btn02{color:#ff4d80;  border: 2px #ff4d80 solid; padding: 10px 0px; text-align: center; width: 120px; display: inline-block;  border-radius: 5px;position: absolute;top: 50%;right: 30px;margin-top: -15px;cursor: pointer;}
 #wrap.sub .cont-area .ranking li span{display:block;text-align: left;margin: 5px 0  7px;}
 #wrap.sub .cont-area .ranking li:last-child{margin-right:0px;}

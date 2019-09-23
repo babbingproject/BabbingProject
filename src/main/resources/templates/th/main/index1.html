@@ -96,7 +96,7 @@
                            th:text="${newestreview.reviewRegistrationvo.title}"></span></li>
                         <li><span
                            th:each="check:${newestreview.reviewRegistrationvo.uservo}">
-                              <img th:src="${check.profileImg}" /> <input type="hidden"
+                              <img th:src="${check.profileImg}" style="width:25px;height:25px;"/> <input type="hidden"
                               id="reviewUserId" th:value="${check.userId}"> <span
                               th:text="${check.nickname}"></span>
                         </span></li>
@@ -157,7 +157,7 @@
                            id="reviewTitle"></span></li>
                         <li><span
                            th:each="check:${everything.reviewRegistrationvo.uservo}">
-                              <img th:src="${check.profileImg}" id="img2" /> <input
+                              <img th:src="${check.profileImg}" id="img2" style="width:25px;height:25px;"/> <input
                               type="hidden" id="reviewUserId" th:value="${check.userId}">
                               <span th:text="${check.nickname}" id="userNickname"></span>
                         </span></li>
@@ -190,7 +190,7 @@
 
                   <li th:each="uservo:${uservo}"><a
                      th:href="@{/getUserMyPage(nickname=${uservo.uservo.nickname}, followerMe=${session[username]})}">
-                        <img th:src="${uservo.uservo.profileImg}"> <span
+                        <img th:src="${uservo.uservo.profileImg}" style="width:155px; height:155px; border-style: none;"> <span
                         class="name"> <input type="hidden" id="followingYou"
                            th:value="${uservo.uservo.nickname}"> <span
                            th:text="${uservo.uservo.nickname}"></span><br> <span>팔로워&nbsp;
@@ -228,17 +228,17 @@
                style="margin-top: -25px;">
 
                <li th:each="advvo:${advvo}"><img
-                  th:src="${advvo.advertisementvo.profileImg}"> <span
+                  th:src="${advvo.advertisementvo.profileImg}" style="width:155px; height:155px;"> <span
                   th:text="${advvo.advertisementvo.advertisementname}" class="name"></span><br><span id="r1">리뷰수</span>
                    <span class="emptyspace2"> <input type="hidden"
                      id="followerMe" th:value="${session[username]}"> <input
                      type="hidden" id="followingYou"
                      th:value="${advvo.advertisementvo.advertisementname}"> <span
-                     th:text="${advvo.advertisementvo.putedCount}" id="put1"></span> <span
+                     th:text="${advvo.advertisementvo.putedCount}" id="put2"></span> <span
                      th:if="${#lists.isEmpty(advvo.putvo)}"> <span
                         class="followbtn btn02" style="curser: pointer;">담아두기</span>
-                  </span> <span id="put2"><span th:if="!${#lists.isEmpty(advvo.putvo)}"> <span
-                        class="followbtn btn01" style="curser: pointer;">담기완료</span></span>
+                  </span> <span ><span th:if="!${#lists.isEmpty(advvo.putvo)}"> <span
+                        class="followbtn btn01" style="curser: pointer;"id="put1">담기완료</span></span>
 
 
                   </span>
@@ -256,7 +256,6 @@
             <button class="top-btn" id="top-btn"></button>
          </div>
       </div>
-   </div>
    </div>
    <script type="text/javascript">
       $(".dropdown dt a").click(function() {

@@ -248,11 +248,13 @@ public class ReviewController {
 	}
 	
 	@RequestMapping(value = "/doReviewView", method = RequestMethod.GET)
-	public String getReviewVIew(Model model, int reviewId) {
+	public String getReviewVIew(Model model, int reviewId, HttpSession httpSession) {
 		System.err.println(reviewId);
 //	      model.addAttribute("reviewView", reviewRepo.findById(reviewId).get());
 		model.addAttribute("reviewView", reviewService.getReviewView(reviewId));
 		model.addAttribute("reviewImgList", reviewImageService.getReviewImgList(reviewId));
+		model.addAttribute("following", rankService.checkFollowing((String)httpSession.getAttribute("username"), reviewService.getReviewView(reviewId).getUservo().getNickname()));
+		System.out.println(rankService.checkFollowing((String)httpSession.getAttribute("username"), reviewService.getReviewView(reviewId).getUservo().getNickname()));
 		return "th/review/reviewView";
 	}
 

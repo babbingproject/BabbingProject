@@ -122,6 +122,7 @@ public class MyPageController {
 	
 	@RequestMapping("/getAdvertisementMyPage")
 	public String getAdvertisementMyPage(Advertisementvo advertisementvo, Model model, String advertisementemail) {		
+		
 		System.out.println(advertiseService.findAllByAdvertisementEmail(advertisementemail));
 		model.addAttribute("advertisement", advertiseService.findAllByAdvertisementEmail(advertisementemail));
 		

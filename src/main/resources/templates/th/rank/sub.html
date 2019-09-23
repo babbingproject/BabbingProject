@@ -51,7 +51,6 @@
 						$(near).empty();
 						$(near).text('팔로잉');
 
-						alert(followingCount);
 						// 					var num = 1;
 						// 					var value = ($(near).parent().parent().parent().siblings().children().children().closest('#followingCount').val());
 						// 					alert(($(near).parent().parent().parent().siblings().children().children().closest('#followingCount')).val());
@@ -139,7 +138,7 @@
 					<ul>
 						<li><a th:href="@{/doReviewList}">리뷰</a></li>
 						<li><a th:href="@{/rank(followerMe=${session[username]})}"
-							class="on">랭킹</a></li>
+							>랭킹</a></li>
 						<li><a th:href="@{/getCampaignList}">캠페인</a></li>
 					</ul>
 				</div>
@@ -197,20 +196,23 @@
 					<li><div class="rapbox">
 							<a
 								th:href="@{/getUserMyPage(nickname=${user.uservo.nickname}, followerMe=${followerMe})}"><img
-								th:src="${user.uservo.profileImg}"></a><span class="num">
+								th:src="${user.uservo.profileImg}" style="width:100px;height:100px;"></a><span class="num">
 							</span><span th:text="${user.uservo.nickname}" class="name"></span> <span>팔로워
 									<span th:text="${user.uservo.followingCount}"
 									th:value="${user.uservo.followingCount}" id="fllow1"></span>
 							</span><span id="wow">|</span><span id="postCount1">리뷰수 </span><span
 								id="postCount2" th:text="${user.uservo.postCount}"></span> <span
-								class="emptyspace"> <input type="hidden"
+								class="emptyspace"> 
+															<input type="hidden" th:value="${session[username]}" id="followerMe">
+								
+								<input type="hidden"
 									th:value="${user.uservo.nickname}" id="followingYou"> <input
 									type="hidden" th:value="${user.uservo.followingCount}"
 									id="followingCount"> <span
 									th:if="${#lists.isEmpty(user.followvo)}"> <span
-										class="area btn02" id="btn02">팔로우</span>
+										class="followbtn btn02" id="btn02">팔로우</span>
 								</span> <span th:if="!${#lists.isEmpty(user.followvo)}"> <span
-										class="area btn01" id="btn01">팔로잉</span>
+										class="followbtn btn01" id="btn01">팔로잉</span>
 								</span>
 							</span> <!-- <a href="#"><span
 								class="area btn01">팔로잉</span></a> -->
@@ -222,7 +224,7 @@
 				<div class="cont-txtB">인기 맛집</div>
 				<ul class="ranking s2" th:each="advertisement : ${adv}">
 					<li><div class="rapbox">
-							<img th:src="${advertisement.advertisementvo.profileImg}"><span
+							<img th:src="${advertisement.advertisementvo.profileImg}" style="width:100px;height:100px;"><span
 								class="num"></span><span
 								th:text="${advertisement.advertisementvo.advertisementname}" class="name"></span><span
 								id="point1">평점 <span
@@ -231,13 +233,16 @@
 								th:text="${advertisement.advertisementvo.putedCount}"
 								th:value="${advertisement.advertisementvo.putedCount}" id="putedCount2"></span>
 
-							<span class="emptyspace2"> <input type="hidden"
+							<span class="emptyspace2"> 
+														<input type="hidden" th:value="${session[username]}" id="followerMe">
+							
+							<input type="hidden"
 								th:value="${advertisement.advertisementvo.advertisementname}"
 								id="followingYou"> <span
 								th:if="${#lists.isEmpty(advertisement.putvo)}"> <span
-									class="area btn02" id="btn02">담아두기</span>
+									class="followbtn btn02" id="btn02">담아두기</span>
 							</span> <span th:if="!${#lists.isEmpty(advertisement.putvo)}"> <span
-									class="area btn01" id="btn01">담기완료</span></span></span>
+									class="followbtn btn01" id="btn01">담기완료</span></span></span>
 						</div></li>
 
 				</ul>
