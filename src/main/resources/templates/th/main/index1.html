@@ -82,10 +82,7 @@
                <li th:each="newestreview:${newestreview}">
                   <div class="cont-txt">
                      <p class="photo">
-                        <span
-                           th:each="check:${newestreview.reviewRegistrationvo.reviewImgList}">
-                           <img th:src='${check.img}'></img>
-                        </span>
+                           <img th:src='${newestreview.reviewRegistrationvo.reviewImgList[0].img}'></img>
                      </p>
                      
                      <ul class="info">
@@ -144,10 +141,9 @@
                <li th:each="everything:${everything}" class="temp">
                   <div class="cont-txt" id="wee">
                      <p class="photos">
-                        <span
-                           th:each="check : ${everything.reviewRegistrationvo.reviewImgList}">
-                           <img th:src="${check.img}" id="img1" />
-                        </span>
+                       
+                           <img th:src="${everything.reviewRegistrationvo.reviewImgList[0].img}" id="img1" />
+                       
 
                      </p>
                      <ul class="info">
@@ -241,8 +237,8 @@
                      th:text="${advvo.advertisementvo.putedCount}" id="put1"></span> <span
                      th:if="${#lists.isEmpty(advvo.putvo)}"> <span
                         class="followbtn btn02" style="curser: pointer;">담아두기</span>
-                  </span> <span th:if="!${#lists.isEmpty(advvo.putvo)}"> <span
-                        class="followbtn btn01" style="curser: pointer;">담기완료</span>
+                  </span> <span id="put2"><span th:if="!${#lists.isEmpty(advvo.putvo)}"> <span
+                        class="followbtn btn01" style="curser: pointer;">담기완료</span></span>
 
 
                   </span>
