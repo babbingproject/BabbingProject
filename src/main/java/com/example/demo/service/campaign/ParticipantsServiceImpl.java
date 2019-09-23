@@ -57,5 +57,6 @@ public class ParticipantsServiceImpl implements ParticipantsService {
 	public String getAdvertisementProfileImg(int advertisement_id) {
 		return participantsRepo.getAdvertisementProfileImg(advertisement_id);
 	}
+
 }
 

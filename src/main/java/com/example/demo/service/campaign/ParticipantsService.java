@@ -22,5 +22,5 @@ public interface ParticipantsService {
 	String applyCheck(int participantsId);
 	
 	String getAdvertisementProfileImg(int advertisement_id);
-	
+
 }

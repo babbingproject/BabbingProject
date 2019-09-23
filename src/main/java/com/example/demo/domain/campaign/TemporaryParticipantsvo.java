@@ -15,6 +15,6 @@ public class TemporaryParticipantsvo {
 	private int userId;
 	private char participation;
 	private String nickname;
-
+	private String profileImg;
 }
 

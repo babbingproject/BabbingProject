@@ -246,14 +246,15 @@
             data:{campaignId:campaignId},
             success:function(participantList){
                var str="";
-               str += "<table>";
+               str += "<table class='participantTable'>";
                for(var i in participantList){
-                  str += "<tr><td>"+participantList[i].nickname+"</td>";
+            	  str += "<tr><td class='participantTableTd'><img class='participantTableProfile'src="+ participantList[i].profileImg+"><td>"
+                  str += "<td class='participantTableFont'>"+participantList[i].nickname+"</td>";
                   if(participantList[i].participation=="N"){
-                     str += "<td><input type='button' class='selectParticipantBtn' style='float: right' value='선정하기'>";
-                     str += "<input type='hidden' value='"+participantList[i].participantsId+"'></td>"
+                     str += "<td><input type='button' class='selectParticipantBtn' value='선정하기'>";
+                     str += "<input type='hidden' value='"+participantList[i].participantsId+"'></td></tr>"
                   }else{
-                     str += "<td><input type='button' class='cancelParticipantBtn' style='float: right' value='취소하기'>";
+                     str += "<td><input type='button' class='cancelParticipantBtn' value='취소하기'>";
                      str += "<input type='hidden' value='"+participantList[i].participantsId+"'></td></tr>"
                   }
                }
