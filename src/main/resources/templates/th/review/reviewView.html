@@ -10,30 +10,7 @@
 <link rel="stylesheet" href="/common/css/styles.css" th:href="@{/common/css/review.css}" type="text/css">
 <script src="common/js/index.js"></script>
 
-<script>
-	// Get the modal
-	var modal = document.getElementById('myModal');
 
-	// Get the button that opens the modal
-	//    var btn = document.getElementById("myBtn");
-
-	// Get the <span> element that closes the modal
-	var span = document.getElementsByClassName("close")[0];
-	// When the user clicks on the button, open the modal 
-	//    btn.onclick = function() {
-	//        modal.style.display = "block";
-	//    }
-	// When the user clicks on <span> (x), close the modal
-	span.onclick = function() {
-		modal.style.display = "none";
-	}
-	// When the user clicks anywhere outside of the modal, close it
-	window.onclick = function(event) {
-		if (event.target == modal) {
-			modal.style.display = "none";
-		}
-	}
-</script>
 </head>
 
 <body>
@@ -58,7 +35,8 @@
 				<div>
 				<th:block th:each="reviewImg:${reviewImgList}">
 				<img th:src="${reviewImg.img}" width="1100px" height="550px"><br>
-				<textarea class="reviewViewImgReviewArea" name='imgReview' th:text="${reviewImg.imgReview}"></textarea>
+				
+				<textarea class="reviewViewImgReviewArea" name='imgReview' th:text="${reviewImg.imgReview}"></textarea><br><br>	
                   </th:block>
 				</div>
 				</td>
@@ -67,14 +45,13 @@
 				<tr>
 						
 					<td colspan="3"><textarea class="reviewViewContentsArea" name="advantages"
-								th:text="${reviewView.advantages}"></textarea></td>
+								th:text="${reviewView.advantages}" readonly="readonly"></textarea></td>
 				</tr>
 					<tr>
 						<td class="reviewViewSubTitle" colspan="3" th:text="단점"></td>
-						
 					</tr>
 					<tr><td colspan="3"><textarea class="reviewViewContentsArea" name="disadvantages"
-								th:text="${reviewView.disadvantages}"></textarea></td></tr>
+								th:text="${reviewView.disadvantages}" readonly="readonly"></textarea></td></tr>
 
 				</table> <!-- Table End-->
 				
@@ -232,7 +209,8 @@ $('#addComment').on('click', function() {
 								a += "<input type='hidden' value='"+commentList[i].contents+"'><input type='hidden' value='"+commentList[i].commentId+"'></td>";
 								a += "<td><a class='deleteComment'> 삭제</a>";
 								a += "<input type='hidden' value='"+commentList[i].commentId+"'></td>";
-								a += "</tr>";
+								a += "</tr>"
+								a += "<br><br>";
 							}
 							a += "</table>";
 						$("#commentArea table").remove();
@@ -244,6 +222,30 @@ $('#addComment').on('click', function() {
 								+ error);
 					}
 				});
+	}
+</script>
+<script>
+	// Get the modal
+	var modal = document.getElementById('myModal');
+
+	// Get the button that opens the modal
+	//    var btn = document.getElementById("myBtn");
+
+	// Get the <span> element that closes the modal
+	var span = document.getElementsByClassName("close")[0];
+	// When the user clicks on the button, open the modal 
+	//    btn.onclick = function() {
+	//        modal.style.display = "block";
+	//    }
+	// When the user clicks on <span> (x), close the modal
+	span.onclick = function() {
+		modal.style.display = "none";
+	}
+	// When the user clicks anywhere outside of the modal, close it
+	window.onclick = function(event) {
+		if (event.target == modal) {
+			modal.style.display = "none";
+		}
 	}
 </script>
 </body>
