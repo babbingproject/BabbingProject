@@ -494,6 +494,7 @@ a {
 	border: solid 1px #ff4d80;
 	background-color: white;
 	font-size: small;
+	color: #ff4d80;
 }
 
 .reviewImgTextare {
@@ -643,9 +644,10 @@ a {
 
 .revieViewProfileArea {
 	border-radius: 100%;
-/* 	width: 30%; */
+	/* 	width: 30%; */
 	margin-top: 18%;
-	width:190px; height: 190px;
+	width: 190px;
+	height: 190px;
 }
 
 .reviewViewCommentArea {
@@ -676,5 +678,39 @@ a {
 .reviewViewCommentTable {
 	width: 1100px;
 }
-.btn01{color:#fff; background:#ff4d80; border: 2px #ff4d80 solid;padding: 10px 0px; text-align: center; width: 250px;display: inline-block;  border-radius: 5px;margin-top:10px;}
-.btn02{color:#ff4d80;  border: 2px #ff4d80 solid; padding: 10px 0px; text-align: center; width: 250px; display: inline-block;  border-radius: 5px;    cursor: pointer;margin-top:10px;}
+
+.btn01 {
+	color: #fff;
+	background: #ff4d80;
+	border: 2px #ff4d80 solid;
+	padding: 10px 0px;
+	text-align: center;
+	width: 250px;
+	display: inline-block;
+	border-radius: 5px;
+	margin-top: 10px;
+}
+
+.btn02 {
+	color: #ff4d80;
+	border: 2px #ff4d80 solid;
+	padding: 10px 0px;
+	text-align: center;
+	width: 250px;
+	display: inline-block;
+	border-radius: 5px;
+	cursor: pointer;
+	margin-top: 10px;
+}
+
+.ReviewModifyImgTagTextarea{
+	
+    width: 640px;
+    height: 280px;
+    border: 2px dotted #a7a7a7;
+    overflow: auto;
+    resize: none;
+    outline: none;
+	
+	
+}
