@@ -65,52 +65,63 @@ public class HomeMainController {
 		followerMe = (String) httpSession.getAttribute("username");
 		model.addAttribute("everything", reviewService.getEverythingTopSix());
 		System.err.println(uservo.getNickname());
-		List<CheckingRanking> checkingList = new ArrayList();
-		List<CheckingPut> checkingPutList = new ArrayList();
-		List<CheckingScrap> checkingScrapNewList = new ArrayList();
 		List<CheckingScrap> checkingScrapTopSixList = new ArrayList();
-		List<Uservo> userList = rankService.getAllUser();
-		List<Advertisementvo> advList = advService.findAll();
-		List<ReviewRegistrationvo> reviewNewestList = reviewService.getNewestReview();
 		List<ReviewRegistrationvo> reviewEverythingTopSix = reviewService.getEverythingTopSix();
+		
+		
+		List<Uservo> userList = rankService.getAllUser();
+		List<CheckingRanking> checkingList = new ArrayList();
 		for(int i = 0; i < userList.size(); i++) {
 			CheckingRanking checkingRanking = new CheckingRanking();
 			checkingRanking.setUservo(userList.get(i));
 			checkingRanking.setFollowvo(rankService.checkFollowing(followerMe, userList.get(i).getNickname()));
 			checkingList.add(checkingRanking);
 		}
+		model.addAttribute("uservo", checkingList);
+
+		
+		List<Advertisementvo> advList = advService.findAll();
+		List<CheckingPut> checkingPutList = new ArrayList();
 		for(int i = 0; i < advList.size(); i++) {
 			CheckingPut checkingPut = new CheckingPut();
 			checkingPut.setAdvertisementvo(advList.get(i));
 			checkingPut.setPutvo(rankService.checkPut(followerMe, advList.get(i).getAdvertisementname()));
 			checkingPutList.add(checkingPut);
 		}
+		model.addAttribute("advvo", checkingPutList);
+
+		
+		List<ReviewRegistrationvo> reviewNewestList = reviewService.getNewestReview();
+		List<CheckingScrap> checkingScrapNewList = new ArrayList();
 		for(int i = 0; i < reviewNewestList.size(); i++) {
 			CheckingScrap checkingScrap = new CheckingScrap();
 			checkingScrap.setReviewRegistrationvo(reviewNewestList.get(i));
-			
 			checkingScrap.setScrapvo(scrapService.checkScrap(reviewNewestList.get(i).getReviewId(), followerMe));
-			
-		
 			checkingScrapNewList.add(checkingScrap);
 		}
+		model.addAttribute("newestreview", checkingScrapNewList);
+
+		
 		for(int i = 0; i < reviewEverythingTopSix.size(); i ++) {
 			CheckingScrap checkingScrap = new CheckingScrap();
 			checkingScrap.setReviewRegistrationvo(reviewEverythingTopSix.get(i));
 			checkingScrap.setScrapvo(scrapService.checkScrap(reviewEverythingTopSix.get(i).getReviewId(), followerMe));
 			checkingScrapTopSixList.add(checkingScrap);
 		}
+		model.addAttribute("everything", checkingScrapTopSixList);
 
+		
+		
+		
+		
+		
+		
 		CheckingScrap checkingScrap = new CheckingScrap();
 		System.out.println(checkingScrap.getScrapvo());
 		System.out.println(reviewNewestList);
 		//System.out.println("checkingchecking" +reviewNewestList.get(1).getUservo().getUserId());
 
 
-		model.addAttribute("uservo", checkingList);
-		model.addAttribute("advvo", checkingPutList);
-		model.addAttribute("newestreview", checkingScrapNewList);
-		model.addAttribute("everything", checkingScrapTopSixList);
 
 		return "th/main/index1";
 	}

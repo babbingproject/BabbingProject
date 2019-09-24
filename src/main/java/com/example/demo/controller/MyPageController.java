@@ -3,6 +3,8 @@ package com.example.demo.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -41,7 +43,8 @@ public class MyPageController {
 	
 	
 	@RequestMapping("/getUserMyPage")
-	public String getUserMyPage(Uservo uservo, Model model, String nickname, String followerMe) {
+	public String getUserMyPage(Uservo uservo, Model model, String nickname, HttpSession httpSession) {
+		String followerMe = (String) httpSession.getAttribute("username");
 		//유저마이페이지 leftSide 
 		model.addAttribute("uservo", userService.findByNickname(nickname));
 		model.addAttribute("followCheck", rankService.checkFollowing(followerMe, nickname));

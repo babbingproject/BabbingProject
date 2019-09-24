@@ -3,6 +3,8 @@ package com.example.demo.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -28,7 +30,8 @@ public class RankController {
 	@Autowired
 	AdvertisementService advService;
 	@RequestMapping("/rank")
-	public String goToRanking(Model model, String followerMe) {
+	public String goToRanking(Model model,  HttpSession httpSession) {
+		String followerMe = (String) httpSession.getAttribute("username");
 		List<CheckingRanking> checkingList = new ArrayList();
 		List<CheckingPut> checkingPutList = new ArrayList();
 		List<Uservo> userList = rankService.getAllUser();

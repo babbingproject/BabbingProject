@@ -137,7 +137,7 @@
 				<div class="heaer-gnb">
 					<ul>
 						<li><a th:href="@{/doReviewList}">리뷰</a></li>
-						<li><a th:href="@{/rank(followerMe=${session[username]})}"
+						<li><a th:href="@{/rank}"
 							>랭킹</a></li>
 						<li><a th:href="@{/getCampaignList}">캠페인</a></li>
 					</ul>
@@ -183,7 +183,7 @@
 			<th:block th:if="${session['uservo'] != null}">
 				<div class="login-btnR">
 					<a
-						th:href="@{/getUserMyPage(nickname=${session[username]}, followerMe=${session[username]})}"
+						th:href="@{/getUserMyPage(nickname=${session[username]}}"
 						class="login">마이 페이지</a> ㅣ <a href="/logout" class="join">로그아웃</a>
 				</div>
 			</th:block>
@@ -195,7 +195,7 @@
 				<ul class="ranking s1" th:each="user : ${user}">
 					<li><div class="rapbox">
 							<a
-								th:href="@{/getUserMyPage(nickname=${user.uservo.nickname}, followerMe=${followerMe})}"><img
+								th:href="@{/getUserMyPage(nickname=${user.uservo.nickname})}"><img
 								th:src="${user.uservo.profileImg}" style="width:100px;height:100px;"></a><span class="num">
 							</span><span th:text="${user.uservo.nickname}" class="name"></span> <span>팔로워
 									<span th:text="${user.uservo.followingCount}"
