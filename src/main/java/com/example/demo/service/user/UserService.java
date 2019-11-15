@@ -3,13 +3,18 @@ package com.example.demo.service.user;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+
 import com.example.demo.domain.mypage.Uservo;
 
 public interface UserService {
-
+	List<Uservo> getSearchKeywordSearchPage(String searchKeyword);
 	
 	List<Uservo> findByNickname(String nickname);
 	
+	List<Uservo> getAllFollowers(String followingYou);
+	List<Uservo> getAllFollowingUsers(String followingMe);
 
 	Uservo getUser(Uservo user);
 
@@ -45,5 +50,7 @@ public interface UserService {
 	 void scrapFactorDecrease(Integer reviewUserId);
 	 
 	 Uservo findByUserEmail(String user_email);
+	 
+	 Page<Uservo> getSearchKeywordPage(String searchKeyword, Pageable pageable);
 
 }

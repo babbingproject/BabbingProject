@@ -4,184 +4,286 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="/common/css/styles.css" th:href="@{/common/css/styles.css}" type="text/css">
+<link rel="stylesheet" href="/common/css/styles.css" th:href="@{/common/css/campaignPart.css}" type="text/css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
-<style>
- /* The Modal (background) */
-        .modal {
-            display: none; /* Hidden by default */
-            position: fixed; /* Stay in place */
-            z-index: 1; /* Sit on top */
-            left: 0;
-            top: 0;
-            width: 100%; /* Full width */
-            height: 100%; /* Full height */
-            overflow: auto; /* Enable scroll if needed */
-            background-color: rgb(0,0,0); /* Fallback color */
-            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-        }
-    
-        /* Modal Content/Box */
-        .modal-content {
-            background-color: #fefefe;
-            margin: 15% auto; /* 15% from the top and centered */
-            padding: 20px;
-            border: 1px solid #888;
-            width: 50%; /* Could be more or less, depending on screen size */                          
-        }
-        /* The Close Button */
-        .close {
-            color: #aaa;
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
-        }
-        .close:hover,
-        .close:focus {
-            color: black;
-            text-decoration: none;
-            cursor: pointer;
-        }
-</style>
-
-
 <!-- Alertyfy.js -->
-<script	src="//cdn.jsdelivr.net/npm/alertifyjs@1.11.4/build/alertify.min.js"></script>
+<script   src="//cdn.jsdelivr.net/npm/alertifyjs@1.11.4/build/alertify.min.js"></script>
 <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.11.4/build/css/alertify.min.css" />
 <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.11.4/build/css/themes/default.min.css" />
 
-	<!-- 레이어 팝업 -->
-	<script>
-		function applyFunction() {
-			alertify.set('notifier', 'delay', 1);
-			alertify.set('notifier', 'position', 'bottom-center');
-			alertify.success('응모가 완료되었습니다.');
-		}
-	</script>
+<!-- bxSlider -->
+<link rel="stylesheet" href="/common/css/styles.css" th:href="@{/common/css/jquery.bxslider.css}" type="text/css">
+<script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
+
+ <script>
+    $(document).ready(function(){
+      $('.slider').bxSlider();
+    });
+  </script>
+
 </head>
 
 <body>
-	<div id="wrap" class="main">
-		<div th:replace="/include/header.html :: header"></div>
-		<!-- 본문 영역 Start -->
-		<div style="float: left; width: 70%">
-			<h4 th:text="${campaign.title}"></h4>
-			<textarea cols="60" rows="5" readonly="readonly"
-				th:text="${campaign.introduction}"></textarea>
-			<h4>제공 내역</h4>
-			<textarea cols="60" rows="2" readonly="readonly"
-				th:text="${campaign.offerHistory}"></textarea>
-			<h4>비고</h4>
-			<textarea cols="60" rows="2" readonly="readonly"
-				th:text="${campaign.remarks}"></textarea>
-			<br> <a th:href=@{getCampaignList}>목록으로</a>
-		</div>
-		<!-- 본문 영역 End -->
+   <div id="wrap" class="main">
+      <div th:replace="/include/header.html :: header"></div>      
+         <!-- 본문 영역 Start -->
+         <div class="campaignViewLeft">
+         <input type="hidden" id="campaignId" th:value="${campaign.campaignId}">
+         <table>
+         <tr>
+         <td class="campaignViewTitle" th:text="${campaign.title}"></td>
+         <th:block th:if="${session[advertisementvo] != null}">
+         <td th:if="${session['advertisementvo'].advertisementId} == ${campaign.advertisementvo.advertisementId}"><a th:href="@{updateCampaign(campaignId=${campaign.campaignId})}">수정하기</a></td>
+         <td th:if="${session['advertisementvo'].advertisementId} == ${campaign.advertisementvo.advertisementId}"><a href="#" id="deleteTxt">삭제하기</a></td>
+         </th:block>
+         </tr>
+         </table>
+		
+		<th:block th:each="campaignImg:${campaignSingleImg}">
+		<img th:src="${campaignImg.campaignImg}" style="width: 1054px; height: 437px;">
+		</th:block>	
+		
+		<th:block th:if="${campaignImgList}">
+		 <div class="slider">	
+         	<th:block th:each="campaignImg:${campaignImgList}">
+				<div>
+	         	<img th:src="${campaignImg.campaignImg}" style="  width: 1054px; height: 437px;">
+	        	</div>
+         	</th:block>
+         </div>
+         </th:block>
+         <p>
+		<textarea class="campaignViewContents" th:text="${campaign.introduction}" readonly="readonly"></textarea>
+		</p>
+      <!-- <!--    <p class="" th:text="${campaign.introduction}"></p> -->
+         <p class="campaignViewOptionTitle">제공내역</p>
+         <p class="campaignViewSubContents" th:text="${campaign.offerHistory}"></p>
+         <p class="campaignViewOptionTitle">비고</p>
+         <p class="campaignViewSubContents" th:text="${campaign.remarks}"></p>
+         <br> <a th:href=@{getCampaignList}>목록으로</a>
+         </div>
+      <!-- 본문 영역 End -->
 
-		<!-- 프로필 영역 Start -->
-		<div style="float: left; width: 25%">
-			<p th:text="${campaign.advertisementvo.advertisementname}" />
-			<br>신청 기간<br>
-			<p th:text="|${#dates.format(campaign.startDate, 'yyyy-MM-dd')} ~ ${#dates.format(campaign.endDate, 'yyyy-MM-dd')}|"></p>
-			모집 인원<br>
-			<p th:text="|${campaign.participants} / ${campaign.recruitment}|"></p> 
-		
-		<input th:if="${session['member'].advertisementId} == ${campaign.advertisementvo.advertisementId}" type="button" name="viewapply" data-toggle="modal" data-target="#campaignModal" value="응모자 보기">
-		
-		<th:block th:if="${session['member'].advertisement_num == null}">
-		<form th:if="${session['member'].advertisementId != 0} and ${participant} == null" th:action="@{participants}" method="post">		
-		<input type="hidden" name="advertisementId" th:value="${session['member'].advertisementId}">
-		<input type="hidden" name="campaign_id" th:value="${campaign.campaign_id}">
-		<input type="submit" onclick="applyFunction()" value="응모하기">	
-		</form>
-		
-		<form th:if="${participant} != null" th:action="@{deleteParticipants}" method="post">
-		<input type="hidden" name="advertisementId" th:value="${session['member'].advertisementId}">
-		<input type="hidden" name="campaign_id" th:value="${campaign.campaign_id}">
-		<input type="submit" onclick="applyFunction()" value="취소하기">
-		</form>		
-		</th:block>
-		<!-- Trigger/Open The Modal -->	
-    	<button id="myBtn">Open Modal</button>
+      <!-- 프로필 영역 Start -->
+      <div class="campaignViewRight">
+          <div class="campaignViewInnerSquare">
+         <img class="campaignViewProfileImg" th:src="${profileImg}">
+         <p class="campaignViewProfileName" th:text="${campaign.advertisementvo.advertisementname}" />
+         <br><br>
+         <span class="campaignViewProfileSubTitle">신청 기간</span>
+         <span class="campaignViewProfileSubContents" th:text="|${#dates.format(campaign.startDate, 'yyyy-MM-dd')} ~ ${#dates.format(campaign.endDate, 'yyyy-MM-dd')}|"></span><br><br>
+    	 <span class="campaignViewProfileSubTitle">모집 인원</span>
+         <span id="campaignParticipants">
+            <span class="campaignViewRecruitment" th:text="|${campaign.participants} / ${campaign.recruitment}|"></span>    
+         </span> 
+         </div>
  
-    	<!-- The Modal -->
-    	<div id="myModal" class="modal">
- 
-      	<!-- Modal content -->
-      	<div class="modal-content">
-        <span class="close"></span>                                                               
-        <p>Some text in the Modal..</p>                 
-      	</div> 
-    	</div>	
-			
-    	</div>		
-	</div>
+      <th:block th:if="${session[advertisementvo] != null}">
+      <input class="campaignViewButton" th:if="${session['advertisementvo'].advertisementId} == ${campaign.advertisementvo.advertisementId}" type="button" id="applyBtn" value="응모자 보기">
+      </th:block>
+      
+      <th:block th:if="${session[uservo] != null}">
+      
+      <input type="hidden" id="userId" th:value="${session['uservo'].userId}">
+      <input type="hidden" id="campaignId" th:value="${campaign.campaignId}">
+      
+      <div id="participantPlus">      
+      <input class="campaignViewButton" type="button" id="participantPlusBtn" value="응모하기">   
+      </div>
+      
+      <div id="participantMinus">
+      <input class="campaignViewButton"  type="button" id="participantMinusBtn" value="취소하기">
+      </div>
+      
+      </th:block>
+      </div>
+       <!-- The Modal -->
+       <div id="applyModal" class="modal" >
+         <!-- Modal content -->
+            <div class="modal-content">
+              <span class="close"></span> 
+              <div id="modalParticipants"></div>                                                            
+            </div> 
+       </div>   
 
-	<script>
-	// Get the modal
-	var modal = document.getElementById('myModal');
-	
-	// Get the button that opens the modal
-	var btn = document.getElementById("myBtn");
-	
-	// Get the <span> element that closes the modal
-	var span = document.getElementsByClassName("close")[0];                                          
-	
-	// When the user clicks on the button, open the modal 
-	btn.onclick = function() {
-	    modal.style.display = "block";
-	}
-	
-	// When the user clicks on <span> (x), close the modal
-	span.onclick = function() {
-	    modal.style.display = "none";
-	}
-	
-	// When the user clicks anywhere outside of the modal, close it
-	window.onclick = function(event) {
-	    if (event.target == modal) {
-	        modal.style.display = "none";
-	    }
-	}
-	
-	</script>
+   </div>
 
 
-			<!-- 주석 영역 세션 해결시 진행 -->
-			<!--  
 
-		-->
-		
-		<!-- 프로필 영역 End -->
+   <!-- 모달 스크립트 -->
+   <script>
+   
+   var modal = document.getElementById('applyModal');
+   var span = document.getElementsByClassName("close")[0];   
+   span.onclick = function() {
+       modal.style.display = "none";
+   }   
 
-		<!-- 모달 영역  
+   window.onclick = function(event) {
+       if (event.target == modal) {
+           modal.style.display = "none";
+       }
+   }   
+   </script>
 
-		<div class="modal" id="campaignModal">
-			<div class="modal-dialog modal-lg">
-				<div class="modal-content">
-					<div class="modal-body">
-                    	<table class="table table-borderless">
-                    		<tr class="row" th:each="participants:${participantsList} ">
-                        	<td class="col-8" th:text="${participants.advertisementvo.advertisement_name}" >
-                        	<td class="col-4">
-							<form th:if ="${participants.participation} == 0 " th:action="@{selectParticipants}">
-                        	<input type="hidden" name="participants_id" th:value="${participants.participants_id}">
-                        	<input type="submit" style="float: right" onclick="applyFunction()" value="선정하기">
-                    		</form>
-                    	  
-                    		<form th:if ="${participants.participation} == 1" th:action="@{cancleParticipants}">
-                        	<input type="hidden" name="participants_id" th:value="${participants.participants_id}">
-                        	<input type="submit" style="float: right" onclick="applyFunction()" value="취소하기">
-                    		</form>
-                    		</td>
-	                        </tr>                        
-                    	</table>
 
-					</div>
-				</div>
-			</div>
-		</div>
-		-->
-
+   <!-- 응모하기 / 취소하기 스크립트 -->
+   <script>
+   $(document).ready(function(){
+      var userId = $("#userId").val();
+      var campaignId = $("#campaignId").val();
+      $.ajax({
+         url:"/participantsCheck",
+         data:{
+            userId:userId,
+            campaignId:campaignId
+         },
+         success:function(result){
+            if(result==0){
+               $("#participantMinus").hide();
+               $("#participantPlus").show();
+            }else{
+               $("#participantPlus").hide();
+               $("#participantMinus").show();
+            }         
+            
+         }
+      });
+      
+      $("#participantPlusBtn").click(function(){
+         var userId = $("#userId").val();
+         var campaignId = $("#campaignId").val();
+         $.ajax({
+            url:"/participants",
+            data:{
+               userId:userId,
+               campaignId:campaignId
+            },
+            success:function(participants){
+               var str="<span class='campaignViewRecruitment'>"+participants.participants+"/"+participants.recruitment+"</span>";
+               $("#campaignParticipants span").remove();
+               $("#campaignParticipants").html(str);
+               $("#participantPlus").hide();
+               $("#participantMinus").show();
+               
+                alertify.set('notifier', 'delay', 2);
+                alertify.set('notifier', 'position', 'bottom-right');
+                alertify.success('응모가 완료되었습니다.');
+            }
+         });
+      });
+      
+      $("#participantMinusBtn").click(function(){
+         var userId = $("#userId").val();
+         var campaignId = $("#campaignId").val();
+         $.ajax({
+            url:"/deleteParticipants",
+            data:{
+               userId:userId,
+               campaignId:campaignId
+            },
+            success:function(participants){
+               var str="<span class='campaignViewRecruitment'>"+participants.participants+"/"+participants.recruitment+"</span>";
+               $("#campaignParticipants span").remove();
+               $("#campaignParticipants").html(str);
+               $("#participantMinus").hide();
+               $("#participantPlus").show();
+               
+               alertify.set('notifier', 'delay', 2);
+                 alertify.set('notifier', 'position', 'bottom-right');
+                 alertify.error('취소가 완료되었습니다.');
+            }
+         });
+      });
+   });
+   </script>
+   
+   
+   <!-- 선정하기 / 취소하기 스크립트 -->
+   <script>
+   $(document).ready(function(){
+         
+      $("#applyBtn").click(function(){
+         participant();
+         modal.style.display = "block";
+      });
+      
+      $(document).on('click','.selectParticipantBtn',function(){
+         var participantsId = $(this).next().val();
+         $.ajax({
+            url:"/selectParticipant",
+            data:{participantsId:participantsId},
+            success:function(){
+               participant();
+               
+                alertify.set('notifier', 'delay', 2);
+                alertify.set('notifier', 'position', 'bottom-right');
+                alertify.success('선정이 완료되었습니다.');
+            }
+         });
+      });
+      
+      $(document).on('click','.cancelParticipantBtn',function(){
+         var participantsId = $(this).next().val();
+         $.ajax({
+            url:"/cancelParticipant",
+            data:{participantsId:participantsId},
+            success:function(){
+               participant();
+               
+               alertify.set('notifier', 'delay', 2);
+                 alertify.set('notifier', 'position', 'bottom-right');
+                 alertify.error('선정 취소가 완료되었습니다.');
+            }
+         });
+      });
+      
+      function participant(){
+         var campaignId = $("#campaignId").val();
+         $.ajax({
+            url:"/selectParticipantList",
+            data:{campaignId:campaignId},
+            success:function(participantList){
+               var str="";
+               str += "<table class='participantTable'>";
+               for(var i in participantList){
+            	  str += "<tr><td class='participantTableTd'><img class='participantTableProfile'src="+ participantList[i].profileImg+"><td>"
+                  str += "<td class='participantTableFont'>"+participantList[i].nickname+"</td>";
+                  if(participantList[i].participation=="N"){
+                     str += "<td><input type='button' class='selectParticipantBtn' value='선정하기'>";
+                     str += "<input type='hidden' value='"+participantList[i].participantsId+"'></td></tr>"
+                  }else{
+                     str += "<td><input type='button' class='cancelParticipantBtn' value='취소하기'>";
+                     str += "<input type='hidden' value='"+participantList[i].participantsId+"'></td></tr>"
+                  }
+               }
+               str += "</table>";
+               $("#modalParticipants table").remove;
+               $("#modalParticipants").html(str);         
+               
+            }
+         });
+      }
+   });
+   </script>
+   
+   <!-- 삭제하기 스크립트 -->
+   <script>
+   $(document).ready(function(){
+      $("#deleteTxt").click(function(){
+         
+         var campaignId = $("#campaignId").val();
+         alertify.confirm('', '게시물을 삭제하시겠습니까?',
+               function(){ alertify.success('Ok') ,                  
+               location.href="/deleteCampaign?campaignId="+campaignId;
+               }
+           ,function(){ 
+              alertify.set('notifier','delay',2);
+              alertify.error('취소하였습니다.')});
+      });      
+   })   
+   </script>
+   
 </body>
 </html>

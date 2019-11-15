@@ -23,4 +23,6 @@ public interface PutRepository extends JpaRepository<Putvo, Integer>{
 			+ "DELETE FROM putvo "
 			+ "WHERE putvo.user_name = ?1 AND putvo.advertisement_name = ?2")
 	public void unput(String followerMe, String advertisementName);
+	
+	
 }

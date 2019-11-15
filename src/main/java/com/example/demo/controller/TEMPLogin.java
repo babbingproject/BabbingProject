@@ -29,7 +29,7 @@ public class TEMPLogin {
 		uservo.setNickname(findUser.get().getNickname());
 		model.addAttribute("username", uservo.getNickname());
 		model.addAttribute("uservos",findUser);
-		return "forward:index?followerMe="+uservo.getNickname()+"";
+		return "forward:/?followerMe="+uservo.getNickname()+"";
 	}
 	
 	@RequestMapping("taewonlogin")

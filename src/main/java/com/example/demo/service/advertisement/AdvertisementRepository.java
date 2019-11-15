@@ -2,6 +2,8 @@ package com.example.demo.service.advertisement;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
@@ -16,13 +18,27 @@ public interface AdvertisementRepository extends JpaRepository<Advertisementvo, 
 	List<Object[]> findAllbyAdvertisementidOrderbyEvaluationAvg();
 	
 	//기업 정보 서치
-//	@Query(nativeQuery=true, value = ""
-//			+ "SELECT advertisement_id, advertisement_name, profile_img, puted_count "
-//			+ "FROM advertisementvo WHERE advertisement_name LIKE %:searchKeyword% "
-//			+ "LIMIT 6")
-//	Page<Advertisementvo> getSearchKeyword(@Param("searchKeyword") String searchKeyword, Pageable pageable);
+	
+	
+	@Query(nativeQuery=true, value = ""
+			+ "SELECT * "
+			+ "FROM advertisementvo WHERE advertisementname LIKE %?1% ",
+			countQuery="SELECT COUNT(*) FROM advertisementvo WHERE advertisement_name LIKE %?1%")
+	Page<Advertisementvo> getSearchKeyword(String searchKeyword, Pageable pageable);
+	
+	@Query(nativeQuery=true, value = ""
+			+ "SELECT * "
+			+ "FROM advertisementvo WHERE advertisementname LIKE %?1% ")
+	List<Advertisementvo> getSearchKeywordSearchPage(String searchKeyword);
 	
 	List<Advertisementvo> findByAdvertisementname(String advertisementName);
+	
+	@Query(nativeQuery=true, value=""
+			+ "SELECT * FROM advertisementvo "
+			+ "INNER JOIN putvo "
+			+ "ON advertisementvo.advertisementname = putvo.advertisement_name "
+			+ "WHERE putvo.user_name = ?1 ")
+	List<Advertisementvo> getAllUserPut(String username);
 	
 	@Query(nativeQuery=true, value=""
 			+ "UPDATE advertisementvo "

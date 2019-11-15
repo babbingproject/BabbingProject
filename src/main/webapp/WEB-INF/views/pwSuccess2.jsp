@@ -5,7 +5,11 @@
 <head>
 <meta charset="UTF-8">
 <title>비밀번호즉시변경</title>
-
+<style>
+*:focus {
+	outline: none;
+}
+</style>
 
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -113,6 +117,8 @@ audio
 
 
 
+
+
 :not
 
 
@@ -137,7 +143,9 @@ audio
 
 
 
+
  
+
 
 
 
@@ -188,7 +196,9 @@ controls
 
 
 
+
  
+
 
 
 
@@ -260,7 +270,10 @@ display
 
 
 
+
+
 :
+
 
 
 
@@ -308,7 +321,10 @@ display
 
 
 
+
 none
+
+
 
 
 
@@ -403,6 +419,8 @@ height
 
 
 
+
+
 :
 
 
@@ -427,7 +445,9 @@ height
 
 
 
+
  
+
 
 
 
@@ -1528,7 +1548,11 @@ transform
 
 
 
+
+
 :rotate(359deg)
+
+
 
 
 
@@ -1638,7 +1662,11 @@ opacity
 
 
 
+
+
 :
+
+
 
 
 
@@ -1739,7 +1767,11 @@ opacity
 
 
 
+
+
 :
+
+
 
 
 
@@ -2505,7 +2537,7 @@ to {
 <body>
 	<div class="w3-center">
 		<div id="logoBack">
-			<a href="index"><img
+			<a href="${pageContext.request.contextPath}/index"><img
 				src="${pageContext.request.contextPath}/images/Bobbing-logo.png"
 				alt="밥빙 logo" /></a>
 		</div>
@@ -2525,10 +2557,9 @@ to {
 						<form id="modify" action="/pwUpdate" method="post">
 
 							<p>
-								<input type="hidden" value="${sessionScope.signedUser }"
-									name="user_email"> <input type="password"
-									class="w3-input" name="password" id="pw" placeholder="새 비밀번호"
-									required="required">
+								<input type="hidden" value="${user_email }" name="user_email">
+								<input type="password" class="w3-input" name="password" id="pw"
+									placeholder="새 비밀번호" required="required">
 							</p>
 							<p>
 								<input type="password" class="w3-input" id="pw2"

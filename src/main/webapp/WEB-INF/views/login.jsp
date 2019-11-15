@@ -5,11 +5,15 @@
 <!DOCTYPE html>
 <html>
 <head>
+<style>
+*:focus {
+	outline: none;
+}
+</style>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>login</title>
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link href="common/css/stylesJoin2.css" rel="stylesheet">
 <link href="common/css/wlogin.css" rel="stylesheet">
 <!-- ajax를 위한 CDN 방식 라이브러리 -->
 <script type="text/javascript"
@@ -65,88 +69,80 @@
 	<c:if test="${not empty cookie.user_check}">
 		<c:set value="checked" var="checked" />
 	</c:if>
-	<div class="w3-center">
-		<div id="logoBack">
-			<a href="index"><img src="images/Bobbing-logo.png" alt="밥빙 logo" /></a>
+	<div class="login_wrap">
+		<div id="logoBack" class="login_title">
+			<a href="/"><img src="images/Bobbing-logo.png" alt="밥빙 logo" /></a>
 		</div>
+		<div class="w3-content w3-container w3-margin-top w3-center">
 
-	</div>
+			<div class="w3-container w3-card-4">
+				<div class="w3-center w3-large w3-margin-top floatClear">
+					<div id="layer_11" class="tab">
+						<a href="/login"><img src="images/layer_11.png" /></a>
+					</div>
+					<div id="layer_12" class="tab">
+						<a href="/adLogin"><img src="images/layer_12.png" /></a>
+					</div>
+					<div id="Shape740copy2">
+						<img src="images/Shape740copy.png">
+					</div>
+					<div id="Shape740copy">
+						<img src="images/Shape740copy2.png">
+					</div>
+				</div>
+				<div class="loginForm">
+					<form id="login" method="post">
+						<!-- <form id="login" method="post"> -->
 
-	<div class="w3-content w3-container w3-margin-top w3-center">
-
-		<div class="w3-container w3-card-4">
-
-			<div id="layer_11">
-				<a href="/login"><img src="images/layer_11.png" /></a>
-			</div>
-			<div id="layer_12">
-				<a href="/adLogin"><img src="images/layer_12.png" /></a>
-			</div>
-			<div id="Shape740copy2">
-				<img src="images/Shape740copy2.png">
-			</div>
-			<div id="Shape740copy">
-				<img src="images/Shape740copy.png">
-			</div>
-			<div class="w3-center w3-large w3-margin-top">
-				<br> <br> <br> <br>
-
-			</div>
-			<div>
-				<form id="login" method="post">
-					<!-- <form id="login" method="post"> -->
-
-					<!-- 세션에 저장한 카카오 아이디를 가져옴 -->
-					<input type="hidden" name="kakao_id" value="${kakao_id}" />
-					<p>
-						<input type="text" class="w3-input" name="user_email"
-							id="user_email" placeholder="이메일(example@naver.com)"
-							value="${cookie.user_check.value}" required="required">
-						<!-- 쿠기에 저장된 벨류(아이디값)을 꺼내옵니다. 서비스에서 쿠키지정 ->컨르롤러로 벨류 전달 -->
-						<span id="spanLoginCheck" class="w3-text-red"></span>
-					</p>
-					<p>
-						<input type="password" class="w3-input" name="password"
-							id="inputPassword" placeholder="비밀번호" required="required">
-						<span id="spanLoginCheck" class="w3-text-red"></span>
-					</p>
-					<p>
-						<input type="button" id="loginBtn"
-							class="w3-button w3-block w3-pink w3-ripple w3-margin-top w3-margin-bottom w3-round"
-							value="로그인">
-					<p>
-						<label class="font-weight-bold text-white"
-							style="margin-right: 352px;"> <input type="checkbox"
-							id="remember_us" name="remember_userId" ${checked}> 이메일
-							저장하기 <!-- 위에 벨류값에 따라 checked가 실행되거나 안되게 합니다. -->
-						</label> <a style="margin-left: -95px;"
-							href="${pageContext.request.contextPath}/userSearch"> 비밀번호 찾기</a>
-					</p>
-					<p>
-						<a href="${url}"> <img
-							src="${pageContext.request.contextPath}/images/네아로.png"
-							align="middle" height="50" width="80%" />
-						</a> <a href=""> <img
-							src="${pageContext.request.contextPath}/images/페아로.png"
-							width="100%" height="50"
-							class=" w3-ripple w3-block w3-margin-top w3-margin-bottom " /></a> 
-							<br>
-							<div id=""><img src="images/멘트로고.png"></div>
-							<br>
-							<input
-							type="button" onclick="location.href='/joinForm'"
+						<!-- 세션에 저장한 카카오 아이디를 가져옴 -->
+						<input type="hidden" name="kakao_id" value="${kakao_id}" />
+						<p class="email">
+							<input type="text" class="w3-input" name="user_email"
+								id="user_email" placeholder="이메일(example@naver.com)"
+								value="${cookie.user_check.value}" required="required">
+							<!-- 쿠기에 저장된 벨류(아이디값)을 꺼내옵니다. 서비스에서 쿠키지정 ->컨르롤러로 벨류 전달 -->
+							<span id="spanLoginCheck" class="w3-text-red"></span>
+						</p>
+						<p class="pw">
+							<input type="password" class="w3-input" name="password"
+								id="inputPassword" placeholder="비밀번호" required="required">
+							<span id="spanLoginCheck" class="w3-text-red"></span>
+						</p>
+						<p>
+							<input type="button" id="loginBtn"
+								class="w3-button w3-block w3-pink w3-ripple w3-margin-top w3-margin-bottom w3-round"
+								value="로그인">
+						<p class="btn_remember">
+							<label class="font-weight-bold text-white"><input
+								type="checkbox" id="remember_us" name="remember_userId"
+								${checked}> 이메일 저장하기 <!-- 위에 벨류값에 따라 checked가 실행되거나 안되게 합니다. -->
+							</label> <a href="${pageContext.request.contextPath}/userSearch">
+								비밀번호 찾기</a>
+						</p>
+						<p class="btn_sns">
+							<a href="${url}"> <img
+								src="${pageContext.request.contextPath}/images/네아로.png"
+								align="middle" />
+							</a> <a href=""> <img
+								src="${pageContext.request.contextPath}/images/페아로.png"
+								class=" w3-ripple w3-block w3-margin-top w3-margin-bottom " /></a>
+						<div id="" class="txt_img">
+							<img src="images/멘트로고.png">
+						</div>
+						<input type="button" onclick="location.href='/joinForm'"
 							class="w3-button w3-block w3-pink w3-ripple w3-margin-top w3-margin-bottom w3-round"
 							value="회원가입"></input>
 
 
 
-				</form>
+					</form>
 
 
+				</div>
 			</div>
 		</div>
 	</div>
-
+	<!-- //login_wrap end -->
 
 </body>
 </html>

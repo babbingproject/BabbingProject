@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.dao.AdMapper;
@@ -19,6 +21,9 @@ public class AdvertisementServiceImpl implements AdvertisementService  {
 	@Autowired
 	private AdMapper adMapper;
 	
+	public List<Advertisementvo> getAllUserPut(String username){
+		return advertiseRepo.getAllUserPut(username);
+	}
 	@Override
 	public List<Object[]> getAdvertisementvoOrderByWeightAvg(){
 		return advertiseRepo.findAllbyAdvertisementidOrderbyEvaluationAvg();
@@ -28,12 +33,11 @@ public class AdvertisementServiceImpl implements AdvertisementService  {
 	public List<Advertisementvo> findAll(){
 		return advertiseRepo.findAll();
 	}
-	//기업 서치
 	
-//	@Override
-//	public Page<Advertisementvo> getSearchKeyword(String searchKeyword, Pageable pageable) {
-//		return advertiseRepo.getSearchKeyword(searchKeyword, pageable);
-//	}
+	@Override
+	public Page<Advertisementvo> getSearchKeyword(String searchKeyword, Pageable pageable) {
+		return advertiseRepo.getSearchKeyword(searchKeyword, pageable);
+	}
 
 	@Override
 	public int joinAd(Advertisementvo vo) {
@@ -48,7 +52,7 @@ public class AdvertisementServiceImpl implements AdvertisementService  {
 	}
 
 	@Override
-	public int adnickCheck(Advertisementvo vo, String advertisement_name) {
+	public int adnickCheck(Advertisementvo vo, String advertisementname) {
 		// TODO Auto-generated method stub
 		return adMapper.adnickCheck(vo.getAdvertisementname());
 	}
@@ -71,5 +75,8 @@ public class AdvertisementServiceImpl implements AdvertisementService  {
 		return advertiseRepo.findByAdvertisementEmail(advertisement_email);
 	}
 	
+	public List<Advertisementvo> getSearchKeywordSearchpage(String searchKeyword){
+		return advertiseRepo.getSearchKeywordSearchPage(searchKeyword);
+	}
 	
 }

@@ -14,6 +14,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 import com.example.demo.domain.campaign.Campaignvo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -29,7 +30,7 @@ public class Advertisementvo {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int advertisementId;
 	private String advertisement_email;
-	@Column(name="advertisement_name")
+	@Column(name="advertisementname")
 	private String advertisementname;
 	private String password;
 	private String introduce;
@@ -55,9 +56,11 @@ public class Advertisementvo {
 	@Column( columnDefinition="float default 0")
 	private float evaluation_avg;			// 업체 평점	
 	
+	@JsonIgnore
 	@OneToMany(mappedBy = "advertisementvo", fetch=FetchType.EAGER, cascade=CascadeType.ALL)
 	private List<Campaignvo> campaignList = new ArrayList<Campaignvo>();
 	
+	@JsonIgnore
 	@OneToOne(mappedBy ="advertisementvo")
 	private AdvertisementEvaluationvo advertisementEvaluationvo;
 

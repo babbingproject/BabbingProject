@@ -11,6 +11,6 @@ import lombok.Setter;
 @Setter
 public class CheckingPut {
 
-	public Advertisementvo advvo;
+	public Advertisementvo advertisementvo;
 	public List<Object> putvo;
 }

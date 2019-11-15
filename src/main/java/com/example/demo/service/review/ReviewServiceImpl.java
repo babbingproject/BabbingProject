@@ -1,7 +1,6 @@
 package com.example.demo.service.review;
 
 import java.util.List;
-import java.util.Optional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -12,12 +11,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.domain.mypage.Uservo;
-import com.example.demo.domain.review.AjaxReviewImagevo;
 import com.example.demo.domain.review.Commentvo;
 import com.example.demo.domain.review.QReviewRegistrationvo;
-import com.example.demo.domain.review.ReviewImagevo;
 import com.example.demo.domain.review.ReviewRegistrationvo;
-import com.example.demo.service.review.image.AjaxReviewImageRepository;
 import com.example.demo.service.user.UserRepository;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 
@@ -29,59 +25,112 @@ public class ReviewServiceImpl implements ReviewService {
 
 	@Autowired
 	UserRepository userRepo;
+<<<<<<< HEAD
 	
 	
+=======
+
+>>>>>>> 5dd6a66f632fd30841ad050968d91eb8ad6add2a
 	@PersistenceContext
 	EntityManager em;
 
+	public List<ReviewRegistrationvo> getEverythingWOLimit(){
+		return (List<ReviewRegistrationvo>) reviewRepo.getEverythingWOLimit();
+	}
 	@Override
 	public List<Object[]> getKoreanTopSix() {
 		return reviewRepo.getKoreanFoodTopSix();
 	}
 
+	public List<ReviewRegistrationvo> getUserSelfWroteReview(Integer username) {
+		return (List<ReviewRegistrationvo>) reviewRepo.getUserSelfWroteReview(username);
+	}
+
+	public List<ReviewRegistrationvo> getScrappedReview(String username) {
+		return (List<ReviewRegistrationvo>) reviewRepo.getScrappedReview(username);
+	}
 //	@Override
 //	public List<Object[]> getNewestReview() {
 //		return reviewRepo.getNewestReview();
 //	}
 
 	@Override
-	public List<Object[]> getEverythingTopSix() {
-		return reviewRepo.getEverything();
+	public List<ReviewRegistrationvo> getEverythingTopSix() {
+		return (List<ReviewRegistrationvo>) reviewRepo.getEverything();
+	}
+
+	public List<Object[]> getEverythingTopSixObject() {
+		return reviewRepo.getEverythingObject();
 	}
 
 	@Override
-	public List<Object[]> getBusinessFieldOne() {
-		return reviewRepo.getBusinessFieldKor();
+	public List<ReviewRegistrationvo> getBusinessFieldOne() {
+		return (List<ReviewRegistrationvo>) reviewRepo.getBusinessFieldKor();
 	}
 
 	@Override
-	public List<Object[]> getBusinessFieldTwo() {
-		return reviewRepo.getBusinessFieldWes();
+	public List<Object[]> getBusinessFieldOneObject() {
+		return reviewRepo.getBusinessFieldKorObject();
 	}
 
 	@Override
-	public List<Object[]> getBusinessFieldThree() {
-		return reviewRepo.getBusinessFieldJpn();
+	public List<ReviewRegistrationvo> getBusinessFieldTwo() {
+		return (List<ReviewRegistrationvo>) reviewRepo.getBusinessFieldWes();
 	}
 
 	@Override
-	public List<Object[]> getBusinessFieldFour() {
-		return reviewRepo.getBusinessFieldChn();
+	public List<Object[]> getBusinessFieldTwoObject() {
+		return reviewRepo.getBusinessFieldWesObject();
 	}
 
 	@Override
-	public List<Object[]> getBusinessFieldFive() {
-		return reviewRepo.getBusinessFieldSnk();
+	public List<ReviewRegistrationvo> getBusinessFieldThree() {
+		return (List<ReviewRegistrationvo>) reviewRepo.getBusinessFieldJpn();
 	}
 
 	@Override
-	public List<Object[]> getBusinessFieldSix() {
-		return reviewRepo.getBusinessFieldFst();
+	public List<Object[]> getBusinessFieldThreeObject() {
+		return reviewRepo.getBusinessFieldJpnObject();
 	}
 
 	@Override
-	public List<Object[]> getBusinessFieldSeven() {
-		return reviewRepo.getBusinessFieldCaf();
+	public List<ReviewRegistrationvo> getBusinessFieldFour() {
+		return (List<ReviewRegistrationvo>) reviewRepo.getBusinessFieldChn();
+	}
+
+	@Override
+	public List<Object[]> getBusinessFieldFourObject() {
+		return reviewRepo.getBusinessFieldChnObject();
+	}
+
+	@Override
+	public List<ReviewRegistrationvo> getBusinessFieldFive() {
+		return (List<ReviewRegistrationvo>) reviewRepo.getBusinessFieldSnk();
+	}
+
+	@Override
+	public List<Object[]> getBusinessFieldFiveObject() {
+		return reviewRepo.getBusinessFieldSnkObject();
+	}
+
+	@Override
+	public List<ReviewRegistrationvo> getBusinessFieldSix() {
+		return (List<ReviewRegistrationvo>) reviewRepo.getBusinessFieldFst();
+	}
+
+	@Override
+	public List<Object[]> getBusinessFieldSixObject() {
+		return reviewRepo.getBusinessFieldFstObject();
+	}
+
+	@Override
+	public List<ReviewRegistrationvo> getBusinessFieldSeven() {
+		return (List<ReviewRegistrationvo>) reviewRepo.getBusinessFieldCaf();
+	}
+
+	@Override
+	public List<Object[]> getBusinessFieldSevenObject() {
+		return reviewRepo.getBusinessFieldCafObject();
 	}
 
 	@Override
@@ -96,6 +145,7 @@ public class ReviewServiceImpl implements ReviewService {
 	@Override
 	public void insertReview(ReviewRegistrationvo reviewRegistrationvo) {
 		reviewRepo.save(reviewRegistrationvo);
+		
 	}
 
 	@Override
@@ -108,7 +158,7 @@ public class ReviewServiceImpl implements ReviewService {
 		return query.selectFrom(qReviewRegistrationvo).orderBy(qReviewRegistrationvo.reviewId.desc()).fetch();
 
 	}
-
+	
 	@Override
 	public List<Object> selectReviewJoinReviewAndComment(Uservo uservo, ReviewRegistrationvo reviewRegistrationvo,
 			Commentvo commentvo) {
@@ -130,11 +180,6 @@ public class ReviewServiceImpl implements ReviewService {
 		 */
 		return null;
 
-	}
-
-	@Override
-	public ReviewRegistrationvo selectReviewView(int reviewId) {
-		return reviewRepo.getReviewView(reviewId);
 	}
 
 	@Override
@@ -165,12 +210,12 @@ public class ReviewServiceImpl implements ReviewService {
 //		
 //	}
 
-//	@Override
-//	public List<ReviewRegistrationvo> selectReviewList() {
-//		return reviewRepo.findAll();
-//	}
+	public Page<ReviewRegistrationvo> getSearchKeywordPage(String searchKeyword, Pageable pageable) {
+		return reviewRepo.getSearchKeywordPage(searchKeyword, pageable);
+	}
 
 	public Page<ReviewRegistrationvo> findAll(Pageable pageable) {
+
 		return reviewRepo.findAll(pageable);
 	}
 
@@ -188,11 +233,31 @@ public class ReviewServiceImpl implements ReviewService {
 
 	@Override
 	public int createReviewId() {
-		
-		return (int) (reviewRepo.count()+2);
+
+		return (int) (reviewRepo.reviewCount()+1);
 	}
 
+<<<<<<< HEAD
 	
+=======
+	@Override
+	public ReviewRegistrationvo getReviewView(int reviewId) {
+		return reviewRepo.getReviewView(reviewId);
+>>>>>>> 5dd6a66f632fd30841ad050968d91eb8ad6add2a
 
+	}
+	
+	public List<ReviewRegistrationvo> getSearchKeywordSearchPage(String searchKeyword){
+		return reviewRepo.getSearchKeywordSearchPage(searchKeyword);
+	}
 
+	@Override
+	public int checkReviewId(int reviewId) {
+		
+		return reviewRepo.selectCheckReviewId(reviewId);
+	}
+	@Override
+	public void modifyReviewView(ReviewRegistrationvo reviewRegistrationvo) {
+		reviewRepo.save(reviewRegistrationvo);
+	}
 }

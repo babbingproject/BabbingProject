@@ -17,6 +17,7 @@ import javax.persistence.OneToMany;
 
 import com.example.demo.domain.mypage.Uservo;
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import lombok.Getter;
@@ -60,19 +61,22 @@ public class ReviewRegistrationvo {
 	 * CascadeType.ALL) private List<ReviewImagevo> reviewImagevoList = new
 	 * ArrayList<ReviewImagevo>();
 	 */
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "userId", nullable = false)
 	@JsonManagedReference
 	private Uservo uservo;
 
-	@OneToMany(mappedBy = "reviewRegistrationvo", fetch = FetchType.EAGER, cascade = CascadeType.ALL )
+	@OneToMany(mappedBy = "reviewRegistrationvo", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
 	@JsonBackReference
 	private List<Commentvo> commentList = new ArrayList<Commentvo>();
 
 	
-	@OneToMany(mappedBy = "reviewRegistrationvo", cascade = CascadeType.ALL)
+	@JsonIgnore
+	@OneToMany(mappedBy = "reviewRegistrationvo", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
 	private List<ReviewImagevo> reviewImgList = new ArrayList<ReviewImagevo>();
-
+	
+	
 	public void setUservo(Uservo uservo) {
 		this.uservo = uservo;
 		uservo.getReviewRegistrationList().add(this);

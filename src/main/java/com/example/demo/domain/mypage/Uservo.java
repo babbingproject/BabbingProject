@@ -33,7 +33,6 @@ public class Uservo {
 	private String nickname;
 	private String password;
 	private String introduce;
-	private String userPhone;
 	@Column(name = "user_key")
 	private String user_key;// 인증번호
 	@Column(name = "user_email")
@@ -66,12 +65,6 @@ public class Uservo {
 	private String uRankImg4;
 	private String uRankImg5;
 
-	@Column(insertable = false, updatable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP")
-	private Date regDate;
-	@Column(insertable = false, updatable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP")
-	private Date logDate;
-	private String approvalStatus;
-	private String approvalKey;
 
 	// 세션 테스트용 임시컬럼
 	private String role;

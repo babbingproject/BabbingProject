@@ -29,19 +29,14 @@ public class ReviewImagevo {
 	@Id 
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int imgId;
+	@Column(nullable = true)
 	private String img;
 	@Column(nullable = true)
 	private String imgReview;
 	
 
-	/*
-	 * @ManyToOne
-	 * 
-	 * @JoinColumn(name="reviewId", nullable=false, insertable=false,
-	 * updatable=false) private ReviewRegistrationvo reviewId;
-	 */	
 	@ManyToOne
-	@JoinColumn(name = "reviewId", nullable = false)
+	@JoinColumn(name = "reviewId", nullable = true)
 	private ReviewRegistrationvo reviewRegistrationvo;
 	
 	@OneToMany(mappedBy = "reviewImagevo",  cascade = CascadeType.ALL)

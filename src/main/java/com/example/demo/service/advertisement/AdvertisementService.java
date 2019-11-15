@@ -9,15 +9,16 @@ import com.example.demo.domain.mypage.Advertisementvo;
 
 public interface AdvertisementService {
 
+	List<Advertisementvo> getAllUserPut(String username);
 	List<Object[]> getAdvertisementvoOrderByWeightAvg();
 
-//	Page<Advertisementvo> getSearchKeyword(String searchKeyword, Pageable pageable);
-
+	Page<Advertisementvo> getSearchKeyword(String searchKeyword, Pageable pageable);
+	
 	public int joinAd(Advertisementvo vo);
 
 	public int ademailCheck(Advertisementvo vo, String advertisement_email);
 
-	public int adnickCheck(Advertisementvo vo, String advertisement_name);
+	public int adnickCheck(Advertisementvo vo, String advertisementname);
 	
 	List<Advertisementvo> findByAdvertisementName(String advertisementName);
 	
@@ -27,5 +28,5 @@ public interface AdvertisementService {
 	void decreasePut(String followerYou);
 	
 	Advertisementvo findAllByAdvertisementEmail(String advertisement_email);
-	
+	List<Advertisementvo> getSearchKeywordSearchpage(String searchKeyword);
 }

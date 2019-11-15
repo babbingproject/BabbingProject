@@ -5,6 +5,8 @@ import java.util.Optional;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.dao.UserMapper;
@@ -19,7 +21,17 @@ public class UserServiceImpl implements UserService {
 	private SqlSessionTemplate userSqlSessin;
 	@Autowired
 	private UserMapper userMapper;
-
+	public List<Uservo> getSearchKeywordSearchPage(String searchKeyword){
+		return userRepo.getSearchKeywordSearchPage(searchKeyword);
+	}
+	public List<Uservo> getAllFollowers(String followingYou){
+		return userRepo.getAllFollowers(followingYou);
+	}
+	
+	public List<Uservo> getAllFollowingUsers(String followingMe){
+		return userRepo.getAllFollowingUsers(followingMe);
+	}
+	
 	@Override
 	public Uservo getUser(Uservo uservo) {
 		
@@ -128,5 +140,9 @@ public class UserServiceImpl implements UserService {
 	public Uservo findByUserEmail(String user_email) {
 		
 		return userRepo.findByUserEmail(user_email);
+	}
+	
+	public Page<Uservo> getSearchKeywordPage(String searchKeyword, Pageable pageable){
+		return userRepo.getSearchKeywordPage(searchKeyword, pageable);
 	}
 }

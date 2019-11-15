@@ -19,18 +19,17 @@ import lombok.ToString;
 @ToString
 @Entity
 public class Participantsvo {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int participantsId;
 	
 	@ManyToOne
-	@JoinColumn(name="campaignId")
-	private Campaignvo campaignvo;
+	@JoinColumn(name="campaignId" )
+	private Campaignvo campaignvo;	
 	
 	@ManyToOne
 	@JoinColumn(name="userId")
 	private Uservo uservo;
 	
-	@Column(nullable=false, columnDefinition = "char default 'N'")
+	@Column(nullable=false, columnDefinition = "CHAR default 'N'")
 	private char participation;
 }

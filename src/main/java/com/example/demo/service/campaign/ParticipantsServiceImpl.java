@@ -14,39 +14,49 @@ public class ParticipantsServiceImpl implements ParticipantsService {
 	private ParticipantsRepository participantsRepo;
 	
 	@Override
-	public List<Participantsvo> getParticipantsList(int campaign_id) {
-		return (List<Participantsvo>) participantsRepo.getParticipantList(campaign_id);
+	public List<Participantsvo> getParticipantsList(int campaignId) {
+		return (List<Participantsvo>) participantsRepo.getParticipantList(campaignId);
 	}
 
 	@Override
-	public Participantsvo getParticipants(int advertisement_id, int campaign_id) {
-		return participantsRepo.getParticipant(advertisement_id, campaign_id);
+	public int getParticipants(int userId, int campaignId) {
+		return participantsRepo.getParticipant(userId, campaignId);
 	}
 
 	@Override
 	public void insertParticipants(Participantsvo participants) {
+		participants.setParticipation('N');
 		participantsRepo.save(participants);
-
 	}
 
 	@Override
-	public void deleteParticipants(int advertisement_id, int campaign_id) {
-		participantsRepo.deleteParticipants(advertisement_id, campaign_id);	
-
+	public void deleteParticipants(int advertisementId, int campaignId) {
+		participantsRepo.deleteParticipants(advertisementId, campaignId);	
 	}
 
 	@Override
-	public void selectParticipants(int participants_id) {
-		Participantsvo participantsvo = participantsRepo.findById(participants_id).get();
+	public void selectParticipants(int participantsId) {
+		Participantsvo participantsvo = participantsRepo.findById(participantsId).get();
 		participantsvo.setParticipation('Y');
 		participantsRepo.save(participantsvo);
-
 	}
 
 	@Override
-	public void cancleParticipants(int participants_id) {
-		Participantsvo participantsvo = participantsRepo.findById(participants_id).get();
+	public void cancleParticipants(int participantsId) {
+		Participantsvo participantsvo = participantsRepo.findById(participantsId).get();
 		participantsvo.setParticipation('N');
 		participantsRepo.save(participantsvo);
 	}
+
+	@Override
+	public String applyCheck(int participantsId) {
+		return participantsRepo.applyCheck(participantsId);
+	}
+
+	@Override
+	public String getAdvertisementProfileImg(int advertisement_id) {
+		return participantsRepo.getAdvertisementProfileImg(advertisement_id);
+	}
+
 }
+

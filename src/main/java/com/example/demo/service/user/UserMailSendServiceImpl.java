@@ -95,13 +95,13 @@ public class UserMailSendServiceImpl implements UserMailSendService {
 	}
 
 	@Override
-	public void mailSendWithAdKey(String advertisement_email,String advertisement_name, HttpServletRequest request) {
+	public void mailSendWithAdKey(String advertisement_email,String advertisementname, HttpServletRequest request) {
 		// TODO Auto-generated method stub
 		String key = getKey(false, 20);
 		adMapper = sqlSession.getMapper(AdMapper.class);
 		adMapper.GetKey(advertisement_email, key);
 		MimeMessage mail = mailSender.createMimeMessage();
-		String htmlStr = "<h2>안녕하세요 밥빙 입니다!</h2><br><br>" + "<h3>" + advertisement_name + "님</h3>"
+		String htmlStr = "<h2>안녕하세요 밥빙 입니다!</h2><br><br>" + "<h3>" + advertisementname + "님</h3>"
 				+ "<p>인증하기 버튼을 누르시면 로그인을 하실 수 있습니다 기업회원입니다. " + "<a href='http://localhost:80" + request.getContextPath()
 				+ "/ad/key_alter?advertisement_email=" + advertisement_email + "&ad_key=" + key + "'>인증하기</a></p>"
 				+ "(혹시 본인이 요청하시지 않은 인증메일 이라면 개인정보 유출 여부를 확인하세요!)";

@@ -3,6 +3,8 @@ package com.example.demo.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -28,7 +30,8 @@ public class RankController {
 	@Autowired
 	AdvertisementService advService;
 	@RequestMapping("/rank")
-	public String goToRanking(Model model, String followerMe) {
+	public String goToRanking(Model model,  HttpSession httpSession) {
+		String followerMe = (String) httpSession.getAttribute("username");
 		List<CheckingRanking> checkingList = new ArrayList();
 		List<CheckingPut> checkingPutList = new ArrayList();
 		List<Uservo> userList = rankService.getAllUser();
@@ -41,7 +44,7 @@ public class RankController {
 		}
 		for(int i = 0; i < advList.size(); i++) {
 			CheckingPut checkingPut = new CheckingPut();
-			checkingPut.setAdvvo(advList.get(i));
+			checkingPut.setAdvertisementvo(advList.get(i));
 			checkingPut.setPutvo(rankService.checkPut(followerMe, advList.get(i).getAdvertisementname()));
 			checkingPutList.add(checkingPut);
 		}
@@ -50,7 +53,7 @@ public class RankController {
 		model.addAttribute("adv", checkingPutList);
 		System.out.println(userList);
 		System.out.println(advList);
-		return "th/rank/rank";
+		return "th/rank/sub";
 	}
 	
 	@ResponseBody
