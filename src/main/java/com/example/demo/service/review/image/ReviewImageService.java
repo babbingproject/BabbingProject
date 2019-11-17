@@ -1,13 +1,13 @@
 package com.example.demo.service.review.image;
 
 import java.util.List;
+import java.util.Optional;
 
-import com.example.demo.domain.review.AjaxReviewImagevo;
 import com.example.demo.domain.review.ReviewImagevo;
 
 public interface ReviewImageService {
 
-   ReviewImagevo getImgById(ReviewImagevo reviewImagevo);
+   Optional<ReviewImagevo> getImgById(int findImgId);
 
    ReviewImagevo getReviewImagevo(ReviewImagevo reviewImagevo);
    ReviewImagevo saveReviewImagevo(ReviewImagevo reviewImagevo);

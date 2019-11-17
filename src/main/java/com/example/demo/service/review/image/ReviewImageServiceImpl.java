@@ -1,6 +1,7 @@
 package com.example.demo.service.review.image;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -27,8 +28,8 @@ public class ReviewImageServiceImpl implements ReviewImageService {
 	EntityManager em;
 
 	@Override
-	public ReviewImagevo getImgById(ReviewImagevo reviewImagevo) {
-		return reviewImageRepo.findById(reviewImagevo.getImgId()).get();
+	public Optional<ReviewImagevo> getImgById(int findImgId) {
+		return reviewImageRepo.findById(findImgId);
 	}
 
 	@Override
