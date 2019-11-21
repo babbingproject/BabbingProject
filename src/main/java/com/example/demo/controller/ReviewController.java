@@ -152,8 +152,8 @@ public class ReviewController {
       System.out.println("리뷰 업데이트 reviewRegistrationvo : " + reviewRegistrationvo.toString());
        System.out.println("리뷰이미지vo : "+ reviewImagevo.toString());
        System.out.println("리뷰이미지id : "+ imgId);
-      System.out.println("리뷰 이미지에 대한 내용 : " + addImgReview);
-      System.out.println("리뷰 이미지 주소 : " + addImgSrc);
+      System.out.println("추가하는 리뷰 이미지에 대한 내용 : " + addImgReview);
+      System.out.println("추가하는 리뷰 이미지 주소 : " + addImgSrc);
 
        if (addImgSrc.isPresent()!=true) { // 추가하는 이미지 주소값이 비어 있다면
           System.out.println("0");
@@ -177,7 +177,7 @@ public class ReviewController {
          } else {   // 추가하는 이미지 주소값이 있다면
             System.out.println("1");
             String[] arrayImgSrc = addImgSrc.get().split(",");   // 이미지값을 ,를 기준으로 나눠서 배열에 넣음
-            if (addImgReview.isPresent()) {   // 만약 해당 이미지에 대한 리뷰값이 존재한다면 
+//            if (addImgReview.isPresent()) {   // 만약 해당 이미지에 대한 리뷰값이 존재하지 않는다면 
                System.out.println("2");
                String[] arrayAddImgReview = addImgReview.get().split(",");   // 이미지에 대한 리뷰값을 ,를 기준으로 나눠서 배열에 넣음
                for (int i = 0, j = 0; i < arrayImgSrc.length || j < arrayAddImgReview.length; i++, j++) {   // 이미지 주소 배열의 수만큼
@@ -189,7 +189,7 @@ public class ReviewController {
                   addReviewImagevo.setReviewRegistrationvo(reviewRegistrationvo);
                   reviewImageService.updateReviewImg(addReviewImagevo);   // 리뷰 이미지 주소와 이미지에 대한 리뷰를 저장
                }
-            }
+//            } 
              Uservo uservo = new Uservo();
              uservo.setUserId(userId);
              reviewRegistrationvo.setUservo(uservo);
@@ -202,7 +202,6 @@ public class ReviewController {
                 String setArrayImgReview = arrayImgReview[i];
                 reviewImagevo =reviewImageService.getImgById(findImgId);
                 reviewImagevo.get().setImgReview(setArrayImgReview);
-                System.out.println("추가 이미지가 없는 경우 setImgReview : "+reviewImagevo.toString());
                 reviewImagevo.get().setReviewRegistrationvo(reviewRegistrationvo);
              }
              reviewService.updateReview(reviewRegistrationvo);   //추가 이미지가 없다면 기존 이미지와 이미지 리뷰를 수정
