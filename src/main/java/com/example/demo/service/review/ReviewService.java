@@ -76,6 +76,7 @@ public interface ReviewService {
 	public Page<ReviewRegistrationvo> findAll(Pageable pageable);
 	public List<ReviewRegistrationvo> getNewestReviewList();
 	
+	
 
 	ReviewRegistrationvo getReviewView(int reviewId);
 	
